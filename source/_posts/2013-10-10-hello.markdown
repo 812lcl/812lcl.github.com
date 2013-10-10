@@ -3,7 +3,8 @@ layout: post
 title: "Hello"
 date: 2013-10-10 15:18
 comments: true
-categories: 
+categories: test
+tags: test
 ---
 
 ##Hello world
