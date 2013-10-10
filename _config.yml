@@ -51,20 +51,20 @@ titlecase: true       # Converts page and post titles to titlecase
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 #default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
-default_asides: [asides/recent_posts.html, asides/github.html, custom/asides/weibo.html, custom/asides/recent_comments.html]
+default_asides: [asides/recent_posts.html, asides/github.html, custom/asides/weibo.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
 # blog_index_asides:
 # post_asides:
 # page_asides:
-#custom/asides/recent_comments.html
+
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: 812lcl
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
@@ -100,9 +100,6 @@ google_analytics_tracking_id:
 # Facebook Like
 facebook_like: false
 
-# Sina Weibo
-weibo_sharing: true
-
 # Weibo
 weibo_uid: 812lcl
 weibo_verifier:  
@@ -112,11 +109,14 @@ weibo_pic: true
 weibo_skin: 10   
 
 # duoshuo comments
-duoshuo_comments: true
+duoshuo_comments: false
 duoshuo_short_name: 812lcl
-duoshuo_asides_num: 10      
-duoshuo_asides_avatars: 0   
-duoshuo_asides_time: 0      
-duoshuo_asides_title: 0     
-duoshuo_asides_admin: 0     
-duoshuo_asides_length: 18   
+duoshuo_asides_num: 10
+duoshuo_asides_avatars: 1
+duoshuo_asides_time: 1
+duoshuo_asides_title: 1
+duoshuo_asides_admin: 0
+duoshuo_asides_length: 18
+
+# UY comments and JiaThis
+comment_share: true
