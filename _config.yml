@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://812lcl.github.io
-title: My Octopress Blog
+title: 812lcl's Blog
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: 812lcl
 simple_search: http://google.com/search
 description:
 
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: 812liuchunlei@163.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -50,14 +50,15 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+#default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/recent_posts.html, asides/github.html, custom/asides/weibo.html, custom/asides/recent_comments.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
 # blog_index_asides:
 # post_asides:
 # page_asides:
-
+#custom/asides/recent_comments.html
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
@@ -70,7 +71,7 @@ github_skip_forks: true
 
 # Twitter
 twitter_user:
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: false
@@ -98,3 +99,24 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+# Sina Weibo
+weibo_sharing: true
+
+# Weibo
+weibo_uid: 812lcl
+weibo_verifier:  
+weibo_fansline: 0
+weibo_show: true 
+weibo_pic: true  
+weibo_skin: 10   
+
+# duoshuo comments
+duoshuo_comments: true
+duoshuo_short_name: 812lcl
+duoshuo_asides_num: 10      
+duoshuo_asides_avatars: 0   
+duoshuo_asides_time: 0      
+duoshuo_asides_title: 0     
+duoshuo_asides_admin: 0     
+duoshuo_asides_length: 18   
