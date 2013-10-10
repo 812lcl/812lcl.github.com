@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: test | 812lcl's Blog]]></title>
+  <title><![CDATA[Category: test | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/test/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-10T20:06:35+08:00</updated>
+  <updated>2013-10-10T20:17:39+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
