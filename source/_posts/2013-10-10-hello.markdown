@@ -7,5 +7,6 @@ categories: test
 tags: test
 ---
 
-##Hello world
+##Octopress
 I'm 812lcl.
+<!-- more -->
