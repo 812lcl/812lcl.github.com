@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-12T15:32:03+08:00</updated>
+  <updated>2013-10-12T15:39:16+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<h2>Hello world</h2>
 
 <p>I&rsquo;m 812lcl.</p>
+
+<!-- more -->
+
 
 <p class='post-footer'>
             original link:<a href='http://812lcl.github.io/blog/2013/10/10/hello/'>http://812lcl.github.io/blog/2013/10/10/hello/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
