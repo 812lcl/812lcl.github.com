@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: test | 812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/tags/test/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: tag | 812lcl的博客]]></title>
+  <link href="http://812lcl.github.io/tags/tag/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-12T20:57:44+08:00</updated>
+  <updated>2013-10-12T22:09:47+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自警自省自规划]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/12/zi-jing-zi-sheng-zi-gui-hua/"/>
+    <updated>2013-10-12T21:37:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/12/zi-jing-zi-sheng-zi-gui-hua</id>
+    <content type="html"><![CDATA[<p>自警自省自规划</p>
+
+<!-- more -->
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hello]]></title>
