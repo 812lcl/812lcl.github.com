@@ -24,6 +24,10 @@
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
     <footer>
+	<p class="meta">
+      {% include post/categories.html %}
+      {% include post/tags.html %}
+    </p>
       <a rel="full-article" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>
     </footer>
   {% endif %}
