@@ -355,9 +355,30 @@
 		  document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
 		  lastScrollY=lastScrollY+percent;
 	  }
-	  suspendcode="<div id=\"full\" style='right:1px;POSITION:absolute;TOP:600px;z-index:100'><a onclick='window.scrollTo(0,0);'><img src="top.png" /></a><br></div>"
+	  suspendcode="<div id=\"full\" style='right:1px;POSITION:absolute;TOP:600px;z-index:100'><a onclick='window.scrollTo(0,0);'><img src="/top.png" />返回顶部</a><br></div>"
 	  document.write(suspendcode);
 	  window.setInterval("heartBeat()",1);
   </script>
+  <script type="text/javascript">
+	  $(window).scroll(function () {
+			  var sc = $(window).scrollTop();
+			  var rwidth = $(window).width(); //当前页面宽度
+			  var iwidth = $("#goTopBtn").width(); //top图片宽度
+
+			  var swidth = (rwidth - 980) / 2; //计算主体内容距离左边框空白区宽度
+			  if (sc > 0) {
+			  $("#goTopBtn").css("display", "block");
+			  $("#goTopBtn").css("left", (980 + swidth) + "px");
+			  } else {
+			  $("#goTopBtn").css("display", "none");
+			  }
+			  }
+
+			  $("#goTopBtn").click(function () {
+				  var sc = $(window).scrollTop();
+				  $('body,html').animate({ scrollTop: 0 }, 500);
+				  })
+
+			  </script>
   </body>
 </html>
