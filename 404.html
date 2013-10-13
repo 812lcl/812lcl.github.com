@@ -245,16 +245,28 @@
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 
 
-  <div id="toolBackTo" class="back-to" style="display:none;">
-	  <a stats="site_footer_back_to_top" class="backtotop" href="#top">返回顶部
-		  <img stats="site_footer_back_to_top" src="http://a.xnimg.cn/imgpro/button/back-tip.png" class="back-tip" />
-	  </a>
-  </div><script src="http://s.xnimg.cn/a12023/jspro/beacon.js"></script>
+  <!--cnzz tui-->
+  <script  type="text/javascript" c=fc charset="utf-8"  src="http://tui.cnzz.net/cs.php?id=1000060233"></script>
+  <!--cnzz tui-->
   <script>
-	  COMSCORE.beacon({ c1:2, c2:6934070, c3:"", c4:"", c5:"", c6:"", c15:"" });
+	  lastScrollY=0;
+	  function heartBeat(){
+		  var diffY;
+		  if (document.documentElement && document.documentElement.scrollTop)
+		  diffY = document.documentElement.scrollTop;
+		  else if (document.body)
+		  diffY = document.body.scrollTop
+		  else
+		  {/*Netscape stuff*/}
+		  percent=.1*(diffY-lastScrollY);
+		  if(percent>0)percent=Math.ceil(percent);
+		  else percent=Math.floor(percent);
+		  document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
+		  lastScrollY=lastScrollY+percent;
+	  }
+	  suspendcode="<div id=\"full\" style='right:1px;POSITION:absolute;TOP:600px;z-index:100'><a onclick='window.scrollTo(0,0);'>返回顶部</a><br></div>"
+	  document.write(suspendcode);
+	  window.setInterval("heartBeat()",1);
   </script>
-  <noscript>
-	  <img src="http://b.scorecardresearch.com/p?c1=2&c2=6934070&c3=&c4=&c5=&c6=&c15=&cj=1" />
-  </noscript>
-</body>
+  </body>
 </html>
