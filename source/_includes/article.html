@@ -15,6 +15,8 @@
 		{% if site.duoshuo_short_name and page.comments != false and post.comments != false and site.duoshuo_comments == true %}
 			| <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments">Comments</a>
 		{% endif %}
+			| <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+			<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
       </p>
     {% endunless %}
   </header>
