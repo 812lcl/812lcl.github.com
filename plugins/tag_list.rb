@@ -38,7 +38,7 @@ module Jekyll
       @style, @tag_before, @tag_after, @separator = 'list', '<li>', '</li>', ', '
 
       # process parameters
-      @params = Hash[*params.split(/(?:: *)|(?:, *)/)]
+      @params = Hash[*params.split(/(?:: *)|(?:, *)/u)]
       process_font_size(@params['font-size'])
       process_threshold(@params['threshold'])
       process_limit(@params['limit'])
@@ -124,7 +124,7 @@ module Jekyll
     private
 
     def process_font_size(param)
-      /(\d*\.{0,1}(\d*)) *- *(\d*\.{0,1}(\d*)) *(%|em|px)/.match(param) do |m|
+      /(\d*\.{0,1}(\d*)) *- *(\d*\.{0,1}(\d*)) *(%|em|px)/u.match(param) do |m|
         @size_min  = m[1].to_f
         @size_max  = m[3].to_f
         @precision = [m[2].size, m[4].size].max
@@ -133,26 +133,26 @@ module Jekyll
     end
 
     def process_threshold(param)
-      /\d*/.match(param) do |m|
+      /\d*/u.match(param) do |m|
         @threshold = m[0].to_i
       end
     end
 
     def process_limit(param)
-      /\d*/.match(param) do |m|
+      /\d*/u.match(param) do |m|
         @limit = m[0].to_i
       end
     end
 
     def process_sort(param)
-      /(freq|rand|alpha) *(asc|desc)?/.match(param) do |m|
+      /(freq|rand|alpha) *(asc|desc)?/u.match(param) do |m|
         @sort  = m[1]
         @order = m[2]
       end
     end
 
     def process_style(param)
-      /(list|para) *({(.*)})?/.match(param) do |m|
+      /(list|para) *({(.*)})?/u.match(param) do |m|
         @style     = m[1]
         @separator = m[3]
       end
@@ -165,4 +165,4 @@ module Jekyll
 
 end
 
-Liquid::Template.register_tag('tag_cloud', Jekyll::TagCloud)
+Liquid::Template.register_tag('tag_list', Jekyll::TagCloud)
