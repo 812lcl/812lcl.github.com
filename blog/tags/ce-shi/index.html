@@ -35,7 +35,7 @@
 </head>
 
 <body   >
-  <header role="banner"><hgroup>
+	<header role="banner"><hgroup>
   <h1><a href="/">812lcl的博客</a></h1>
   
     <h2>不要好高骛远，却又原地踏步；只想不做，太辜负青春了</h2>
@@ -43,7 +43,7 @@
 </hgroup>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+	<nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
@@ -63,9 +63,9 @@
 </ul>
 
 </nav>
-  <div id="main">
-    <div id="content">
-      <div>
+	<div id="main">
+		<div id="content">
+			<div>
 <article role="article">
   
   <header>
@@ -234,9 +234,9 @@
 </aside>
 
 
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
+		</div>
+	</div>
+	<footer role="contentinfo"><p>
   Copyright &copy; 2013 - 812lcl -
   <span class="credit">
 	  Powered by 
@@ -250,7 +250,7 @@
 </p>
 
 </footer>
-  
+	
 
 
 
@@ -262,25 +262,31 @@
 
 
 
-  <script>
-	  lastScrollY=0;
-	  function heartBeat(){
-		  var diffY;
-		  if (document.documentElement && document.documentElement.scrollTop)
-		  diffY = document.documentElement.scrollTop;
-		  else if (document.body)
-		  diffY = document.body.scrollTop
-		  else
-		  {/*Netscape stuff*/}
-		  percent=.1*(diffY-lastScrollY);
-		  if(percent>0)percent=Math.ceil(percent);
-		  else percent=Math.floor(percent);
-		  document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
-		  lastScrollY=lastScrollY+percent;
-	  }
-	  suspendcode="<div id=\"full\" style='right:1px;POSITION:absolute;TOP:600px;z-index:100'><a onclick='window.scrollTo(0,0);'>To top</a><br></div>"
-	  document.write(suspendcode);
-	  window.setInterval("heartBeat()",1);
-  </script> 
-  </body>
+	<script>
+		lastScrollY=0;
+		function heartBeat(){
+			var diffY;
+			if (document.documentElement && document.documentElement.scrollTop)
+			diffY = document.documentElement.scrollTop;
+			else if (document.body)
+			diffY = document.body.scrollTop
+			else
+			{/*Netscape stuff*/}
+			percent=.1*(diffY-lastScrollY);
+			if(percent>0)percent=Math.ceil(percent);
+			else percent=Math.floor(percent);
+			document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
+			lastScrollY=lastScrollY+percent;
+		}
+		suspendcode="<div id=\"full\" style='right:1px;POSITION:absolute;TOP:600px;z-index:100'><a onclick='window.scrollTo(0,0);'>To top</a><br></div>"
+		document.write(suspendcode);
+		window.setInterval("heartBeat()",1);
+	</script> 
+	<!--返回顶部开始-->
+	<div id="full" style="width:50px; height:95px; position:fixed; left:50%; top:600px; margin-left:493px; z-index:100; text-align:center; cursor:pointer;">
+		<a><img src="images/top.png" border=0 alt="返回顶部"></a>
+	</div>
+	<script src="javascripts/gotop.js" type="text/javascript"></script>
+	<!--返回顶部结束--> 
+</body>
 </html>
