@@ -3,18 +3,18 @@
 .post-footer{margin-top:10px;padding:5px;background:none repeat scroll 0pt 0pt #eee;font-size:90%;color:gray}
 
 //Blog logo pic
-//@media only screen and (min-width: 550px) {
-//
-//	body > header h1{
-//		background: url("/images/logo.jpg") no-repeat 0 1px;
-//		padding-left: 65px;
-//	}
-//
-//	body > header h2 { padding-left: 65px; }
-//}
+@media only screen and (min-width: 550px) {
+
+	body > header h1{
+		background: url("/images/logo1.png") no-repeat 0 1px;
+		padding-left: 65px;
+	}
+
+	body > header h2 { padding-left: 65px; }
+}
 
 html {
-	background: #555555 url("/images/bg.jpg");
+	background: #555555 url("/images/bg3.jpg");
 	//background: #555555;
 }
 
