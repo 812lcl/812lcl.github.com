@@ -12,7 +12,7 @@
 module Jekyll
 
   class IncludeArrayTag < Liquid::Tag
-    Syntax = /(#{Liquid::QuotedFragment}+)/u
+    Syntax = /(#{Liquid::QuotedFragment}+)/
     def initialize(tag_name, markup, tokens)
       if markup =~ Syntax
         @array_name = $1
@@ -32,7 +32,7 @@ module Jekyll
 
       rtn = ''
       (context.environments.first['site'][@array_name] || []).each do |file|
-        if file !~ /^[a-zA-Z0-9_\/\.-]+$/u || file =~ /\.\//u || file =~ /\/\./u
+        if file !~ /^[a-zA-Z0-9_\/\.-]+$/ || file =~ /\.\// || file =~ /\/\./
           rtn = rtn + "Include file '#{file}' contains invalid characters or sequences"
         end
 

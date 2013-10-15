@@ -77,7 +77,7 @@ module Jekyll
       
       if @tag_name == 'tag_cloud'
         #cloud_dir = config['tag_dir']
-		cloud_dir = 'tags'
+		cloud_dir = context.registers[:site].config['tag_dir']
 		cloud = context.registers[:site].tags
       else
         #cloud_dir = config['category_dir']
