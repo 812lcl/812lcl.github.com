@@ -1,38 +1,32 @@
 var isie6=window.XMLHttpRequest?false:true;
 function newtoponload()
 {
-    var c=document.getElementById("full");
-    function b()
-    {
-	var a=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
-        if(a>0)
+	var c=document.getElementById("full");
+	function b()
 	{
-		if(isie6)
+		var a=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+		if(a>0)
 		{
-			c.style.display="none";
-                	clearTimeout(window.show);
-                	window.show=setTimeout(function(){var d=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
-                                if(d>0){c.style.display="block";c.style.top=(400+d)+"px"}},300)
+			if(isie6)
+			{
+				c.style.display="none";
+				clearTimeout(window.show);
+				window.show=setTimeout(function(){var d=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+					if(d>0){c.style.display="block";c.style.top=(400+d)+"px"}},300)
+			}
+			else
+			{c.style.display="block"}
 		}
 		else
-			{c.style.display="block"}
-	}
-	else
 		{c.style.display="none"}
-    }
-    if(isie6)
-    	{c.style.position="absolute"}
-    window.onscroll=b;
-    b()
+	}
+	if(isie6)
+	{c.style.position="absolute"}
+	window.onscroll=b;
+	b()
 }
 if(window.attachEvent)
-	{window.attachEvent("onload",newtoponload)}
+{window.attachEvent("onload",newtoponload)}
 else
-	{window.addEventListener("load",newtoponload,false)}
-//document.getElementById("full").onclick=function(){window.scrollTo(0,0)};
-document.getElementById("full").onclick=function pageScroll()
-					{
-						window.scrollBy(0,-10);
-						scrolldelay=setTimeout('pageScroll()',100);
-						if(document.documentElement.scrollTop==0) clearTimeout(scrolldelay);
-					};
+{window.addEventListener("load",newtoponload,false)}
+document.getElementById("full").onclick=function(){window.scrollTo(0,0)};
