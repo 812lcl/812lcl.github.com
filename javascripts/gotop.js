@@ -1,29 +1,29 @@
 var isie6=window.XMLHttpRequest?false:true;
 function newtoponload()
 {
-    var c=document.getElementById("full");
-    function b()
-    {
-	var a=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
-        if(a>0)
+	var c=document.getElementById("full");
+	function b()
 	{
-		if(isie6)
+		var a=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+		if(a>0)
 		{
-			c.style.display="none";
-                	clearTimeout(window.show);
-                	window.show=setTimeout(function(){var d=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
-                                if(d>0){c.style.display="block";c.style.top=(400+d)+"px"}},300)
+			if(isie6)
+			{
+				c.style.display="none";
+				clearTimeout(window.show);
+				window.show=setTimeout(function(){var d=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+					if(d>0){c.style.display="block";c.style.top=(400+d)+"px"}},300)
+			}
+			else
+			{c.style.display="block"}
 		}
 		else
-			{c.style.display="block"}
-	}
-	else
 		{c.style.display="none"}
-    }
-    if(isie6)
-    	{c.style.position="absolute"}
-    window.onscroll=b;
-    b()
+	}
+	if(isie6)
+	{c.style.position="absolute"}
+	window.onscroll=b;
+	b()
 }
 function pageScroll()
 {
@@ -31,46 +31,50 @@ function pageScroll()
 	scrolldelay=setTimeout('pageScroll()',100);
 	if(document.documentElement.scrollTop==0) clearTimeout(scrolldelay);
 };
-function goTop(acceleration, time) {
+function goTop(acceleration, time)
+{
 	acceleration = acceleration || 0.1;
 	time = time || 16;
- 
+
 	var x1 = 0;
 	var y1 = 0;
 	var x2 = 0;
 	var y2 = 0;
 	var x3 = 0;
 	var y3 = 0;
- 
-	if (document.documentElement) {
+
+	if (document.documentElement)
+	{
 		x1 = document.documentElement.scrollLeft || 0;
 		y1 = document.documentElement.scrollTop || 0;
 	}
-	if (document.body) {
+	if (document.body)
+	{
 		x2 = document.body.scrollLeft || 0;
 		y2 = document.body.scrollTop || 0;
 	}
 	var x3 = window.scrollX || 0;
 	var y3 = window.scrollY || 0;
- 
+
 	// 滚动条到页面顶部的水平距离
 	var x = Math.max(x1, Math.max(x2, x3));
 	// 滚动条到页面顶部的垂直距离
 	var y = Math.max(y1, Math.max(y2, y3));
- 
+
 	// 滚动距离 = 目前距离 / 速度, 因为距离原来越小, 速度是大于 1 的数, 所以滚动距离会越来越小
 	var speed = 1 + acceleration;
 	window.scrollTo(Math.floor(x / speed), Math.floor(y / speed));
- 
+
 	// 如果距离不为零, 继续调用迭代本函数
-	if(x > 0 || y > 0) {
+	if(x > 0 || y > 0)
+	{
 		var invokeFunction = "goTop(" + acceleration + ", " + time + ")";
 		window.setTimeout(invokeFunction, time);
 	}
 }
 if(window.attachEvent)
-	{window.attachEvent("onload",newtoponload)}
+{window.attachEvent("onload",newtoponload)}
 else
-	{window.addEventListener("load",newtoponload,false)}
+{window.addEventListener("load",newtoponload,false)}
 //document.getElementById("full").onclick=function(){window.scrollTo(0,0)};
 document.getElementById("full").onclick={goTop();return false;}
