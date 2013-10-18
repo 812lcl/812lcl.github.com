@@ -4,7 +4,7 @@ title: "Hello"
 date: 2013-10-10 15:18
 comments: true
 tags: [规划, 生活]
-categories: 生涯
+categories: test
 ---
 
 ##Octopress
