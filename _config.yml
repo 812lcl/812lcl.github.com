@@ -36,6 +36,7 @@ code_dir: downloads/code
 category_dir: blog/categories
 tag_dir: blog/tags
 markdown: rdiscount
+lsi: true
 rdiscount:
   extensions:
     - autolink
@@ -104,12 +105,6 @@ facebook_like: false
 
 # UY comments and JiaThis
 comment_share: true
-
-category_tree_suffix: "_is_in"
-
-programming_is_in: "computer stuff"
-Ruby_is_in: "programming"
-Java_is_in: "programming"
 
 # duoshuo comments
 duoshuo_comments: false
