@@ -19,3 +19,7 @@ end
 
 gem 'sinatra', '~> 1.4.2'
 gem 'octopress-popular-posts'
+gem 'jekyll-assets'
+gem 'jasmine'
+gem 'guard-jasmine-headless-webkit'
+gem 'jasmine-headless-webkit'

@@ -18,7 +18,6 @@ $(document).ready ->
                     results: "#search-results",
                     entries: ".entries",
                     template: "#search-results-template"
-
 jQuery.noConflict() # prevents conflicts with Ender.js, use jQuery instead of $
 
 jQuery ->
