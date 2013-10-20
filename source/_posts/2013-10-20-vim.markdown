@@ -1,0 +1,10 @@
+---
+layout: post
+title: "vim"
+date: 2013-10-20 12:53
+comments: true
+categories: linux
+tags: [vim, git]
+---
+vim
+<!--more-->
