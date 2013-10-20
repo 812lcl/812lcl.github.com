@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 生活 | 812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/blog/categories/sheng-huo/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
+  <link href="http://812lcl.github.io/blog/tags/linux/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
   <updated>2013-10-20T20:08:25+08:00</updated>
   <id>http://812lcl.github.io/</id>
@@ -14,13 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[test]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/19/test/"/>
-    <updated>2013-10-19T11:49:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/19/test</id>
-    <content type="html"><![CDATA[<p>test</p>
+    <title type="html"><![CDATA[Git]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/20/git/"/>
+    <updated>2013-10-20T20:01:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/20/git</id>
+    <content type="html"><![CDATA[<p>Github</p>
 
-<!-- more -->
+<!--more-->
 
 ]]></content>
   </entry>
