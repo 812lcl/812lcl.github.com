@@ -61,7 +61,7 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html, custom/
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
 # blog_index_asides:
-#post_asides:
+# post_asides:
 # page_asides:
 
 # ----------------------- #
@@ -100,7 +100,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-45001565-1
 
 # Facebook Like
 facebook_like: false
