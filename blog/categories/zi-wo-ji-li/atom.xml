@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: 自我激励 | 812lcl的博客]]></title>
+  <link href="http://812lcl.github.io/blog/categories/zi-wo-ji-li/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
   <updated>2013-10-22T22:12:37+08:00</updated>
   <id>http://812lcl.github.io/</id>
@@ -12,70 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Git]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/20/git/"/>
-    <updated>2013-10-20T20:01:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/20/git</id>
-    <content type="html"><![CDATA[<p>Github</p>
-
-<!--more-->
-
-
-<p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/20/git/'>http://812lcl.github.io/blog/2013/10/20/git/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[vim]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/20/vim/"/>
-    <updated>2013-10-20T12:53:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/20/vim</id>
-    <content type="html"><![CDATA[<p>vim</p>
-
-<!--more-->
-
-
-<p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/20/vim/'>http://812lcl.github.io/blog/2013/10/20/vim/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[test]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/19/test/"/>
-    <updated>2013-10-19T11:49:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/19/test</id>
-    <content type="html"><![CDATA[<p>test</p>
-
-<!-- more -->
-
-
-<p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/19/test/'>http://812lcl.github.io/blog/2013/10/19/test/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[工欲善其事，必先利其器]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/12/ubuntu/"/>
-    <updated>2013-10-12T21:37:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/12/ubuntu</id>
-    <content type="html"><![CDATA[<p>装多系统</p>
-
-<!-- more -->
-
-
-<p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/12/ubuntu/'>http://812lcl.github.io/blog/2013/10/12/ubuntu/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[自警自省自规划]]></title>
@@ -169,10 +105,6 @@
 度。</p>
 
 <p>加油吧，少年，我改努力了！</p>
-
-<p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/10/zi-jing-zi-sheng-zi-gui-hua/'>http://812lcl.github.io/blog/2013/10/10/zi-jing-zi-sheng-zi-gui-hua/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
-
 ]]></content>
   </entry>
   
