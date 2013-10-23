@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规划 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/gui-hua/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-23T22:21:06+08:00</updated>
+  <updated>2013-10-23T22:35:50+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[自警自省自规划]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/20/zi-jing-zi-sheng-zi-gui-hua/"/>
-    <updated>2013-10-20T22:18:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/20/zi-jing-zi-sheng-zi-gui-hua</id>
+    <link href="http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/"/>
+    <updated>2013-10-22T22:18:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua</id>
     <content type="html"><![CDATA[<p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手
 ，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我
 一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有
