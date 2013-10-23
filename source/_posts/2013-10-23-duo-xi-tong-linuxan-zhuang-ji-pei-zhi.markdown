@@ -16,7 +16,7 @@ tags: [ubuntu, linux, 装系统, 编程环境]
 centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的
 校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的
 第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载
-<!--more-->
+<!-- more -->
 ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
 ，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos
 的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常
@@ -37,8 +37,6 @@ ubuntu更新软件源很方便，已经收录了国内大部分知名的源，�
 
 只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点
 
-![]()![]()
-
 然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择
 即可，非常方便。
 ##3. 安装喜欢的编辑器――VIM
@@ -51,27 +49,27 @@ vim有很多的插件，通过添加插件可以将原本就强大的vim，改�
 [GitHub](https://github.com/812lcl)中，就可以很快的还原我习惯的vim设置。当然
 这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags
 和cscope。
-
-	sudo apt-get install gcc g++ git
-	sudo apt-get install build-essential
-	sudo apt-get install default-jre default-jdk
-	sudo apt-get install ctags cscope
-
+```
+sudo apt-get install gcc g++ git
+sudo apt-get install build-essential
+sudo apt-get install default-jre default-jdk
+sudo apt-get install ctags cscope
+```
 必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
 图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令
-
-	cd ~
-	git clone https://github.com/812lcl/vim.git
-	mv vim .vim
-	mv .vim/vimrc-lcl .vimrc
-
+```
+cd ~
+git clone https://github.com/812lcl/vim.git
+mv vim .vim
+mv .vim/vimrc-lcl .vimrc
+```
 配置C/C++和java的只能不全
-
-	javac ~/.vim/autoload/Reflection.java
-	mv ~/.vim/autoload/Reflection.class ~
-	cd /usr/include/c++
-	ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
-
+```
+javac ~/.vim/autoload/Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+cd /usr/include/c++
+ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
+```
 以上就配置好了vim的一系列插件，可以查看配置文件`.vimrc`，或我的另一篇文章
 [vim插件安装及配置]().
 ##4. 一些常用软件
@@ -104,8 +102,9 @@ windows，改为`default 4`，保存的时候需要强制保存，输入`:wq!`
 	sudo vim /etc/fstab
 
 添加想开机挂载的分区即可
-
-	/dev/sda5 	/media/data 	ntfs 	defaults 	0 	0
-	挂载分区 	挂载位置 		分区类型
+```
+/dev/sda5 	/media/data 	ntfs 	defaults 	0 	0
+挂载分区 	挂载位置 		分区类型
+```
 ---
 OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)
