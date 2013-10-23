@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 磨刀利刃 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/mo-dao-li-ren/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-23T21:56:01+08:00</updated>
+  <updated>2013-10-23T21:59:03+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -28,8 +28,12 @@
 感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持
 centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的
 校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的
-第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载
-ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
+第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
+
+<!--more-->
+
+
+<p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
 ，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos
 的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常
 采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub
