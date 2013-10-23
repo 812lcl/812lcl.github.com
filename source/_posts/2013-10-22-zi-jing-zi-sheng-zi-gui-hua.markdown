@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "自警自省自规划"
-date: 2013-10-20 22:18
+date: 2013-10-22 22:18
 comments: true
 tags: [规划, 生活, 励志]
 categories: 自我激励
