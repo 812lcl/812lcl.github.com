@@ -181,28 +181,40 @@ ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，�
 这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags
 和cscope。</p>
 
-<pre><code>sudo apt-get install gcc g++ git
-sudo apt-get install build-essential
-sudo apt-get install default-jre default-jdk
-sudo apt-get install ctags cscope
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install gcc g++ git
+</span><span class='line'>sudo apt-get install build-essential
+</span><span class='line'>sudo apt-get install default-jre default-jdk
+</span><span class='line'>sudo apt-get install ctags cscope</span></code></pre></td></tr></table></div></figure>
+
 
 <p>必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
 图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令</p>
 
-<pre><code>cd ~
-git clone https://github.com/812lcl/vim.git
-mv vim .vim
-mv .vim/vimrc-lcl .vimrc
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~
+</span><span class='line'>git clone https://github.com/812lcl/vim.git
+</span><span class='line'>mv vim .vim
+</span><span class='line'>mv .vim/vimrc-lcl .vimrc</span></code></pre></td></tr></table></div></figure>
+
 
 <p>配置C/C++和java的只能不全</p>
 
-<pre><code>javac ~/.vim/autoload/Reflection.java
-mv ~/.vim/autoload/Reflection.class ~
-cd /usr/include/c++
-ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>javac ~/.vim/autoload/Reflection.java
+</span><span class='line'>mv ~/.vim/autoload/Reflection.class ~
+</span><span class='line'>cd /usr/include/c++
+</span><span class='line'>ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags</span></code></pre></td></tr></table></div></figure>
+
 
 <p>以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
 <a href="">vim插件安装及配置</a>.</p>
@@ -244,9 +256,11 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 
 <p>添加想开机挂载的分区即可</p>
 
-<pre><code>/dev/sda5   /media/data     ntfs    defaults    0   0
-挂载分区    挂载位置        分区类型
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/dev/sda5    /media/data     ntfs    defaults    0   0
+</span><span class='line'>挂载分区  挂载位置        分区类型</span></code></pre></td></tr></table></div></figure>
+
 
 <hr />
 

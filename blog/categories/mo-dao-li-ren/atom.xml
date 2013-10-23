@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 磨刀利刃 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/mo-dao-li-ren/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-23T22:10:29+08:00</updated>
+  <updated>2013-10-23T22:21:06+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -68,32 +68,29 @@ ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，�
 我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的
 <a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然
 这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags
-和cscope。</p>
-
-<pre><code>sudo apt-get install gcc g++ git
+和cscope。
+<code>
+sudo apt-get install gcc g++ git
 sudo apt-get install build-essential
 sudo apt-get install default-jre default-jdk
 sudo apt-get install ctags cscope
-</code></pre>
-
-<p>必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
-图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令</p>
-
-<pre><code>cd ~
+</code>
+必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
+图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令
+<code>
+cd ~
 git clone https://github.com/812lcl/vim.git
 mv vim .vim
 mv .vim/vimrc-lcl .vimrc
-</code></pre>
-
-<p>配置C/C++和java的只能不全</p>
-
-<pre><code>javac ~/.vim/autoload/Reflection.java
+</code>
+配置C/C++和java的只能不全
+<code>
+javac ~/.vim/autoload/Reflection.java
 mv ~/.vim/autoload/Reflection.class ~
 cd /usr/include/c++
 ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
-</code></pre>
-
-<p>以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
+</code>
+以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
 <a href="">vim插件安装及配置</a>.</p>
 
 <h2>4. 一些常用软件</h2>
@@ -131,13 +128,12 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 <pre><code>sudo vim /etc/fstab
 </code></pre>
 
-<p>添加想开机挂载的分区即可</p>
+<p>添加想开机挂载的分区即可
+```
+/dev/sda5   /media/data     ntfs    defaults    0   0
+挂载分区    挂载位置        分区类型</p>
 
-<pre><code>/dev/sda5   /media/data     ntfs    defaults    0   0
-挂载分区    挂载位置        分区类型
-</code></pre>
-
-<hr />
+<h2>```</h2>
 
 <p>OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)</p>
 ]]></content>
