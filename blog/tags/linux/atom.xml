@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/linux/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-23T21:59:03+08:00</updated>
+  <updated>2013-10-23T22:10:29+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -30,7 +30,7 @@ centos，因为它的一些库版本较低，有些需要强制更新为更高�
 校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的
 第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
 
-<!--more-->
+<!-- more -->
 
 
 <p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
@@ -54,8 +54,6 @@ ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，�
 /etc/apt/sources.list文件。</p>
 
 <p>只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点</p>
-
-<p><img src="" alt="" /><img src="" alt="" /></p>
 
 <p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择
 即可，非常方便。</p>
