@@ -71,7 +71,7 @@ cd /usr/include/c++
 ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
 ```
 以上就配置好了vim的一系列插件，可以查看配置文件`.vimrc`，或我的另一篇文章
-[vim插件安装及配置]().
+[VIM插件配置，比肩IDE](http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/).
 ##4. 一些常用软件
 当然linux也是离不开娱乐的，看电影、听歌还是要的。
 
@@ -102,7 +102,7 @@ windows，改为`default 4`，保存的时候需要强制保存，输入`:wq!`
 	sudo vim /etc/fstab
 
 添加想开机挂载的分区即可
-```
+```sh
 /dev/sda5 	/media/data 	ntfs 	defaults 	0 	0
 挂载分区 	挂载位置 		分区类型
 ```
