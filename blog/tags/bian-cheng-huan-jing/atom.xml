@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程环境 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-huan-jing/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-24T20:30:28+08:00</updated>
+  <updated>2013-10-24T20:34:45+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -91,7 +91,7 @@ cd /usr/include/c++
 ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
 </code>
 以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
-<a href="">vim插件安装及配置</a>.</p>
+<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
 
 <h2>4. 一些常用软件</h2>
 
