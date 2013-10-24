@@ -63,7 +63,7 @@ git clone https://github.com/812lcl/vim.git
 mv vim .vim
 mv .vim/vimrc-lcl .vimrc
 ```
-配置C/C++和java的只能不全
+配置C/C++和java的只能补全
 ```
 javac ~/.vim/autoload/Reflection.java
 mv ~/.vim/autoload/Reflection.class ~
