@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 装系统 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/zhuang-xi-tong/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-24T20:43:29+08:00</updated>
+  <updated>2013-10-24T20:47:55+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -129,7 +129,7 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 </code></pre>
 
 <p>添加想开机挂载的分区即可
-```
+```sh
 /dev/sda5   /media/data     ntfs    defaults    0   0
 挂载分区    挂载位置        分区类型</p>
 
