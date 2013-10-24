@@ -395,33 +395,55 @@ buffer, 当你把光标置于这个窗口时, 有下面几个快捷键可以用:
 <p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程
 范围内，查找你想查找的任何东西。</p>
 
-<pre><code>:Grep       按照指定的规则在指定的文件中查找
-:Rgrep      同上, 但是是递归的grep
-:GrepBuffer 在所有打开的缓冲区中查找
-:Bgrep      同上
-:GrepArgs   在vim的argument filenames (:args)中查找
-:Fgrep      运行fgrep
-:Rfgrep     运行递归的fgrep
-:Egrep      运行egrep
-:Regrep     运行递归的egrep
-:Agrep      运行agrep
-:Ragrep     运行递归的agrep
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Grep        按照指定的规则在指定的文件中查找
+</span><span class='line'>:Rgrep        同上, 但是是递归的grep
+</span><span class='line'>:GrepBuffer   在所有打开的缓冲区中查找
+</span><span class='line'>:Bgrep        同上
+</span><span class='line'>:GrepArgs 在vim的argument filenames (:args)中查找
+</span><span class='line'>:Fgrep        运行fgrep
+</span><span class='line'>:Rfgrep       运行递归的fgrep
+</span><span class='line'>:Egrep        运行egrep
+</span><span class='line'>:Regrep       运行递归的egrep
+</span><span class='line'>:Agrep        运行agrep
+</span><span class='line'>:Ragrep       运行递归的agrep</span></code></pre></td></tr></table></div></figure>
+
 
 <p>使用方法如下</p>
 
-<pre><code>:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Egrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Regrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Agrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:Ragrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
-:GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
-:Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
-:GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Egrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Regrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Agrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Ragrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</span><span class='line'>:Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</span><span class='line'>:GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]</span></code></pre></td></tr></table></div></figure>
+
 
 <p>也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
 
@@ -430,10 +452,13 @@ buffer, 当你把光标置于这个窗口时, 有下面几个快捷键可以用:
 <p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。
 但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。</p>
 
-<pre><code>mm      设定标签
-F2      正向切换
-shift+F2    反向切换
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mm       设定标签
+</span><span class='line'>F2        正向切换
+</span><span class='line'>shift+F2  反向切换</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>10. 补全功能</h2>
 

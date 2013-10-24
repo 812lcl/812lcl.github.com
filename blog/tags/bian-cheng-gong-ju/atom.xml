@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程工具 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-gong-ju/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-24T20:34:45+08:00</updated>
+  <updated>2013-10-24T20:43:29+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -217,9 +217,9 @@ let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口�
 <h2>8. Grep</h2>
 
 <p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程
-范围内，查找你想查找的任何东西。</p>
-
-<pre><code>:Grep       按照指定的规则在指定的文件中查找
+范围内，查找你想查找的任何东西。
+<code>
+:Grep       按照指定的规则在指定的文件中查找
 :Rgrep      同上, 但是是递归的grep
 :GrepBuffer 在所有打开的缓冲区中查找
 :Bgrep      同上
@@ -230,11 +230,10 @@ let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口�
 :Regrep     运行递归的egrep
 :Agrep      运行agrep
 :Ragrep     运行递归的agrep
-</code></pre>
-
-<p>使用方法如下</p>
-
-<pre><code>:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</code>
+使用方法如下
+<code>
+:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
 :Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
 :Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
 :Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
@@ -245,19 +244,18 @@ let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口�
 :GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
 :Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
 :GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
-</code></pre>
-
-<p>也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
+</code>
+也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
 
 <h2>9.visualmark</h2>
 
 <p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。
-但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。</p>
-
-<pre><code>mm      设定标签
+但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。
+<code>
+mm      设定标签
 F2      正向切换
 shift+F2    反向切换
-</code></pre>
+</code></p>
 
 <h2>10. 补全功能</h2>
 
