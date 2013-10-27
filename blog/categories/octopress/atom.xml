@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-27T12:15:45+08:00</updated>
+  <updated>2013-10-27T20:20:21+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -31,17 +31,19 @@
 
 <p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
 和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：
-```
-<hgroup>
-  <h1><a href="/">812lcl的博客</a></h1>
-  </p>
 
-<pre><code>&lt;h2&gt;不要好高骛远，却又原地踏步；只想不做，太辜负青春了&lt;/h2&gt;
+``` html
+<hgroup>
+  <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
+  {% if site.subtitle %}</p>
+
+<pre><code>&lt;h2&gt;{{ site.subtitle }}&lt;/h2&gt;
 </code></pre>
 
-<p>  
+<p>  {% endif %}
 </hgroup>
-```</p>
+```
+</p>
 
 <!--more-->
 
@@ -49,17 +51,19 @@
 <h3>1.2 Navigation（导航栏）</h3>
 
 <p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。
+
 ```</p>
 
 <ul class="main-navigation">
-  <li><a href="/">博客主页</a></li>
-  <li><a href="/blog/archives">文章列表</a></li>
-  <li><a href="/category-cloud">分类云</a></li>
-  <li><a href="/about">关于</a></li>
+  <li><a href="{{ root_url }}/">博客主页</a></li>
+  <li><a href="{{ root_url }}/blog/archives">文章列表</a></li>
+  <li><a href="{{ root_url }}/category-cloud">分类云</a></li>
+  <li><a href="{{ root_url }}/about">关于</a></li>
 </ul>
 
 
-<p>```</p>
+<p>```
+</p>
 
 <p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
 ，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此
@@ -69,10 +73,11 @@
 <h3>1.3 footer（尾栏）</h3>
 
 <p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：
+
 ```</p>
 
 <p>
-  Copyright &copy; 2013 - 812lcl -
+  Copyright &copy; {{ site.time | date: "%Y" }} - {{ site.author }} -
   <span class="credit">
           Powered by 
           <a href="http://octopress.org">Octopress</a>
@@ -81,6 +86,7 @@
 
 
 <p><code>``
+
 默认显示</code>Copyright@2013 &ndash; author &ndash; Powered by Octopress`，你可以添加自己想
 显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="">统计工具与SEO</a>。</p>
 
@@ -94,7 +100,7 @@
 <h3>2.1 添加背景图片</h3>
 
 <p>在<code>sass/custom/_styles.scss</code>中添加：
-```
+``` scss
 html {</p>
 
 <pre><code>    background: #555555 url("/images/bg3.jpg");
@@ -136,7 +142,7 @@ html {</p>
 找到<code>favicon.png</code>，修改其路径指向你的图片即可。</p>
 
 <p>对于主标题旁的图片需要在<code>sass/custom/_styles.scss</code>中填入如下语句：
-```
+``` scss
 //Blog logo pic
 @media only screen and (min-width: 550px) {</p>
 
@@ -155,7 +161,7 @@ html {</p>
 <h3>2.3 导航栏倒圆角</h3>
 
 <p>我设置的header区背景色透明，所以导航栏的直角有些尖锐，在<code>sass/custom/_styles.scss</code>中添加如下语句，将其修改为圆角：
-```
+``` scss
 //倒圆角
 @media only screen and (min-width: 1040px) {</p>
 
@@ -177,7 +183,7 @@ html {</p>
 返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
 
 <p>首先创建<code>source/javascripts/top.js</code>，实现滑动返回顶部效果，添加如下代码：
-```
+``` js
 function goTop(acceleration, time)
 {</p>
 
@@ -220,7 +226,7 @@ function goTop(acceleration, time)
 <p>}
 <code>
 然后创建`source/_includes/custom/totop.html`，设置返回顶部按钮样式和位置，代码如下：
-</code></p>
+</code> html</p>
 
 <!--返回顶部开始-->
 
@@ -331,7 +337,7 @@ github_skip_forks: true
 
 <p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得
 的微博秀代码也要添加到相应位置：
-```
+``` html
 <section></p>
 
 <pre><code>&lt;h1&gt;新浪微博&lt;/h1&gt;
@@ -519,17 +525,23 @@ tag_dir: blog/tags
 <p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。
 这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，
 然后在想添加相关文章推荐的地方添加如下语句：
+
 ```
 <section></p>
 
 <pre><code>&lt;h2&gt;相关文章：&lt;/h2&gt;
 &lt;ul class="posts"&gt;
-     
+     {% for post in site.related_posts limit:5 %}
+        &lt;li class="related"&gt;
+        &lt;a href="{{ root_url }}{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;
+        &lt;/li&gt;
+    {% endfor %}
 &lt;/ul&gt;
 </code></pre>
 
 <p> </section>
 ```
+
 我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时
 的布局，我将相关文章添加在博文的结束处。</p>
 
@@ -626,46 +638,13 @@ tag_dir: blog/tags
 <p>comment_share: true
 <code>
 然后在`source/_includes/post/sharing.html`中添加如下代码：
+
 </code>
-
-  <!-- JiaThis BEGIN -->
-<div class="jiathis_style_32x32">
-	<a class="jiathis_button_qzone"></a>
-	<a class="jiathis_button_tsina"></a>
-	<a class="jiathis_button_tqq"></a>
-	<a class="jiathis_button_weixin"></a>
-	<a class="jiathis_button_renren"></a>
-	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	<a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
-<!-- JiaThis END -->
-
-<!-- Baidu Button BEGIN 
-<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
-	<a class="bds_tsina"></a>
-	<a class="bds_qzone"></a>
-	<a class="bds_tqq"></a>
-	<a class="bds_renren"></a>
-	<a class="bds_t163"></a>
-	<a class="bds_hi"></a>
-	<span class="bds_more"></span>
-	<a class="shareCount"></a>
-</div>
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script>
- Baidu Button END -->
-
-<!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
-<!-- UY END -->
-
-
+{% if site.comment_share %}
+  {% include post/share_comment.html %}
+{% endif %}
 ```
+
 最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、
 社交影响力分析、和评论栏的风格功能设置。</p>
 
@@ -715,29 +694,23 @@ tag_dir: blog/tags
 
 <p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。
 实现方法为：在<code>source/_includes/article.html</code>中
+
 <code>
-
-
-
-
-
-
-
-
-
-
-
+{% include post/date.html %}{{ time }}
 </code>
+
 的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容
+
 <code>
- | &lt;a href="#comments" id="uyan_count_unit" du="" su=""&gt;0条评论&lt;/a&gt;
+ | &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments" id="uyan_count_unit" du="" su=""&gt;0条评论&lt;/a&gt;
   &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
-</code></p>
+</code>
+</p>
 
 <h2>4. 为博文添加原文链接及声明</h2>
 
 <p>可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建<code>plugins/post_footer_filter.rb</code>，代码如下：
-```</p>
+``` rb</p>
 
 <h1>post_footer_filter.rb</h1>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-27T12:15:45+08:00</updated>
+  <updated>2013-10-27T20:20:21+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -32,18 +32,21 @@
 <p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
 和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;hgroup&gt;
-</span><span class='line'>  &lt;h1&gt;&lt;a href="http://812lcl.github.io/"&gt;812lcl的博客&lt;/a&gt;&lt;/h1&gt;
-</span><span class='line'>  
-</span><span class='line'>    &lt;h2&gt;不要好高骛远，却又原地踏步；只想不做，太辜负青春了&lt;/h2&gt;
-</span><span class='line'>  
-</span><span class='line'>&lt;/hgroup&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;hgroup&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>{{ site.title }}<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>  {% if site.subtitle %}
+</span><span class='line'>    <span class="nt">&lt;h2&gt;</span>{{ site.subtitle }}<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/hgroup&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 
 <!--more-->
@@ -53,18 +56,19 @@
 
 <p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;ul class="main-navigation"&gt;
-</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/"&gt;博客主页&lt;/a&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/blog/archives"&gt;文章列表&lt;/a&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/category-cloud"&gt;分类云&lt;/a&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/about"&gt;关于&lt;/a&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>博客主页<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/blog/archives&quot;</span><span class="nt">&gt;</span>文章列表<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/category-cloud&quot;</span><span class="nt">&gt;</span>分类云<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/about&quot;</span><span class="nt">&gt;</span>关于<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
@@ -76,20 +80,21 @@
 
 <p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;p&gt;
-</span><span class='line'>  Copyright &copy; 2013 - 812lcl -
-</span><span class='line'>  &lt;span class="credit"&gt;
-</span><span class='line'>          Powered by 
-</span><span class='line'>          &lt;a href="http://octopress.org"&gt;Octopress&lt;/a&gt;
-</span><span class='line'>  &lt;/span&gt;
-</span><span class='line'>&lt;/p&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p&gt;</span>
+</span><span class='line'>  Copyright <span class="ni">&amp;copy;</span> {{ site.time | date: &quot;%Y&quot; }} - {{ site.author }} -
+</span><span class='line'>  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;credit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          Powered by
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://octopress.org&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/span&gt;</span>
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>默认显示<code>Copyright@2013 - author - Powered by Octopress</code>，你可以添加自己想
@@ -106,7 +111,7 @@
 
 <p>在<code>sass/custom/_styles.scss</code>中添加：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -121,21 +126,22 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>html {
-</span><span class='line'>        background: #555555 url("/images/bg3.jpg");
-</span><span class='line'>        //background: #555555;
-</span><span class='line'>}
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nt">html</span> <span class="p">{</span>
+</span><span class='line'>        <span class="na">background</span><span class="o">:</span> <span class="mh">#555555</span> <span class="sx">url(&quot;/images/bg3.jpg&quot;)</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #555555;</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>body &gt; div { 
-</span><span class='line'>        background-image: none; 
-</span><span class='line'>        //background: #F5F5D5
-</span><span class='line'>} //侧边栏
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span>
+</span><span class='line'>        <span class="na">background-image</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #F5F5D5</span>
+</span><span class='line'><span class="p">}</span> <span class="c1">//侧边栏</span>
 </span><span class='line'>
-</span><span class='line'>body &gt; div &gt; div { //文章内容
-</span><span class='line'>        background-image: none; 
-</span><span class='line'>        //background: #F5F5D5; 
-</span><span class='line'>        //background: url("/images/bg.jpg");
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span> <span class="c1">//文章内容</span>
+</span><span class='line'>        <span class="na">background-image</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #F5F5D5; </span>
+</span><span class='line'>        <span class="c1">//background: url(&quot;/images/bg.jpg&quot;);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>将背景图片放入<code>source/images/</code>中，修改上述代码中的路径指向想要的图片，即可
@@ -155,7 +161,7 @@
 
 <p>对于主标题旁的图片需要在<code>sass/custom/_styles.scss</code>中填入如下语句：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -165,16 +171,17 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//Blog logo pic
-</span><span class='line'>@media only screen and (min-width: 550px) {
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">//Blog logo pic</span>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">550px</span><span class="o">)</span> <span class="p">{</span>
 </span><span class='line'>
-</span><span class='line'>        body &gt; header h1{
-</span><span class='line'>                background: url("/images/logo1.png") no-repeat 0 1px;
-</span><span class='line'>                padding-left: 65px;
-</span><span class='line'>        }
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span><span class="p">{</span>
+</span><span class='line'>                <span class="na">background</span><span class="o">:</span> <span class="sx">url(&quot;/images/logo1.png&quot;)</span> <span class="no">no-repeat</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>                <span class="na">padding-left</span><span class="o">:</span> <span class="mi">65</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>        body &gt; header h2 { padding-left: 65px; }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span> <span class="na">padding-left</span><span class="o">:</span> <span class="mi">65</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>根据自己情况进行修改即可。</p>
@@ -183,7 +190,7 @@
 
 <p>我设置的header区背景色透明，所以导航栏的直角有些尖锐，在<code>sass/custom/_styles.scss</code>中添加如下语句，将其修改为圆角：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -193,16 +200,17 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//倒圆角
-</span><span class='line'>@media only screen and (min-width: 1040px) {
-</span><span class='line'>        body &gt; nav {
-</span><span class='line'>                @include border-top-radius(.4em);
-</span><span class='line'>        }
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">//倒圆角</span>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">1040px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">nav</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">@include</span><span class="nd"> border-top-radius</span><span class="p">(</span><span class="mf">.4</span><span class="kt">em</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>        body &gt; footer {
-</span><span class='line'>                @include border-bottom-radius(.4em);
-</span><span class='line'>        }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">footer</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">@include</span><span class="nd"> border-bottom-radius</span><span class="p">(</span><span class="mf">.4</span><span class="kt">em</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>3. 滑动返回顶部按钮</h2>
@@ -212,7 +220,7 @@
 
 <p>首先创建<code>source/javascripts/top.js</code>，实现滑动返回顶部效果，添加如下代码：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -249,59 +257,61 @@
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>function goTop(acceleration, time)
-</span><span class='line'>{
-</span><span class='line'>        acceleration = acceleration || 0.1;
-</span><span class='line'>        time = time || 16;
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">goTop</span><span class="p">(</span><span class="nx">acceleration</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="nx">acceleration</span> <span class="o">=</span> <span class="nx">acceleration</span> <span class="o">||</span> <span class="mf">0.1</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">time</span> <span class="o">=</span> <span class="nx">time</span> <span class="o">||</span> <span class="mi">16</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>        var x1 = 0;
-</span><span class='line'>        var y1 = 0;
-</span><span class='line'>        var x2 = 0;
-</span><span class='line'>        var y2 = 0;
-</span><span class='line'>        var x3 = 0;
-</span><span class='line'>        var y3 = 0;
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>        if (document.documentElement)
-</span><span class='line'>        {
-</span><span class='line'>                x1 = document.documentElement.scrollLeft || 0;
-</span><span class='line'>                y1 = document.documentElement.scrollTop || 0;
-</span><span class='line'>        }
-</span><span class='line'>        if (document.body)
-</span><span class='line'>        {
-</span><span class='line'>                x2 = document.body.scrollLeft || 0;
-</span><span class='line'>                y2 = document.body.scrollTop || 0;
-</span><span class='line'>        }
-</span><span class='line'>        var x3 = window.scrollX || 0;
-</span><span class='line'>        var y3 = window.scrollY || 0;
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="nx">x1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>                <span class="nx">y1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="nx">x2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>                <span class="nx">y2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x3</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollX</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y3</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>        var x = Math.max(x1, Math.max(x2, x3));
-</span><span class='line'>        var y = Math.max(y1, Math.max(y2, y3));
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">));</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">y1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">y2</span><span class="p">,</span> <span class="nx">y3</span><span class="p">));</span>
 </span><span class='line'>
-</span><span class='line'>        var speed = 1 + acceleration;
-</span><span class='line'>        window.scrollTo(Math.floor(x / speed), Math.floor(y / speed));
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">acceleration</span><span class="p">;</span>
+</span><span class='line'>        <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">x</span> <span class="o">/</span> <span class="nx">speed</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">y</span> <span class="o">/</span> <span class="nx">speed</span><span class="p">));</span>
 </span><span class='line'>
-</span><span class='line'>        if(x &gt; 0 || y &gt; 0)
-</span><span class='line'>        {
-</span><span class='line'>                var invokeFunction = "goTop(" + acceleration + ", " + time + ")";
-</span><span class='line'>                window.setTimeout(invokeFunction, time);
-</span><span class='line'>        }         
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="kd">var</span> <span class="nx">invokeFunction</span> <span class="o">=</span> <span class="s2">&quot;goTop(&quot;</span> <span class="o">+</span> <span class="nx">acceleration</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">time</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+</span><span class='line'>                <span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">invokeFunction</span><span class="p">,</span> <span class="nx">time</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后创建<code>source/_includes/custom/totop.html</code>，设置返回顶部按钮样式和位置，代码如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--返回顶部开始--&gt;
-</span><span class='line'>&lt;div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;"&gt;
-</span><span class='line'>        &lt;a href="#" onclick="goTop();return false;"&gt;&lt;img src="http://812lcl.github.io/images/top.png" border=0 alt="返回顶部"&gt;&lt;/a&gt;
-</span><span class='line'>&lt;/div&gt;
-</span><span class='line'>&lt;script src="http://812lcl.github.io/javascripts/top.js" type="text/javascript"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;!--返回顶部结束--&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--返回顶部开始--&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;full&quot;</span> <span class="na">style=</span><span class="s">&quot;width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick=</span><span class="s">&quot;goTop();return false;&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;/images/top.png&quot;</span> <span class="na">border=</span><span class="s">0</span> <span class="na">alt=</span><span class="s">&quot;返回顶部&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/top.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!--返回顶部结束--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>最后，还需要将返回顶部的图片放入<code>source/images</code>，命名为<code>top.png</code>（或修改totop.html中图片的路径）。</p>
@@ -411,7 +421,7 @@
 <p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得
 的微博秀代码也要添加到相应位置：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -421,16 +431,16 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>    &lt;h1&gt;新浪微博&lt;/h1&gt;
-</span><span class='line'>    &lt;ul id="weibo"&gt;
-</span><span class='line'>    &lt;li&gt;
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h1&gt;</span>新浪微博<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;weibo&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
 </span><span class='line'>
-</span><span class='line'>    &lt;!-- 在此插入获得的微博秀代码 --&gt;
+</span><span class='line'>    <span class="c">&lt;!-- 在此插入获得的微博秀代码 --&gt;</span>
 </span><span class='line'>
-</span><span class='line'>      &lt;/li&gt;
-</span><span class='line'>    &lt;/ul&gt;
-</span><span class='line'>&lt;/section&gt;
+</span><span class='line'>      <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -444,18 +454,19 @@
 <p>然后在<code>source/_includes/custom/asides</code>创建douban.html，添加如下代码，
 刚刚获得的代码添加到<code>&lt;div&gt;</code>之间：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>  &lt;h1&gt;My Douban&lt;/h1&gt;
-</span><span class='line'>  &lt;div&gt;
-</span><span class='line'>  &lt;!--添加到这--&gt;
-</span><span class='line'>  &lt;/div&gt;
-</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>My Douban<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--添加到这--&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>最后在<code>default_asides</code>中加入<code>custom/asides/douban.html</code>显示你的豆瓣展示。</p>
@@ -468,14 +479,14 @@
 
 <p>依然在<code>source/_includes/custom/asides</code>创建earth.html，代码如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>  &lt;h1&gt;访客地图&lt;/h1&gt;
-</span><span class='line'>  &lt;!--获得代码添加到这--&gt;
-</span><span class='line'>&lt;/section&gt;
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>访客地图<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--获得代码添加到这--&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -488,7 +499,7 @@
 
 <p>在<code>source/_includes/custom/asides</code>创建blog_link.html，代码如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -508,26 +519,27 @@
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>&lt;h1&gt;酷站博客&lt;/h1&gt;
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>        &lt;li&gt;
-</span><span class='line'>        &lt;a href="http://blog.jobbole.com/"&gt;伯乐在线&lt;/a&gt;
-</span><span class='line'>        &lt;/li&gt;
-</span><span class='line'>        &lt;li&gt;
-</span><span class='line'>        &lt;a href="http://www.csdn.net/"&gt;CSDN&lt;/a&gt;
-</span><span class='line'>        &lt;/li&gt;
-</span><span class='line'>        &lt;li&gt;
-</span><span class='line'>        &lt;a href="http://www.cnblogs.com/"&gt;博客园&lt;/a&gt;
-</span><span class='line'>        &lt;/li&gt;
-</span><span class='line'>        &lt;li&gt;
-</span><span class='line'>        &lt;a href="http://coolshell.cn/"&gt;酷壳CoolShell&lt;/a&gt;
-</span><span class='line'>        &lt;/li&gt;
-</span><span class='line'>        &lt;li&gt;
-</span><span class='line'>        &lt;a href="http://www.cnblogs.com/Solstice/"&gt;陈硕&lt;/a&gt;
-</span><span class='line'>        &lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>酷站博客<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://blog.jobbole.com/&quot;</span><span class="nt">&gt;</span>伯乐在线<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.csdn.net/&quot;</span><span class="nt">&gt;</span>CSDN<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.cnblogs.com/&quot;</span><span class="nt">&gt;</span>博客园<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://coolshell.cn/&quot;</span><span class="nt">&gt;</span>酷壳CoolShell<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.cnblogs.com/Solstice/&quot;</span><span class="nt">&gt;</span>陈硕<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>可以自行添加喜爱网站，然后在<code>default_asides</code>中加入<code>custom/asides/blog_link.html</code>。</p>
@@ -576,7 +588,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <p>包含文件如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -590,7 +602,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'> ├─ plugins/
+</pre></td><td class='code'><pre><code class='html'><span class='line'> ├─ plugins/
 </span><span class='line'>    │  ├─ category_generator.rb
 </span><span class='line'>    │  ├─ category_list.rb
 </span><span class='line'>    │  ├─ category_tag_cloud.rb
@@ -603,7 +615,8 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 </span><span class='line'>                ├─ category_cloud.html
 </span><span class='line'>                ├─ category_list.html
 </span><span class='line'>                ├─ tag_cloud.html
-</span><span class='line'>                └─ tag_list.html</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>                └─ tag_list.html
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>其中<code>category_generator.rb</code>和<code>tag_generator.rb</code>定义了根据文章的category和tag
@@ -615,10 +628,11 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <p>还有一点需要注意，在_config.yml中默认设置了category的目录，需自己加入tag目录</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>category_dir: blog/categories
-</span><span class='line'>tag_dir: blog/tags</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>category_dir: blog/categories
+</span><span class='line'>tag_dir: blog/tags
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样可以观看效果了，不过3D效果的标签云，对于不支持flash的浏览器无效，如<code>safari</code>。</p>
@@ -644,7 +658,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，
 然后在想添加相关文章推荐的地方添加如下语句：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -654,20 +668,17 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>  &lt;h2&gt;相关文章：&lt;/h2&gt;
-</span><span class='line'>  &lt;ul class="posts"&gt;
-</span><span class='line'>       
-</span><span class='line'>          &lt;li class="related"&gt;
-</span><span class='line'>          &lt;a href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"&gt;Octopress主题样式修改&lt;/a&gt;
-</span><span class='line'>          &lt;/li&gt;
-</span><span class='line'>      
-</span><span class='line'>          &lt;li class="related"&gt;
-</span><span class='line'>          &lt;a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"&gt;Octopress博客搭建及目录结构&lt;/a&gt;
-</span><span class='line'>          &lt;/li&gt;
-</span><span class='line'>      
-</span><span class='line'>  &lt;/ul&gt;
-</span><span class='line'> &lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h2&gt;</span>相关文章：<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;posts&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>       {% for post in site.related_posts limit:5 %}
+</span><span class='line'>          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;related&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}{{ post.url }}&quot;</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      {% endfor %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'> <span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时
@@ -696,7 +707,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <p>share_comment.html文件中代码如下（每个人不同）：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -731,41 +742,42 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- JiaThis BEGIN --&gt;
-</span><span class='line'>&lt;div class="jiathis_style_32x32"&gt;
-</span><span class='line'>        &lt;a class="jiathis_button_qzone"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="jiathis_button_tsina"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="jiathis_button_tqq"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="jiathis_button_weixin"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="jiathis_button_renren"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="jiathis_counter_style"&gt;&lt;/a&gt;
-</span><span class='line'>&lt;/div&gt;
-</span><span class='line'>&lt;script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;!-- JiaThis END --&gt;
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- JiaThis BEGIN --&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;jiathis_style_32x32&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_qzone&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_tsina&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_tqq&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_weixin&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_renren&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.jiathis.com/share?uid=1850190&quot;</span> <span class="na">class=</span><span class="s">&quot;jiathis jiathis_txt jtico jtico_jiathis&quot;</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_counter_style&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v3.jiathis.com/code/jia.js?uid=1361705530382241&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- JiaThis END --&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;!-- Baidu Button BEGIN 
-</span><span class='line'>&lt;div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"&gt;
-</span><span class='line'>        &lt;a class="bds_tsina"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="bds_qzone"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="bds_tqq"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="bds_renren"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="bds_t163"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;a class="bds_hi"&gt;&lt;/a&gt;
-</span><span class='line'>        &lt;span class="bds_more"&gt;&lt;/span&gt;
-</span><span class='line'>        &lt;a class="shareCount"&gt;&lt;/a&gt;
-</span><span class='line'>&lt;/div&gt;
-</span><span class='line'>&lt;script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" &gt;&lt;/script&gt;
-</span><span class='line'>&lt;script type="text/javascript" id="bdshell_js"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;script type="text/javascript"&gt;
-</span><span class='line'>        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</span><span class='line'>&lt;/script&gt;
-</span><span class='line'> Baidu Button END --&gt;
+</span><span class='line'><span class="c">&lt;!-- Baidu Button BEGIN </span>
+</span><span class='line'><span class="c">&lt;div id=&quot;bdshare&quot; class=&quot;bdshare_t bds_tools_32 get-codes-bdshare&quot;&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_tsina&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_qzone&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_tqq&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_renren&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_t163&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_hi&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;span class=&quot;bds_more&quot;&gt;&lt;/span&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;shareCount&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">&lt;/div&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot; id=&quot;bdshare_js&quot; data=&quot;type=tools&amp;amp;uid=6839808&quot; &gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot; id=&quot;bdshell_js&quot;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot;&gt;</span>
+</span><span class='line'><span class="c">        document.getElementById(&quot;bdshell_js&quot;).src = &quot;http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=&quot; + Math.ceil(new Date()/3600000)</span>
+</span><span class='line'><span class="c">&lt;/script&gt;</span>
+</span><span class='line'><span class="c"> Baidu Button END --&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;!-- UY BEGIN --&gt;
-</span><span class='line'>&lt;div id="uyan_frame"&gt;&lt;/div&gt;
-</span><span class='line'>&lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;!-- UY END --&gt;</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c">&lt;!-- UY BEGIN --&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_frame&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- UY END --&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或
@@ -775,55 +787,22 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <p>首先在_config.yml中添加开关：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># comment and share
-</span><span class='line'>comment_share: true</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'># comment and share
+</span><span class='line'>comment_share: true
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后在<code>source/_includes/post/sharing.html</code>中添加如下代码：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>  <!-- JiaThis BEGIN -->
-<div class="jiathis_style_32x32">
-    <a class="jiathis_button_qzone"></a>
-    <a class="jiathis_button_tsina"></a>
-    <a class="jiathis_button_tqq"></a>
-    <a class="jiathis_button_weixin"></a>
-    <a class="jiathis_button_renren"></a>
-    <a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
-<!-- JiaThis END -->
-
-<!-- Baidu Button BEGIN 
-<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
-    <a class="bds_tsina"></a>
-    <a class="bds_qzone"></a>
-    <a class="bds_tqq"></a>
-    <a class="bds_renren"></a>
-    <a class="bds_t163"></a>
-    <a class="bds_hi"></a>
-    <span class="bds_more"></span>
-    <a class="shareCount"></a>
-</div>
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script>
- Baidu Button END &#8211;>
-
-<!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
-<!-- UY END -->
-
-</span><span class='line'></span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.comment_share %}
+</span><span class='line'>  {% include post/share_comment.html %}
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、
@@ -837,30 +816,32 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <p>首先在你的友言后台管理中找到<code>安装设置-&gt;嵌入式组件</code>获得评论热榜和最新评论的
 代码，分别创建<code>source/_includes/custom/asides/uyan_hotcmt.html</code>和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>&lt;h1&gt;评论热榜&lt;/h1&gt;
-</span><span class='line'>&lt;div id="uyan_hotcmt_unit"&gt;&lt;/div&gt;
-</span><span class='line'>        &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>评论热榜<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_hotcmt_unit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
-</span><span class='line'>&lt;h1&gt;最新评论&lt;/h1&gt;
-</span><span class='line'>&lt;div id="uyan_newcmt_unit"&gt;&lt;/div&gt;
-</span><span class='line'>        &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>最新评论<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_newcmt_unit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后再<code>_config.yml</code>的<code>default_asides</code>中添加其路径即可显示在侧边栏中。</p>
@@ -872,35 +853,25 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。
 实现方法为：在<code>source/_includes/article.html</code>中</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-26T22:36:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time></span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% include post/date.html %}{{ time }}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'> | &lt;a href="#comments" id="uyan_count_unit" du="" su=""&gt;0条评论&lt;/a&gt;
-</span><span class='line'>  &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments&quot;</span> <span class="na">id=</span><span class="s">&quot;uyan_count_unit&quot;</span> <span class="na">du=</span><span class="s">&quot;&quot;</span> <span class="na">su=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>0条评论<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>4. 为博文添加原文链接及声明</h2>
 
 <p>可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建<code>plugins/post_footer_filter.rb</code>，代码如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -927,33 +898,34 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># post_footer_filter.rb
-</span><span class='line'># Append every post some footer infomation like original url 
-</span><span class='line'># Kevin Lynx
-</span><span class='line'># 7.26.2012
-</span><span class='line'>#
-</span><span class='line'>require './plugins/post_filters'
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># post_footer_filter.rb</span>
+</span><span class='line'><span class="c1"># Append every post some footer infomation like original url </span>
+</span><span class='line'><span class="c1"># Kevin Lynx</span>
+</span><span class='line'><span class="c1"># 7.26.2012</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;./plugins/post_filters&#39;</span>
 </span><span class='line'>
-</span><span class='line'>module AppendFooterFilter
-</span><span class='line'>        def append(post)
-</span><span class='line'>                author = post.site.config['author']
-</span><span class='line'>                url = post.site.config['url']
-</span><span class='line'>                pre = post.site.config['original_url_pre']
-</span><span class='line'>                post.content + %Q[&lt;p class='post-footer'&gt;
-</span><span class='line'>                        #{pre or "original link:"}&lt;a href='#{post.full_url}'&gt;#{post.full_url}&lt;/a&gt;&lt;br/&gt;&nbsp;written by &lt;a href='#{url}'&gt;#{author}&lt;/a&gt;&nbsp;posted at &lt;a href='#{url}'&gt;#{url}&lt;/a&gt;&lt;/p&gt;]
-</span><span class='line'>        end
-</span><span class='line'>end
+</span><span class='line'><span class="k">module</span> <span class="nn">AppendFooterFilter</span>
+</span><span class='line'>        <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">author</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;author&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">url</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">pre</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;original_url_pre&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">+</span> <span class="sx">%Q[&lt;p class=&#39;post-footer&#39;&gt;</span>
+</span><span class='line'><span class="sx">                        </span><span class="si">#{</span><span class="n">pre</span> <span class="ow">or</span> <span class="s2">&quot;original link:&quot;</span><span class="si">}</span><span class="sx">&lt;a href=&#39;</span><span class="si">#{</span><span class="n">post</span><span class="o">.</span><span class="n">full_url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">post</span><span class="o">.</span><span class="n">full_url</span><span class="si">}</span><span class="sx">&lt;/a&gt;&lt;br/&gt;&amp;nbsp;written by &lt;a href=&#39;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">author</span><span class="si">}</span><span class="sx">&lt;/a&gt;&amp;nbsp;posted at &lt;a href=&#39;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&lt;/a&gt;&lt;/p&gt;]</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>module Jekyll
-</span><span class='line'>        class AppendFooter &lt; PostFilter
-</span><span class='line'>                include AppendFooterFilter
-</span><span class='line'>                def pre_render(post)
-</span><span class='line'>                        post.content = append(post) if post.is_post?
-</span><span class='line'>                end
-</span><span class='line'>        end
-</span><span class='line'>end
+</span><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
+</span><span class='line'>        <span class="k">class</span> <span class="nc">AppendFooter</span> <span class="o">&lt;</span> <span class="no">PostFilter</span>
+</span><span class='line'>                <span class="kp">include</span> <span class="no">AppendFooterFilter</span>
+</span><span class='line'>                <span class="k">def</span> <span class="nf">pre_render</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</span><span class='line'>                        <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">is_post?</span>
+</span><span class='line'>                <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>Liquid::Template.register_filter AppendFooterFilter</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_filter</span> <span class="no">AppendFooterFilter</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>并可以针对这一区域的样式进行美化，在<code>sass/custom/_style.scss</code>末尾增加下列内容：</p>
@@ -967,7 +939,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <p>在<code>source</code>目录下创建404.markdown，添加如下代码，即可实现公益404的功能，当你的网页出错找不到时，可以为公益尽一份力。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -976,15 +948,16 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>---
-</span><span class='line'>layout: page
-</span><span class='line'>title: "404 Error"
-</span><span class='line'>date: 2013-10-10 19:17
-</span><span class='line'>comments: false
-</span><span class='line'>sharing: false
-</span><span class='line'>footer: false
-</span><span class='line'>---
-</span><span class='line'>&lt;script type="text/javascript" src="http://www.qq.com/404/search_children,js" charset="utf-8&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="ss">layout</span><span class="p">:</span> <span class="n">page</span>
+</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;404 Error&quot;</span>
+</span><span class='line'><span class="ss">date</span><span class="p">:</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">10</span> <span class="mi">19</span><span class="p">:</span><span class="mi">17</span>
+</span><span class='line'><span class="ss">comments</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="ss">sharing</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="ss">footer</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">script</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;http://www.qq.com/404/search_children,js&quot;</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <hr />
@@ -1801,7 +1774,7 @@ ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，�
 <h2>2. 更新软件源</h2>
 
 <p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改
-/etc/apt/sources.list文件。</p>
+<code>/etc/apt/sources.list</code>文件。</p>
 
 <p>只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点</p>
 
@@ -1993,7 +1966,7 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 </ol>
 
 
-<p>这是一个很粗略的规划，要学的东西很多，按照陈皓的<a href="http://coolshell.cn/articles/4990.html">程序员连接攻略</a>，自己在启蒙入门还有很多需要学习。看书必须与动手
+<p>这是一个很粗略的规划，要学的东西很多，按照陈皓的<a href="http://coolshell.cn/articles/4990.html">程序员技术练级攻略</a>，自己在启蒙入门还有很多需要学习。看书必须与动手
 实践相结合，很多书之前也都看过，可一段时间用，又忘了，现在是一个知识快餐化的
 时代，来的快走的快，反复实践才能留住知识。写这篇文章也只是想驱动自己马上开始
 ，拖延症是病，得治啊，文章写的我都惨不认识，但坚持下去肯定会越写越好，这篇文
