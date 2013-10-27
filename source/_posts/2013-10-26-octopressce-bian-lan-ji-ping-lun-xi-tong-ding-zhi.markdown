@@ -27,6 +27,7 @@ $ rake generate
 这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行
 更改。`rake generate`后可以通过`rake preview`访问`http://localhost:4000`
 预览新的主题样式，不满意可以更换其他主题。
+<!--more-->
 ## 2. 侧边栏
 侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到
 [octopress的wiki页面](https://github.com/imathis/octopress/wiki)寻找。
