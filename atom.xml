@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-27T07:09:30+08:00</updated>
+  <updated>2013-10-27T12:15:45+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -12,6 +12,326 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress主题样式修改]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
+    <updated>2013-10-27T11:52:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
+    <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
+说一说，主题样式的修改。</p>
+
+<h2>1. Header，Navigation，footer</h2>
+
+<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件
+，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑
+<code>source/_includes/custom</code>下的文件来实现修改。</p>
+
+<h3>1.1 Header（标题栏）</h3>
+
+<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
+和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;hgroup&gt;
+</span><span class='line'>  &lt;h1&gt;&lt;a href="http://812lcl.github.io/"&gt;812lcl的博客&lt;/a&gt;&lt;/h1&gt;
+</span><span class='line'>  
+</span><span class='line'>    &lt;h2&gt;不要好高骛远，却又原地踏步；只想不做，太辜负青春了&lt;/h2&gt;
+</span><span class='line'>  
+</span><span class='line'>&lt;/hgroup&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<h3>1.2 Navigation（导航栏）</h3>
+
+<p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;ul class="main-navigation"&gt;
+</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/"&gt;博客主页&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/blog/archives"&gt;文章列表&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/category-cloud"&gt;分类云&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>  &lt;li&gt;&lt;a href="http://812lcl.github.io/about"&gt;关于&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
+，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此
+文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径
+即可，如<code>&lt;li&gt;&lt;a href="http://812lcl.github.io/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
+
+<h3>1.3 footer（尾栏）</h3>
+
+<p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;p&gt;
+</span><span class='line'>  Copyright &copy; 2013 - 812lcl -
+</span><span class='line'>  &lt;span class="credit"&gt;
+</span><span class='line'>          Powered by 
+</span><span class='line'>          &lt;a href="http://octopress.org"&gt;Octopress&lt;/a&gt;
+</span><span class='line'>  &lt;/span&gt;
+</span><span class='line'>&lt;/p&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>默认显示<code>Copyright@2013 - author - Powered by Octopress</code>，你可以添加自己想
+显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="">统计工具与SEO</a>。</p>
+
+<h2>2. 样式修改</h2>
+
+<p>添加或修改控制样式，需编辑<code>sass/custom/_styles.scss</code>，博客的所有颜色控制在
+<code>/sass/base/_theme.scss</code>中进行设置。定制自己的配色，编辑<code>sass/custom/_colors.scss</code>。查看<a href="http://hslpicker.com/#e1ff00">HSL COLOR PICKER</a>，帮你挑选喜欢的颜色。</p>
+
+<p>修改布局，需要编辑<code>sass/base/_layout.scss</code>，可以修改各部分的宽度等。</p>
+
+<h3>2.1 添加背景图片</h3>
+
+<p>在<code>sass/custom/_styles.scss</code>中添加：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>html {
+</span><span class='line'>        background: #555555 url("/images/bg3.jpg");
+</span><span class='line'>        //background: #555555;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>body &gt; div { 
+</span><span class='line'>        background-image: none; 
+</span><span class='line'>        //background: #F5F5D5
+</span><span class='line'>} //侧边栏
+</span><span class='line'>
+</span><span class='line'>body &gt; div &gt; div { //文章内容
+</span><span class='line'>        background-image: none; 
+</span><span class='line'>        //background: #F5F5D5; 
+</span><span class='line'>        //background: url("/images/bg.jpg");
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>将背景图片放入<code>source/images/</code>中，修改上述代码中的路径指向想要的图片，即可
+更改博客、侧边栏或文章的背景图片。博客使用背景图片后，与Header区不太和谐，
+所以我在<code>/sass/base/_theme.scss</code>中将<code>header-bg</code>设置成透明色了。</p>
+
+<h3>2.2 LOGO图片</h3>
+
+<p>我所说的logo图片有两种，一个是打开一个网页时，标签栏上显示的小图片。还有一个
+是标题栏主标题旁的图片。</p>
+
+<p>首先针对于第一种可以选择你喜欢的图片（大小适中），替换<code>source</code>目录下的
+<code>favicon.png</code>即可。</p>
+
+<p>或者将logo图片放入<code>source/images</code>中，然后修改<code>source/_includes/head.html</code>，
+找到<code>favicon.png</code>，修改其路径指向你的图片即可。</p>
+
+<p>对于主标题旁的图片需要在<code>sass/custom/_styles.scss</code>中填入如下语句：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//Blog logo pic
+</span><span class='line'>@media only screen and (min-width: 550px) {
+</span><span class='line'>
+</span><span class='line'>        body &gt; header h1{
+</span><span class='line'>                background: url("/images/logo1.png") no-repeat 0 1px;
+</span><span class='line'>                padding-left: 65px;
+</span><span class='line'>        }
+</span><span class='line'>
+</span><span class='line'>        body &gt; header h2 { padding-left: 65px; }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>根据自己情况进行修改即可。</p>
+
+<h3>2.3 导航栏倒圆角</h3>
+
+<p>我设置的header区背景色透明，所以导航栏的直角有些尖锐，在<code>sass/custom/_styles.scss</code>中添加如下语句，将其修改为圆角：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//倒圆角
+</span><span class='line'>@media only screen and (min-width: 1040px) {
+</span><span class='line'>        body &gt; nav {
+</span><span class='line'>                @include border-top-radius(.4em);
+</span><span class='line'>        }
+</span><span class='line'>
+</span><span class='line'>        body &gt; footer {
+</span><span class='line'>                @include border-bottom-radius(.4em);
+</span><span class='line'>        }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. 滑动返回顶部按钮</h2>
+
+<p>当文章较长，通常希望有一个返回顶部的按钮，如下方法实现了在页面右下方添加一个
+返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
+
+<p>首先创建<code>source/javascripts/top.js</code>，实现滑动返回顶部效果，添加如下代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function goTop(acceleration, time)
+</span><span class='line'>{
+</span><span class='line'>        acceleration = acceleration || 0.1;
+</span><span class='line'>        time = time || 16;
+</span><span class='line'>
+</span><span class='line'>        var x1 = 0;
+</span><span class='line'>        var y1 = 0;
+</span><span class='line'>        var x2 = 0;
+</span><span class='line'>        var y2 = 0;
+</span><span class='line'>        var x3 = 0;
+</span><span class='line'>        var y3 = 0;
+</span><span class='line'>
+</span><span class='line'>        if (document.documentElement)
+</span><span class='line'>        {
+</span><span class='line'>                x1 = document.documentElement.scrollLeft || 0;
+</span><span class='line'>                y1 = document.documentElement.scrollTop || 0;
+</span><span class='line'>        }
+</span><span class='line'>        if (document.body)
+</span><span class='line'>        {
+</span><span class='line'>                x2 = document.body.scrollLeft || 0;
+</span><span class='line'>                y2 = document.body.scrollTop || 0;
+</span><span class='line'>        }
+</span><span class='line'>        var x3 = window.scrollX || 0;
+</span><span class='line'>        var y3 = window.scrollY || 0;
+</span><span class='line'>
+</span><span class='line'>        var x = Math.max(x1, Math.max(x2, x3));
+</span><span class='line'>        var y = Math.max(y1, Math.max(y2, y3));
+</span><span class='line'>
+</span><span class='line'>        var speed = 1 + acceleration;
+</span><span class='line'>        window.scrollTo(Math.floor(x / speed), Math.floor(y / speed));
+</span><span class='line'>
+</span><span class='line'>        if(x &gt; 0 || y &gt; 0)
+</span><span class='line'>        {
+</span><span class='line'>                var invokeFunction = "goTop(" + acceleration + ", " + time + ")";
+</span><span class='line'>                window.setTimeout(invokeFunction, time);
+</span><span class='line'>        }         
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后创建<code>source/_includes/custom/totop.html</code>，设置返回顶部按钮样式和位置，代码如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--返回顶部开始--&gt;
+</span><span class='line'>&lt;div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;"&gt;
+</span><span class='line'>        &lt;a href="#" onclick="goTop();return false;"&gt;&lt;img src="http://812lcl.github.io/images/top.png" border=0 alt="返回顶部"&gt;&lt;/a&gt;
+</span><span class='line'>&lt;/div&gt;
+</span><span class='line'>&lt;script src="http://812lcl.github.io/javascripts/top.js" type="text/javascript"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;!--返回顶部结束--&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后，还需要将返回顶部的图片放入<code>source/images</code>，命名为<code>top.png</code>（或修改totop.html中图片的路径）。</p>
+
+<h2>4. 二维码展示</h2>
+
+<p>在关于页面或边栏可以展示你的个人博客的二维码，方便移动终端扫描访问你的博客，
+插件主页<a href="https://github.com/sailor79/Octopress-dynamic-QR-Code-aside">点击这里</a>。</p>
+
+<p>在侧边栏显示，则将<code>qrcode.html</code>放入<code>source/_includes/custom/asides/</code>中，在
+<code>_config.yml</code>中<code>default_asides</code>添加<code>custom/asides/qrcode.html</code>即可显示。</p>
+
+<p>或者将<code>qrcode.html</code>代码添加到你想展示的页面的HTML文件中亦可。</p>
+
+<hr />
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://yanping.me/cn/blog/2012/01/07/theming-and-customization/">为Octopress修改主题和自定义样式</a></p></li>
+<li><p><a href="http://shanewfx.github.io/blog/2012/08/13/improve-blog-theme/">Octopress主题改造</a></p></li>
+<li><p><a href="http://www.neoease.com/javascript-go-top/">用 JavaScript 实现变速回到顶部</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/'>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress侧边栏及评论系统定制]]></title>
@@ -46,6 +366,9 @@
 <p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行
 更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>
 预览新的主题样式，不满意可以更换其他主题。</p>
+
+<!--more-->
+
 
 <h2>2. 侧边栏</h2>
 
@@ -335,6 +658,10 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 </span><span class='line'>  &lt;h2&gt;相关文章：&lt;/h2&gt;
 </span><span class='line'>  &lt;ul class="posts"&gt;
 </span><span class='line'>       
+</span><span class='line'>          &lt;li class="related"&gt;
+</span><span class='line'>          &lt;a href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"&gt;Octopress主题样式修改&lt;/a&gt;
+</span><span class='line'>          &lt;/li&gt;
+</span><span class='line'>      
 </span><span class='line'>          &lt;li class="related"&gt;
 </span><span class='line'>          &lt;a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"&gt;Octopress博客搭建及目录结构&lt;/a&gt;
 </span><span class='line'>          &lt;/li&gt;
