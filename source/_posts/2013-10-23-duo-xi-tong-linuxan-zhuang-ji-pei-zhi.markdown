@@ -106,5 +106,10 @@ windows，改为`default 4`，保存的时候需要强制保存，输入`:wq!`
 /dev/sda5 	/media/data 	ntfs 	defaults 	0 	0
 挂载分区 	挂载位置 		分区类型
 ```
+
+很多时候需要翻墙，查阅国外网站，这就需要[goagent](https://code.google.com/p/goagent/)了，安装过程参阅[GoAgent_Linux](https://code.google.com/p/goagent/wiki/GoAgent_Linux)。
+
+另外推荐一个工具Terminator，使用方法见[linux 多窗口Terminator](http://dikar.iteye.com/blog/940085)。
+
 ---
 OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)
