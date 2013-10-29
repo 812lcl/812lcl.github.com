@@ -55,8 +55,8 @@ description: 为Octopress添加统计工具及SEO技巧
 此外，也可以在`_config.yml`里添加默认的`description`和`keywords`。
 
 ## 统计工具
-octopress模板里面默认带了Google Analytics工具，只需要注册[Google Analytics]
-(http://www.google.com/analytics/)，获得一个google_analytics_tracking_id，
+octopress模板里面默认带了Google Analytics工具，只需要注册[Google Analytics](http://www.google.com/analytics/)，
+获得一个google_analytics_tracking_id，
 添加到`_config.yml`中对应位置，并对网站进行验证即可。然后可以通过Google Analytics分析网站的流量了。而且可以使用[Google站长工具](https://www.google.com/webmasters/tools/home?hl=zh-CN)，对网站进行更全面的分析，进行SEO。
 
 对自己的网站进行验证，只需将网站提供的用于验证的代码添加到`source/_includes/head.html`的`<head>`标签之间，网站部署到网上后，过几分钟即可验证通过，其他
