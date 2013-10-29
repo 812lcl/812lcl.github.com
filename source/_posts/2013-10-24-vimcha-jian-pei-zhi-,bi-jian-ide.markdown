@@ -4,7 +4,9 @@ title: "VIM插件配置，比肩IDE"
 date: 2013-10-24 20:28
 comments: true
 categories: 磨刀利刃
-tags: [vim, linux, 编辑器, 编程工具]
+tags: [vim, linux, 编辑器, 编程环境]
+keywords: vim, linux, IDE
+description:
 ---
 vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的
 功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满

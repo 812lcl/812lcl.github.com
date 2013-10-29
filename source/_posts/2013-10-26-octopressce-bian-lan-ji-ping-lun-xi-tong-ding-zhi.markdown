@@ -5,6 +5,8 @@ date: 2013-10-26 22:36
 comments: true
 categories: Octopress
 tags: [octopress, 博客, ruby, html]
+keywords: octopress, linux, github, blog
+description:
 ---
 在[上一篇文章](http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/)中，已经搭建起了octopress博客。使用的是默认的主题，样式
 千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
@@ -56,7 +58,7 @@ github_skip_forks: true
 
 然后在`source/_includes/custom/asides`创建weibo.html，添加如下代码，刚刚获得
 的微博秀代码也要添加到相应位置：
-```
+``` html
 <section>
     <h1>新浪微博</h1>
     <ul id="weibo">
@@ -211,6 +213,7 @@ tag_dir: blog/tags
 就在我想放弃这个功能的时候，我发现了它――[related_posts-jekyll_plugin](https://github.com/LawrenceWoodman/related_posts-jekyll_plugin)。
 这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，
 然后在想添加相关文章推荐的地方添加如下语句：
+{% raw %}
 ```
 <section>
 	<h2>相关文章：</h2>
@@ -223,6 +226,7 @@ tag_dir: blog/tags
 	</ul>
  </section>
 ```
+{% endraw %}
 我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时
 的布局，我将相关文章添加在博文的结束处。
 
@@ -294,11 +298,13 @@ share_comment.html文件中代码如下（每个人不同）：
 comment_share: true
 ```
 然后在`source/_includes/post/sharing.html`中添加如下代码：
+{% raw %}
 ```
 {% if site.comment_share %}
   {% include post/share_comment.html %}
 {% endif %}
 ```
+{% endraw %}
 最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、
 社交影响力分析、和评论栏的风格功能设置。
 
@@ -332,18 +338,22 @@ comment_share: true
 ### 3.3 评论计数显示
 友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。
 实现方法为：在`source/_includes/article.html`中
+{% raw %}
 ```
 {% include post/date.html %}{{ time }}
 ```
+{% endraw %}
 的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容
+{% raw %}
 ```
  | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments" id="uyan_count_unit" du="" su="">0条评论</a>
   <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
 ```
+{% endraw %}
 
 ## 4. 为博文添加原文链接及声明
 可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建`plugins/post_footer_filter.rb`，代码如下：
-```
+``` rb
 # post_footer_filter.rb
 # Append every post some footer infomation like original url 
 # Kevin Lynx

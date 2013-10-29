@@ -5,6 +5,8 @@ date: 2013-10-23 21:54
 comments: true
 categories: 磨刀利刃
 tags: [ubuntu, linux, 装系统, 编程环境]
+keywords: linux, ubuntu, os, vim
+description:
 ---
 ##1. 多系统安装
 开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越

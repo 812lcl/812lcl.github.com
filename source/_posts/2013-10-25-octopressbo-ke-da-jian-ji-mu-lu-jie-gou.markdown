@@ -5,6 +5,8 @@ date: 2013-10-25 11:49
 comments: true
 categories: Octopress
 tags: [octopress, 博客]
+keywords: octopress, linux, blog, ruby
+description:
 ---
 搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
 思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
