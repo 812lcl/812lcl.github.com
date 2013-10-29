@@ -7,11 +7,11 @@ sharing: true
 footer: true
 ---
 
-<div id='category'>
+<div id='Category-cloud'>
 	<section>
 	  	<h1>分类云</h1>
 		<ul class="category-cloud">
-			{% category_cloud bgcolor:#f2f2f2 %}
+			{% category_cloud_big bgcolor:#f2f2f2 %}
 		</ul>
 	</section>
 	<section>
@@ -23,7 +23,7 @@ footer: true
 	<section>
 		<h1>标签云</h1>
 		<ul id="Tag-cloud">
-			{% tag_cloud bgcolor:#f2f2f2 %}
+			{% tag_cloud_big bgcolor:#f2f2f2 %}
 		</ul>
 	</section>
 	<section>

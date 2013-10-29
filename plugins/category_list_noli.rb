@@ -1,5 +1,5 @@
 module Jekyll
-	class CategoryListTag < Liquid::Tag
+	class CategoryListNoli < Liquid::Tag
 		def render(context)
 			html = ""
 			categories = context.registers[:site].categories.keys
@@ -14,4 +14,4 @@ module Jekyll
 	end
 end
 
-Liquid::Template.register_tag('category_list_noli', Jekyll::CategoryListTag)
+Liquid::Template.register_tag('category_list_noli', Jekyll::CategoryListNoli)
