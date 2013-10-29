@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-29T19:37:27+08:00</updated>
+  <updated>2013-10-29T19:42:07+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -30,6 +30,9 @@
 <p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述
 信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的
 元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+<!-- more -->
+
 
 <p>首先为你的每篇文章添加描述和关键字，本文的文件头如下：</p>
 
@@ -62,12 +65,13 @@
 <p>如果你没有为文章添加描述，octopress会自动以文章的前150个字符作为描述，以为
 每一篇文章都添加描述，octopress模板实现以上功能的代码在<code>source/_includes/head.html</code>中：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>  &lt;meta name="description" content="为Octopress添加统计工具，SEO技巧，语法高亮及站内搜索"&gt;
-</span><span class='line'>&lt;meta name="keywords" content="seo, octopress, analytics"&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% if page.keywords %}<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.keywords }}&quot;</span><span class="nt">&gt;</span>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>此外，也可以在<code>_config.yml</code>里添加默认的<code>description</code>和<code>keywords</code>。</p>
@@ -90,7 +94,7 @@
 
 <p>我的统计代码添加如下，包括百度统计和CNZZ：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -102,18 +106,19 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;p&gt;
-</span><span class='line'>  Copyright &copy; 2013 - 812lcl -
-</span><span class='line'>  &lt;span class="credit"&gt;
-</span><span class='line'>          Powered by 
-</span><span class='line'>          &lt;a href="http://octopress.org"&gt;Octopress&lt;/a&gt;
-</span><span class='line'>  &lt;/span&gt;
-</span><span class='line'>  &lt;script type="text/javascript"&gt;
-</span><span class='line'>        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-</span><span class='line'>        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F25fb42e16458b238f8da9ba05d6b9d4d' type='text/javascript'%3E%3C/script%3E"));
-</span><span class='line'>  &lt;/script&gt;
-</span><span class='line'>  &lt;script type="text/javascript"&gt;var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));&lt;/script&gt;
-</span><span class='line'>&lt;/p&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p&gt;</span>
+</span><span class='line'>  Copyright <span class="ni">&amp;copy;</span> {{ site.time | date: &quot;%Y&quot; }} - {{ site.author }} -
+</span><span class='line'>  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;credit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          Powered by
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://octopress.org&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/span&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">_bdhmProtocol</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;https:&quot;</span> <span class="o">==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot; https://&quot;</span> <span class="o">:</span> <span class="s2">&quot; http://&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">unescape</span><span class="p">(</span><span class="s2">&quot;%3Cscript src=&#39;&quot;</span> <span class="o">+</span> <span class="nx">_bdhmProtocol</span> <span class="o">+</span> <span class="s2">&quot;hm.baidu.com/h.js%3F25fb42e16458b238f8da9ba05d6b9d4d&#39; type=&#39;text/javascript&#39;%3E%3C/script%3E&quot;</span><span class="p">));</span>
+</span><span class='line'>  <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="kd">var</span> <span class="nx">cnzz_protocol</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;https:&quot;</span> <span class="o">==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot; https://&quot;</span> <span class="o">:</span> <span class="s2">&quot; http://&quot;</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">unescape</span><span class="p">(</span><span class="s2">&quot;%3Cspan id=&#39;cnzz_stat_icon_1000106316&#39;%3E%3C/span%3E%3Cscript src=&#39;&quot;</span> <span class="o">+</span> <span class="nx">cnzz_protocol</span> <span class="o">+</span> <span class="s2">&quot;s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic&#39; type=&#39;text/javascript&#39;%3E%3C/script%3E&quot;</span><span class="p">));</span><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>摘要和语法高亮</h2>

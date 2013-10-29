@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-10-29T19:37:27+08:00</updated>
+  <updated>2013-10-29T19:42:07+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -31,6 +31,9 @@
 信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的
 元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
 
+<!-- more -->
+
+
 <p>首先为你的每篇文章添加描述和关键字，本文的文件头如下：</p>
 
 <h2>```</h2>
@@ -52,15 +55,16 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 如上。</p>
 
 <p>如果你没有为文章添加描述，octopress会自动以文章的前150个字符作为描述，以为
-每一篇文章都添加描述，octopress模板实现以上功能的代码在<code>source/_includes/head.html</code>中：</p>
+每一篇文章都添加描述，octopress模板实现以上功能的代码在<code>source/_includes/head.html</code>中：
+</p>
 
-<p><code>
+<p><code>html
+{% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+  &lt;meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}"&gt;
+{% if page.keywords %}&lt;meta name="keywords" content="{{ page.keywords }}"&gt;{% endif %}
+</code>
 
-  &lt;meta name="description" content="Category: Octopress"&gt;
-
-</code></p>
-
-<p>此外，也可以在<code>_config.yml</code>里添加默认的<code>description</code>和<code>keywords</code>。</p>
+此外，也可以在<code>_config.yml</code>里添加默认的<code>description</code>和<code>keywords</code>。</p>
 
 <h2>统计工具</h2>
 
@@ -78,12 +82,12 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 ，统计代码也可以添加到<code>source/_includes/custom/footer.html</code>中。但是我发现
 似乎百度统计并不太准确，并且百度很难搜的到我的博客。</p>
 
-<p>我的统计代码添加如下，包括百度统计和CNZZ：</p>
+<p>我的统计代码添加如下，包括百度统计和CNZZ：
 
-<p>```</p>
+``` html</p>
 
 <p>
-  Copyright &copy; 2013 - 812lcl -
+  Copyright &copy; {{ site.time | date: "%Y" }} - {{ site.author }} -
   <span class="credit">
           Powered by 
           <a href="http://octopress.org">Octopress</a>
@@ -96,7 +100,8 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 </p>
 
 
-<p>```</p>
+<p>```
+</p>
 
 <h2>摘要和语法高亮</h2>
 
