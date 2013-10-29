@@ -21,6 +21,8 @@ http://tool.lusongsong.com/addurl.html
 信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的
 元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。
 
+<!-- more -->
+
 首先为你的每篇文章添加描述和关键字，本文的文件头如下：
 
 ```
@@ -42,13 +44,14 @@ description: 为Octopress添加统计工具及SEO技巧
 
 如果你没有为文章添加描述，octopress会自动以文章的前150个字符作为描述，以为
 每一篇文章都添加描述，octopress模板实现以上功能的代码在`source/_includes/head.html`中：
+{% raw %}
 
-```
+``` html
 {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
   <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}">
 {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
 ```
-
+{% endraw %}
 此外，也可以在`_config.yml`里添加默认的`description`和`keywords`。
 
 ## 统计工具
@@ -67,8 +70,8 @@ octopress模板里面默认带了Google Analytics工具，只需要注册[Google
 似乎百度统计并不太准确，并且百度很难搜的到我的博客。
 
 我的统计代码添加如下，包括百度统计和CNZZ：
-
-```
+{% raw %}
+``` html
 <p>
   Copyright &copy; {{ site.time | date: "%Y" }} - {{ site.author }} -
   <span class="credit">
@@ -82,6 +85,7 @@ octopress模板里面默认带了Google Analytics工具，只需要注册[Google
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </p>
 ```
+{% endraw %}
 
 ## 摘要和语法高亮
 如果想让文章在首页只显示一部分，只需要在文章中相应的位置添加`<!-- more -->`
