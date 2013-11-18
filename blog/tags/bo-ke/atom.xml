@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 博客 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bo-ke/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-11-18T13:34:47+08:00</updated>
+  <updated>2013-11-18T13:41:51+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -369,13 +369,7 @@ function goTop(acceleration, time)
 
 <p><code>``
 还需要将返回顶部的图片放入</code>source/images<code>，命名为</code>top.png<code>（或修改totop.html中图片的路径）。
-最后，还需要在</code>source/_layouts/default.html<code>的</code><body><code>标签之间加入</code><!--返回顶部开始-->
-<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
-	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
-</div>
-<script src="/javascripts/top.js" type="text/javascript"></script>
-<!--返回顶部结束-->
-`，应该就可以实现了。</p>
+最后，还需要在</code>source/_layouts/default.html<code>的</code><body><code>标签之间加入</code>{% include custom/totop.html %}`，应该就可以实现了。</p>
 
 <h2>4. 二维码展示</h2>
 
