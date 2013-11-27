@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/linux/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-11-18T13:41:51+08:00</updated>
+  <updated>2013-11-28T07:09:16+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -261,9 +261,9 @@ shift+F2    反向切换
 
 <p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，
 ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要
-omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
+omnicppcomplete插件，如果你使用java编程，则需要javacomplete插件。</p>
 
-<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，
+<p>安装方法与之前稍有不同，需要下载omnicppcomplete和javacomplete的zip压缩包，
 解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令
 <code>
 cd ~/.vim/autoload
