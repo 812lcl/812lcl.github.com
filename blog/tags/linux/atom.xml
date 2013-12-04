@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
+  <link href="http://812lcl.github.io/blog/tags/linux/atom.xml" rel="self"/>
+  <link href="http://812lcl.github.io/"/>
+  <updated>2013-12-04T20:57:24+08:00</updated>
+  <id>http://812lcl.github.io/</id>
+  <author>
+    <name><![CDATA[812lcl]]></name>
+    <email><![CDATA[812liuchunlei@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VIM插件配置，比肩IDE]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
+    <updated>2013-10-24T20:28:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
+    <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的
+功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满
+，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+
+<p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自
+己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可
+，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
+
+<!--more-->
+
+
+<p>首先，vim一般是linux自带了，在/usr/share/vim文件夹中，可以将要安装的插件及说
+明文档等放置这个目录的相应位置。其中有连接指向/etc/vim，可修改/etc/vim中的
+vimrc配置文件对vim进行设置。但不推荐这样做，这样以后想删除哪个插件比较麻烦。
+一般的做法是在$HOME文件夹下建立一个.vim文件夹，自己的插件、说明文档、语法高
+亮、配色方案等可以放在这个文件夹中的相应位置，配置文件为$HOME/.vimrc。这样
+不影响其他用户的配置，而且自己想恢复原来的vim，删除.vimrc和.vim文件夹即可。</p>
+
+<p>```
+|&ndash; .vim</p>
+
+<pre><code>└colors   配色方案
+└plugin   插件
+└doc      说明文档
+└syntax   语法高亮
+└after    修正脚本
+└autoload     自动加载
+</code></pre>
+
+<p>```
+下面正式开始配置了，提到的插件插件可以到<a href="http://www.vim.org/index.php">vim online</a>下载，下载好放入~/.vim/plugin即可。</p>
+
+<h2>1. ctags</h2>
+
+<p>这是很重要的一个插件，大多数linux发行版本默认安装了ctags，如果没有可如下安装</p>
+
+<pre><code>$ sudo apt-get install ctags
+</code></pre>
+
+<p>或者下载源文件，编译安装
+<code>
+$ tar -xzvf ctags-5.6.tar.gz
+$ cd ctags-5.6
+$ make
+$ sudo make install
+</code>
+有了ctags，可以生成标签文件，识别出程序中的函数定义调用关系，变量，宏定义等
+，看到一个函数调用时，只需按下"Ctrl+]&ldquo;，就可以跳转到其定义的地方，然后可以按
+"Ctrl+T"调回调用处。而且，有些其他插件的实现是依赖ctags实现的，所以ctags还是
+很重要的。使用方法如下
+<code>
+cd 程序根目录
+ctags -R        //生成tags文件
+vim 程序源文件
+:set tags=程序根目录/tags
+</code></p>
+
+<h2>2. taglist</h2>
+
+<p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看
+到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。
+安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句
+<code>
+let Tlist_Show_One_File=1       "让taglist可以同时展示一个文件的函数列表
+let Tlist_Exit_OnlyWindow=1     "当taglist是最后一个分割窗口时，自动退出vim
+</code>
+然后可以在vim中输入<code>:Tlist</code>查看效果了。</p>
+
+<h2>3. netrw和winmanager</h2>
+
+<p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情
+况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件
+文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。
+而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在
+~/.vim/plugin中，然后在.vimrc中填入如下
+<code>
+let g:winManagerWindowLayout='FileExplorer|TagList'
+let g:persistentBehaviour=0         "如果所有编辑文件都关闭了，退出vim
+let g:winManagerWidth = 30          "窗口默认宽带        
+let g:defaultExplorer=1
+nmap &lt;silent&gt; &lt;F8&gt; :WMToggle&lt;cr&gt;
+</code>
+最后一句为设置快捷键，按F8或者<code>:WMToggle</code>即可打开两个窗口。</p>
+
+<h2>4. cscope</h2>
+
+<p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个
+工程文件中更强大的查找功能。</p>
+
+<p>首先安装，仍可以使用apt-get</p>
+
+<pre><code>sudo apt-get install cscope
+</code></pre>
+
+<p>在~/.vimrc中增加一句：</p>
+
+<pre><code>:set cscopequickfix=s-,c-,d-,i-,t-,e-        " 使用QuickFix窗口来显示cscope查找结果
+</code></pre>
+
+<p>使用也是如ctags类似，先在工程根目录下生成一个cscope的数据库，要查找时，需要
+把cscope.out导入到vim中，然后可以进行各种查找。
+<code>
+cd 工作目录
+cscope -Rbq
+vim 工程文件
+:cs add 工作目录/cscope.out 工程文件
+:cs find c|d|e|f|g|i|s|t name
+</code>
+其中c、d、e等代表不同的查找类型
+<code>
+0 或 s 查找本 C 符号(可以跳过注释)
+1 或 g 查找本定义
+2 或 d 查找本函数调用的函数
+3 或 c 查找调用本函数的函数
+4 或 t 查找本字符串
+6 或 e 查找本 egrep 模式
+7 或 f 查找本文件
+8 或 i 查找包含本文件的文件                        
+</code>
+查找后vim会自动跳到第一个符合的地方，如果不满意可以用<code>:cw</code>打开quickfix窗口，
+自己选择跳转位置。当然查找命令可能有些长，总去输入不太方便，可设置快捷键，在
+.vimrc中添加
+<code>
+" 按下面这种组合键有技巧,按了&lt;C-_&gt;后要马上按下一个键,否则屏幕一闪
+" 就回到nomal状态了
+" &lt;C-_&gt;s的按法是先按"Ctrl+Shift+-",然后很快再按"s"
+nmap &lt;C-_&gt;s :cs find s &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;g :cs find g &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;c :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;t :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;e :cs find e &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;f :cs find f &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt;
+nmap &lt;C-_&gt;i :cs find i &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;d :cs find d &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</code>
+好了，暂时就这些，cscope在大型工程中查找非常方便，但也需要慢慢学习适应使用。</p>
+
+<h2>5. quickfix</h2>
+
+<p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误
+列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了
+。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。
+<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。
+<code>
+nmap &lt;F6&gt; :cp&lt;cr&gt;
+nmap &lt;F7&gt; :cn&lt;cr&gt;
+</code>
+可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个
+makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界
+面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误
+，回车可以到达错误所在的行，进行修改。</p>
+
+<h2>6. minibufexplorer</h2>
+
+<p>仍然是将下载的minibufexplorer.vim放入plugin中即可。</p>
+
+<p>在编程的时候不可能永远只编辑一个文件, 肯定会打开很多源文件进行编辑, 如果每个
+文件都打开一个vim进行编辑的话那操作起来将很多麻烦, 所以vim有buffer(缓冲区)的
+概念,当你只编辑一个buffer的时候MiniBufExplorer派不上用场, 当你打开第二个
+buffer的时候, MiniBufExplorer窗口就自动弹出来了。列出了当前所有已经打开的
+buffer, 当你把光标置于这个窗口时, 有下面几个快捷键可以用:
+<code>
+&lt;Tab&gt;   向前循环切换到每个buffer名上
+&lt;S-Tab&gt; 向后循环切换到每个buffer名上
+&lt;Enter&gt; 在打开光标所在的buffer
+d       删除光标所在的buffer
+</code>
+在.vimrc中添加如下语句，进行一定的设置
+```
+let g:miniBufExplMapCTabSwitchBufs = 1      &ldquo;启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；</p>
+
+<pre><code>                                        "Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
+</code></pre>
+
+<p>let g:miniBufExplMapWindowNavVim = 1        &ldquo;可以用&lt;C-h,j,k,l>切换到上下左右的窗口中
+let g:miniBufExplMapWindowNavArrows = 1     "可用&lt;C-箭头键>切换到上下左右窗口中
+let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
+```
+这样就很清晰的看到，当前打开了多少个文件，切换也很方便。</p>
+
+<h2>7. a.vim</h2>
+
+<p>这是一个很方便在源文件和头文件间进行切换的插件，下载好放入plugin中即可，命令如下：
+<code>
+:A  在新Buffer中切换到c/h文件
+:AS 横向分割窗口并打开c/h文件
+:AV 纵向分割窗口并打开c/h文件
+:AT 新建一个标签页并打开c/h文件
+</code>
+还可以在.vimrc中添加快捷键设置</p>
+
+<pre><code>nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;
+</code></pre>
+
+<p>之后按F12即可打开同名的头文件，再配合minibufexplorer，可以很好的进行切换。</p>
+
+<h2>8. Grep</h2>
+
+<p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程
+范围内，查找你想查找的任何东西。
+<code>
+:Grep       按照指定的规则在指定的文件中查找
+:Rgrep      同上, 但是是递归的grep
+:GrepBuffer 在所有打开的缓冲区中查找
+:Bgrep      同上
+:GrepArgs   在vim的argument filenames (:args)中查找
+:Fgrep      运行fgrep
+:Rfgrep     运行递归的fgrep
+:Egrep      运行egrep
+:Regrep     运行递归的egrep
+:Agrep      运行agrep
+:Ragrep     运行递归的agrep
+</code>
+使用方法如下
+<code>
+:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Egrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Regrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Agrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Ragrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+:Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+:GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</code>
+也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
+
+<h2>9.visualmark</h2>
+
+<p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。
+但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。
+<code>
+mm      设定标签
+F2      正向切换
+shift+F2    反向切换
+</code></p>
+
+<h2>10. 补全功能</h2>
+
+<p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，
+ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要
+omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
+
+<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，
+解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令
+<code>
+cd ~/.vim/autoload
+javac Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+</code>
+一切准备就绪，最后就是在.vimrc中添加相应的设置，开启补全功能
+<code>
+"-----------------------------------------------------------
+"AutoComple
+"-----------------------------------------------------------
+filetype plugin on                  "开启文件类型识别功能
+filetype plugin indent on           "打开文件类型检测, 加了这句才可以用智能补全
+set completeopt=longest,menu        "关掉智能补全时的预览窗口
+setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType java set omnifunc=javacomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+"-----------------------------------------------------------
+"OmniCppComplete
+"-----------------------------------------------------------
+" 按下F4自动补全代码
+imap &lt;F4&gt; &lt;C-X&gt;&lt;C-O&gt;
+" 按下F5根据头文件内关键字补全
+imap &lt;F5&gt; &lt;C-X&gt;&lt;C-I&gt;
+let OmniCpp_MayCompleteDot = 1           " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1         " autocomplete with -&gt;
+let OmniCpp_MayCompleteScope = 1         " autocomplete with ::
+let OmniCpp_SelectFirstItem = 2          " select first item (but don't insert)
+let OmniCpp_NamespaceSearch = 2         " search namespaces in this and included file
+let OmniCpp_ShowPrototypeInAbbr = 1     " show function prototype in popup window
+let OmniCpp_GlobalScopeSearch=1         " enable the global scope search
+let OmniCpp_DisplayMode=1               " Class scope completion mode: always show all members
+let OmniCpp_ShowScopeInAbbr=1           " show scope in abbreviation and remove the last column
+</code>
+现在一切都设置好了，比如编写个a.java，输入Math.然后按<code>ctrl+x ctrl+o</code>就可以出
+现可以补全的选项了，我设置了F4和F5两个快捷键，不同的补全方式和操作如下：
+```
+Ctrl+P  向前切换成员
+Ctrl+N  向后切换成员
+Ctrl+E  表示退出下拉窗口, 并退回到原来录入的文字
+Ctrl+Y  表示退出下拉窗口, 并接受当前选项</p>
+
+<p>Ctrl+X Ctrl+L   整行补全
+Ctrl+X Ctrl+N   根据当前文件里关键字补全
+Ctrl+X Ctrl+K   根据字典补全
+Ctrl+X Ctrl+T   根据同义词字典补全
+Ctrl+X Ctrl+I   根据头文件内关键字补全
+Ctrl+X Ctrl+]   根据标签补全
+Ctrl+X Ctrl+F   补全文件名
+Ctrl+X Ctrl+D   补全宏定义
+Ctrl+X Ctrl+V   补全vim命令
+Ctrl+X Ctrl+U   用户自定义补全方式
+Ctrl+X Ctrl+S   拼写建议
+```</p>
+
+<h2>11. supertab</h2>
+
+<p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式
+.vimrc中添加
+```
+let g:SuperTabRetainCompletionType=2                              <br/>
+&ldquo; 0 &ndash; 不记录上次的补全方式
+&rdquo; 1 &ndash; 记住上次的补全方式,直到用其他的补全命令改变它
+&ldquo; 2 &ndash; 记住上次的补全方式,直到按ESC退出插入模式为止
+let g:SuperTabDefaultCompletionType=&rdquo;&lt;C-X>&lt;C-O>&ldquo;     <br/>
+&rdquo; 设置按下<Tab>后默认的补全方式, 默认是&lt;C-P></p>
+
+<h2>```</h2>
+
+<p>这些就是我使用的vim插件的配置过程，有个简单粗暴的方法即可完成上述配置
+<code>
+cd ~
+git clone https://github.com/812lcl/vim.git
+mv vim .vim
+mv .vim/vimrc-lcl .vimrc
+javac ~/.vim/autoload/Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+</code></p>
+
+<p>vim本身已经足够强大，这些插件是锦上添花。vim是需要不断的练习的，可以参考
+<a href="http://coolshell.cn/articles/5426.html">简明Vim练级攻略</a>。</p>
+
+<p>这里是我自己整理的一个vim、bash、git的命令操作的查询表格<a href="http://pan.baidu.com/s/1rFcMP">点击查看</a></p>
+
+<p>参考文章：</p>
+
+<blockquote><p><a href="http://blog.csdn.net/wooin/article/details/1858917">手把手教你把Vim改装成一个IDE编程环境</a></p>
+
+<p><a href="http://blog.csdn.net/tge7618291/article/details/4216977">经典vim插件功能说明、安装方法和使用方法</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[多系统Linux安装及配置]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
+    <updated>2013-10-23T21:54:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
+    <content type="html"><![CDATA[<h2>1. 多系统安装</h2>
+
+<p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越
+喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫
+的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且
+使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版
+本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的
+感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持
+centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的
+校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的
+第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
+
+<!-- more -->
+
+
+<p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
+，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos
+的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常
+采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub
+引导，开机引导到centos镜像进行安装。而ubuntu的镜像只有七八百兆，刻进u盘，都
+都可以忽略它的存在，只要开机u盘启动即可进入安装了。这里也不讲具体如何安装了
+，可以参考一下
+<a href="http://blog.csdn.net/xiazdong/article/details/7523331">U盘安装Linux图解</a>。
+中间linux安装过程也不多讲了，安装提示一步一步来就好了。</p>
+
+<p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系
+统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后
+ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows
+也启动不起来。</p>
+
+<h2>2. 更新软件源</h2>
+
+<p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改
+<code>/etc/apt/sources.list</code>文件。</p>
+
+<p>只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点</p>
+
+<p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择
+即可，非常方便。</p>
+
+<h2>3. 安装喜欢的编辑器――VIM</h2>
+
+<p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑
+器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级
+编辑器。</p>
+
+<p>vim有很多的插件，通过添加插件可以将原本就强大的vim，改装成近似IDE的样子。
+我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的
+<a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然
+这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags
+和cscope。
+<code>
+sudo apt-get install gcc g++ git
+sudo apt-get install build-essential
+sudo apt-get install default-jre default-jdk
+sudo apt-get install ctags cscope
+</code>
+必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
+图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令
+<code>
+cd ~
+git clone https://github.com/812lcl/vim.git
+mv vim .vim
+mv .vim/vimrc-lcl .vimrc
+</code>
+配置C/C++和java的只能补全
+<code>
+javac ~/.vim/autoload/Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+cd /usr/include/c++
+ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
+</code>
+以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
+<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
+
+<h2>4. 一些常用软件</h2>
+
+<p>当然linux也是离不开娱乐的，看电影、听歌还是要的。</p>
+
+<ul>
+<li><p>听歌：自带的rhythm box播放器就可以了，但是缺少一些解码插件，打开一首歌，会自动寻找，统一安装即可。</p></li>
+<li><p>看电影：我一般是安装smplayer，在软件中心里可以搜到，点点鼠标就OK了。</p></li>
+<li><p>浏览器：linux都自带了firefox，但我还是习惯用chrome，软件中心里没有，去官网下一个deb包就可以了，<code>dpkg -i</code>安装。</p></li>
+<li><p>虚拟机：有时候还是需要以下windows的，用个网银、MS office等等，装个虚拟机也是必要的，virtual box就搞定了，同样软件中心点一点。</p></li>
+<li><p>其他：codeblocks、eclipse等，软件中心或是apt-get install即可。</p></li>
+</ul>
+
+
+<h2>5. 更新</h2>
+
+<p>没有什么要设置的了，可以更新一下软件了。</p>
+
+<pre><code>sudo apt-get update
+</code></pre>
+
+<h2>6. 其他</h2>
+
+<p>多系统可能需要修改一下启动顺序</p>
+
+<pre><code>sudo vim /boot/grub/grub.cfg
+</code></pre>
+
+<p>其中有一句<code>default 0</code>，修改数字即可，如启动菜单第五项是windows，要默认启动
+windows，改为<code>default 4</code>，保存的时候需要强制保存，输入<code>:wq!</code></p>
+
+<p>有时候想设置开机自动挂载windows分区</p>
+
+<pre><code>sudo vim /etc/fstab
+</code></pre>
+
+<p>添加想开机挂载的分区即可
+<code>sh
+/dev/sda5   /media/data     ntfs    defaults    0   0
+挂载分区    挂载位置        分区类型
+</code></p>
+
+<p>很多时候需要翻墙，查阅国外网站，这就需要<a href="https://code.google.com/p/goagent/">goagent</a>了，安装过程参阅<a href="https://code.google.com/p/goagent/wiki/GoAgent_Linux">GoAgent_Linux</a>。</p>
+
+<p>另外推荐一个工具Terminator，使用方法见<a href="http://dikar.iteye.com/blog/940085">linux 多窗口Terminator</a>。</p>
+
+<hr />
+
+<p>OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,2149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[812lcl的博客]]></title>
+  <link href="http://812lcl.github.io/atom.xml" rel="self"/>
+  <link href="http://812lcl.github.io/"/>
+  <updated>2013-12-04T20:57:24+08:00</updated>
+  <id>http://812lcl.github.io/</id>
+  <author>
+    <name><![CDATA[812lcl]]></name>
+    <email><![CDATA[812liuchunlei@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[vim插件配置续]]></title>
+    <link href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
+    <updated>2013-12-04T20:56:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
+    <content type="html"><![CDATA[<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/'>http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress添加统计与SEO]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
+    <updated>2013-10-29T19:28:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
+    <content type="html"><![CDATA[<p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让
+自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章
+，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎
+提交自己的博客地址。</p>
+
+<p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
+
+<p><a href="http://tool.lusongsong.com/addurl.html">http://tool.lusongsong.com/addurl.html</a></p>
+
+<p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述
+信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的
+元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+<!-- more -->
+
+
+<p>首先为你的每篇文章添加描述和关键字，本文的文件头如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>layout: post
+</span><span class='line'>title: "Octopress添加统计与SEO"
+</span><span class='line'>date: 2013-10-29 22:37
+</span><span class='line'>comments: true
+</span><span class='line'>categories: Octopress
+</span><span class='line'>tags: [octopress, 博客, SEO]
+</span><span class='line'>keywords: seo, octopress, analytics, 站内搜索
+</span><span class='line'>description: 为Octopress添加统计工具及SEO技巧
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就可以为你的文章添加关键字和描述，使搜索引擎更容易搜到你的文章。你还可以
+为你的博客首页添加描述和关键字，在<code>source/index.html</code>文件顶部添加即可，方法
+如上。</p>
+
+<p>如果你没有为文章添加描述，octopress会自动以文章的前150个字符作为描述，以为
+每一篇文章都添加描述，octopress模板实现以上功能的代码在<code>source/_includes/head.html</code>中：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% if page.keywords %}<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.keywords }}&quot;</span><span class="nt">&gt;</span>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此外，也可以在<code>_config.yml</code>里添加默认的<code>description</code>和<code>keywords</code>。</p>
+
+<h2>统计工具</h2>
+
+<p>octopress模板里面默认带了Google Analytics工具，只需要注册<a href="http://www.google.com/analytics/">Google Analytics</a>，
+获得一个google_analytics_tracking_id，
+添加到<code>_config.yml</code>中对应位置，并对网站进行验证即可。然后可以通过Google Analytics分析网站的流量了。而且可以使用<a href="https://www.google.com/webmasters/tools/home?hl=zh-CN">Google站长工具</a>，对网站进行更全面的分析，进行SEO。</p>
+
+<p>对自己的网站进行验证，只需将网站提供的用于验证的代码添加到<code>source/_includes/head.html</code>的<code>&lt;head&gt;</code>标签之间，网站部署到网上后，过几分钟即可验证通过，其他
+需要验证的也同样操作。</p>
+
+<p>除了Google的统计工具，还有就是国内使用很广的<a href="http://zhanzhang.cnzz.com/">CNZZ</a>了，注册后，添加并验证你的网站就可以添加统计代码了，选好自己喜欢的样式，获得代码，可添加到<code>source/_includes/custom/footer.html</code>中。即可查看每天你的博客的流量，进行相应的优化了。</p>
+
+<p>最后还要提的就是<a href="http://zhanzhang.baidu.com/site/index">百度站长工具</a>和
+<a href="http://tongji.baidu.com/web/welcome/login">百度统计了</a>，方法和CNZZ方法类似
+，统计代码也可以添加到<code>source/_includes/custom/footer.html</code>中。但是我发现
+似乎百度统计并不太准确，并且百度很难搜的到我的博客。</p>
+
+<p>我的统计代码添加如下，包括百度统计和CNZZ：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p&gt;</span>
+</span><span class='line'>  Copyright <span class="ni">&amp;copy;</span> {{ site.time | date: &quot;%Y&quot; }} - {{ site.author }} -
+</span><span class='line'>  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;credit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          Powered by
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://octopress.org&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/span&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">_bdhmProtocol</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;https:&quot;</span> <span class="o">==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot; https://&quot;</span> <span class="o">:</span> <span class="s2">&quot; http://&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">unescape</span><span class="p">(</span><span class="s2">&quot;%3Cscript src=&#39;&quot;</span> <span class="o">+</span> <span class="nx">_bdhmProtocol</span> <span class="o">+</span> <span class="s2">&quot;hm.baidu.com/h.js%3F25fb42e16458b238f8da9ba05d6b9d4d&#39; type=&#39;text/javascript&#39;%3E%3C/script%3E&quot;</span><span class="p">));</span>
+</span><span class='line'>  <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="kd">var</span> <span class="nx">cnzz_protocol</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;https:&quot;</span> <span class="o">==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot; https://&quot;</span> <span class="o">:</span> <span class="s2">&quot; http://&quot;</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">unescape</span><span class="p">(</span><span class="s2">&quot;%3Cspan id=&#39;cnzz_stat_icon_1000106316&#39;%3E%3C/span%3E%3Cscript src=&#39;&quot;</span> <span class="o">+</span> <span class="nx">cnzz_protocol</span> <span class="o">+</span> <span class="s2">&quot;s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic&#39; type=&#39;text/javascript&#39;%3E%3C/script%3E&quot;</span><span class="p">));</span><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>摘要和语法高亮</h2>
+
+<p>如果想让文章在首页只显示一部分，只需要在文章中相应的位置添加<code>&lt;!-- more --&gt;</code>
+即可，在<code>_config.yml</code>中修改<code>excerpt_link: "继续阅读 &amp;rarr;"</code>来修改继续阅读
+按钮的显示内容。</p>
+
+<p>octopress自带了语法高亮功能，使用的是<code>pygements.rb</code>，使用方法见<a href="http://octopress.org/docs/plugins/backtick-codeblock/">Backtick Code Blocks</a>，支持的语言见<a href="http://pygments.org/docs/lexers/">Supported languages</a>。</p>
+
+<p>其他方法见<a href="http://octopress.org/docs/plugins/include-code/">embed code from a file</a>、<a href="http://octopress.org/docs/plugins/gist-tag/">embed GitHub gists</a>或<a href="http://xiongbupt.github.io/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>。</p>
+
+<h2>站内搜索</h2>
+
+<p>最后，还有一点我想实现但却始终没实现了的功能，就是站内搜索。octopress自带
+了google的搜索，在搜索栏中搜索后，相当于在google中指定搜索域为你的博客进行
+搜索，然后跳到Google页面，虽然能搜到你博客中的相关内容，但是作为有强迫症的我认为这和整个博客风格不太符。我想实现的效果是如<a href="http://yortz.it/about">这个博客</a>所实现的站内搜索一样。
+这就需要使用<a href="https://github.com/yortz/octopress-lunr-js-search">Octopress Lunr.js plugin</a>，但我安装安装方法试验了好几次，还是没有成功。</p>
+
+<p>如果谁安装成功了，还希望指点我一下。</p>
+
+<hr />
+
+<p>好了，关于octopress也写了好几篇文章了，主要想记录一下自己搭建博客的过程，怕
+自己忘掉，以后再搭还要从头再来。也是刚开始写博客，需要练习的过程，开始虽然
+写的不好，但坚持下来总是会有收获的。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://codemacro.com/2012/09/06/octopress-seo/">Octopress中的SEO</a></p></li>
+<li><p><a href="http://www.cnblogs.com/hswg/archive/2013/01/15/2860952.html">Octopress技巧之设置关键字和描述</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/'>http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress主题样式修改]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
+    <updated>2013-10-27T11:52:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
+    <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
+说一说，主题样式的修改。</p>
+
+<h2>1. Header，Navigation，footer</h2>
+
+<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件
+，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑
+<code>source/_includes/custom</code>下的文件来实现修改。</p>
+
+<h3>1.1 Header（标题栏）</h3>
+
+<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
+和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;hgroup&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>{{ site.title }}<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>  {% if site.subtitle %}
+</span><span class='line'>    <span class="nt">&lt;h2&gt;</span>{{ site.subtitle }}<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/hgroup&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<h3>1.2 Navigation（导航栏）</h3>
+
+<p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>博客主页<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/blog/archives&quot;</span><span class="nt">&gt;</span>文章列表<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/category-cloud&quot;</span><span class="nt">&gt;</span>分类云<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/about&quot;</span><span class="nt">&gt;</span>关于<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
+，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此
+文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径
+即可，如<code>&lt;li&gt;&lt;a href="http://812lcl.github.io/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
+
+<h3>1.3 footer（尾栏）</h3>
+
+<p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p&gt;</span>
+</span><span class='line'>  Copyright <span class="ni">&amp;copy;</span> {{ site.time | date: &quot;%Y&quot; }} - {{ site.author }} -
+</span><span class='line'>  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;credit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          Powered by
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://octopress.org&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/span&gt;</span>
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>默认显示<code>Copyright@2013 - author - Powered by Octopress</code>，你可以添加自己想
+显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="">统计工具与SEO</a>。</p>
+
+<h2>2. 样式修改</h2>
+
+<p>添加或修改控制样式，需编辑<code>sass/custom/_styles.scss</code>，博客的所有颜色控制在
+<code>/sass/base/_theme.scss</code>中进行设置。定制自己的配色，编辑<code>sass/custom/_colors.scss</code>。查看<a href="http://hslpicker.com/#e1ff00">HSL COLOR PICKER</a>，帮你挑选喜欢的颜色。</p>
+
+<p>修改布局，需要编辑<code>sass/base/_layout.scss</code>，可以修改各部分的宽度等。</p>
+
+<h3>2.1 添加背景图片</h3>
+
+<p>在<code>sass/custom/_styles.scss</code>中添加：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nt">html</span> <span class="p">{</span>
+</span><span class='line'>        <span class="na">background</span><span class="o">:</span> <span class="mh">#555555</span> <span class="sx">url(&quot;/images/bg3.jpg&quot;)</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #555555;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span>
+</span><span class='line'>        <span class="na">background-image</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #F5F5D5</span>
+</span><span class='line'><span class="p">}</span> <span class="c1">//侧边栏</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span> <span class="c1">//文章内容</span>
+</span><span class='line'>        <span class="na">background-image</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #F5F5D5; </span>
+</span><span class='line'>        <span class="c1">//background: url(&quot;/images/bg.jpg&quot;);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>将背景图片放入<code>source/images/</code>中，修改上述代码中的路径指向想要的图片，即可
+更改博客、侧边栏或文章的背景图片。博客使用背景图片后，与Header区不太和谐，
+所以我在<code>/sass/base/_theme.scss</code>中将<code>header-bg</code>设置成透明色了。</p>
+
+<h3>2.2 LOGO图片</h3>
+
+<p>我所说的logo图片有两种，一个是打开一个网页时，标签栏上显示的小图片。还有一个
+是标题栏主标题旁的图片。</p>
+
+<p>首先针对于第一种可以选择你喜欢的图片（大小适中），替换<code>source</code>目录下的
+<code>favicon.png</code>即可。</p>
+
+<p>或者将logo图片放入<code>source/images</code>中，然后修改<code>source/_includes/head.html</code>，
+找到<code>favicon.png</code>，修改其路径指向你的图片即可。</p>
+
+<p>对于主标题旁的图片需要在<code>sass/custom/_styles.scss</code>中填入如下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">//Blog logo pic</span>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">550px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span><span class="p">{</span>
+</span><span class='line'>                <span class="na">background</span><span class="o">:</span> <span class="sx">url(&quot;/images/logo1.png&quot;)</span> <span class="no">no-repeat</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>                <span class="na">padding-left</span><span class="o">:</span> <span class="mi">65</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span> <span class="na">padding-left</span><span class="o">:</span> <span class="mi">65</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>根据自己情况进行修改即可。</p>
+
+<h3>2.3 导航栏倒圆角</h3>
+
+<p>我设置的header区背景色透明，所以导航栏的直角有些尖锐，在<code>sass/custom/_styles.scss</code>中添加如下语句，将其修改为圆角：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">//倒圆角</span>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">1040px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">nav</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">@include</span><span class="nd"> border-top-radius</span><span class="p">(</span><span class="mf">.4</span><span class="kt">em</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">footer</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">@include</span><span class="nd"> border-bottom-radius</span><span class="p">(</span><span class="mf">.4</span><span class="kt">em</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. 滑动返回顶部按钮</h2>
+
+<p>当文章较长，通常希望有一个返回顶部的按钮，如下方法实现了在页面右下方添加一个
+返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
+
+<p>首先创建<code>source/javascripts/top.js</code>，实现滑动返回顶部效果，添加如下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">goTop</span><span class="p">(</span><span class="nx">acceleration</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="nx">acceleration</span> <span class="o">=</span> <span class="nx">acceleration</span> <span class="o">||</span> <span class="mf">0.1</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">time</span> <span class="o">=</span> <span class="nx">time</span> <span class="o">||</span> <span class="mi">16</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="nx">x1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>                <span class="nx">y1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="nx">x2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>                <span class="nx">y2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x3</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollX</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y3</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">));</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">y1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">y2</span><span class="p">,</span> <span class="nx">y3</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">acceleration</span><span class="p">;</span>
+</span><span class='line'>        <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">x</span> <span class="o">/</span> <span class="nx">speed</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">y</span> <span class="o">/</span> <span class="nx">speed</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="kd">var</span> <span class="nx">invokeFunction</span> <span class="o">=</span> <span class="s2">&quot;goTop(&quot;</span> <span class="o">+</span> <span class="nx">acceleration</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">time</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+</span><span class='line'>                <span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">invokeFunction</span><span class="p">,</span> <span class="nx">time</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后创建<code>source/_includes/custom/totop.html</code>，设置返回顶部按钮样式和位置，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--返回顶部开始--&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;full&quot;</span> <span class="na">style=</span><span class="s">&quot;width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick=</span><span class="s">&quot;goTop();return false;&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;/images/top.png&quot;</span> <span class="na">border=</span><span class="s">0</span> <span class="na">alt=</span><span class="s">&quot;返回顶部&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/top.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!--返回顶部结束--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后，还需要将返回顶部的图片放入<code>source/images</code>，命名为<code>top.png</code>（或修改totop.html中图片的路径）。</p>
+
+<h2>4. 二维码展示</h2>
+
+<p>在关于页面或边栏可以展示你的个人博客的二维码，方便移动终端扫描访问你的博客，
+插件主页<a href="https://github.com/sailor79/Octopress-dynamic-QR-Code-aside">点击这里</a>。</p>
+
+<p>在侧边栏显示，则将<code>qrcode.html</code>放入<code>source/_includes/custom/asides/</code>中，在
+<code>_config.yml</code>中<code>default_asides</code>添加<code>custom/asides/qrcode.html</code>即可显示。</p>
+
+<p>或者将<code>qrcode.html</code>代码添加到你想展示的页面的HTML文件中亦可。</p>
+
+<hr />
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://yanping.me/cn/blog/2012/01/07/theming-and-customization/">为Octopress修改主题和自定义样式</a></p></li>
+<li><p><a href="http://shanewfx.github.io/blog/2012/08/13/improve-blog-theme/">Octopress主题改造</a></p></li>
+<li><p><a href="http://www.neoease.com/javascript-go-top/">用 JavaScript 实现变速回到顶部</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/'>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress侧边栏及评论系统定制]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
+    <updated>2013-10-26T22:36:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
+    <content type="html"><![CDATA[<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式
+千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
+如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造
+中国特色octopress博客的。</p>
+
+<h2>1. 第三方主题</h2>
+
+<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置
+，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西
+被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
+
+<p>你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。
+<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用
+该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd blog
+</span><span class='line'>$ git clone https://github.com/shashankmehta/greyshade.git ./themes/greyshade
+</span><span class='line'>$ rake install['greyshade']
+</span><span class='line'>$ rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行
+更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>
+预览新的主题样式，不满意可以更换其他主题。</p>
+
+<!--more-->
+
+
+<h2>2. 侧边栏</h2>
+
+<p>侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到
+<a href="https://github.com/imathis/octopress/wiki">octopress的wiki页面</a>寻找。</p>
+
+<p>侧边栏在<code>_config.yml</code>中设置，添加进<code>default_asides</code>中，先后顺序代表显示的
+先后顺序，各个侧边栏插件代码放入相应的位置即可，自己添加的一般放入<code>source/_includes/custom/asides</code>，<code>default_asides</code>中默认从<code>_includes</code>之后路径开始写。</p>
+
+<h3>2.1 最新文章</h3>
+
+<p>首先说一下主题中可用的插件。</p>
+
+<p><code>asides/recent_posts.html</code>是最近写的文章的一个
+展示，添加到<code>default_asides</code>中即可显示，在<code>_config.yml</code>中可以设置显示最近
+多少篇文章，<code>recent_posts: 5</code>，注意冒号后有空格。</p>
+
+<h3>2.2 GitHub Repos</h3>
+
+<p><code>asides/github.html</code>则是GitHub repos的一个展示，可以直接到达你的GitHub页面，
+在<code>_config.yml</code>中设置你的Github账号，并设置为<code>true</code>即可，如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Github repositories
+</span><span class='line'>github_user: 812lcl   #我的github
+</span><span class='line'>github_repo_count: 0
+</span><span class='line'>github_show_profile_link: true
+</span><span class='line'>github_skip_forks: true</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2.3 微博秀</h3>
+
+<p>新浪微博是一个信息传播非常迅速的媒介，如果你热衷于微博，可以在侧边栏添加
+自己的微博秀。首先需要获得自己的微博秀代码，链接为<a href="http://app.weibo.com/tool/weiboshow">http://app.weibo.com/tool/weiboshow</a>，进行相应的设置即可获得微博秀代码。</p>
+
+<p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得
+的微博秀代码也要添加到相应位置：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h1&gt;</span>新浪微博<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;weibo&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c">&lt;!-- 在此插入获得的微博秀代码 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/weibo.html</code>即可显示你的微博秀了。</p>
+
+<h3>2.4 豆瓣展示</h3>
+
+<p>你可以通过豆瓣读书、豆瓣电影、豆瓣音乐等多方面展示你自己，豆瓣也提供了类似
+微博秀的展示方式，添加方法也类似。获得豆瓣收藏秀的链接<a href="http://www.douban.com/service/badgemakerjs">http://www.douban.com/service/badgemakerjs</a>，根据自己的喜欢进行设置</p>
+
+<p>然后在<code>source/_includes/custom/asides</code>创建douban.html，添加如下代码，
+刚刚获得的代码添加到<code>&lt;div&gt;</code>之间：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>My Douban<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--添加到这--&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/douban.html</code>显示你的豆瓣展示。</p>
+
+<h3>2.5 访客地图</h3>
+
+<p>效果如我的博客右侧那个精美的3D旋转地球所示，它可以显示访客数量，访客来自的
+地域，既有装饰作用，又有统计作用。它也有2D效果版，可以根据自己喜欢进行设置，
+地址在<a href="http://www.revolvermaps.com/?target=setup">这里</a>，然后获得代码。</p>
+
+<p>依然在<code>source/_includes/custom/asides</code>创建earth.html，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>访客地图<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--获得代码添加到这--&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>default_asides</code>中加入<code>custom/asides/earth.html</code>显示你定制的访客地图。</p>
+
+<h3>2.6 酷站博客</h3>
+
+<p>你有一些经常去的网站、博客，想推荐给大家，则可以在侧边栏加上一个“酷站博客”
+，当然名字你自己取即可。</p>
+
+<p>在<code>source/_includes/custom/asides</code>创建blog_link.html，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>酷站博客<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://blog.jobbole.com/&quot;</span><span class="nt">&gt;</span>伯乐在线<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.csdn.net/&quot;</span><span class="nt">&gt;</span>CSDN<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.cnblogs.com/&quot;</span><span class="nt">&gt;</span>博客园<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://coolshell.cn/&quot;</span><span class="nt">&gt;</span>酷壳CoolShell<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.cnblogs.com/Solstice/&quot;</span><span class="nt">&gt;</span>陈硕<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以自行添加喜爱网站，然后在<code>default_asides</code>中加入<code>custom/asides/blog_link.html</code>。</p>
+
+<p>看到这，你应该很熟悉添加侧边栏的流程了吧。</p>
+
+<h3>2.7 最热文章</h3>
+
+<p>Octopress Popular Posts Plugin是根据Google page rank计算，展示出权值最高的
+文章，插件的项目主页为<a href="https://github.com/octopress-themes/popular-posts">点击这里</a>。</p>
+
+<p>这个插件的安装与之前的方法不同，首先在<code>Gemfile</code>中添加</p>
+
+<pre><code>gem 'octopress-popular-posts'
+</code></pre>
+
+<p><code>Gemfile</code>中的是bundle安装时安装的所有依赖的软件，然后用bundle安装</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>执行命令，将插件拷贝到你的source目录，如下：</p>
+
+<pre><code>bundle exec octopress-popular-posts install
+</code></pre>
+
+<p>到这就安装完了，可以设置显示了，在<code>_config.yml</code>中设置，增加下面一行：</p>
+
+<pre><code>popular_posts_count: 5      # Posts in the sidebar Popular Posts section
+</code></pre>
+
+<p>设置边栏显示文章数，最后在<code>default_asides</code>中添加<code>custom/asides/popular_posts.html</code>，即可显示出来。</p>
+
+<p>这样就设置好了，同时建议将缓存的page rank文件添加进你的<code>.gitignore</code>中</p>
+
+<pre><code>.page_rank
+</code></pre>
+
+<h3>2.8 3D标签云与标签列表</h3>
+
+<p>octopress默认的只支持category的分类，而并没有tag。category和tag分别代表有序/
+无序的知识点归纳。一篇文章只能属于一个category，但可以有多个tag。原来的
+plugin下只有category_generator.rb插件，实现category功能，在github上有两个插件帮助实现了tag生成和tag cloud功能<a href="https://github.com/robbyedwards/octopress-tag-pages">插件1</a>，<a href="https://github.com/robbyedwards/octopress-tag-cloud">插件2</a>。
+但似乎并不支持中文，而category_generator.rb是支持中文的，所以我有样学样，改
+成了支持中文的，并且实现了3D标签云的，插件已经上传到<a href="https://github.com/812lcl/category_tag">github</a>。clone到你博客的目录即可。</p>
+
+<p>包含文件如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> ├─ plugins/
+</span><span class='line'>    │  ├─ category_generator.rb
+</span><span class='line'>    │  ├─ category_list.rb
+</span><span class='line'>    │  ├─ category_tag_cloud.rb
+</span><span class='line'>    │  ├─ tag_generator.rb
+</span><span class='line'>    │  └─ tag_list.rb
+</span><span class='line'>    └─ source/
+</span><span class='line'>       └─ _includes/
+</span><span class='line'>          └─ custom/
+</span><span class='line'>             └─ asides/
+</span><span class='line'>                ├─ category_cloud.html
+</span><span class='line'>                ├─ category_list.html
+</span><span class='line'>                ├─ tag_cloud.html
+</span><span class='line'>                └─ tag_list.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中<code>category_generator.rb</code>和<code>tag_generator.rb</code>定义了根据文章的category和tag
+标签分类存储文章的方法，<code>category_tag_cloud.rb</code>则可以定义了根据category或tag
+生成3D标签云的方法。<code>category_list.rb</code>和<code>tag_list.rb</code>实现了将所有文章的category和tag列出来的方法，其中category可以显示文章个数，tag根据此标签文章多少，
+大小随着改变。</p>
+
+<p>四个HTML文件则是category和tag的列表和3D标签云的侧边栏实现。需要哪个，在<code>default_asides</code>中添加即可。</p>
+
+<p>还有一点需要注意，在_config.yml中默认设置了category的目录，需自己加入tag目录</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>category_dir: blog/categories
+</span><span class='line'>tag_dir: blog/tags
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样可以观看效果了，不过3D效果的标签云，对于不支持flash的浏览器无效，如<code>safari</code>。</p>
+
+<p>标签功能的实现，我参考了一下几篇文章：</p>
+
+<ul>
+<li><p><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p></li>
+<li><p><a href="http://blog.log4d.com/2012/05/tag-cloud/">给 Octopress 加上标签功能</a></p></li>
+<li><p><a href="http://guori12321.github.io/blog/2013/08/20/gei-octopresstian-jia-3dyun-biao-qian/">给octopress添加3D标签云</a></p></li>
+</ul>
+
+
+<h3>2.9 相关文章功能</h3>
+
+<p>此功能即根据当前阅读的文章，分析博客中其他与此相近的文章，进行推荐的一个功能
+，在octopress wiki中推荐的第三方插件中有一个插件实现此功能，项目主页<a href="https://github.com/jcftang/octopress-relatedposts">点击这里</a>。该插件，利用octopress自带的LSI实现对文章分析分类，然后进行推荐，但当文章较多时分类过慢，它推荐
+安装GSL来进行分类。我安装过这个功能，但不知道它是根据什么规则分类，而且之后
+不知道安装了什么，之后每次分类都会出错。你可以自己尝试一下，项目主页都有
+详细的步骤。</p>
+
+<p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。
+这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，
+然后在想添加相关文章推荐的地方添加如下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h2&gt;</span>相关文章：<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;posts&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>       {% for post in site.related_posts limit:5 %}
+</span><span class='line'>          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;related&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}{{ post.url }}&quot;</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      {% endfor %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'> <span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时
+的布局，我将相关文章添加在博文的结束处。</p>
+
+<p>这个插件是根据文章的tag进行分类的，根据所有博文与本篇文章共同tag的多少依次
+排序进行推荐，还是很简单有效的。</p>
+
+<p>参考<a href="http://techtinkering.com/2011/08/17/improving-related-posts-on-jekyll/">这里</a></p>
+
+<h2>3. 社会化评论与分享</h2>
+
+<h3>3.1 友言和加网</h3>
+
+<p>octopress内置了disqus评论系统，不适合我国基本国情，所以需要用一些国内的第三
+方评论系统，如友言、多说，可以以微博、人人、QQ等账号登陆发表评论，网站通过
+验证后可以对评论进行分析，管理。</p>
+
+<p>多说评论系统可参见<a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">为 Octopress 添加多说评论系统</a>，不多做介绍。</p>
+
+<p>我主要使用的是友言的一套评论系统及插件，分享使用的是加网JiaThis。首先注册
+<a href="http://www.uyan.cc/">友言</a>账号，否则无法进行后台管理。注册之后获得代码，
+添加到<code>source/_includes/post/share_comment.html</code>。
+加网<a href="http://www.jiathis.com/getcode/icon">点击这里</a>，定制自己喜欢的样式，
+获得代码也添加到上述文件中。</p>
+
+<p>share_comment.html文件中代码如下（每个人不同）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- JiaThis BEGIN --&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;jiathis_style_32x32&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_qzone&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_tsina&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_tqq&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_weixin&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_renren&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.jiathis.com/share?uid=1850190&quot;</span> <span class="na">class=</span><span class="s">&quot;jiathis jiathis_txt jtico jtico_jiathis&quot;</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_counter_style&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v3.jiathis.com/code/jia.js?uid=1361705530382241&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- JiaThis END --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- Baidu Button BEGIN </span>
+</span><span class='line'><span class="c">&lt;div id=&quot;bdshare&quot; class=&quot;bdshare_t bds_tools_32 get-codes-bdshare&quot;&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_tsina&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_qzone&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_tqq&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_renren&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_t163&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_hi&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;span class=&quot;bds_more&quot;&gt;&lt;/span&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;shareCount&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">&lt;/div&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot; id=&quot;bdshare_js&quot; data=&quot;type=tools&amp;amp;uid=6839808&quot; &gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot; id=&quot;bdshell_js&quot;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot;&gt;</span>
+</span><span class='line'><span class="c">        document.getElementById(&quot;bdshell_js&quot;).src = &quot;http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=&quot; + Math.ceil(new Date()/3600000)</span>
+</span><span class='line'><span class="c">&lt;/script&gt;</span>
+</span><span class='line'><span class="c"> Baidu Button END --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- UY BEGIN --&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_frame&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- UY END --&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或
+评论，代码也可以添加到这。</p>
+
+<p>现在功能代码在share_comment.html中了，下面需要使其显示到博文的底部。</p>
+
+<p>首先在_config.yml中添加开关：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'># comment and share
+</span><span class='line'>comment_share: true
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后在<code>source/_includes/post/sharing.html</code>中添加如下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.comment_share %}
+</span><span class='line'>  {% include post/share_comment.html %}
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、
+社交影响力分析、和评论栏的风格功能设置。</p>
+
+<h3>3.2 评论热榜和最新评论侧边栏</h3>
+
+<p>友言提供了多个嵌入式组件，如评论热榜、最新评论、评论计数等。我们可以将他们
+做成侧边栏进行展示，或在首页文章列表中，显示每篇文章的评论数目。</p>
+
+<p>首先在你的友言后台管理中找到<code>安装设置-&gt;嵌入式组件</code>获得评论热榜和最新评论的
+代码，分别创建<code>source/_includes/custom/asides/uyan_hotcmt.html</code>和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>评论热榜<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_hotcmt_unit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>最新评论<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_newcmt_unit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后再<code>_config.yml</code>的<code>default_asides</code>中添加其路径即可显示在侧边栏中。</p>
+
+<p>友言评论框、评论热榜、最新评论可以在后台进行设置，改变设置并不需要更改代码。</p>
+
+<h3>3.3 评论计数显示</h3>
+
+<p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。
+实现方法为：在<code>source/_includes/article.html</code>中</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% include post/date.html %}{{ time }}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments&quot;</span> <span class="na">id=</span><span class="s">&quot;uyan_count_unit&quot;</span> <span class="na">du=</span><span class="s">&quot;&quot;</span> <span class="na">su=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>0条评论<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=1850190&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. 为博文添加原文链接及声明</h2>
+
+<p>可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建<code>plugins/post_footer_filter.rb</code>，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># post_footer_filter.rb</span>
+</span><span class='line'><span class="c1"># Append every post some footer infomation like original url </span>
+</span><span class='line'><span class="c1"># Kevin Lynx</span>
+</span><span class='line'><span class="c1"># 7.26.2012</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;./plugins/post_filters&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">AppendFooterFilter</span>
+</span><span class='line'>        <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">author</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;author&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">url</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">pre</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;original_url_pre&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">+</span> <span class="sx">%Q[&lt;p class=&#39;post-footer&#39;&gt;</span>
+</span><span class='line'><span class="sx">                        </span><span class="si">#{</span><span class="n">pre</span> <span class="ow">or</span> <span class="s2">&quot;original link:&quot;</span><span class="si">}</span><span class="sx">&lt;a href=&#39;</span><span class="si">#{</span><span class="n">post</span><span class="o">.</span><span class="n">full_url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">post</span><span class="o">.</span><span class="n">full_url</span><span class="si">}</span><span class="sx">&lt;/a&gt;&lt;br/&gt;&amp;nbsp;written by &lt;a href=&#39;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">author</span><span class="si">}</span><span class="sx">&lt;/a&gt;&amp;nbsp;posted at &lt;a href=&#39;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&lt;/a&gt;&lt;/p&gt;]</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
+</span><span class='line'>        <span class="k">class</span> <span class="nc">AppendFooter</span> <span class="o">&lt;</span> <span class="no">PostFilter</span>
+</span><span class='line'>                <span class="kp">include</span> <span class="no">AppendFooterFilter</span>
+</span><span class='line'>                <span class="k">def</span> <span class="nf">pre_render</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</span><span class='line'>                        <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">is_post?</span>
+</span><span class='line'>                <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_filter</span> <span class="no">AppendFooterFilter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>并可以针对这一区域的样式进行美化，在<code>sass/custom/_style.scss</code>末尾增加下列内容：</p>
+
+<pre><code>.post-footer{margin-top:10px;padding:5px;background:none repeat scroll 0pt 0pt #eee;font-size:90%;color:gray}
+</code></pre>
+
+<p>尊重原创，此功能来源<a href="http://codemacro.com/2012/07/26/post-footer-plugin-for-octopress/">为octopress每篇文章添加一个文章信息</a>。</p>
+
+<h2>5. 公益404</h2>
+
+<p>在<code>source</code>目录下创建404.markdown，添加如下代码，即可实现公益404的功能，当你的网页出错找不到时，可以为公益尽一份力。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="ss">layout</span><span class="p">:</span> <span class="n">page</span>
+</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;404 Error&quot;</span>
+</span><span class='line'><span class="ss">date</span><span class="p">:</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">10</span> <span class="mi">19</span><span class="p">:</span><span class="mi">17</span>
+</span><span class='line'><span class="ss">comments</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="ss">sharing</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="ss">footer</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">script</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;http://www.qq.com/404/search_children,js&quot;</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>好了先写到这了，还有一些东西没写，等后续再写吧。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://biaobiaoqi.me/blog/2013/07/10/decorate-octopress/">定制Octopress</a></p></li>
+<li><p><a href="http://xuhehuan.com/141.html">精美的3D旋转地球统计RevolverMaps</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/'>http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress博客搭建及目录结构]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"/>
+    <updated>2013-10-25T11:49:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou</id>
+    <content type="html"><![CDATA[<p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
+思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
+服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
+等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、
+GitHub pages让我搭建个人博客成为了可能。</p>
+
+<p>最终选择了octopress，也是因为他的简单，他基于Jekyll，处理了Jekyll的很多麻烦
+设置，也不需要对前端技术有很深的了解，从一开始什么也没有，到搭建起一个可用的
+博客只需花费十几分钟，十分方便，虽然想要配置齐自己想要的东西还是需要一番折腾
+的，但那是后话了。</p>
+
+<p>我的搭建环境是ubuntu 13.04，不同的系统需要作出相应的修改，但变化不大。我的
+博客中添加了3D标签、微博秀、豆瓣读书、相关文章推荐、访客地图、评论分享、
+文章热度排名等等很多东西，本文主要介绍简单博客的搭建和目录结构，之后会写篇
+文章介绍各个模块的搭建。</p>
+
+<!--more-->
+
+
+<h2>开始搭建</h2>
+
+<p>Octopress博客是搭建在github上的静态网页，octopress相当于一个自动化生成静态网
+页的工具，网页并没有使用数据库等，使用的是github提供的服务器和域名。github
+pages为每个用户提供一个名为<code>http://username.github.com</code>的域名。你首先需要
+在github上建立一个名为<code>username.github.com</code>的仓库，之后的博客将会部署到这个
+仓库中，部署成后你就可以从<code>http://username.github.com</code>访问你的博客了，不过
+可能需要等待十分钟。</p>
+
+<p>利用到了github，所以首先应该配置好你的git环境，包括安装git，创建ssh公私钥与
+github建立信任连接，设置github用户名和邮箱，如果你不熟悉可以参考<a href="http://www.worldhello.net/gotgithub/index.html">GotGitHub</a>。当然你还有熟悉git的基本操作了，<a href="http://rogerdudler.github.io/git-guide/index.zh.html">这里</a>是一个简易教程。</p>
+
+<p>octopress和jekyll都是依赖于Ruby的，所以如果你没装，先要装一下它咯。octopress
+ 2.0是依赖于Ruby 1.9.3版本的，所以我们指明版本安装：</p>
+
+<pre><code>sudo apt-get install ruby1.9.3
+</code></pre>
+
+<p>接下来就可以安装Octopress了，首先将octopress库clone到本地，在想要放置本地仓
+库的位置，建一个文件夹，文件夹名随你，比如我在$HOME/处建立了blog：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~
+</span><span class='line'>$ mkdir blog
+</span><span class='line'>$ git clone git://github.com/imathis/octopress.git blog</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后进入仓库，安装其他的依赖环境：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd blog
+</span><span class='line'>$ sudo gem install bundler
+</span><span class='line'>$ rbenv rehash
+</span><span class='line'>$ bundle install      #根据Gemfile安装依赖的工具，需要耐心等待</span></code></pre></td></tr></table></div></figure>
+
+
+<p>安装默认主题</p>
+
+<pre><code>rake install
+</code></pre>
+
+<p>现在octopress安装完成，但还没有生成静态网页，还没有将其部署到网上，要设置博客使用的REPOSITORY了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake setup_github_pages
+</span><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.com')
+</span><span class='line'>Repository url:</span></code></pre></td></tr></table></div></figure>
+
+
+<p>请输入：git@github.com:yourname/yourname.github.com.git (将yourname替换成你的github登录名)</p>
+
+<p>这个步骤rake会做很多事情：</p>
+
+<ol>
+<li>在.git/config中替换origin为你输入的repository，并把原来的origin写到octopress中。</li>
+<li>创建新的branch source并切换到这个branch。</li>
+<li>在生成的_deploy目录下，初始化git repository为你的repository。</li>
+</ol>
+
+
+<p>接下来就可以生成静态网页，并将其部署到github上了，只需如下两句：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate    #生成静态网页
+</span><span class='line'>rake deploy   #发布网页</span></code></pre></td></tr></table></div></figure>
+
+
+<p>等待几分钟后，网页就已经部署好了，你可以访问你的域名查看自己的博客了。然后可
+以将源码添加到github中进行管理，你仓库中有两个分支，master分支是静态网页，
+source分支则是你的生成网页的源码，这样在另一台电脑上你可以clone你的仓库，很
+容易的进行你的博客编写。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add .
+</span><span class='line'>git commit -m 'init'
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在就可以进行文章的编写了，编写文章使用markdown语法，十分便捷，语法简单，可
+参见<a href="http://wowubuntu.com/markdown/index.html#code">markdown语法说明</a>。
+输入如下命令：</p>
+
+<pre><code>rake new_post['title']
+</code></pre>
+
+<p>在~/blog/source/_posts下回生成一个名为<code>YYYY-MM-DD-title.markdown</code>的文件，在这个文件中编写你的文章即可。编写完成后依然按上边发布网页的方法发布即可：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate    #生成静态网页
+</span><span class='line'>rake deploy   #发布网页</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或者也可以生成静态网页后，在本机进行预览</p>
+
+<pre><code>rake preview
+</code></pre>
+
+<p>然后可以通过<code>http://localhost:4000</code>访问，状态满意即可发布网页，以上几步同样适用于更改网页布局、样式等，重新发布网页。</p>
+
+<h2>_config.yml</h2>
+
+<p>这是你的博客根目录下下的一个文件，通过编写它，可以设置网站基本信息，设置边栏
+等：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>url: http://812lcl.github.io         #网站地址
+</span><span class='line'>title: 812lcl的博客                #网站名
+</span><span class='line'>subtitle: 不要好高骛远，却又原地踏步；只想不做，太辜负青春了     #网站副标题
+</span><span class='line'>author: 812lcl                        #作者名
+</span><span class='line'>lunr_search: false                    #lunr站内搜索，需要安装，麻烦
+</span><span class='line'>simple_search: http://google.com/search   #默认搜索引擎
+</span><span class='line'>description:                      #网站描述
+</span><span class='line'>...
+</span><span class='line'>default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html, custom/asides/popular_posts.html...]
+</span><span class='line'>#边栏需要在这里添加路径</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个文件是很重要的配置文件，配置博客需要经常修改此文件。</p>
+
+<h2>目录结构</h2>
+
+<p>之所以要介绍目录结构，是为了更清晰的了解各个文件是做什么用的，修改网站样式
+添加侧栏等等需要修改那些文件。以免按着教程一个一个设置完成，在脑子中却一团糟
+不记得修改了什么，万一出现了错误就不好了。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>├─ config.rb  #指定额外的compass插件
+</span><span class='line'>├─ config.ru  
+</span><span class='line'>├─ Rakefile   #rake的配置文件,类似于makefile
+</span><span class='line'>├─ Gemfile    #bundle要下载需要的gem依赖关系的指定文件
+</span><span class='line'>├─ Gemfile.lock  #这些gem依赖的对应关系,比如A的x本依赖于B的y版本
+</span><span class='line'>├─ _config.yml   #站点的配置文件
+</span><span class='line'>├─ public/    #在静态编译完成后的目录,网站只需要这个目录下的文件树
+</span><span class='line'>├─ _deploy/   #deploy时候生成的缓存文件夹,和public目录一样
+</span><span class='line'>├─ sass/      #css文件的源文件,过程中会compass成css
+</span><span class='line'>├─ plugins/   #放置自带以及第三方插件的目录,ruby程序
+</span><span class='line'>│  └── xxx.rb
+</span><span class='line'>└─ source/    #站点的源文件目录,public目录就是根据这个目录下数据生成的
+</span><span class='line'>   └─ _includes/
+</span><span class='line'>      └─ custom/      #自定义的模板目录,被相应上级html include
+</span><span class='line'>         └─ asides/   #边栏模板自定义模板目录
+</span><span class='line'>      └─ asides/      #边栏模板目录
+</span><span class='line'>      └─ post/        #文章页面相应模板目录
+</span><span class='line'>   └─ _layouts/       #默认网站html相关文件,最底层
+</span><span class='line'>   └─ _posts/         #新增以及从其它程序迁移过来的数据都存在这里
+</span><span class='line'>   └─ stylesheets/    #css文件目录
+</span><span class='line'>   └─ javascripts/    #js文件目录
+</span><span class='line'>   └─ images/         #图片目录</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中需要添加第三方插件时，将插件xxx.rb放入plugins文件夹中。最主要的文件夹是
+source文件夹，因为修改网页都是在这个文件夹中进行。自己添加的边栏的HTML文件
+都放置于<code>source/_includes/custom/asides</code>中，然后再_config.yml中的default_asides:中添加对应的路径，即可在网页上显示出边栏。
+修改<code>source/_includes/</code>中的其他HTML文件，如header.html等，则可以修改标题栏、
+导航栏、尾栏等等。</p>
+
+<p><code>source/_layouts</code>中则是网站的布局的一些HTML文件，可以修改文件布局等等。三个
+文件夹目录是非常重要并且常修改的。source中images中则放置网站相关的一些图片，
+javascripts文件家中放置一些模块需要调用的javascript脚本，_post中则是你的每篇
+博客。</p>
+
+<hr />
+
+<p>以上就是Octopress博客搭建的一个简单过程和目录结构，之后会详细介绍我的博客
+中各个模块建立的过程及出现的问题，敬请关注。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://easypi.github.io/blog/2013/01/05/using-octopress-to-setup-blog-on-github/">利用Octopress在github Pages上搭建个人博客</a></p></li>
+<li><p><a href="http://www.dongwm.com/archives/qian-yi-octpressyi-ji-zi-ding-yi/">迁移octpress,Rakefile修改以及豆瓣推荐,豆瓣收藏秀,新浪微博分享按钮等实现</a></p></li>
+<li><p><a href="http://www.csdn123.com/html/blogs/20130531/17852.htm">Octopress博客设置</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/'>http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VIM插件配置，比肩IDE]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
+    <updated>2013-10-24T20:28:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
+    <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的
+功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满
+，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+
+<p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自
+己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可
+，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
+
+<!--more-->
+
+
+<p>首先，vim一般是linux自带了，在/usr/share/vim文件夹中，可以将要安装的插件及说
+明文档等放置这个目录的相应位置。其中有连接指向/etc/vim，可修改/etc/vim中的
+vimrc配置文件对vim进行设置。但不推荐这样做，这样以后想删除哪个插件比较麻烦。
+一般的做法是在$HOME文件夹下建立一个.vim文件夹，自己的插件、说明文档、语法高
+亮、配色方案等可以放在这个文件夹中的相应位置，配置文件为$HOME/.vimrc。这样
+不影响其他用户的配置，而且自己想恢复原来的vim，删除.vimrc和.vim文件夹即可。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|- .vim
+</span><span class='line'>  └colors   配色方案
+</span><span class='line'>  └plugin   插件
+</span><span class='line'>  └doc      说明文档
+</span><span class='line'>  └syntax   语法高亮
+</span><span class='line'>  └after    修正脚本
+</span><span class='line'>  └autoload     自动加载</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下面正式开始配置了，提到的插件插件可以到<a href="http://www.vim.org/index.php">vim online</a>下载，下载好放入~/.vim/plugin即可。</p>
+
+<h2>1. ctags</h2>
+
+<p>这是很重要的一个插件，大多数linux发行版本默认安装了ctags，如果没有可如下安装</p>
+
+<pre><code>$ sudo apt-get install ctags
+</code></pre>
+
+<p>或者下载源文件，编译安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ tar -xzvf ctags-5.6.tar.gz
+</span><span class='line'>$ cd ctags-5.6
+</span><span class='line'>$ make
+</span><span class='line'>$ sudo make install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有了ctags，可以生成标签文件，识别出程序中的函数定义调用关系，变量，宏定义等
+，看到一个函数调用时，只需按下&#8221;Ctrl+]&ldquo;，就可以跳转到其定义的地方，然后可以按
+&#8220;Ctrl+T&#8221;调回调用处。而且，有些其他插件的实现是依赖ctags实现的，所以ctags还是
+很重要的。使用方法如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd 程序根目录
+</span><span class='line'>ctags -R      //生成tags文件
+</span><span class='line'>vim 程序源文件
+</span><span class='line'>:set tags=程序根目录/tags</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>2. taglist</h2>
+
+<p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看
+到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。
+安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let Tlist_Show_One_File=1       "让taglist可以同时展示一个文件的函数列表
+</span><span class='line'>let Tlist_Exit_OnlyWindow=1     "当taglist是最后一个分割窗口时，自动退出vim</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后可以在vim中输入<code>:Tlist</code>查看效果了。</p>
+
+<h2>3. netrw和winmanager</h2>
+
+<p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情
+况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件
+文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。
+而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在
+~/.vim/plugin中，然后在.vimrc中填入如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:winManagerWindowLayout='FileExplorer|TagList'
+</span><span class='line'>let g:persistentBehaviour=0         "如果所有编辑文件都关闭了，退出vim
+</span><span class='line'>let g:winManagerWidth = 30          "窗口默认宽带        
+</span><span class='line'>let g:defaultExplorer=1
+</span><span class='line'>nmap &lt;silent&gt; &lt;F8&gt; :WMToggle&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后一句为设置快捷键，按F8或者<code>:WMToggle</code>即可打开两个窗口。</p>
+
+<h2>4. cscope</h2>
+
+<p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个
+工程文件中更强大的查找功能。</p>
+
+<p>首先安装，仍可以使用apt-get</p>
+
+<pre><code>sudo apt-get install cscope
+</code></pre>
+
+<p>在~/.vimrc中增加一句：</p>
+
+<pre><code>:set cscopequickfix=s-,c-,d-,i-,t-,e-        " 使用QuickFix窗口来显示cscope查找结果
+</code></pre>
+
+<p>使用也是如ctags类似，先在工程根目录下生成一个cscope的数据库，要查找时，需要
+把cscope.out导入到vim中，然后可以进行各种查找。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd 工作目录
+</span><span class='line'>cscope -Rbq
+</span><span class='line'>vim 工程文件
+</span><span class='line'>:cs add 工作目录/cscope.out 工程文件
+</span><span class='line'>:cs find c|d|e|f|g|i|s|t name</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中c、d、e等代表不同的查找类型</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>0 或 s  查找本 C 符号(可以跳过注释)
+</span><span class='line'>1 或 g   查找本定义
+</span><span class='line'>2 或 d   查找本函数调用的函数
+</span><span class='line'>3 或 c   查找调用本函数的函数
+</span><span class='line'>4 或 t   查找本字符串
+</span><span class='line'>6 或 e   查找本 egrep 模式
+</span><span class='line'>7 或 f   查找本文件
+</span><span class='line'>8 或 i   查找包含本文件的文件                        </span></code></pre></td></tr></table></div></figure>
+
+
+<p>查找后vim会自动跳到第一个符合的地方，如果不满意可以用<code>:cw</code>打开quickfix窗口，
+自己选择跳转位置。当然查找命令可能有些长，总去输入不太方便，可设置快捷键，在
+.vimrc中添加</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>" 按下面这种组合键有技巧,按了&lt;C-_&gt;后要马上按下一个键,否则屏幕一闪
+</span><span class='line'>" 就回到nomal状态了
+</span><span class='line'>" &lt;C-_&gt;s的按法是先按"Ctrl+Shift+-",然后很快再按"s"
+</span><span class='line'>nmap &lt;C-_&gt;s :cs find s &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;g :cs find g &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;c :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;t :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;e :cs find e &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;f :cs find f &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;i :cs find i &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;d :cs find d &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好了，暂时就这些，cscope在大型工程中查找非常方便，但也需要慢慢学习适应使用。</p>
+
+<h2>5. quickfix</h2>
+
+<p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误
+列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了
+。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。
+<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nmap &lt;F6&gt; :cp&lt;cr&gt;
+</span><span class='line'>nmap &lt;F7&gt; :cn&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个
+makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界
+面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误
+，回车可以到达错误所在的行，进行修改。</p>
+
+<h2>6. minibufexplorer</h2>
+
+<p>仍然是将下载的minibufexplorer.vim放入plugin中即可。</p>
+
+<p>在编程的时候不可能永远只编辑一个文件, 肯定会打开很多源文件进行编辑, 如果每个
+文件都打开一个vim进行编辑的话那操作起来将很多麻烦, 所以vim有buffer(缓冲区)的
+概念,当你只编辑一个buffer的时候MiniBufExplorer派不上用场, 当你打开第二个
+buffer的时候, MiniBufExplorer窗口就自动弹出来了。列出了当前所有已经打开的
+buffer, 当你把光标置于这个窗口时, 有下面几个快捷键可以用:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Tab&gt;  向前循环切换到每个buffer名上
+</span><span class='line'>&lt;S-Tab&gt; 向后循环切换到每个buffer名上
+</span><span class='line'>&lt;Enter&gt; 在打开光标所在的buffer
+</span><span class='line'>d         删除光标所在的buffer</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在.vimrc中添加如下语句，进行一定的设置</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:miniBufExplMapCTabSwitchBufs = 1      "启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；
+</span><span class='line'>                                            "Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
+</span><span class='line'>let g:miniBufExplMapWindowNavVim = 1        "可以用&lt;C-h,j,k,l&gt;切换到上下左右的窗口中
+</span><span class='line'>let g:miniBufExplMapWindowNavArrows = 1     "可用&lt;C-箭头键&gt;切换到上下左右窗口中
+</span><span class='line'>let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就很清晰的看到，当前打开了多少个文件，切换也很方便。</p>
+
+<h2>7. a.vim</h2>
+
+<p>这是一个很方便在源文件和头文件间进行切换的插件，下载好放入plugin中即可，命令如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:A   在新Buffer中切换到c/h文件
+</span><span class='line'>:AS   横向分割窗口并打开c/h文件
+</span><span class='line'>:AV   纵向分割窗口并打开c/h文件
+</span><span class='line'>:AT   新建一个标签页并打开c/h文件</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还可以在.vimrc中添加快捷键设置</p>
+
+<pre><code>nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;
+</code></pre>
+
+<p>之后按F12即可打开同名的头文件，再配合minibufexplorer，可以很好的进行切换。</p>
+
+<h2>8. Grep</h2>
+
+<p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程
+范围内，查找你想查找的任何东西。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Grep        按照指定的规则在指定的文件中查找
+</span><span class='line'>:Rgrep        同上, 但是是递归的grep
+</span><span class='line'>:GrepBuffer   在所有打开的缓冲区中查找
+</span><span class='line'>:Bgrep        同上
+</span><span class='line'>:GrepArgs 在vim的argument filenames (:args)中查找
+</span><span class='line'>:Fgrep        运行fgrep
+</span><span class='line'>:Rfgrep       运行递归的fgrep
+</span><span class='line'>:Egrep        运行egrep
+</span><span class='line'>:Regrep       运行递归的egrep
+</span><span class='line'>:Agrep        运行agrep
+</span><span class='line'>:Ragrep       运行递归的agrep</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用方法如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Egrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Regrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Agrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Ragrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</span><span class='line'>:Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</span><span class='line'>:GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
+
+<h2>9.visualmark</h2>
+
+<p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。
+但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mm       设定标签
+</span><span class='line'>F2        正向切换
+</span><span class='line'>shift+F2  反向切换</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>10. 补全功能</h2>
+
+<p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，
+ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要
+omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
+
+<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，
+解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim/autoload
+</span><span class='line'>javac Reflection.java
+</span><span class='line'>mv ~/.vim/autoload/Reflection.class ~</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一切准备就绪，最后就是在.vimrc中添加相应的设置，开启补全功能</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>"AutoComple
+</span><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>filetype plugin on                  "开启文件类型识别功能
+</span><span class='line'>filetype plugin indent on           "打开文件类型检测, 加了这句才可以用智能补全
+</span><span class='line'>set completeopt=longest,menu        "关掉智能补全时的预览窗口
+</span><span class='line'>setlocal completefunc=javacomplete#CompleteParamsInfo
+</span><span class='line'>autocmd FileType c set omnifunc=ccomplete#Complete
+</span><span class='line'>autocmd FileType java set omnifunc=javacomplete#Complete
+</span><span class='line'>autocmd FileType python set omnifunc=pythoncomplete#Complete
+</span><span class='line'>autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+</span><span class='line'>autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+</span><span class='line'>autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+</span><span class='line'>autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+</span><span class='line'>autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+</span><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>"OmniCppComplete
+</span><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>" 按下F4自动补全代码
+</span><span class='line'>imap &lt;F4&gt; &lt;C-X&gt;&lt;C-O&gt;
+</span><span class='line'>" 按下F5根据头文件内关键字补全
+</span><span class='line'>imap &lt;F5&gt; &lt;C-X&gt;&lt;C-I&gt;
+</span><span class='line'>let OmniCpp_MayCompleteDot = 1           " autocomplete with .
+</span><span class='line'>let OmniCpp_MayCompleteArrow = 1         " autocomplete with -&gt;
+</span><span class='line'>let OmniCpp_MayCompleteScope = 1         " autocomplete with ::
+</span><span class='line'>let OmniCpp_SelectFirstItem = 2          " select first item (but don't insert)
+</span><span class='line'>let OmniCpp_NamespaceSearch = 2         " search namespaces in this and included file
+</span><span class='line'>let OmniCpp_ShowPrototypeInAbbr = 1     " show function prototype in popup window
+</span><span class='line'>let OmniCpp_GlobalScopeSearch=1         " enable the global scope search
+</span><span class='line'>let OmniCpp_DisplayMode=1               " Class scope completion mode: always show all members
+</span><span class='line'>let OmniCpp_ShowScopeInAbbr=1           " show scope in abbreviation and remove the last column</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在一切都设置好了，比如编写个a.java，输入Math.然后按<code>ctrl+x ctrl+o</code>就可以出
+现可以补全的选项了，我设置了F4和F5两个快捷键，不同的补全方式和操作如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Ctrl+P   向前切换成员
+</span><span class='line'>Ctrl+N    向后切换成员
+</span><span class='line'>Ctrl+E    表示退出下拉窗口, 并退回到原来录入的文字
+</span><span class='line'>Ctrl+Y    表示退出下拉窗口, 并接受当前选项
+</span><span class='line'>
+</span><span class='line'>Ctrl+X Ctrl+L     整行补全
+</span><span class='line'>Ctrl+X Ctrl+N 根据当前文件里关键字补全
+</span><span class='line'>Ctrl+X Ctrl+K 根据字典补全
+</span><span class='line'>Ctrl+X Ctrl+T 根据同义词字典补全
+</span><span class='line'>Ctrl+X Ctrl+I 根据头文件内关键字补全
+</span><span class='line'>Ctrl+X Ctrl+] 根据标签补全
+</span><span class='line'>Ctrl+X Ctrl+F 补全文件名
+</span><span class='line'>Ctrl+X Ctrl+D 补全宏定义
+</span><span class='line'>Ctrl+X Ctrl+V 补全vim命令
+</span><span class='line'>Ctrl+X Ctrl+U 用户自定义补全方式
+</span><span class='line'>Ctrl+X Ctrl+S 拼写建议</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>11. supertab</h2>
+
+<p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式
+.vimrc中添加</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:SuperTabRetainCompletionType=2                                
+</span><span class='line'>" 0 - 不记录上次的补全方式
+</span><span class='line'>" 1 - 记住上次的补全方式,直到用其他的补全命令改变它
+</span><span class='line'>" 2 - 记住上次的补全方式,直到按ESC退出插入模式为止
+</span><span class='line'>let g:SuperTabDefaultCompletionType="&lt;C-X&gt;&lt;C-O&gt;"       
+</span><span class='line'>" 设置按下&lt;Tab&gt;后默认的补全方式, 默认是&lt;C-P&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>这些就是我使用的vim插件的配置过程，有个简单粗暴的方法即可完成上述配置</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~
+</span><span class='line'>git clone https://github.com/812lcl/vim.git
+</span><span class='line'>mv vim .vim
+</span><span class='line'>mv .vim/vimrc-lcl .vimrc
+</span><span class='line'>javac ~/.vim/autoload/Reflection.java
+</span><span class='line'>mv ~/.vim/autoload/Reflection.class ~</span></code></pre></td></tr></table></div></figure>
+
+
+<p>vim本身已经足够强大，这些插件是锦上添花。vim是需要不断的练习的，可以参考
+<a href="http://coolshell.cn/articles/5426.html">简明Vim练级攻略</a>。</p>
+
+<p>这里是我自己整理的一个vim、bash、git的命令操作的查询表格<a href="http://pan.baidu.com/s/1rFcMP">点击查看</a></p>
+
+<p>参考文章：</p>
+
+<blockquote><p><a href="http://blog.csdn.net/wooin/article/details/1858917">手把手教你把Vim改装成一个IDE编程环境</a></p>
+
+<p><a href="http://blog.csdn.net/tge7618291/article/details/4216977">经典vim插件功能说明、安装方法和使用方法</a></p></blockquote>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/'>http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[多系统Linux安装及配置]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
+    <updated>2013-10-23T21:54:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
+    <content type="html"><![CDATA[<h2>1. 多系统安装</h2>
+
+<p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越
+喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫
+的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且
+使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版
+本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的
+感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持
+centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的
+校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的
+第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
+
+<!-- more -->
+
+
+<p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
+，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos
+的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常
+采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub
+引导，开机引导到centos镜像进行安装。而ubuntu的镜像只有七八百兆，刻进u盘，都
+都可以忽略它的存在，只要开机u盘启动即可进入安装了。这里也不讲具体如何安装了
+，可以参考一下
+<a href="http://blog.csdn.net/xiazdong/article/details/7523331">U盘安装Linux图解</a>。
+中间linux安装过程也不多讲了，安装提示一步一步来就好了。</p>
+
+<p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系
+统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后
+ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows
+也启动不起来。</p>
+
+<h2>2. 更新软件源</h2>
+
+<p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改
+<code>/etc/apt/sources.list</code>文件。</p>
+
+<p>只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点</p>
+
+<p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择
+即可，非常方便。</p>
+
+<h2>3. 安装喜欢的编辑器――VIM</h2>
+
+<p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑
+器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级
+编辑器。</p>
+
+<p>vim有很多的插件，通过添加插件可以将原本就强大的vim，改装成近似IDE的样子。
+我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的
+<a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然
+这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags
+和cscope。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install gcc g++ git
+</span><span class='line'>sudo apt-get install build-essential
+</span><span class='line'>sudo apt-get install default-jre default-jdk
+</span><span class='line'>sudo apt-get install ctags cscope</span></code></pre></td></tr></table></div></figure>
+
+
+<p>必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
+图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~
+</span><span class='line'>git clone https://github.com/812lcl/vim.git
+</span><span class='line'>mv vim .vim
+</span><span class='line'>mv .vim/vimrc-lcl .vimrc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>配置C/C++和java的只能补全</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>javac ~/.vim/autoload/Reflection.java
+</span><span class='line'>mv ~/.vim/autoload/Reflection.class ~
+</span><span class='line'>cd /usr/include/c++
+</span><span class='line'>ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
+<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
+
+<h2>4. 一些常用软件</h2>
+
+<p>当然linux也是离不开娱乐的，看电影、听歌还是要的。</p>
+
+<ul>
+<li><p>听歌：自带的rhythm box播放器就可以了，但是缺少一些解码插件，打开一首歌，会自动寻找，统一安装即可。</p></li>
+<li><p>看电影：我一般是安装smplayer，在软件中心里可以搜到，点点鼠标就OK了。</p></li>
+<li><p>浏览器：linux都自带了firefox，但我还是习惯用chrome，软件中心里没有，去官网下一个deb包就可以了，<code>dpkg -i</code>安装。</p></li>
+<li><p>虚拟机：有时候还是需要以下windows的，用个网银、MS office等等，装个虚拟机也是必要的，virtual box就搞定了，同样软件中心点一点。</p></li>
+<li><p>其他：codeblocks、eclipse等，软件中心或是apt-get install即可。</p></li>
+</ul>
+
+
+<h2>5. 更新</h2>
+
+<p>没有什么要设置的了，可以更新一下软件了。</p>
+
+<pre><code>sudo apt-get update
+</code></pre>
+
+<h2>6. 其他</h2>
+
+<p>多系统可能需要修改一下启动顺序</p>
+
+<pre><code>sudo vim /boot/grub/grub.cfg
+</code></pre>
+
+<p>其中有一句<code>default 0</code>，修改数字即可，如启动菜单第五项是windows，要默认启动
+windows，改为<code>default 4</code>，保存的时候需要强制保存，输入<code>:wq!</code></p>
+
+<p>有时候想设置开机自动挂载windows分区</p>
+
+<pre><code>sudo vim /etc/fstab
+</code></pre>
+
+<p>添加想开机挂载的分区即可</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/dev/sda5  /media/data     ntfs    defaults    0   0
+</span><span class='line'>挂载分区  挂载位置        分区类型
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>很多时候需要翻墙，查阅国外网站，这就需要<a href="https://code.google.com/p/goagent/">goagent</a>了，安装过程参阅<a href="https://code.google.com/p/goagent/wiki/GoAgent_Linux">GoAgent_Linux</a>。</p>
+
+<p>另外推荐一个工具Terminator，使用方法见<a href="http://dikar.iteye.com/blog/940085">linux 多窗口Terminator</a>。</p>
+
+<hr />
+
+<p>OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)</p>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/'>http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自警自省自规划]]></title>
+    <link href="http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/"/>
+    <updated>2013-10-22T22:18:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua</id>
+    <content type="html"><![CDATA[<p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手
+，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我
+一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有
+的插件，让它变成自己理想的样子。所以经过了多天的调试布局，才开始写这第一篇文
+章。这也可能是我自身拖延症的一种表现吧（我这毛病还不少），不知道怎么下笔开始
+写博客，不过万事开头难，我相信只要我坚持下去，一定会有收获的。今天的第一篇文
+章就不写博客是怎么搭建的了，想回顾一下自己的过去，展望一下将来（老调调了）。
+主要是反省一下自己，给自己一个警示作用，并订立一个明确的规划，希望自己能够持
+之以恒。</p>
+
+<!-- more -->
+
+
+<hr />
+
+<p>现在已经是十月份了，我的校招季也算过去了，不知道算是幸运或是不幸，8月底获得
+了某互联网大公司的一个offer，职位并不算令自己满意，但公司是我十分向往的，当
+时接受了offer，心里想着“又不着急签三方，还可以再找找其他的”。但获得了offer
+之后整个人就松了好多，十月份各大小公司来招聘的，自然就没那么卖力了。虽然参加
+不多，但还是备受打击，感觉的自己的不足，也下定决心补足自己。</p>
+
+<p>现在我在一所985名校读研究生，学的计算机专业。本科是来自一所默默无名的一本院
+校，高考时的失利，也许是我考研究生的最大的动力。从小学习一直不错，但高考却发
+挥失利，进入了一所自己不满意的学校。当时想的是“反正到时候考个好的研究生就好
+了”，现在想想多少有些后悔，进入了名校之后，更让我深刻体会到这一点，周围的环
+境确实决定了很多。这并不是在抱怨本科的学校，学校会尽自己最大的力给你最好的教
+育，我们应该感激。在本科时候似乎学每门课都没用很费力过，甚至很多课程都是靠考
+试前突击几天，照样高分通过，曾经还自诩学习能力强。回想起来才知道错过了什么，
+也导致了现在基础松动。当时考研，自己比较努力，也比较幸运获得了好的成绩，进入
+了理想的学校，这也是我有机会重新认识所学的专业，更明确自己将来想做些什么。</p>
+
+<p>终于进入了研究生阶段，进入学校才发现周围很多的强人，和他们交谈的时候很多东西
+我都没听说过，他们却都能侃侃而谈，相谈甚欢。开始我都是默默地记在心里，之后再
+上网去搜索了解。慢慢的就发现了原来自己对所学专业的了解，甚至连入门都不算，大
+学真是浪费了太多时间了。从那时开始我才开始一点一点弥补不足，希望能赶上他人的
+脚步。开始的时候上课，学到很多的知识，从网上和周围同学那也接触到一些时下比较
+火的技术，如数据挖掘、信息检索、机器学习等等。也曾探索过一些方向，但发现没有
+实际的项目加以运用，只停留在讲课内容，理论层面，而且也不是我将来想从事的方向
+。之后也对自己的研究方向进行过思考，发现自己兴趣在于linux系统层开发，一个原
+因是linux的魅力，还有就是周围同学的影响，最后就是项目相关，用于实践。</p>
+
+<p>一年的时间很快就过去了，追赶的脚步还在继续，但他人前进的脚步一点也不慢于我，
+所以差距一直存在，这似乎也在消磨我的自信心，自卑感逐渐加强。研二上学期就面临
+校招，我总想，若是再给我一年的时间就好了，现在我所准备的并不足以信心十足的面
+对校招，取得理想offer。但不回一切都顺你心意的，该来的总是要来。开学要毕业论
+文开题答辩，准备的焦头烂额。刚答辩完就去参加了我的第一次笔试，也是人生中应聘
+的第二次笔试。笔试还顺利，晚上就收到面试通知。自己还是很紧张，比较没有过面试
+经历，而且对自己的技术也并不有信心。果然第二天的面试及其惨烈，算法答得一塌糊
+涂，linux问的及其深入，都是内核方面的问题，交叉面了两轮，然后就没有然后了，
+我也知道这是婉拒了。毕竟自己的表现自己清楚。也是这次面试给了我极大的打击，甚
+至有一些阴影，感觉自己什么都不会，什么都不行，不敢去面试，有时候甚至消极地想
+最后笔试都不要过。接下来我也没有广投简历，只是投了几家比自己手中offer好的公
+司，有些面试感受很好，也相对顺利，但最后也是一无所获。就这样也就在前不久把三
+方寄给了某度，工作就这么定了。找工作的过程并不算很曲折，因为早早的提前offer
+使自己心里有底，但面其他公司也充分让我感受的自身的不足，也让我清楚的认识到，
+我还是想要走技术这条路，进入国企银行混个北京户口并不是我那么想要的。总之是与
+我有益的。</p>
+
+<p>既然工作定了就该想一想自己以后的路了，距离入职还有小一年的时间。该好好计划一下这段时间了，估计今后也不会有这么自由的时间了。我打算主要从三条线进行查漏补缺：</p>
+
+<ol>
+<li>重新学习C语言（不要以为它很简单），数据结构与算法。
+
+<blockquote><p>参考书籍：<a href="http://www.amazon.cn/C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-%E5%85%8B%E5%B0%BC%E6%B1%89/dp/B0011425T8/ref=sr_1_1?ie=UTF8&amp;qid=1382437254&amp;sr=8-1&amp;keywords=C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80">C程序设计语言</a>、
+<a href="http://www.amazon.cn/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90-C%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0-%E7%BB%B4%E6%96%AF/dp/B002WC7NGS/ref=sr_1_1?ie=UTF8&amp;qid=1382437316&amp;sr=8-1&amp;keywords=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90">数据结构与算法分析</a>、
+<a href="http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY/ref=sr_1_1?ie=UTF8&amp;qid=1382437342&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA">算法导论</a></p></blockquote></li>
+<li>操作系统、linux内核与系统编程
+
+<blockquote><p>参考书籍：<a href="http://www.amazon.cn/UNIX%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B-%E5%8F%B2%E8%92%82%E6%96%87%E6%96%AF/dp/B00114GRG0/ref=sr_1_1?ie=UTF8&amp;qid=1382437399&amp;sr=8-1&amp;keywords=UNIX%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B">UNIX环境高级编程</a>、
+<a href="http://www.amazon.cn/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3LINUX%E5%86%85%E6%A0%B8-%E5%8D%9A%E9%9F%A6/dp/B0011F5RYM/ref=sr_1_1?ie=UTF8&amp;qid=1382437438&amp;sr=8-1&amp;keywords=%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E5%86%85%E6%A0%B8">深入理解linux内核</a>、
+<a href="http://www.amazon.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%9B%E4%B9%A6-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E5%B8%83%E8%8E%B1%E6%81%A9%E7%89%B9/dp/B004BJ18KM/ref=sr_1_1?ie=UTF8&amp;qid=1382437465&amp;sr=8-1&amp;keywords=%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F">深入理解计算机系统</a></p></blockquote></li>
+<li>其他感兴趣技术，如<a href="http://812lcl.github.io/">个人博客</a>、<code>Github</code>、<code>shell</code>、<code>latex</code>、<code>vim</code>。搭了这个博客后，也
+有一点想稍微学一下web前端技术与Ruby的想法。</li>
+</ol>
+
+
+<p>这是一个很粗略的规划，要学的东西很多，按照陈皓的<a href="http://coolshell.cn/articles/4990.html">程序员技术练级攻略</a>，自己在启蒙入门还有很多需要学习。看书必须与动手
+实践相结合，很多书之前也都看过，可一段时间用，又忘了，现在是一个知识快餐化的
+时代，来的快走的快，反复实践才能留住知识。写这篇文章也只是想驱动自己马上开始
+，拖延症是病，得治啊，文章写的我都惨不认识，但坚持下去肯定会越写越好，这篇文
+章是为了警示自己，我还有很多东西要学，现在不学迟早是要补的。当然做好一件事我
+个人觉得需要两点：耻辱感和成就感。知耻而后勇，耻辱感会刺激你更努力，做得更好
+。但一直努力仍然没有回报，你也不会坚持下去，所以还需要成就感，即使小小的成就
+。成就感会使你更开心的努力，而且小小的成就慢慢积累也许就会达到你不敢想象的程
+度。</p>
+
+<p>加油吧，少年，我改努力了！</p>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/'>http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>
