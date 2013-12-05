@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程环境 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-huan-jing/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-04T21:51:48+08:00</updated>
+  <updated>2013-12-05T21:00:20+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -12,6 +12,342 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vim插件配置续]]></title>
+    <link href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
+    <updated>2013-12-04T20:56:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
+    <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子
+<a href="http://blog.jobbole.com/">伯乐在线</a> 上的一篇文章，就又开始了我好几天
+的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
+弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十
+四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete
+和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大
+，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，
+这里重要介绍一些我新增加的一些插件。</p>
+
+<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+
+<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件
+管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用
+了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不
+干扰，想删谁删谁，添加也很简单。安装该插件方法如下
+<code>
+cd ~/.vim
+git clone git://github.com/tpope/vim-pathogen.git
+mkdir bundle
+</code>
+然后再<code>.vimrc</code>中加入<code>execute pathogen#infect()</code>，这样就可以管理插件了。</p>
+
+<!--more-->
+
+
+<p>安装插件
+```</p>
+
+<h1>git submodule add 插件GitHub仓库地址 bundle/插件文件夹</h1>
+
+<p>git submodule add <a href="https://github.com/Lokaltog/vim-easymotion.git">https://github.com/Lokaltog/vim-easymotion.git</a> bundle/easymotion
+<code>
+升级插件
+</code>
+cd ~/.vim/bundle/easymotion # 将 easymotion 替换为需要升级的插件名字
+git pull origin master
+<code>
+升级所有插件
+</code>
+cd ~/.vim
+git submodule foreach git pull origin master
+<code>
+删除插件
+</code>
+cd ~/.vim
+rm -rf bundle/easymotion
+git rm -rf bundle/easymotion
+<code>
+如果你将你的`.vim`仓库穿到GitHub上，可以很容易的在其他机器上恢复相同的配置，方法如下：
+</code>
+git clone <a href="http://github.com/username/dotvim.git">http://github.com/username/dotvim.git</a> ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+cd ~/.vim
+git submodule init
+git submodule update
+<code>``
+如果你的整个</code>.vim<code>目录并不作为git仓库，也可以用pathogen管理插件，只需
+将插件下好，将其作为独立文件夹放入</code>~/.vim/bundle/`中即可。</p>
+
+<h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
+
+<p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到
+本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是
+第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母
+代替，然后输入想跳到位置的字母即可。</p>
+
+<p><leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”
+，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作
+，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在<code>.vimrc</code>中
+加入下面这条语句：</p>
+
+<p><code>let g:EasyMotion_leader_key = 'f'</code></p>
+
+<p><img src="" alt="Easymotion" /></p>
+
+<h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
+
+<p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML
+标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、
+替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
+```
+Text                Command         New Text</p>
+
+<hr />
+
+<p>&ldquo;Hello |world&rdquo;      cs"&lsquo;            'Hello world&rsquo;
+&ldquo;Hello |world&rdquo;      cs"<q>          <q>Hello world</q>
+(123+4|56)/2        cs)]            [123+456]/2
+(123+4|56)/2        cs)[            [ 123+456 ]/2</p>
+
+<div>foo|</div>
+
+
+<p>     cst<p>          <p>foo</p>
+fo|o!               csw'            &lsquo;foo&rsquo;!
+fo|o!               csW'            &lsquo;foo!&rsquo;
+<code>
+</code>
+Text                Command         New Text</p>
+
+<hr />
+
+<p>Hello w|orld!       ysiw)           Hello (world)!
+Hello w|orld!       csw)            Hello (world)!
+fo|o                ysiwt<html>      <html>foo</html>
+foo quu|x baz       yss"            &ldquo;foo quux baz&rdquo;
+foo quu|x baz       ySS"            "</p>
+
+<pre><code>                                 foo quux baz
+                                "
+</code></pre>
+
+<p><code>
+</code>
+Text                Command         New Text</p>
+
+<hr />
+
+<p>&ldquo;|hello&rdquo;            ds"             hello
+<code>
+在不同的模式下操作有所不同
+</code>
+normal模式
+ds  删除surrounding
+cs  替换surrounding
+ys  添加surrounding
+yS  添加、换行、缩进
+yss 整行添加surrounding
+ySs 整行添加换行缩进
+<code>
+</code>
+visual模式
+s   添加surrounding
+S   添加、换行、缩进
+<code>
+</code>
+insert模式
+&lt;C-s>   添加surrounding
+&lt;C-s>&lt;C-s>  添加、换行、缩进
+```</p>
+
+<h2>4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></h2>
+
+<p>%跳转到下一个匹配符号如匹配括号，是 vim 原有功能，添加这个功能后，可以使用%跳转到匹配的HTML标签。</p>
+
+<h2>5. <a href="https://github.com/mbbill/undotree">Undotree</a></h2>
+
+<p>可视化撤销，可以看见你所做的改变，可视化的恢复到某一状态。<code>:UndotreeToggle</code>打开undo-tree面板，可以映射为其他按键，只需在<code>.vimrc</code>中添加</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;u :UndotreeToggle&lt;cr&gt;</code>。</p>
+
+<p>打开的面板中还可以看到每一步修改的前后对比，在面板中按？可获得快捷键帮助。面板效果如下：</p>
+
+<p><img src="" alt="Undotree" /></p>
+
+<p>当前位置被标记为<code>&gt;seq&lt;</code></p>
+
+<p>下一变化被标记为<code>{seq}</code>，可以通过<code>:redo</code>或 <code>&lt;ctrl-r&gt;</code>跳到下一状态</p>
+
+<p>最近的变化标记为<code>[seq]</code></p>
+
+<p>保存的变化被标记为s，最后被保存的变化被标记为大写S</p>
+
+<p>vim 默认是不保存undo信息的，可以在<code>.vimrc</code>中添加语句实现退出编辑的文件，再打开仍可以undo。
+```
+if has(&lsquo;persistent_undo&rsquo;)</p>
+
+<pre><code>set undofile
+set undodir=’~/.undo/’
+</code></pre>
+
+<p>endif
+```</p>
+
+<h2>6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></h2>
+
+<p>也是大名鼎鼎，同Taglist差不多，但更适合于C++，可以显示类中的声明、定义等等。<code>:TagbarToggle</code>打开Tagbar窗口，映射快捷键</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;t :TagbarToggle&lt;cr&gt;</code></p>
+
+<h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
+
+<p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，
+但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。
+在nerdtree的窗口中按？可显示快捷键操作。</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;n :NERDTreeToggle&lt;CR&gt;</code>映射打开快捷键，根据自己喜欢设定。</p>
+
+<h2>8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></h2>
+
+<p>快速添加注释的插件，使用方法如下：
+<code>
+&lt;Leader&gt;cc      最基本注释
+&lt;Leader&gt;cu      撤销注释
+&lt;Leader&gt;cm      多行注释
+&lt;Leader&gt;cs      性感的注释方式
+</code>
+只列出了几个常用的，具体效果你可以自己一试。</p>
+
+<h2>9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></h2>
+
+<p>需要python的支持，很强大的代码补全插件，大大提高编写代码的速度。可以自己定义模板，在该插件目录下的<code>UltiSnips</code>目录中有各种语言的补全模板。默认使用tab键补全，因为与ycm有冲突，重新映射为&lt;C-j>。</p>
+
+<p><code>let g:UltiSnipsExpandTrigger = "&lt;c-j&gt;"</code></p>
+
+<p>补全比如for循环的语句，可以通过&lt;c-j>切换更该要修改的参数。</p>
+
+<h2>10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></h2>
+
+<p>语法检查的插件，可以查看当前代码的错误，无需等到编译出错后再来修改。
+<code>:Errors</code>打开错误列表，<code>:lnext</code>和<code>lpre</code>切换下一个和前一个错误。
+在<code>.vimrc</code>中添加以下语句，对其进行配置及快捷键映射：
+<code>
+let g:syntastic_che_on_open=1
+let g:syntastic_auto_jump=1
+let g:syntastic_error_symbol = 'e&gt;'
+let g:syntastic_warning_symbol = 'w&gt;'
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_loc_list_height = 6
+let g:syntastic_enable_highlighting = 0
+nmap &lt;Leader&gt;e :Errors&lt;cr&gt;
+nmap &lt;Leader&gt;c :lnext&lt;cr&gt;
+nmap &lt;Leader&gt;z :lpre&lt;cr&gt;
+</code>
+<img src="" alt="Syntastic" /></p>
+
+<h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
+
+<p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。
+<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。
+映射快捷键</p>
+
+<p><code>
+nmap &lt;Leader&gt;g :SCCompileRun&lt;cr&gt;&lt;cr&gt;&lt;cr&gt;
+nmap &lt;Leader&gt;v :SCViewResult&lt;cr&gt;
+</code></p>
+
+<h2>12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></h2>
+
+<p><img src="" alt="Gitgutter" /></p>
+
+<p>显示当前文件中与git仓库提交的版本的变化，在最左侧以不同符号显示不同状态。可以在<code>.vimrc</code>中自己定义
+<code>
+let g:gitgutter_enabled = 1
+let g:gitgutter_highlight_lines = 0
+" let g:gitgutter_sign_added = 'xx'
+" let g:gitgutter_sign_modified = 'yy'
+" let g:gitgutter_sign_removed = 'zz'
+" let g:gitgutter_sign_modified_removed = 'ww'
+nmap gh &lt;Plug&gt;GitGutterNextHunk
+nmap hg &lt;Plug&gt;GitGutterPrevHunk
+</code>
+其中我定义了<code>gh</code>跳到下一条变化之处，<code>hg</code>跳到上一条。</p>
+
+<h2>13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></h2>
+
+<p>这个插件使你可以在vim中执行git操作。
+<code>
+:Gstatus    git status
+:Gcommit    git commit
+:Gdiff      git diff
+:Glog       git log
+:Gread      git checkout file
+:Gwrite     git add file
+:Gmove      git mv
+:Gremove    git rm
+</code></p>
+
+<h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
+
+<p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是
+sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
+
+<p><img src="" alt="CtrlP" /></p>
+
+<p>ctrl-p打开搜索框后即可搜索，有以下功能键：
+<code>
+&lt;c-f&gt; &lt;c-b&gt;     切换模式
+&lt;c-d&gt;           切换按全路径或文件名查找
+&lt;c-r&gt;           改变regexp模式
+&lt;c-j&gt; &lt;c-k&gt;     下一个/上一个文件
+&lt;c-t&gt;           新tab打开文件
+&lt;c-v&gt; &lt;c-x&gt;     新split打开文件
+&lt;c-n&gt; &lt;c-p&gt;     上一个或下一个查找
+&lt;c-y&gt;           创建新文件和他的父目录
+&lt;c-z&gt;           标记文件
+&lt;c-o&gt;           打开标记文件
+</code>
+可以在<code>.vimrc</code>中配置CtrlP显示的位置，显示条目，忽略搜索目录等等,就不一一说明了，可以点击<a href="http://kien.github.io/ctrlp.vim/">这里</a>查看。
+<code>
+我的配置
+let g:ctrlp_map = '&lt;c-p&gt;'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_open_multiple_files = 'v'         " &lt;C-Z&gt;&lt;C-O&gt;时垂直分屏打开多个文件
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git)$',
+  \ 'file': '\v\.(log|jpg|png|jpeg)$',
+  \ }
+let g:ctrlp_working_path_mode= 'ra'
+let g:ctrlp_match_window_bottom= 1
+let g:ctrlp_max_height= 10
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+</code></p>
+
+<h2>15. <a href="https://github.com/Shougo/unite.vim">unite</a></h2>
+
+<p>和CtrlP功能类似，也可以搜索文件、缓冲区等，我使用这个插件主要是它可以查询当前vim中的所有命令和按键映射等，命令多了，一时记不住可以查查看，很方便。</p>
+
+<p>如果你在Unite窗口进入插入模式，光标将会移到该窗口的最上方，并显示“>”提示符。输入字符会搜索该列表&mdash;这里和FuzzyFinder相似。和常规vim一样，按<ESC>键可以退出插入模式回到命令模式，而且可以使用通配符*、|、!。</p>
+
+<p>命令模式和插入模式都有相应的快捷键映射。比如在命令模式下，当光标在一个文件上，按下a，Unite会显示一个可以操作该文件命令的列表。这个命令列表被称为actions，这个列表可以像Unite其他部分一样被搜索和调用。</p>
+
+<p>actions可以组合通配符。如果输入:Unite file, 然后按下*将会标记所有文件，再输入a将会列出所有actions，最后选择above，Unite将会打开所有被标记的文件。</p>
+
+<p>可以映射快捷键调用，根据自己喜好，自行定义</p>
+
+<p><code>nnoremap &lt;leader&gt;f :Unite -start-insert file</code></p>
+
+<p><img src="" alt="unite" /></p>
+
+<h2>16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></h2>
+
+<p>这个插件有人很讨厌，也有一些人会喜欢，我也还在试用，习惯。它能自动添加和删除匹配的括号、引号。大家选择性安装吧。</p>
+
+<p>OK，先这么多了，准备下一篇文章写一下vim中各种强大的补全。而且提醒一下，vim本身功能已经很强大，虽然各种插件可以帮助你更高效，但不要离了他们就不会使用vim了，也不要太专注于各种插件，写的内容才是最主要的。推荐一篇文章<a href="http://www.kunli.info/2013/08/13/vim/">不要复杂化vim</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[VIM插件配置，比肩IDE]]></title>
