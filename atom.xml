@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-05T21:00:20+08:00</updated>
+  <updated>2013-12-05T21:23:08+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -112,7 +112,7 @@
 
 <p><code>let g:EasyMotion_leader_key = 'f'</code></p>
 
-<p><img src="" alt="Easymotion" /></p>
+<p><img src="images/easymotion.gif" alt="Easymotion" /></p>
 
 <h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
 
