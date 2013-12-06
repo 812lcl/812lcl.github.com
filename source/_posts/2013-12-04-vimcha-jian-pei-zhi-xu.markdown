@@ -136,7 +136,7 @@ insert模式
 
 打开的面板中还可以看到每一步修改的前后对比，在面板中按？可获得快捷键帮助。面板效果如下：
 
-![Undotree]()
+![Undotree](https://github-camo.global.ssl.fastly.net/bcebe1b159a62ce1b010af4ba1e99e461116dd23/687474703a2f2f66696c65732e6d796f706572612e636f6d2f6d6262696c6c2f66696c65732f756e646f747265652e706e67)
 
 当前位置被标记为`>seq<`
 
@@ -194,7 +194,7 @@ nmap <Leader>e :Errors<cr>
 nmap <Leader>c :lnext<cr>
 nmap <Leader>z :lpre<cr>
 ```
-![Syntastic]()
+![Syntastic](https://raw.github.com/scrooloose/syntastic/master/_assets/screenshot_1.png)
 ## 11. [Singlecompile](https://github.com/xuhdev/SingleCompile)
 自动编译插件，支持多种语言的不同编译器，具体可查看[相关主页](http://www.topbug.net/SingleCompile/)。
 `:SCCompileRun`编译并运行当前文件，`:SCCompile`仅编译，`:SCViewResult`查看运行结果，就在当前窗口中显示，十分方便。
@@ -205,7 +205,7 @@ nmap <Leader>g :SCCompileRun<cr><cr><cr>
 nmap <Leader>v :SCViewResult<cr>
 ```
 ## 12. [Gitgutter](https://github.com/airblade/vim-gitgutter)
-![Gitgutter]()
+![Gitgutter](https://raw.github.com/airblade/vim-gitgutter/master/screenshot.png)
 
 显示当前文件中与git仓库提交的版本的变化，在最左侧以不同符号显示不同状态。可以在`.vimrc`中自己定义
 ```
@@ -235,7 +235,7 @@ nmap hg <Plug>GitGutterPrevHunk
 快速查找file、buffer、mru、tag的插件，由<c-p>快捷键呼出而得名，好像是
 sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。
 
-![CtrlP]()
+![CtrlP](https://github-camo.global.ssl.fastly.net/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67)
 
 ctrl-p打开搜索框后即可搜索，有以下功能键：
 ```
@@ -281,7 +281,7 @@ actions可以组合通配符。如果输入:Unite file, 然后按下*将会标�
 
 `nnoremap <leader>f :Unite -start-insert file`
 
-![unite]()
+![unite](https://s3.amazonaws.com/github-csexton/unite-01.gif)
 
 ## 16. [delimitmate](https://github.com/Raimondi/delimitMate)
 这个插件有人很讨厌，也有一些人会喜欢，我也还在试用，习惯。它能自动添加和删除匹配的括号、引号。大家选择性安装吧。
