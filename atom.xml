@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-17T20:16:03+08:00</updated>
+  <updated>2013-12-17T20:36:41+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -76,34 +76,58 @@
 类型。其效果是将所有操作数转换为同一公共类型，并以此作为
 结果的类型。这种方式的转换称为普通算术类型转换。</p>
 
-<ul>
-<li>首先，如果任何一个操作数为long double类型，则将另一个操作</li>
-<li>数转换为long double类型。</li>
-<li></li>
-<li>否则，如果任何一个操作数为double类型，则将另一个操作数</li>
-<li>转换为double类型。</li>
-<li></li>
-<li>否则，如果任何一个操作数为float类型，则将另一个操作数转换</li>
-<li>为float类型。</li>
-<li></li>
-<li>否则，同时对两个操作数进行整型提升；然后，如果任何一个</li>
-<li>操作数为unsigned long int类型，则将另一个操作数转换为</li>
-<li>unsigned long int类型。</li>
-<li></li>
-<li>否则，如果一个操作数为long int类型且另一个操作数为</li>
-<li>unsigned int类型，则结果依赖于long int类型是否可以表示</li>
-<li>所有的unsigned int类型的值。如果可以，则将unsigned int</li>
-<li>类型的操作数转换为long int；如果不可以，则将两个操作数都</li>
-<li>转换为unsigned long int类型。</li>
-<li></li>
-<li>否则，如果一个操作数为long int类型，则将另一个操作数转换</li>
-<li>为long int类型。</li>
-<li></li>
-<li>否则，如果任何一个操作数为unsigned int类型，则将另一个</li>
-<li>操作数转换为unsigned int类型。</li>
-<li></li>
-<li>否则，将两个操作数都转换为int类型。</li>
-</ul>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>首先，如果任何一个操作数为long double类型，则将另一个操作
+</span><span class='line'>数转换为long double类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果任何一个操作数为double类型，则将另一个操作数
+</span><span class='line'>转换为double类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果任何一个操作数为float类型，则将另一个操作数转换
+</span><span class='line'>为float类型。
+</span><span class='line'>
+</span><span class='line'>否则，同时对两个操作数进行整型提升；然后，如果任何一个
+</span><span class='line'>操作数为unsigned long int类型，则将另一个操作数转换为
+</span><span class='line'>unsigned long int类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果一个操作数为long int类型且另一个操作数为
+</span><span class='line'>unsigned int类型，则结果依赖于long int类型是否可以表示
+</span><span class='line'>所有的unsigned int类型的值。如果可以，则将unsigned int
+</span><span class='line'>类型的操作数转换为long int；如果不可以，则将两个操作数都
+</span><span class='line'>转换为unsigned long int类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果一个操作数为long int类型，则将另一个操作数转换
+</span><span class='line'>为long int类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果任何一个操作数为unsigned int类型，则将另一个
+</span><span class='line'>操作数转换为unsigned int类型。
+</span><span class='line'>
+</span><span class='line'>否则，将两个操作数都转换为int类型。</span></code></pre></td></tr></table></div></figure>
 
 
 <p>用通俗语言，大致意思如下：</p>
