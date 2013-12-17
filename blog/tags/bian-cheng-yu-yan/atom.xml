@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程语言 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-yu-yan/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-17T19:44:26+08:00</updated>
+  <updated>2013-12-17T19:51:52+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -27,12 +27,14 @@
 
 <p>以下面的代码为例：</p>
 
-<pre><code>printf(" %d ", sizeof'A');
-</code></pre>
+<p><code>printf(" %d ", sizeof'A');</code></p>
 
 <p>这个代码本想打印出一个字符字面值类型的长度，但你会发现结果
 是4（或是你机器上int的长度）。这里就根据提升规则，由char
 转换为int。</p>
+
+<!--more-->
+
 
 <h2>2. 整型转换</h2>
 
@@ -72,9 +74,9 @@
 
 <p>许多运算符都会以类似的方式在运算过程中引起转换，并产生结果
 类型。其效果是将所有操作数转换为同一公共类型，并以此作为
-结果的类型。这种方式的转换称为普通算术类型转换。
-```
-首先，如果任何一个操作数为long double类型，则将另一个操作数转换为long double类型。</p>
+结果的类型。这种方式的转换称为普通算术类型转换。</p>
+
+<blockquote><p>首先，如果任何一个操作数为long double类型，则将另一个操作数转换为long double类型。</p>
 
 <p>否则，如果任何一个操作数为double类型，则将另一个操作数转换为double类型。</p>
 
@@ -88,16 +90,15 @@
 
 <p>否则，如果任何一个操作数为unsigned int类型，则将另一个操作数转换为unsigned int类型。</p>
 
-<p>否则，将两个操作数都转换为int类型。
-<code>
-采用通俗语言，大致意思如下：
-</code>
-当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。
-```
-例如，如果f为float类型，n为int类型，那么表达式</p>
+<p>否则，将两个操作数都转换为int类型。</p></blockquote>
 
-<pre><code>(n &gt; 0) ? f : n
-</code></pre>
+<p>采用通俗语言，大致意思如下：</p>
+
+<blockquote><p>当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。</p></blockquote>
+
+<p>例如，如果f为float类型，n为int类型，那么表达式</p>
+
+<p><code>(n &gt; 0) ? f : n</code></p>
 
 <p>是float类型，与n是否为正值无关。</p>
 
@@ -115,15 +116,15 @@
 如果我们使用数组名作为参数，那么数组名会立刻被转换为指向
 数组第一个元素的指针。因此，将数组作为函数参数毫无意义。
 所以，C语言中会自动地将作为参数的数组生命转换为相应的指针
-声明。
-<code>
-实参                                所匹配的形式参数
-数组的数组      char c[8][10];      char(*)[10];    数组指针
-指针数组        char *c[15];        char **c;       指针的指针
-数组指针        char (*c)[64];      char (*c)[64];  不改变
-指针的指针      char **c;           char **c;       不改变
-</code>
-你之所以能在main()函数中看到char <em>*argv这样的参数，是因为
+声明。</p>
+
+<blockquote><p>实参                                所匹配的形式参数
+数组的数组      char c[8][10];      char(<em>)[10];    数组指针
+指针数组        char </em>c[15];        char <strong>c;       指针的指针
+数组指针        char (<em>c)[64];      char (</em>c)[64];  不改变
+指针的指针      char </strong>c;           char **c;       不改变</p></blockquote>
+
+<p>你之所以能在main()函数中看到char <em>*argv这样的参数，是因为
 argv是个指针数组(char </em>argv[])。这个表达式被编译器改写为
 指向数组第一个元素的指针，也就是一个指向指针的指针。</p>
 
