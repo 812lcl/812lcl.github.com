@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: c | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/c/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-17T20:36:41+08:00</updated>
+  <updated>2013-12-17T20:51:12+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -74,9 +74,9 @@
 
 <p>许多运算符都会以类似的方式在运算过程中引起转换，并产生结果
 类型。其效果是将所有操作数转换为同一公共类型，并以此作为
-结果的类型。这种方式的转换称为普通算术类型转换。
-```
-首先，如果任何一个操作数为long double类型，则将另一个操作
+结果的类型。这种方式的转换称为普通算术类型转换。</p>
+
+<p>首先，如果任何一个操作数为long double类型，则将另一个操作
 数转换为long double类型。</p>
 
 <p>否则，如果任何一个操作数为double类型，则将另一个操作数
@@ -101,9 +101,9 @@ unsigned int类型，则结果依赖于long int类型是否可以表示
 <p>否则，如果任何一个操作数为unsigned int类型，则将另一个
 操作数转换为unsigned int类型。</p>
 
-<p>否则，将两个操作数都转换为int类型。
-```
-用通俗语言，大致意思如下：</p>
+<p>否则，将两个操作数都转换为int类型。</p>
+
+<p>用通俗语言，大致意思如下：</p>
 
 <blockquote><p>当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。</p></blockquote>
 
