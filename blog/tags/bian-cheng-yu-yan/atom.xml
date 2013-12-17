@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程语言 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-yu-yan/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-17T20:01:59+08:00</updated>
+  <updated>2013-12-17T20:16:03+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -74,36 +74,39 @@
 
 <p>许多运算符都会以类似的方式在运算过程中引起转换，并产生结果
 类型。其效果是将所有操作数转换为同一公共类型，并以此作为
-结果的类型。这种方式的转换称为普通算术类型转换。
-```
-首先，如果任何一个操作数为long double类型，则将另一个操作
-数转换为long double类型。</p>
+结果的类型。这种方式的转换称为普通算术类型转换。</p>
 
-<p>否则，如果任何一个操作数为double类型，则将另一个操作数
-转换为double类型。</p>
+<ul>
+<li>首先，如果任何一个操作数为long double类型，则将另一个操作</li>
+<li>数转换为long double类型。</li>
+<li></li>
+<li>否则，如果任何一个操作数为double类型，则将另一个操作数</li>
+<li>转换为double类型。</li>
+<li></li>
+<li>否则，如果任何一个操作数为float类型，则将另一个操作数转换</li>
+<li>为float类型。</li>
+<li></li>
+<li>否则，同时对两个操作数进行整型提升；然后，如果任何一个</li>
+<li>操作数为unsigned long int类型，则将另一个操作数转换为</li>
+<li>unsigned long int类型。</li>
+<li></li>
+<li>否则，如果一个操作数为long int类型且另一个操作数为</li>
+<li>unsigned int类型，则结果依赖于long int类型是否可以表示</li>
+<li>所有的unsigned int类型的值。如果可以，则将unsigned int</li>
+<li>类型的操作数转换为long int；如果不可以，则将两个操作数都</li>
+<li>转换为unsigned long int类型。</li>
+<li></li>
+<li>否则，如果一个操作数为long int类型，则将另一个操作数转换</li>
+<li>为long int类型。</li>
+<li></li>
+<li>否则，如果任何一个操作数为unsigned int类型，则将另一个</li>
+<li>操作数转换为unsigned int类型。</li>
+<li></li>
+<li>否则，将两个操作数都转换为int类型。</li>
+</ul>
 
-<p>否则，如果任何一个操作数为float类型，则将另一个操作数转换
-为float类型。</p>
 
-<p>否则，同时对两个操作数进行整型提升；然后，如果任何一个
-操作数为unsigned long int类型，则将另一个操作数转换为
-unsigned long int类型。</p>
-
-<p>否则，如果一个操作数为long int类型且另一个操作数为
-unsigned int类型，则结果依赖于long int类型是否可以表示
-所有的unsigned int类型的值。如果可以，则将unsigned int
-类型的操作数转换为long int；如果不可以，则将两个操作数都
-转换为unsigned long int类型。</p>
-
-<p>否则，如果一个操作数为long int类型，则将另一个操作数转换
-为long int类型。</p>
-
-<p>否则，如果任何一个操作数为unsigned int类型，则将另一个
-操作数转换为unsigned int类型。</p>
-
-<p>否则，将两个操作数都转换为int类型。
-```
-用通俗语言，大致意思如下：</p>
+<p>用通俗语言，大致意思如下：</p>
 
 <blockquote><p>当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。</p></blockquote>
 
