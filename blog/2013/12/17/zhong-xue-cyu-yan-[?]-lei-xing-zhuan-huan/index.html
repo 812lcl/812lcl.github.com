@@ -5,21 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>category_cloud - 812lcl的博客</title>
+  <title>重学C语言(一)——类型转换 - 812lcl的博客</title>
   <meta name="author" content="812lcl">
 
   
-  <meta name="description" content="Category_cloud Oct 14th, 2013 分类云 分类目录 Octopress (4) 磨刀利刃 (4) 自我激励 (1) 重学C语言 (1) 标签云 标签列表 c
-html
-linux
-octopress
-ruby
-vim
-博客
-编程环境
-编程语言
-编辑器 Oct 14th &hellip;">
-  
+  <meta name="description" content="c语言基础知识，类型转换，算术类型转换，强制类型转换。">
+  <meta name="keywords" content="c, 类型转换, c语言基础知识">
   <meta name="ujianVerification" content="ecf20c47e19d5da4ddb024dbc074cbb8" />
   <meta name="google-site-verification" content="T1FHwt6FmhmMTEiGuC1L5rc2fJBNpygPFzUyeVkQzys" />
 
@@ -29,7 +20,7 @@ vim
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://812lcl.github.io/category-cloud">
+  <link rel="canonical" href="http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan">
   <link href="/images/logo.jpg" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
@@ -104,11 +95,15 @@ vim
 	<div id="main">
 		<div id="content">
 			<div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category_cloud</h1>
-    <p class="meta">
+    
+      <h1 class="entry-title">重学C语言(一)——类型转换</h1>
+    
+    
+      <p class="meta">
+        
 
 
 
@@ -120,72 +115,255 @@ vim
   
 
 
-<time datetime="2013-10-14T22:43:00+08:00" pubdate data-updated="true">Oct 14<span>th</span>, 2013</time></p>
+<time datetime="2013-12-17T19:42:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+        
+		
+			| <a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+			<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+      </p>
+    
   </header>
-  
-  <div id='Category-cloud'>
-    <section>
-        <h1>分类云</h1>
-        <ul class="category-cloud">
-            <embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='600' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+40.0%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Fcategories%2Fmo-dao-li-ren%27+style%3D%27font-size%3A+40.0%25%27%3E%E7%A3%A8%E5%88%80%E5%88%A9%E5%88%83%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Fcategories%2Fzi-wo-ji-li%27+style%3D%27font-size%3A+17.5%25%27%3E%E8%87%AA%E6%88%91%E6%BF%80%E5%8A%B1%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Fcategories%2Fzhong-xue-cyu-yan%27+style%3D%27font-size%3A+17.5%25%27%3E%E9%87%8D%E5%AD%A6C%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3C%2Ftags%3E">
-        </ul>
-    </section>
-    <section>
-         <h1>分类目录</h1>
-         <ul id="categories">
-             <a href='/blog/categories/octopress/'>Octopress (4) </a>
-<a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (4) </a>
-<a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1) </a>
-<a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (1) </a>
 
-         </ul>
-    </section>
-    <section>
-        <h1>标签云</h1>
-        <ul id="Tag-cloud">
-            <embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='600' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fc%27+style%3D%27font-size%3A+17.5%25%27%3Ec%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fhtml%27+style%3D%27font-size%3A+25.0%25%27%3Ehtml%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Flinux%27+style%3D%27font-size%3A+40.0%25%27%3Elinux%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Foctopress%27+style%3D%27font-size%3A+40.0%25%27%3Eoctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fruby%27+style%3D%27font-size%3A+25.0%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fseo%27+style%3D%27font-size%3A+17.5%25%27%3ESEO%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fubuntu%27+style%3D%27font-size%3A+17.5%25%27%3Eubuntu%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fvim%27+style%3D%27font-size%3A+32.5%25%27%3Evim%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fli-zhi%27+style%3D%27font-size%3A+17.5%25%27%3E%E5%8A%B1%E5%BF%97%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fbo-ke%27+style%3D%27font-size%3A+40.0%25%27%3E%E5%8D%9A%E5%AE%A2%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fsheng-huo%27+style%3D%27font-size%3A+17.5%25%27%3E%E7%94%9F%E6%B4%BB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fbian-cheng-huan-jing%27+style%3D%27font-size%3A+40.0%25%27%3E%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fbian-cheng-yu-yan%27+style%3D%27font-size%3A+17.5%25%27%3E%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fbian-ji-qi%27+style%3D%27font-size%3A+32.5%25%27%3E%E7%BC%96%E8%BE%91%E5%99%A8%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fzhuang-xi-tong%27+style%3D%27font-size%3A+17.5%25%27%3E%E8%A3%85%E7%B3%BB%E7%BB%9F%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2F812lcl.github.io%2Fblog%2Ftags%2Fgui-hua%27+style%3D%27font-size%3A+17.5%25%27%3E%E8%A7%84%E5%88%92%3C%2Fa%3E+%3C%2Ftags%3E">
-        </ul>
-    </section>
-    <section>
-        <h1>标签列表</h1>
-        <ul class="tag-cloud">
-            <a style="font-size: 90%" href="/blog/tags/c/">c</a>
-<a style="font-size: 150%" href="/blog/tags/html/">html</a>
-<a style="font-size: 210%" href="/blog/tags/linux/">linux</a>
-<a style="font-size: 210%" href="/blog/tags/octopress/">octopress</a>
-<a style="font-size: 150%" href="/blog/tags/ruby/">ruby</a>
-<a style="font-size: 185%" href="/blog/tags/vim/">vim</a>
-<a style="font-size: 210%" href="/blog/tags/bo-ke/">博客</a>
-<a style="font-size: 210%" href="/blog/tags/bian-cheng-huan-jing/">编程环境</a>
-<a style="font-size: 90%" href="/blog/tags/bian-cheng-yu-yan/">编程语言</a>
-<a style="font-size: 185%" href="/blog/tags/bian-ji-qi/">编辑器</a>
 
-        </ul>
-    </section>
+<div class="entry-content"><h2>1. 整型提升</h2>
+
+<p>在一个表达式中，凡是可以使用整型的地方都可以使用带符号或无
+符号的字符、短整型或整型位字段，还可以使用枚举类型的对象。
+如果原始类型的所有值都可用int类型表示，则其值将被转换为int
+类型；否则将被转换为unsigned int类型。这一过程称为整型提升。</p>
+
+<p>以下面的代码为例：</p>
+
+<pre><code>printf(" %d ", sizeof'A');
+</code></pre>
+
+<p>这个代码本想打印出一个字符字面值类型的长度，但你会发现结果
+是4（或是你机器上int的长度）。这里就根据提升规则，由char
+转换为int。</p>
+
+<h2>2. 整型转换</h2>
+
+<p>将任何整数转换为某种指定的无符号类型数的方法是：以该无符号
+类型能够表示的最大值加1为模，找出与此整数同余的最小的非负值
+。在对二的补码表示中，如果该无符号类型的为模式比较窄，这就
+相当于左截取；如果该无符号类型的为模式比较宽，这就相当于对
+带符号值进行符号扩展和对无符号值进行0填充。</p>
+
+<p>将任何整数转换为带符号类型时，如果它可以在新类型中表示出来
+，则其值保持不变，否则它的值同具体的实现有关。</p>
+
+<h2>3. 整数和浮点数</h2>
+
+<p>当把浮点类型的值转换为整型时，小数部分将被丢弃。如果结果值
+不能用整型表示，则其行为是未定义的。特别是，将负的浮点数
+转换为无符号整型的结果是没有定义的。</p>
+
+<p>当把整型值转换为浮点类型时，如果该值在该浮点类型可表示的
+范围内但不能精确表示，则结果可能是下一个较高或较低的可表示
+值。如果该值超出可表示的范围，则其行为是为定义的。</p>
+
+<h2>4. 浮点类型</h2>
+
+<p>将一个精度较低的浮点值转换为相同或更高精度的浮点类型时，它
+的值保持不变。将一个较高精度的浮点类型值转换为较低精度的
+浮点类型时，如果它的值在可表示范围内，则结果可能是下一
+个较高或较低的可表示值。如果结果在可表示范围之外，则其行为
+是为定义的。</p>
+
+<p>表达式中的float类型的操作数不会自动转换为double类型。一般
+来说，数学函数使用double类型的变量。使用float类型主要是为了
+在使用较大的数组时节省存储空间，有时也为了节省机器执行
+时间（double算术运算特别费时）。</p>
+
+<h2>5. 算术类型转换</h2>
+
+<p>许多运算符都会以类似的方式在运算过程中引起转换，并产生结果
+类型。其效果是将所有操作数转换为同一公共类型，并以此作为
+结果的类型。这种方式的转换称为普通算术类型转换。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>首先，如果任何一个操作数为long double类型，则将另一个操作数转换为long double类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果任何一个操作数为double类型，则将另一个操作数转换为double类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果任何一个操作数为float类型，则将另一个操作数转换为float类型。
+</span><span class='line'>
+</span><span class='line'>否则，同时对两个操作数进行整型提升；然后，如果任何一个操作数为unsigned long int类型，则将另一个操作数转换为unsigned long int类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果一个操作数为long int类型且另一个操作数为unsigned int类型，则结果依赖于long int类型是否可以表示所有的unsigned int类型的值。如果可以，则将unsigned int类型的操作数转换为long int；如果不可以，则将两个操作数都转换为unsigned long int类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果一个操作数为long int类型，则将另一个操作数转换为long int类型。
+</span><span class='line'>
+</span><span class='line'>否则，如果任何一个操作数为unsigned int类型，则将另一个操作数转换为unsigned int类型。
+</span><span class='line'>
+</span><span class='line'>否则，将两个操作数都转换为int类型。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>采用通俗语言，大致意思如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>例如，如果f为float类型，n为int类型，那么表达式</p>
+
+<pre><code>(n &gt; 0) ? f : n
+</code></pre>
+
+<p>是float类型，与n是否为正值无关。</p>
+
+<h2>6. 参数传递中的类型转换</h2>
+
+<p>在参数传递过程中会发生隐式类型转换，这是需要注意的地方。
+由于函数的参数也是表达式，所以也会发生类型提升。如果使用了
+适当的函数原型，类型提升便不会发生，否则也会发生。在被调用
+函数的内部，提升后的参数被裁剪为原先声明的大小。</p>
+
+<p>ANSI C的函数原型就是采取一种新的函数声明形式，把参数的类型
+也包含于声明之中。</p>
+
+<p>在C语言中，我们没有办法可以将一个数组作为参数直接传递。
+如果我们使用数组名作为参数，那么数组名会立刻被转换为指向
+数组第一个元素的指针。因此，将数组作为函数参数毫无意义。
+所以，C语言中会自动地将作为参数的数组生命转换为相应的指针
+声明。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>实参                                所匹配的形式参数
+</span><span class='line'>数组的数组      char c[8][10];      char(*)[10];    数组指针
+</span><span class='line'>指针数组        char *c[15];        char **c;       指针的指针
+</span><span class='line'>数组指针        char (*c)[64];      char (*c)[64];  不改变
+</span><span class='line'>指针的指针      char **c;           char **c;       不改变</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你之所以能在main()函数中看到char <em>*argv这样的参数，是因为
+argv是个指针数组(char </em>argv[])。这个表达式被编译器改写为
+指向数组第一个元素的指针，也就是一个指向指针的指针。</p>
+
+<h2>7. 指针和整数</h2>
+
+<p>指针可以加上或减去一个整型表达式。在这种情况下，整型表达式的转换按照加法预算符的方法进行。</p>
+
+<p>两个指向同一数组中同一类型的对象的指针可以进行减法运算，其结果将被转换为整型；转换方式按照减法的方式进行。</p>
+
+<p>值为0的整型常量表达式或强制转换为void *类型的表达式可以通过强制类型转换、赋值或比较操作操作转换为任意类型的指针。其结果将产生一个空指针，此空指针等于指向同一类型的另一空指针，但不等于任何指向函数或对象的指针。</p>
+
+<p>还允许进行指针相关的其他某些转换，但其结果依赖于具体实现。这些转换必须由一个显示的类型转换运算符或强制类型转换来指定。</p>
+
+<p>指针可以转换为整型，但此整型必须足够大;所要求的大小依赖于具体的实现。映射函数也依赖于具体的实现。</p>
+
+<p>整型对象可以显式地转换为指针。这种映射总是将一个足够宽的从指针转换来的整数转换为同一个指针，其他情况依赖于具体的实现。</p>
+
+<p>指向某一类型的指针可以转换为指向另一类型的指针，但是，如果该指针指向的对象不满足一定的存储对齐要求，则结果指针可能会导致地址异常。指向某对象的指针可以转换为一个指向具有更小或相同存储对齐限制的对象的指针，并可以保证原封不动地再转回来。“对齐”的概念依赖于具体的实现，但char类型的对象具有最小的对齐限制。指针也可以转换为void * 类型，并可原封不动地转换回来。</p>
+
+<p>一个指针可以转换为同类型的另一个指针，但增加或删除了指针所指的对象类型的限定符除外。如果增加了限定符，则新指针与原指针等价，不同的是增加了限定符带来的限制。如果删除了限定符，则对底层对象的运算仍受实际声明中的限定符的限制。</p>
+
+<p>最后，指向一个函数的指针可以转换为指向另一个函数的指针。调用转换后指针所指的函数的结果依赖于具体的实现。但是，如果转换后的指针被重新转换为原来的类型，则结果与原来的指针一致。</p>
+
+<h2>8. void</h2>
+
+<p>void对象的值不能够以任何方式使用，也不能被显式或隐式地转换为任一非空类型。因为空（void）表达式表示一个不存在的值，这样的表达式只可以用在不需要值的地方，例如作为一个表达式语句或作为逗号运算符的做操作数。</p>
+
+<p>可以通过强制类型转换将表达式转换为void类型。例如，在表达式语句中，一个空的强制类型转换将丢掉函数调用的返回值。</p>
+
+<h2>9. 指向void的指针</h2>
+
+<p>指向任何对象的指针都可以转换为void * 类型，且不会丢失信息。如果将结果再转换为初始指针类型，则可以恢复初始指针。之前讨论过，执行指针的转换时，一般需要显式的强制转换，这里不同的是，指针可以被赋值为void * 类型的指针，也可以赋值给void * 类型的指针，并可与void * 类型的指针进行比较。</p>
+
+<h2>10. 强制类型转换</h2>
+
+<p>之前都在说隐式类型转换，在任何表达式中都可以使用一个称为强制类型转换的一元运算符强制进行显式类型转换。</p>
+
+<p>(类型名) 表达式</p>
+
+<h3>参考文献</h3>
+
+<ul>
+<li><p>C程序设计语言</p></li>
+<li><p>C专家编程</p></li>
+<li><p>C缺陷与陷阱</p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/'>http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
 </div>
 
 
-  
-    <footer>
-      <p class="meta">
-        
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-14T22:43:00+08:00" pubdate data-updated="true">Oct 14<span>th</span>, 2013</time>
-        
-      </p>
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
+  
+
+<span class="byline author vcard">Posted by <span class="fn">812lcl</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-17T19:42:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+	Category:
+  
+    <a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+	| Tags:
+  
+    <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</span>
+
+
+    </p>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/12/06/vimbu-quan-pei-zhi/" title="Previous Post: VIM补全配置">&laquo; VIM补全配置</a>
+      
+      
+	  </p>
+	  <section>
+	  <h2>相关文章：</h2>
+	  <ul class="posts">
+		  
+	  </ul>
+	  </section>
+	
+    <div class="sharing">
   
   
   
@@ -229,11 +407,10 @@ vim
   
 </div>
 
-      
-    </footer>
-  
+    
+  </footer>
 </article>
-
+	
 </div>
 
 <aside class="sidebar">
