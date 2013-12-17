@@ -209,30 +209,6 @@
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>首先，如果任何一个操作数为long double类型，则将另一个操作
 </span><span class='line'>数转换为long double类型。
 </span><span class='line'>
@@ -258,41 +234,49 @@
 </span><span class='line'>否则，如果任何一个操作数为unsigned int类型，则将另一个
 </span><span class='line'>操作数转换为unsigned int类型。
 </span><span class='line'>
-</span><span class='line'>否则，将两个操作数都转换为int类型。
-</span><span class='line'>
-</span><span class='line'>用通俗语言，大致意思如下：
-</span><span class='line'>
-</span><span class='line'>&gt;当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。
-</span><span class='line'>
-</span><span class='line'>例如，如果f为float类型，n为int类型，那么表达式
-</span><span class='line'>
-</span><span class='line'>`(n &gt; 0) ? f : n`
-</span><span class='line'>
-</span><span class='line'>是float类型，与n是否为正值无关。
-</span><span class='line'>## 6. 参数传递中的类型转换
-</span><span class='line'>在参数传递过程中会发生隐式类型转换，这是需要注意的地方。
-</span><span class='line'>由于函数的参数也是表达式，所以也会发生类型提升。如果使用了
-</span><span class='line'>适当的函数原型，类型提升便不会发生，否则也会发生。在被调用
-</span><span class='line'>函数的内部，提升后的参数被裁剪为原先声明的大小。
-</span><span class='line'>
-</span><span class='line'>ANSI C的函数原型就是采取一种新的函数声明形式，把参数的类型
-</span><span class='line'>也包含于声明之中。
-</span><span class='line'>
-</span><span class='line'>在C语言中，我们没有办法可以将一个数组作为参数直接传递。
-</span><span class='line'>如果我们使用数组名作为参数，那么数组名会立刻被转换为指向
-</span><span class='line'>数组第一个元素的指针。因此，将数组作为函数参数毫无意义。
-</span><span class='line'>所以，C语言中会自动地将作为参数的数组生命转换为相应的指针
-</span><span class='line'>声明。</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>否则，将两个操作数都转换为int类型。</span></code></pre></td></tr></table></div></figure>
 
 
-<p>实参                                所匹配的形式参数
-数组的数组      char c[8][10];      char(<em>)[10];    数组指针
-指针数组        char </em>c[15];        char <strong>c;       指针的指针
-数组指针        char (<em>c)[64];      char (</em>c)[64];  不改变
-指针的指针      char </strong>c;           char <strong>c;       不改变
-&#8220;`
-你之所以能在main()函数中看到char </strong>argv这样的参数，是因为
-argv是个指针数组(char *argv[])。这个表达式被编译器改写为
+<p>用通俗语言，大致意思如下：</p>
+
+<blockquote><p>当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。</p></blockquote>
+
+<p>例如，如果f为float类型，n为int类型，那么表达式</p>
+
+<p><code>(n &gt; 0) ? f : n</code></p>
+
+<p>是float类型，与n是否为正值无关。</p>
+
+<h2>6. 参数传递中的类型转换</h2>
+
+<p>在参数传递过程中会发生隐式类型转换，这是需要注意的地方。
+由于函数的参数也是表达式，所以也会发生类型提升。如果使用了
+适当的函数原型，类型提升便不会发生，否则也会发生。在被调用
+函数的内部，提升后的参数被裁剪为原先声明的大小。</p>
+
+<p>ANSI C的函数原型就是采取一种新的函数声明形式，把参数的类型
+也包含于声明之中。</p>
+
+<p>在C语言中，我们没有办法可以将一个数组作为参数直接传递。
+如果我们使用数组名作为参数，那么数组名会立刻被转换为指向
+数组第一个元素的指针。因此，将数组作为函数参数毫无意义。
+所以，C语言中会自动地将作为参数的数组生命转换为相应的指针
+声明。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>实参                                所匹配的形式参数
+</span><span class='line'>数组的数组      char c[8][10];      char(*)[10];    数组指针
+</span><span class='line'>指针数组        char *c[15];        char **c;       指针的指针
+</span><span class='line'>数组指针        char (*c)[64];      char (*c)[64];  不改变
+</span><span class='line'>指针的指针      char **c;           char **c;       不改变</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你之所以能在main()函数中看到char <em>*argv这样的参数，是因为
+argv是个指针数组(char </em>argv[])。这个表达式被编译器改写为
 指向数组第一个元素的指针，也就是一个指向指针的指针。</p>
 
 <h2>7. 指针和整数</h2>

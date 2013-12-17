@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程语言 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-yu-yan/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-17T19:59:42+08:00</updated>
+  <updated>2013-12-17T20:01:59+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -101,9 +101,9 @@ unsigned int类型，则结果依赖于long int类型是否可以表示
 <p>否则，如果任何一个操作数为unsigned int类型，则将另一个
 操作数转换为unsigned int类型。</p>
 
-<p>否则，将两个操作数都转换为int类型。</p>
-
-<p>用通俗语言，大致意思如下：</p>
+<p>否则，将两个操作数都转换为int类型。
+```
+用通俗语言，大致意思如下：</p>
 
 <blockquote><p>当执行算术运算时：操作数的类型如果不同，就会发生转换。数据类型一般朝着浮点精度更高，长度更长的方向转换，整型数如果转换为signed不会丢失信息，就转换为signed，否则转换为unsigned。</p></blockquote>
 
