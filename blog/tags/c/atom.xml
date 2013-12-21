@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: c | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/c/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-21T14:40:03+08:00</updated>
+  <updated>2013-12-21T14:45:04+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -31,6 +31,9 @@
 
 <p>下表列出了各类运算符的优先级关系与结合顺序，表中由上至下，
 优先级依次递减。</p>
+
+<!--more-->
+
 
 <pre><code>运算符                                          结合性
 () [] -&gt; .                                    自左向右
@@ -88,7 +91,8 @@ assignments                                   自右向左
 运算符和逗号运算符。赋值运算符次之，这两类运算符的
 结合顺序是<code>自右向左</code>的。所以</p>
 
-<p><code>a=b=0;</code></p>
+<pre><code>a=b=0;
+</code></pre>
 
 <p>等同于</p>
 
