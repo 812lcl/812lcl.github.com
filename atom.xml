@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-21T14:45:04+08:00</updated>
+  <updated>2013-12-22T12:15:54+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -12,6 +12,171 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[重学C语言(三)——复杂声明分析jj]]></title>
+    <link href="http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi-jj/"/>
+    <updated>2013-12-22T12:14:00+08:00</updated>
+    <id>http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi-jj</id>
+    <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>
+是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂
+声明。C语言中的声明是不能从左往右读的，时而往左时而往右，
+有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数
+指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为
+例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过
+这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，
+作者还时不时的小幽默一把。</p>
+
+<!--more-->
+
+
+<h2>1. 声明是如何形成的</h2>
+
+<p>首先看一些C语言的术语以及一些能组合成一个声明的单独语法成分
+。其中一个非常重要的成分就是声明器(declarator)——它是所有
+声明的核心。简单的说，声明器就是标识符以及与它组合在一起的任何指针、函数括号、数组下标等。</p>
+
+<p>声明器语法如下所示</p>
+
+<pre><code>指针 opt 直接声明器
+</code></pre>
+
+<p>详细可见下表</p>
+
+<pre><code>数量                C语言中的名字           C语言中的出现形式
+-------------------------------------------------------------
+零个或多个          指针                    下列形式之一：
+                                            * const volatile
+                                            * volatile
+                                            *
+                                            * const
+                                            * volatile const
+-------------------------------------------------------------
+有且只有一个        直接声明器                   标识符
+                                         或：标识符[下标]
+                                         或：标识符(参数)
+                                         或：(声明器)
+</code></pre>
+
+<p>一个声明由下表所示的各个部分组成（并非所有组合形式都是合法
+的）。声明确定了变量的基本类型以及初始值（如果有）。</p>
+
+<pre><code>数量                C语言中的名字           C语言中出现的名字
+-------------------------------------------------------------
+至少一个类型说明符     类型说明符            void char short int long
+（并非所有组合都合法）  (type-specifier)    signed unsigned float double
+                                        结构说明符(struct-specifier)
+                                        枚举说明符(enum-specifier)
+                                        联合说明符(union-specifier)
+                    存储类型              extern static register
+                    (storage-class)     auto typedef
+                    类型限定符            const volatile
+                    (type-qualifier)
+-------------------------------------------------------------
+有且只有一个          声明器                参见上表
+-------------------------------------------------------------
+零个或更多            更多的声明器          ,声明器
+-------------------------------------------------------------
+一个                 分号                ；
+</code></pre>
+
+<p>在合法的声明中存在限制条件，不可以像下面这样做：</p>
+
+<ul>
+<li><p>函数的返回值不能是一个函数</p></li>
+<li><p>函数的返回值不能是一个数组</p></li>
+<li><p>数组里面不能有函数</p></li>
+</ul>
+
+
+<p>但下面的是合法的：</p>
+
+<ul>
+<li><p>函数的返回值允许是一个函数指针</p></li>
+<li><p>函数的返回值允许是一个指向数组的指针</p></li>
+<li><p>数组里面允许有函数指针</p></li>
+<li><p>数组里面允许有其他数组</p></li>
+</ul>
+
+
+<h2>2. 优先级规则</h2>
+
+<p>上一节是讲声明的各个组成部分，本节描述了一种方法，用通俗的
+语言把声明分解开来，分别解释各个组成部分。要理解一个声明，
+必须要懂得其中的优先级规则(没错，又是优先级)，语言律师们
+最喜欢这种形式，它高度简洁，可惜即不直观。</p>
+
+<p>理解C语言声明的优先级规则</p>
+
+<pre><code>A   声明从它的名字开始读取，然后按照优先级顺序依次读取。
+B   优先级从高到低依次是：
+    B.1 声明中被括号括起来的部分
+    B.2 后缀操作符：
+        括号（）表示这是一个函数，而
+        方括号[]表示这是一个数组。
+    B.3 前缀操作符：`*`表示“指向...的指针”
+C   如果const和（或）volatile关键字的后面紧跟类型说明符（如int, long等），那么它作用于
+    类型说明符。在其他情况下，const和（或）volatile关键字作用于它左边紧邻的指针星号。
+</code></pre>
+
+<p>可以试着用优先级规则分析一下</p>
+
+<pre><code>char * const *(*next)();
+</code></pre>
+
+<h2>3. 通过图表分析C语言的声明</h2>
+
+<p>本节通过一张里面标明了分析步骤的图，按图索骥，从第一步开始
+，顺着箭头逐步往下分析，无论多么复杂的C语言声明都可以迎刃而解，都可以用最通俗的语言来解释。</p>
+
+<p><img src="http://812lcl.github.io/images/dcl.png" alt="解析C语言的声明" /></p>
+
+<p>开始我们从左向右寻找，直到找到第一个标识符。当声明中的某个
+符号与图中所示匹配时，便把它从声明中处理掉，以后不再考虑。
+在具体的每一步骤上，我们首先查看右边的符号，再看左边的。</p>
+
+<p>当所有的符号都被处理完毕后，便宣告大功告成。</p>
+
+<p>可以试着用图表分析法分析上边的那个例子。</p>
+
+<h2>4. 一个例子</h2>
+
+<p>现在，我们再回头看一下之前提到的signal函数的声明。</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>首先标识符是signal，它右边紧跟了括号，则表示“signal是一个返回&hellip;的函数”；</p>
+
+<p>这个函数有两个参数：一个是<code>int</code>型，一个是<code>void (*)</code>型的，即返回值为void的函数指针。</p>
+
+<p>它的返回类型则是<code>void (*)(int)</code>型，即一个返回值为void，有一个int型参数的函数指针。</p>
+
+<p>说着这么绕呢，其实现在看来这个声明还是挺清晰的了。signal函数的第二个参数就是信号处理函数的函数指针，信号处理函数接受一个int型参数，表示接到的是几号信号。</p>
+
+<hr />
+
+<p>其实可以编写一个能够分析C语言的声明，并把它们翻译成通俗语言的程序。可以通过堆栈实现，也可以用有限状态机来实现，都可以加深对复杂声明的理解，而且很好的练习编码。</p>
+
+<h2>参考书籍</h2>
+
+<ul>
+<li><p>C专家编程</p></li>
+<li><p>C陷阱与缺陷</p></li>
+<li><p>C程序设计语言</p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi-jj/'>http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi-jj/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[重学C语言(二)——运算符优先级与计算顺序]]></title>
