@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 重学C语言 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/zhong-xue-cyu-yan/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2013-12-22T12:46:56+08:00</updated>
+  <updated>2013-12-22T12:55:54+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[重学C语言(三)——复杂声明分析]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi-jj/"/>
+    <link href="http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/"/>
     <updated>2013-12-22T12:14:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi-jj</id>
+    <id>http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi</id>
     <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>
 是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂
 声明。C语言中的声明是不能从左往右读的，时而往左时而往右，
