@@ -1,387 +1,363 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Blog Archive - 812lcl的博客</title>
-  <meta name="author" content="812lcl">
+	<meta charset="utf-8">
+	<title>Blog Archives - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
 
-  
-  <meta name="description" content="Blog Archive 2013 Dec 28 重学C语言(四)——变量初始化 posted in 重学C语言 Dec 22 重学C语言(三)——复杂声明分析 posted in 重学C语言 Dec 21 重学C语言(二)——运算符优先级与计算顺序 posted in 重学C语言 Dec 17 &hellip;">
-  
+	
+	<meta name="description" content="2013 重学C语言(四)——变量初始化 Dec 28 重学C语言 重学C语言(三)——复杂声明分析 Dec 22 重学C语言 重学C语言(二)——运算符优先级与计算顺序 Dec 21 重学C语言 重学C语言(一)——类型转换 Dec 17 重学C语言 VIM补全配置 Dec 6 磨刀利刃 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://812lcl.github.io/blog/archives">
-  <link href="/favicon.ico" rel="icon">
-  
-  <link href="/assets/bootstrap/css/spacelab.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/bootstrap/css/custom.css" rel="stylesheet" type="text/css">
-  <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-  
-  <link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
-  
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-45001565-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
 </head>
 
-<body    data-spy="scroll">
 
-  <div class="container">
-    <header class="jumbotron subhead" id="overview">
-      
-<div class="subscribe">
-  <table>
-    <tr>
-      <td><span>Get Updates: &nbsp;</span></td>
-      
-      
-      <td><a href="/atom.xml" class="btn"><i class="icon-cog"></i> By RSS</a></td>
-      
-      
-    </tr>
-  </table>
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
 </div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:812lcl.github.io">
+	</form>
+</nav>
 
-<h1 class="title">812lcl的博客</h1>
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+	
 
-  <p class="lead">不要好高骛远，却又原地踏步；只想不做，太辜负青春了</p>
+
+	
+	
+	<section class="archives"><h1 class="year">2013</h1>
+
+<article>
+	<h2 class="title"><a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a></h2>
+	<div class="meta">
+		<div class="date">Dec 28</div>
+		<div class="tags">
 
 
-      <div class="navbar">
-  <div class="navbar-inner">
-    <div class="container" style="width: auto;">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <div class="nav-collapse">
-                <ul class="nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog/archives">Blog</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
 
-        
-          <form action="http://google.com/search" method="get" class="navbar-search pull-left">
-            <fieldset role="search">
-              <input type="hidden" name="q" value="site:812lcl.github.io" />
-              <input type="text" name="q" results="0" placeholder="Search" class="search-query span2" />
-            </fieldset>
-          </form>
-        
-        
-      </div><!-- /.nav-collapse -->
-    </div>
-  </div><!-- /navbar-inner -->
+
 </div>
+	    
+	</div>
+</article>
+	
 
-    </header>
-    <div id="main">
-      <div id="content">
-        <div class="row">
-  
-  <div class="span8">
-    
-      <div class="page-header">
-        <h1>Blog Archive</h1>
-        
-      </div>
-    
-    
-    <div id="blog-archives">
-  <table>
-    
-      <tr>
-        <td class="year">
-          
-          
-            
-            <h3><small><strong>2013</strong></small></h3>
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-12-28T14:36:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>28</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a></small></h3>
-  
-</td>
+	
 
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-12-22T12:14:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>22</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a></small></h3>
-  
-</td>
 
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-12-21T14:36:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>21</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a></small></h3>
-  
-</td>
+<article>
+	<h2 class="title"><a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a></h2>
+	<div class="meta">
+		<div class="date">Dec 22</div>
+		<div class="tags">
 
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-12-17T19:42:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>17</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a></small></h3>
-  
-</td>
 
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-12-06T18:54:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>06</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">VIM补全配置</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a></small></h3>
-  
-</td>
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
 
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-12-04T20:56:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>04</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">vim插件配置续</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a></small></h3>
-  
-</td>
 
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-29T19:28:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>29</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-27T11:52:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>27</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">Octopress主题样式修改</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-26T22:36:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>26</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">Octopress侧边栏及评论系统定制</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-25T11:49:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>25</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-24T20:28:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>24</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-23T21:54:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>23</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/">多系统Linux安装及配置</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-      <tr>
-        <td class="year">
-          
-          
-        </td>
-        <td class="day">
-  <h3><small><time datetime="2013-10-22T22:18:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>22</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/">自警自省自规划</a></h3>
-  
-  <h3><small>posted in <a class='category' href='/blog/categories/zi-wo-ji-li/'>自我激励</a></small></h3>
-  
-</td>
-
-      </tr>
-    
-  </table>
 </div>
-    
-    
-    
-    
-  </div>
-  
-</div>
+	    
+	</div>
+</article>
+	
 
-      </div>
-    </div>
-    <footer class="footer"><p>
-  Copyright &copy; 2014 - 812lcl -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
-  
-    <span class="credit">Theme by <a href="http://brianarmstrong.org">Brian Armstrong</a></span>
-  
-</p>
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a></h2>
+	<div class="meta">
+		<div class="date">Dec 21</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a></h2>
+	<div class="meta">
+		<div class="date">Dec 17</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">VIM补全配置</a></h2>
+	<div class="meta">
+		<div class="date">Dec  6</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">vim插件配置续</a></h2>
+	<div class="meta">
+		<div class="date">Dec  4</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a></h2>
+	<div class="meta">
+		<div class="date">Oct 29</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">Octopress主题样式修改</a></h2>
+	<div class="meta">
+		<div class="date">Oct 27</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">Octopress侧边栏及评论系统定制</a></h2>
+	<div class="meta">
+		<div class="date">Oct 26</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a></h2>
+	<div class="meta">
+		<div class="date">Oct 25</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a></h2>
+	<div class="meta">
+		<div class="date">Oct 24</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/">多系统Linux安装及配置</a></h2>
+	<div class="meta">
+		<div class="date">Oct 23</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+
+	
+
+
+<article>
+	<h2 class="title"><a href="/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/">自警自省自规划</a></h2>
+	<div class="meta">
+		<div class="date">Oct 22</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zi-wo-ji-li/'>自我激励</a>
+
+
+</div>
+	    
+	</div>
+</article>
+	
+	</section>
+	
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
 </footer>
-    
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-45001565-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-
-
-  </div>
 </body>
 </html>
