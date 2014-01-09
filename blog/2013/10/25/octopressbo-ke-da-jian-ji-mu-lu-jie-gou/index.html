@@ -1,86 +1,142 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>Octopress博客搭建及目录结构 - 812lcl的博客</title>
-	<meta name="author" content="812lcl">
+  <meta charset="utf-8">
+  <title>Octopress博客搭建及目录结构 - 812lcl的博客</title>
+  <meta name="author" content="812lcl">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	
-	<meta name="description" content="搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
+  
+    
+  
+  <meta name="description" content="搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
 思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
 服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
-等前端技术了解有限，网站搭建很多技术也知之甚少。 &hellip;">
-	<meta name="keywords" content="octopress, linux, blog, ruby">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+等前端技术了解有限，网站搭建很多技术也知之甚少 &hellip;">
+  <meta name="keywords" content="octopress, linux, blog, ruby">
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
+  
+  <link rel="canonical" href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="812lcl的博客" />
+  <meta name="og:title" content="Octopress博客搭建及目录结构" />
+  <meta name="og:description" content="搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
+思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
+服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
+等前端技术了解有限，网站搭建很多技术也知之甚少 &hellip;" />
+  <meta name="og:url" content="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"/>
+  <meta name="url" content="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">
+  
+  <meta name="subject" content="Octopress"/>
+  <meta name="category" content="Octopress"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45001565-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
 </head>
 
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">812lcl的博客</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:812lcl.github.io" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
 </div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:812lcl.github.io">
-			</form>
-		</div>
-	</div>
 </nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
-		
-    
-		
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-    
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:812lcl.github.io">
-	</form>
-</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
 
-</header>
-	
-		
-	
-	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Octopress博客搭建及目录结构</h2>
-	<div class="entry-content"><p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
+  <header>
+    
+      <h1 class="entry-title">Octopress博客搭建及目录结构</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">812lcl</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-25T11:49:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2013</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
 思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
 服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
 等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、
@@ -323,8 +379,18 @@ javascripts文件家中放置一些模块需要调用的javascript脚本，_post
 </div>
 
 
-<div class="meta">
-	<div class="date">
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">812lcl</span></span>
+  
+
+ - 
+      
 
 
 
@@ -336,19 +402,20 @@ javascripts文件家中放置一些模块需要调用的javascript脚本，_post
   
 
 
-<time datetime="2013-10-25T11:49:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2013</time></div>
-	<div class="tags">
+<time datetime="2013-10-25T11:49:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2013</time> - 
+      
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
 
 
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</div>
-	
-</div>
-</article>
-
-	<div class="share">
+    </p>
+    
+      <div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
 		
 		
@@ -358,35 +425,136 @@ javascripts文件家中放置一些模块需要调用的javascript脚本，_post
 	
 </div>
 
+    
+    
+      <a class="pull-left" href="/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/" title="Previous Post: VIM插件配置，比肩IDE">&laquo; VIM插件配置，比肩IDE</a>
+    
+    
+      <a class="pull-right" href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/" title="Next Post: Octopress侧边栏及评论系统定制">Octopress侧边栏及评论系统定制 &raquo;</a>
+    
+  </footer>
 
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
 
-    812lcl
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">VIM补全配置</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">vim插件配置续</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">Octopress主题样式修改</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">Octopress侧边栏及评论系统定制</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
 
+  </div>
+  <div class="span4">
+    
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/812lcl/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>contact at</h2>
+<a href="mailto:812liuchunlei@163.com">812liuchunlei@163.com</a>
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">812lcl的博客</a>
+  - Copyright &copy; 2014 - 812lcl
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
 </footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
 
 
 
 
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-45001565-1']);
-		_gaq.push(['_trackPageview']);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+
+
+
 
 
 
