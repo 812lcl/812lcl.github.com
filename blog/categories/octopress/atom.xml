@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | 812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-09T15:35:09+08:00</updated>
-  <id>http://812lcl.github.io/</id>
+  <link href="http://812lcl.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-01-09T20:05:59+08:00</updated>
+  <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress添加统计与SEO]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
+    <link href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
     <updated>2013-10-29T19:28:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
+    <id>http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
     <content type="html"><![CDATA[<p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让
 自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章
 ，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎
@@ -140,9 +140,9 @@ keywords: seo, octopress, analytics, 站内搜索</p>
   
   <entry>
     <title type="html"><![CDATA[Octopress主题样式修改]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
+    <link href="http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
     <updated>2013-10-27T11:52:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
+    <id>http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
     <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
 说一说，主题样式的修改。</p>
 
@@ -357,11 +357,11 @@ function goTop(acceleration, time)
 
 
 <div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
-        <a href="#" onclick="goTop();return false;"><img src="http://812lcl.github.io/images/top.png" border=0 alt="返回顶部"></a>
+        <a href="#" onclick="goTop();return false;"><img src="http://812lcl.com/images/top.png" border=0 alt="返回顶部"></a>
 </div>
 
 
-<script src="http://812lcl.github.io/javascripts/top.js" type="text/javascript"></script>
+<script src="http://812lcl.com/javascripts/top.js" type="text/javascript"></script>
 
 
 <!--返回顶部结束-->
@@ -395,9 +395,9 @@ function goTop(acceleration, time)
   
   <entry>
     <title type="html"><![CDATA[Octopress侧边栏及评论系统定制]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
+    <link href="http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
     <updated>2013-10-26T22:36:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
+    <id>http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
     <content type="html"><![CDATA[<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式
 千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
 如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造
@@ -917,9 +917,9 @@ sharing: false</p>
   
   <entry>
     <title type="html"><![CDATA[Octopress博客搭建及目录结构]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"/>
+    <link href="http://812lcl.com/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"/>
     <updated>2013-10-25T11:49:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou</id>
+    <id>http://812lcl.com/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou</id>
     <content type="html"><![CDATA[<p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
 思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
 服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: 编辑器 | 812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/blog/tags/bian-ji-qi/atom.xml" rel="self"/>
-  <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-09T15:35:09+08:00</updated>
-  <id>http://812lcl.github.io/</id>
+  <link href="http://812lcl.com/blog/tags/bian-ji-qi/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-01-09T20:05:59+08:00</updated>
+  <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[VIM补全配置]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
+    <link href="http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
     <updated>2013-12-06T18:54:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/06/vimbu-quan-pei-zhi</id>
+    <id>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi</id>
     <content type="html"><![CDATA[<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
 
 <h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
@@ -177,9 +177,9 @@ nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
   
   <entry>
     <title type="html"><![CDATA[vim插件配置续]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
+    <link href="http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
     <updated>2013-12-04T20:56:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
+    <id>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
     <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子
 <a href="http://blog.jobbole.com/">伯乐在线</a> 上的一篇文章，就又开始了我好几天
 的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
@@ -513,9 +513,9 @@ let g:ctrlp_follow_symlinks=1
   
   <entry>
     <title type="html"><![CDATA[VIM插件配置，比肩IDE]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
+    <link href="http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
     <updated>2013-10-24T20:28:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
+    <id>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
     <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的
 功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满
 ，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>

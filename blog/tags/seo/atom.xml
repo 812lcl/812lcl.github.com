@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: SEO | 812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/blog/tags/seo/atom.xml" rel="self"/>
-  <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-09T15:35:09+08:00</updated>
-  <id>http://812lcl.github.io/</id>
+  <link href="http://812lcl.com/blog/tags/seo/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-01-09T20:05:59+08:00</updated>
+  <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress添加统计与SEO]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
+    <link href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
     <updated>2013-10-29T19:28:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
+    <id>http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
     <content type="html"><![CDATA[<p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让
 自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章
 ，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎
