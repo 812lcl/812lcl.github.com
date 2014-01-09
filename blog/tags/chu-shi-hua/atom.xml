@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: 初始化 | 812lcl的博客]]></title>
-  <link href="http://812lcl.com/blog/tags/chu-shi-hua/atom.xml" rel="self"/>
-  <link href="http://812lcl.com/"/>
-  <updated>2014-01-09T20:05:59+08:00</updated>
-  <id>http://812lcl.com/</id>
+  <link href="http://812lcl.github.io/blog/tags/chu-shi-hua/atom.xml" rel="self"/>
+  <link href="http://812lcl.github.io/"/>
+  <updated>2014-01-09T21:04:16+08:00</updated>
+  <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[重学C语言(四)——变量初始化]]></title>
-    <link href="http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/"/>
+    <link href="http://812lcl.github.io/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/"/>
     <updated>2013-12-28T14:36:00+08:00</updated>
-    <id>http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua</id>
+    <id>http://812lcl.github.io/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua</id>
     <content type="html"><![CDATA[<p>首先来声明几个概念：</p>
 
 <p>存储类说明符：</p>

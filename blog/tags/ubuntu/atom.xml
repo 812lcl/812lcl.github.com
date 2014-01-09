@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: ubuntu | 812lcl的博客]]></title>
-  <link href="http://812lcl.com/blog/tags/ubuntu/atom.xml" rel="self"/>
-  <link href="http://812lcl.com/"/>
-  <updated>2014-01-09T20:05:59+08:00</updated>
-  <id>http://812lcl.com/</id>
+  <link href="http://812lcl.github.io/blog/tags/ubuntu/atom.xml" rel="self"/>
+  <link href="http://812lcl.github.io/"/>
+  <updated>2014-01-09T21:04:16+08:00</updated>
+  <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[多系统Linux安装及配置]]></title>
-    <link href="http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
+    <link href="http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
     <updated>2013-10-23T21:54:00+08:00</updated>
-    <id>http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
+    <id>http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
     <content type="html"><![CDATA[<h2>1. 多系统安装</h2>
 
 <p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越
