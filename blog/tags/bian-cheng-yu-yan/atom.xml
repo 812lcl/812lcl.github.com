@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程语言 | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/bian-cheng-yu-yan/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-10T13:57:42+08:00</updated>
+  <updated>2014-01-10T15:10:19+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -26,8 +26,10 @@
 
 <p>类型说明符：</p>
 
-<p><code>void  char  short  int  long  float  double  signed  unsigned
-结构或联合说明符  枚举说明符  类型定义名</code></p>
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
 
 <p>类型限定符：</p>
 
