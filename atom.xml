@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.github.io/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-09T22:26:11+08:00</updated>
+  <updated>2014-01-10T10:18:21+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -247,7 +247,7 @@ C   如果const和（或）volatile关键字的后面紧跟类型说明符（如
 <p>本节通过一张里面标明了分析步骤的图，按图索骥，从第一步开始
 ，顺着箭头逐步往下分析，无论多么复杂的C语言声明都可以迎刃而解，都可以用最通俗的语言来解释。</p>
 
-<p><img src="http://812lcl.github.io/images/dcl.png" alt="解析C语言的声明" /></p>
+<p><img src="http://812lcl.github.io/images/blog/dcl.png" alt="解析C语言的声明" /></p>
 
 <p>开始我们从左向右寻找，直到找到第一个标识符。当声明中的某个
 符号与图中所示匹配时，便把它从声明中处理掉，以后不再考虑。
@@ -906,7 +906,7 @@ YouCompleteMe包存在我的<code>.vim/bundle</code>中了，把其他依赖工�
 
 <p><code>let g:EasyMotion_leader_key = 'f'</code></p>
 
-<p><img src="http://812lcl.github.io/images/easymotion.gif" alt="Easymotion" /></p>
+<p><img src="http://812lcl.github.io/images/blog/easymotion.gif" alt="Easymotion" /></p>
 
 <h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
 
@@ -1483,7 +1483,7 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 
 <p>默认显示<code>Copyright@2013 - author - Powered by Octopress</code>，你可以添加自己想
-显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="">统计工具与SEO</a>。</p>
+显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
 
 <h2>2. 样式修改</h2>
 

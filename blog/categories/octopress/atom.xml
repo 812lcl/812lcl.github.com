@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-09T22:26:11+08:00</updated>
+  <updated>2014-01-10T10:18:21+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -213,7 +213,7 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 <p><code>``
 
 默认显示</code>Copyright@2013 &ndash; author &ndash; Powered by Octopress`，你可以添加自己想
-显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="">统计工具与SEO</a>。</p>
+显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
 
 <h2>2. 样式修改</h2>
 
