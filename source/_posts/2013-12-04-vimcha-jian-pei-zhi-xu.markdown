@@ -74,7 +74,7 @@ git submodule update
 
 `let g:EasyMotion_leader_key = 'f'`
 
-![Easymotion](http://812lcl.github.io/images/easymotion.gif)
+![Easymotion](http://812lcl.github.io/images/blog/easymotion.gif)
 ## 3. [surround](https://github.com/tpope/vim-surround)
 这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML
 标签，功能也十分好用，尤其写HTML时。主要使用就是增加`ys`、删除`ds`、

@@ -16,8 +16,9 @@ description: C语言变量初始化
 
 类型说明符：
 
-`void  char  short  int  long  float  double  signed  unsigned 
-结构或联合说明符  枚举说明符  类型定义名`
+    void  char  short  int  long  float  double  
+    signed  unsigned  结构或联合说明符  
+    枚举说明符  类型定义名
 
 类型限定符：
 

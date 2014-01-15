@@ -63,7 +63,7 @@ description: Octopress主题样式修改
 ```
 {% endraw %}
 默认显示`Copyright@2013 - author - Powered by Octopress`，你可以添加自己想
-显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见[统计工具与SEO]()。
+显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见[统计工具与SEO](http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo)。
 
 ## 2. 样式修改
 
