@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: ruby | 812lcl的博客]]></title>
   <link href="http://812lcl.github.io/blog/tags/ruby/atom.xml" rel="self"/>
   <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-15T12:58:50+08:00</updated>
+  <updated>2014-01-15T13:10:10+08:00</updated>
   <id>http://812lcl.github.io/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -31,7 +31,7 @@
 
 <p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
 和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：
-{% raw %}
+
 ``` html
 <hgroup>
   <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
@@ -43,7 +43,7 @@
 <p>  {% endif %}
 </hgroup>
 ```
-{% endraw %}</p>
+</p>
 
 <!--more-->
 
@@ -51,7 +51,7 @@
 <h3>1.2 Navigation（导航栏）</h3>
 
 <p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。
-{% raw %}
+
 ```</p>
 
 <ul class="main-navigation">
@@ -63,17 +63,17 @@
 
 
 <p>```
-{% endraw %}</p>
+</p>
 
 <p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
 ，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此
 文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径
-即可，如<code>&lt;li&gt;&lt;a href="{{ root_url }}/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
+即可，如<code>&lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
 
 <h3>1.3 footer（尾栏）</h3>
 
 <p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：
-{% raw %}
+
 ```</p>
 
 <p>
@@ -86,7 +86,7 @@
 
 
 <p><code>``
-{% endraw %}
+
 默认显示</code>Copyright@2013 &ndash; author &ndash; Powered by Octopress`，你可以添加自己想
 显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
 
@@ -525,7 +525,7 @@ tag_dir: blog/tags
 <p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。
 这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，
 然后在想添加相关文章推荐的地方添加如下语句：
-{% raw %}
+
 ```
 <section></p>
 
@@ -541,7 +541,7 @@ tag_dir: blog/tags
 
 <p> </section>
 ```
-{% endraw %}
+
 我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时
 的布局，我将相关文章添加在博文的结束处。</p>
 
@@ -638,13 +638,13 @@ tag_dir: blog/tags
 <p>comment_share: true
 <code>
 然后在`source/_includes/post/sharing.html`中添加如下代码：
-{% raw %}
+
 </code>
 {% if site.comment_share %}
   {% include post/share_comment.html %}
 {% endif %}
 ```
-{% endraw %}
+
 最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、
 社交影响力分析、和评论栏的风格功能设置。</p>
 
@@ -694,18 +694,18 @@ tag_dir: blog/tags
 
 <p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。
 实现方法为：在<code>source/_includes/article.html</code>中
-{% raw %}
+
 <code>
 {% include post/date.html %}{{ time }}
 </code>
-{% endraw %}
+
 的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容
-{% raw %}
+
 <code>
  | &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments" id="uyan_count_unit" du="" su=""&gt;0条评论&lt;/a&gt;
   &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
 </code>
-{% endraw %}</p>
+</p>
 
 <h2>4. 为博文添加原文链接及声明</h2>
 
