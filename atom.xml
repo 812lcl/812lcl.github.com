@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/atom.xml" rel="self"/>
-  <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-15T16:46:00+08:00</updated>
-  <id>http://812lcl.github.io/</id>
+  <link href="http://812lcl.com/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-01-15T17:22:48+08:00</updated>
+  <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[重学C语言(四)——变量初始化]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/"/>
+    <link href="http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/"/>
     <updated>2013-12-28T14:36:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua</id>
+    <id>http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua</id>
     <content type="html"><![CDATA[<p>首先来声明几个概念：</p>
 
 <p>存储类说明符：</p>
@@ -123,16 +123,16 @@ extern声明则不一定要指定数组的长度。</p>
 <p>联合的初值可以是类型相同的单个表达式，也可以是括在花括号中的联合的第一个成员的初值。</p>
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/'>http://812lcl.github.io/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/'>http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[重学C语言(三)——复杂声明分析]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/"/>
+    <link href="http://812lcl.com/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/"/>
     <updated>2013-12-22T12:14:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi</id>
+    <id>http://812lcl.com/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi</id>
     <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>
 是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂
 声明。C语言中的声明是不能从左往右读的，时而往左时而往右，
@@ -288,16 +288,16 @@ C   如果const和（或）volatile关键字的后面紧跟类型说明符（如
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/'>http://812lcl.github.io/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/'>http://812lcl.com/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[重学C语言(二)——运算符优先级与计算顺序]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/"/>
+    <link href="http://812lcl.com/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/"/>
     <updated>2013-12-21T14:36:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu</id>
+    <id>http://812lcl.com/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu</id>
     <content type="html"><![CDATA[<p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的
 意义，就要了解清运算符之间的优先关系与结合顺序。要确保
 表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。</p>
@@ -429,16 +429,16 @@ a=0;
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/'>http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/'>http://812lcl.com/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[重学C语言(一)——类型转换]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/"/>
+    <link href="http://812lcl.com/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/"/>
     <updated>2013-12-17T19:42:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-[?]-lei-xing-zhuan-huan</id>
+    <id>http://812lcl.com/blog/2013/12/17/zhong-xue-cyu-yan-[?]-lei-xing-zhuan-huan</id>
     <content type="html"><![CDATA[<h2>1. 整型提升</h2>
 
 <p>在一个表达式中，凡是可以使用整型的地方都可以使用带符号或无
@@ -612,16 +612,16 @@ argv是个指针数组(<code>char *argv[]</code>)。这个表达式被编译器�
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/'>http://812lcl.github.io/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/'>http://812lcl.com/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[VIM补全配置]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
+    <link href="http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
     <updated>2013-12-06T18:54:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/06/vimbu-quan-pei-zhi</id>
+    <id>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi</id>
     <content type="html"><![CDATA[<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
 
 <h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
@@ -804,16 +804,16 @@ YouCompleteMe包存在我的<code>.vim/bundle</code>中了，把其他依赖工�
 <p>vim就先折腾到这了。</p>
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/12/06/vimbu-quan-pei-zhi/'>http://812lcl.github.io/blog/2013/12/06/vimbu-quan-pei-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/'>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[vim插件配置续]]></title>
-    <link href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
+    <link href="http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
     <updated>2013-12-04T20:56:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
+    <id>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
     <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子
 <a href="http://blog.jobbole.com/">伯乐在线</a> 上的一篇文章，就又开始了我好几天
 的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
@@ -1248,16 +1248,16 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 <p>OK，先这么多了，准备下一篇文章写一下vim中各种强大的补全。而且提醒一下，vim本身功能已经很强大，虽然各种插件可以帮助你更高效，但不要离了他们就不会使用vim了，也不要太专注于各种插件，写的内容才是最主要的。推荐一篇文章<a href="http://www.kunli.info/2013/08/13/vim/">不要复杂化vim</a>。</p>
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/'>http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/'>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress添加统计与SEO]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
+    <link href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/"/>
     <updated>2013-10-29T19:28:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
+    <id>http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo</id>
     <content type="html"><![CDATA[<p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让
 自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章
 ，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎
@@ -1395,16 +1395,16 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/'>http://812lcl.github.io/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/'>http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress主题样式修改]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
+    <link href="http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
     <updated>2013-10-27T11:52:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
+    <id>http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
     <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
 说一说，主题样式的修改。</p>
 
@@ -1461,7 +1461,7 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 <p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
 ，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此
 文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径
-即可，如<code>&lt;li&gt;&lt;a href="http://812lcl.github.io/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
+即可，如<code>&lt;li&gt;&lt;a href="http://812lcl.com/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
 
 <h3>1.3 footer（尾栏）</h3>
 
@@ -1725,16 +1725,16 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/'>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/'>http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress侧边栏及评论系统定制]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
+    <link href="http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
     <updated>2013-10-26T22:36:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
+    <id>http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
     <content type="html"><![CDATA[<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式
 千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
 如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造
@@ -2360,16 +2360,16 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/'>http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/'>http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress博客搭建及目录结构]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"/>
+    <link href="http://812lcl.com/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/"/>
     <updated>2013-10-25T11:49:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou</id>
+    <id>http://812lcl.com/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou</id>
     <content type="html"><![CDATA[<p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
 思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
 服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
@@ -2608,16 +2608,16 @@ javascripts文件家中放置一些模块需要调用的javascript脚本，_post
 
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/'>http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/'>http://812lcl.com/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[VIM插件配置，比肩IDE]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
+    <link href="http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
     <updated>2013-10-24T20:28:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
+    <id>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
     <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的
 功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满
 ，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
@@ -3118,16 +3118,16 @@ omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件�
 <p><a href="http://blog.csdn.net/tge7618291/article/details/4216977">经典vim插件功能说明、安装方法和使用方法</a></p></blockquote>
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/'>http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/'>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[多系统Linux安装及配置]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
+    <link href="http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
     <updated>2013-10-23T21:54:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
+    <id>http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
     <content type="html"><![CDATA[<h2>1. 多系统安装</h2>
 
 <p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越
@@ -3271,16 +3271,16 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 <p>OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)</p>
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/'>http://812lcl.github.io/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/'>http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[自警自省自规划]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/"/>
+    <link href="http://812lcl.com/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/"/>
     <updated>2013-10-22T22:18:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua</id>
+    <id>http://812lcl.com/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua</id>
     <content type="html"><![CDATA[<p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手
 ，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我
 一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有
@@ -3370,7 +3370,7 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 <p>加油吧，少年，我改努力了！</p>
 
 <p class='post-footer'>
-            original link:<a href='http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/'>http://812lcl.github.io/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/</a><br/>&nbsp;written by <a href='http://812lcl.github.io'>812lcl</a>&nbsp;posted at <a href='http://812lcl.github.io'>http://812lcl.github.io</a></p>
+            original link:<a href='http://812lcl.com/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/'>http://812lcl.com/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
 
 ]]></content>
   </entry>

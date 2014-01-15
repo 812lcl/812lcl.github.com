@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: html | 812lcl的博客]]></title>
-  <link href="http://812lcl.github.io/blog/tags/html/atom.xml" rel="self"/>
-  <link href="http://812lcl.github.io/"/>
-  <updated>2014-01-15T16:46:00+08:00</updated>
-  <id>http://812lcl.github.io/</id>
+  <link href="http://812lcl.com/blog/tags/html/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-01-15T17:22:48+08:00</updated>
+  <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
     <email><![CDATA[812liuchunlei@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress主题样式修改]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
+    <link href="http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
     <updated>2013-10-27T11:52:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
+    <id>http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
     <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
 说一说，主题样式的修改。</p>
 
@@ -232,11 +232,11 @@ function goTop(acceleration, time)
 
 
 <div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
-        <a href="#" onclick="goTop();return false;"><img src="http://812lcl.github.io/images/top.png" border=0 alt="返回顶部"></a>
+        <a href="#" onclick="goTop();return false;"><img src="http://812lcl.com/images/top.png" border=0 alt="返回顶部"></a>
 </div>
 
 
-<script src="http://812lcl.github.io/javascripts/top.js" type="text/javascript"></script>
+<script src="http://812lcl.com/javascripts/top.js" type="text/javascript"></script>
 
 
 <!--返回顶部结束-->
@@ -270,9 +270,9 @@ function goTop(acceleration, time)
   
   <entry>
     <title type="html"><![CDATA[Octopress侧边栏及评论系统定制]]></title>
-    <link href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
+    <link href="http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
     <updated>2013-10-26T22:36:00+08:00</updated>
-    <id>http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
+    <id>http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
     <content type="html"><![CDATA[<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式
 千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
 如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造
