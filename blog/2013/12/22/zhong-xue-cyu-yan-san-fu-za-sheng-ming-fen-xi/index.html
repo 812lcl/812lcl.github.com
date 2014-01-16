@@ -76,6 +76,7 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
+    
 	<h2 class="title">重学C语言(三)——复杂声明分析</h2>
 	<div class="entry-content"><p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>
 是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂
@@ -237,88 +238,6 @@ C   如果const和（或）volatile关键字的后面紧跟类型说明符（如
 </div>
 
 
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-22T12:14:00+08:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
-
-
-</div>
-    <br />
-    <div class="tags"><section>
-<h1>标签列表</h1>
-<ul class="tag-cloud">
-	<a style="font-size: 210%" href="/blog/tags/c/">c</a>
-<a style="font-size: 150%" href="/blog/tags/html/">html</a>
-<a style="font-size: 210%" href="/blog/tags/linux/">linux</a>
-<a style="font-size: 210%" href="/blog/tags/octopress/">octopress</a>
-<a style="font-size: 150%" href="/blog/tags/ruby/">ruby</a>
-<a style="font-size: 185%" href="/blog/tags/vim/">vim</a>
-<a style="font-size: 210%" href="/blog/tags/bo-ke/">博客</a>
-<a style="font-size: 210%" href="/blog/tags/bian-cheng-huan-jing/">编程环境</a>
-<a style="font-size: 210%" href="/blog/tags/bian-cheng-yu-yan/">编程语言</a>
-<a style="font-size: 185%" href="/blog/tags/bian-ji-qi/">编辑器</a>
-
-</ul>
-</section>
-</div>
-    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
-    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
-    <div class="related">
-        <section>
-            <h2>相关文章：</h2>
-            <ul class="posts">
-                
-                <li class="related">
-                <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
-                </li>
-                
-                <li class="related">
-                <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
-                </li>
-                
-                <li class="related">
-                <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
-                </li>
-                
-            </ul>
-        </section>
-        <section>
-<h1>标签列表</h1>
-<ul class="tag-cloud">
-	<a style="font-size: 210%" href="/blog/tags/c/">c</a>
-<a style="font-size: 150%" href="/blog/tags/html/">html</a>
-<a style="font-size: 210%" href="/blog/tags/linux/">linux</a>
-<a style="font-size: 210%" href="/blog/tags/octopress/">octopress</a>
-<a style="font-size: 150%" href="/blog/tags/ruby/">ruby</a>
-<a style="font-size: 185%" href="/blog/tags/vim/">vim</a>
-<a style="font-size: 210%" href="/blog/tags/bo-ke/">博客</a>
-<a style="font-size: 210%" href="/blog/tags/bian-cheng-huan-jing/">编程环境</a>
-<a style="font-size: 210%" href="/blog/tags/bian-cheng-yu-yan/">编程语言</a>
-<a style="font-size: 185%" href="/blog/tags/bian-ji-qi/">编辑器</a>
-
-</ul>
-</section>
-
-    </div>
-	
-</div>
-
-
 	<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
 		
@@ -368,6 +287,84 @@ C   如果const和（或）volatile关键字的后面紧跟类型说明符（如
 </div>
 
 
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-22T12:14:00+08:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+    <br />
+    <div class="tags"><section>
+<h1>标签列表</h1>
+<ul class="tag-cloud">
+	<a style="font-size: 210%" href="/blog/tags/c/">c</a>
+<a style="font-size: 150%" href="/blog/tags/html/">html</a>
+<a style="font-size: 210%" href="/blog/tags/linux/">linux</a>
+<a style="font-size: 210%" href="/blog/tags/octopress/">octopress</a>
+<a style="font-size: 150%" href="/blog/tags/ruby/">ruby</a>
+<a style="font-size: 185%" href="/blog/tags/vim/">vim</a>
+<a style="font-size: 210%" href="/blog/tags/bo-ke/">博客</a>
+<a style="font-size: 210%" href="/blog/tags/bian-cheng-huan-jing/">编程环境</a>
+<a style="font-size: 210%" href="/blog/tags/bian-cheng-yu-yan/">编程语言</a>
+<a style="font-size: 185%" href="/blog/tags/bian-ji-qi/">编辑器</a>
+
+</ul>
+</section>
+</div>
+	
+</div>
+
+    <div class="related">
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+                </li>
+                
+            </ul>
+        </section>
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (4)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+    </div>
+</article>
 
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2014
