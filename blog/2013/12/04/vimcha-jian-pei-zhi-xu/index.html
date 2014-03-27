@@ -1,0 +1,801 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vim插件配置续 - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="vim插件配置，包括十几种好用高效的插件">
+	<meta name="keywords" content="vim, linux, easymotion, syntastic, nerdtree">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+    <!--
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:812lcl.com">
+	</form>
+    -->
+    
+        <form method="get" action="/search.html" id="search" class="search">
+            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+        </form>
+    
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+    
+	<h2 class="title">Vim插件配置续</h2>
+	<div class="entry-content">
+        <p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子
+<a href="http://blog.jobbole.com/">伯乐在线</a> 上的一篇文章，就又开始了我好几天
+的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
+弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十
+四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete
+和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大
+，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，
+这里重要介绍一些我新增加的一些插件。</p>
+
+<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+
+<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件
+管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用
+了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不
+干扰，想删谁删谁，添加也很简单。安装该插件方法如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim
+</span><span class='line'>git clone git://github.com/tpope/vim-pathogen.git
+</span><span class='line'>mkdir bundle</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后再<code>.vimrc</code>中加入<code>execute pathogen#infect()</code>，这样就可以管理插件了。</p>
+
+<!--more-->
+
+
+<p>安装插件</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># git submodule add 插件GitHub仓库地址 bundle/插件文件夹
+</span><span class='line'>git submodule add https://github.com/Lokaltog/vim-easymotion.git bundle/easymotion</span></code></pre></td></tr></table></div></figure>
+
+
+<p>升级插件</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim/bundle/easymotion # 将 easymotion 替换为需要升级的插件名字
+</span><span class='line'>git pull origin master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>升级所有插件</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim
+</span><span class='line'>git submodule foreach git pull origin master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>删除插件</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim
+</span><span class='line'>rm -rf bundle/easymotion
+</span><span class='line'>git rm -rf bundle/easymotion</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果你将你的<code>.vim</code>仓库穿到GitHub上，可以很容易的在其他机器上恢复相同的配置，方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone http://github.com/username/dotvim.git ~/.vim
+</span><span class='line'>ln -s ~/.vim/vimrc ~/.vimrc
+</span><span class='line'>cd ~/.vim
+</span><span class='line'>git submodule init
+</span><span class='line'>git submodule update</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果你的整个<code>.vim</code>目录并不作为git仓库，也可以用pathogen管理插件，只需
+将插件下好，将其作为独立文件夹放入<code>~/.vim/bundle/</code>中即可。</p>
+
+<h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
+
+<p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到
+本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是
+第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母
+代替，然后输入想跳到位置的字母即可。</p>
+
+<p><leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”
+，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作
+，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在<code>.vimrc</code>中
+加入下面这条语句：</p>
+
+<p><code>let g:EasyMotion_leader_key = 'f'</code></p>
+
+<p><img src="http://812lcl.github.io/images/blog/easymotion.gif" alt="Easymotion" /></p>
+
+<h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
+
+<p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML
+标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、
+替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Text                 Command         New Text
+</span><span class='line'>---------------       -------         -----------
+</span><span class='line'>"Hello |world"        cs"'            'Hello world'
+</span><span class='line'>"Hello |world"    cs"&lt;q&gt;            &lt;q&gt;Hello world&lt;/q&gt;
+</span><span class='line'>(123+4|56)/2          cs)]            [123+456]/2
+</span><span class='line'>(123+4|56)/2          cs)[            [ 123+456 ]/2
+</span><span class='line'>&lt;div&gt;foo|&lt;/div&gt;       cst&lt;p&gt;            &lt;p&gt;foo&lt;/p&gt;
+</span><span class='line'>fo|o!                 csw'            'foo'!
+</span><span class='line'>fo|o!                 csW'            'foo!'</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Text                 Command         New Text
+</span><span class='line'>---------------       -------         -----------
+</span><span class='line'>Hello w|orld!         ysiw)           Hello (world)!
+</span><span class='line'>Hello w|orld!         csw)            Hello (world)!
+</span><span class='line'>fo|o              ysiwt&lt;html&gt;    &lt;html&gt;foo&lt;/html&gt;
+</span><span class='line'>foo quu|x baz     yss"            "foo quux baz"
+</span><span class='line'>foo quu|x baz     ySS"            "
+</span><span class='line'>                                       foo quux baz
+</span><span class='line'>                                      "</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Text                 Command         New Text
+</span><span class='line'>---------------       -------         -----------
+</span><span class='line'>"|hello"          ds"             hello</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在不同的模式下操作有所不同</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>normal模式
+</span><span class='line'>ds    删除surrounding
+</span><span class='line'>cs    替换surrounding
+</span><span class='line'>ys    添加surrounding
+</span><span class='line'>yS    添加、换行、缩进
+</span><span class='line'>yss   整行添加surrounding
+</span><span class='line'>ySs   整行添加换行缩进</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>visual模式
+</span><span class='line'>s 添加surrounding
+</span><span class='line'>S 添加、换行、缩进</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>insert模式
+</span><span class='line'>&lt;C-s&gt;   添加surrounding
+</span><span class='line'>&lt;C-s&gt;&lt;C-s&gt;    添加、换行、缩进</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></h2>
+
+<p>%跳转到下一个匹配符号如匹配括号，是 vim 原有功能，添加这个功能后，可以使用%跳转到匹配的HTML标签。</p>
+
+<h2>5. <a href="https://github.com/mbbill/undotree">Undotree</a></h2>
+
+<p>可视化撤销，可以看见你所做的改变，可视化的恢复到某一状态。<code>:UndotreeToggle</code>打开undo-tree面板，可以映射为其他按键，只需在<code>.vimrc</code>中添加</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;u :UndotreeToggle&lt;cr&gt;</code>。</p>
+
+<p>打开的面板中还可以看到每一步修改的前后对比，在面板中按？可获得快捷键帮助。面板效果如下：</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/bcebe1b159a62ce1b010af4ba1e99e461116dd23/687474703a2f2f66696c65732e6d796f706572612e636f6d2f6d6262696c6c2f66696c65732f756e646f747265652e706e67" alt="Undotree" /></p>
+
+<p>当前位置被标记为<code>&gt;seq&lt;</code></p>
+
+<p>下一变化被标记为<code>{seq}</code>，可以通过<code>:redo</code>或 <code>&lt;ctrl-r&gt;</code>跳到下一状态</p>
+
+<p>最近的变化标记为<code>[seq]</code></p>
+
+<p>保存的变化被标记为s，最后被保存的变化被标记为大写S</p>
+
+<p>vim 默认是不保存undo信息的，可以在<code>.vimrc</code>中添加语句实现退出编辑的文件，再打开仍可以undo。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if has('persistent_undo')
+</span><span class='line'>  set undofile
+</span><span class='line'>    set undodir=’~/.undo/’
+</span><span class='line'>endif</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></h2>
+
+<p>也是大名鼎鼎，同Taglist差不多，但更适合于C++，可以显示类中的声明、定义等等。<code>:TagbarToggle</code>打开Tagbar窗口，映射快捷键</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;t :TagbarToggle&lt;cr&gt;</code></p>
+
+<h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
+
+<p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，
+但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。
+在nerdtree的窗口中按？可显示快捷键操作。</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;n :NERDTreeToggle&lt;CR&gt;</code>映射打开快捷键，根据自己喜欢设定。</p>
+
+<h2>8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></h2>
+
+<p>快速添加注释的插件，使用方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Leader&gt;cc         最基本注释
+</span><span class='line'>&lt;Leader&gt;cu      撤销注释
+</span><span class='line'>&lt;Leader&gt;cm      多行注释
+</span><span class='line'>&lt;Leader&gt;cs      性感的注释方式</span></code></pre></td></tr></table></div></figure>
+
+
+<p>只列出了几个常用的，具体效果你可以自己一试。</p>
+
+<h2>9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></h2>
+
+<p>需要python的支持，很强大的代码补全插件，大大提高编写代码的速度。可以自己定义模板，在该插件目录下的<code>UltiSnips</code>目录中有各种语言的补全模板。默认使用tab键补全，因为与ycm有冲突，重新映射为&lt;C-j>。</p>
+
+<p><code>let g:UltiSnipsExpandTrigger = "&lt;c-j&gt;"</code></p>
+
+<p>补全比如for循环的语句，可以通过&lt;c-j>切换更该要修改的参数。</p>
+
+<h2>10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></h2>
+
+<p>语法检查的插件，可以查看当前代码的错误，无需等到编译出错后再来修改。
+<code>:Errors</code>打开错误列表，<code>:lnext</code>和<code>lpre</code>切换下一个和前一个错误。
+在<code>.vimrc</code>中添加以下语句，对其进行配置及快捷键映射：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:syntastic_che_on_open=1
+</span><span class='line'>let g:syntastic_auto_jump=1
+</span><span class='line'>let g:syntastic_error_symbol = 'e&gt;'
+</span><span class='line'>let g:syntastic_warning_symbol = 'w&gt;'
+</span><span class='line'>let g:syntastic_always_populate_loc_list=1
+</span><span class='line'>let g:syntastic_loc_list_height = 6
+</span><span class='line'>let g:syntastic_enable_highlighting = 0
+</span><span class='line'>nmap &lt;Leader&gt;e :Errors&lt;cr&gt;
+</span><span class='line'>nmap &lt;Leader&gt;c :lnext&lt;cr&gt;
+</span><span class='line'>nmap &lt;Leader&gt;z :lpre&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://raw.github.com/scrooloose/syntastic/master/_assets/screenshot_1.png" alt="Syntastic" /></p>
+
+<h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
+
+<p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。
+<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。
+映射快捷键</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nmap &lt;Leader&gt;g :SCCompileRun&lt;cr&gt;&lt;cr&gt;&lt;cr&gt;
+</span><span class='line'>nmap &lt;Leader&gt;v :SCViewResult&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></h2>
+
+<p><img src="https://raw.github.com/airblade/vim-gitgutter/master/screenshot.png" alt="Gitgutter" /></p>
+
+<p>显示当前文件中与git仓库提交的版本的变化，在最左侧以不同符号显示不同状态。可以在<code>.vimrc</code>中自己定义</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:gitgutter_enabled = 1
+</span><span class='line'>let g:gitgutter_highlight_lines = 0
+</span><span class='line'>" let g:gitgutter_sign_added = 'xx'
+</span><span class='line'>" let g:gitgutter_sign_modified = 'yy'
+</span><span class='line'>" let g:gitgutter_sign_removed = 'zz'
+</span><span class='line'>" let g:gitgutter_sign_modified_removed = 'ww'
+</span><span class='line'>nmap gh &lt;Plug&gt;GitGutterNextHunk
+</span><span class='line'>nmap hg &lt;Plug&gt;GitGutterPrevHunk</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中我定义了<code>gh</code>跳到下一条变化之处，<code>hg</code>跳到上一条。</p>
+
+<h2>13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></h2>
+
+<p>这个插件使你可以在vim中执行git操作。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Gstatus git status
+</span><span class='line'>:Gcommit  git commit
+</span><span class='line'>:Gdiff        git diff
+</span><span class='line'>:Glog     git log
+</span><span class='line'>:Gread        git checkout file
+</span><span class='line'>:Gwrite       git add file
+</span><span class='line'>:Gmove        git mv
+</span><span class='line'>:Gremove  git rm</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
+
+<p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是
+sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67" alt="CtrlP" /></p>
+
+<p>ctrl-p打开搜索框后即可搜索，有以下功能键：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;c-f&gt; &lt;c-b&gt;      切换模式
+</span><span class='line'>&lt;c-d&gt;           切换按全路径或文件名查找
+</span><span class='line'>&lt;c-r&gt;           改变regexp模式
+</span><span class='line'>&lt;c-j&gt; &lt;c-k&gt;       下一个/上一个文件
+</span><span class='line'>&lt;c-t&gt;           新tab打开文件
+</span><span class='line'>&lt;c-v&gt; &lt;c-x&gt;       新split打开文件
+</span><span class='line'>&lt;c-n&gt; &lt;c-p&gt;       上一个或下一个查找
+</span><span class='line'>&lt;c-y&gt;           创建新文件和他的父目录
+</span><span class='line'>&lt;c-z&gt;           标记文件
+</span><span class='line'>&lt;c-o&gt;           打开标记文件</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以在<code>.vimrc</code>中配置CtrlP显示的位置，显示条目，忽略搜索目录等等,就不一一说明了，可以点击<a href="http://kien.github.io/ctrlp.vim/">这里</a>查看。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>我的配置
+</span><span class='line'>let g:ctrlp_map = '&lt;c-p&gt;'
+</span><span class='line'>let g:ctrlp_cmd = 'CtrlP'
+</span><span class='line'>let g:ctrlp_open_multiple_files = 'v'         " &lt;C-Z&gt;&lt;C-O&gt;时垂直分屏打开多个文件
+</span><span class='line'>set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+</span><span class='line'>let g:ctrlp_custom_ignore = {
+</span><span class='line'>  \ 'dir':  '\v[\/]\.(git)$',
+</span><span class='line'>  \ 'file': '\v\.(log|jpg|png|jpeg)$',
+</span><span class='line'>  \ }
+</span><span class='line'>let g:ctrlp_working_path_mode= 'ra'
+</span><span class='line'>let g:ctrlp_match_window_bottom= 1
+</span><span class='line'>let g:ctrlp_max_height= 10
+</span><span class='line'>let g:ctrlp_match_window_reversed=0
+</span><span class='line'>let g:ctrlp_mruf_max=500
+</span><span class='line'>let g:ctrlp_follow_symlinks=1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>15. <a href="https://github.com/Shougo/unite.vim">unite</a></h2>
+
+<p>和CtrlP功能类似，也可以搜索文件、缓冲区等，我使用这个插件主要是它可以查询当前vim中的所有命令和按键映射等，命令多了，一时记不住可以查查看，很方便。</p>
+
+<p>如果你在Unite窗口进入插入模式，光标将会移到该窗口的最上方，并显示“>”提示符。输入字符会搜索该列表&mdash;这里和FuzzyFinder相似。和常规vim一样，按<ESC>键可以退出插入模式回到命令模式，而且可以使用通配符*、|、!。</p>
+
+<p>命令模式和插入模式都有相应的快捷键映射。比如在命令模式下，当光标在一个文件上，按下a，Unite会显示一个可以操作该文件命令的列表。这个命令列表被称为actions，这个列表可以像Unite其他部分一样被搜索和调用。</p>
+
+<p>actions可以组合通配符。如果输入:Unite file, 然后按下*将会标记所有文件，再输入a将会列出所有actions，最后选择above，Unite将会打开所有被标记的文件。</p>
+
+<p>可以映射快捷键调用，根据自己喜好，自行定义</p>
+
+<p><code>nnoremap &lt;leader&gt;f :Unite -start-insert file</code></p>
+
+<p><img src="https://s3.amazonaws.com/github-csexton/unite-01.gif" alt="unite" /></p>
+
+<h2>16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></h2>
+
+<p>这个插件有人很讨厌，也有一些人会喜欢，我也还在试用，习惯。它能自动添加和删除匹配的括号、引号。大家选择性安装吧。</p>
+
+<p>OK，先这么多了，准备下一篇文章写一下vim中各种强大的补全。而且提醒一下，vim本身功能已经很强大，虽然各种插件可以帮助你更高效，但不要离了他们就不会使用vim了，也不要太专注于各种插件，写的内容才是最主要的。推荐一篇文章<a href="http://www.kunli.info/2013/08/13/vim/">不要复杂化vim</a>。</p>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/'>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
+
+
+        <div>
+        
+        <a class="pull-left" href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/" title="Previous Post: Octopress添加统计与SEO">&laquo; Octopress添加统计与SEO</a>
+        
+        
+        <a class="pull-right" href="/blog/2013/12/06/vimbu-quan-pei-zhi/" title="Next Post: VIM补全配置">VIM补全配置 &raquo;</a>
+        
+        <div class="clear"></div>
+        </div>
+        
+            <div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+    
+    <!-- JiaThis BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
+<!-- JiaThis END -->
+
+<!-- Baidu Button BEGIN 
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+	<a class="bds_tsina"></a>
+	<a class="bds_qzone"></a>
+	<a class="bds_tqq"></a>
+	<a class="bds_renren"></a>
+	<a class="bds_t163"></a>
+	<a class="bds_hi"></a>
+	<span class="bds_more"></span>
+	<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+ Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<!-- UY END -->
+
+    
+</div>
+
+        
+    </div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-04T20:56:00+08:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+	
+</div>
+
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-04T20:56:00+08:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time></div>
+        <div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+        <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+        </div>
+        
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+        <br />
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">VIM补全配置</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/">多系统Linux安装及配置</a>
+                </li>
+                
+            </ul>
+        </section>
+        <br />
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (4)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+        <br />
+        <section>
+  <h1>最近博文</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">VIM补全配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">vim插件配置续</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">Octopress主题样式修改</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">Octopress侧边栏及评论系统定制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a>
+      </li>
+    
+  </ul>
+</section>
+
+        <br />
+        <section>
+<h1>评论热榜</h1>
+<div id="uyan_hotcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+        <section>
+<h1>最新评论</h1>
+<div id="uyan_newcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+    </div>
+</article>
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-45001565-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>

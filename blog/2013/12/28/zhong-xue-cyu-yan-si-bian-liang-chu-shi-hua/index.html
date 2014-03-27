@@ -1,0 +1,469 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>重学C语言(四)——变量初始化 - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="C语言变量初始化">
+	<meta name="keywords" content="c, 变量, 初始化">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+    <!--
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:812lcl.com">
+	</form>
+    -->
+    
+        <form method="get" action="/search.html" id="search" class="search">
+            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+        </form>
+    
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+    
+	<h2 class="title">重学C语言(四)——变量初始化</h2>
+	<div class="entry-content">
+        <p>首先来声明几个概念：</p>
+
+<p>存储类说明符：</p>
+
+<p><code>auto  register  static  extern  typedef</code></p>
+
+<p>类型说明符：</p>
+
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
+
+<p>类型限定符：</p>
+
+<p><code>const  volatile</code></p>
+
+<!--more-->
+
+
+<h2>存储类</h2>
+
+<p>存储类分为两类：自动存储类（automatic）和静态存储类（static）。声明对象
+时使用的一些关键字和声明的上下文共同决定了对象的存储类。自动存储类对象
+对于一个程序块来说是局部的，在退出程序块时该对象将消失。如果没有使用
+存储类说明符，或者使用了auto限定符，则程序块中的声明生成的都是自动
+存储类对象。声明为register的对象也是自动存储类对象，暗示了声明的对象将
+被频繁地访问。只有很少的对象被真正存放在在机器的快速寄存器中，并且只有
+特定的类型才可以。被声明为register的对象不能对它应用元运算符&amp;。</p>
+
+<p>静态对象可以是某个程序块的局部对象，也可以是所有程序块的外部对象。无论
+是哪一种情况，在退出和再进入函数或程序块时其值将保持不变。静态变量只在
+第一次进入程序块时被初始化一次。在一个程序块
+（包含提供函数代码的程序块）内，静态对象用关键字static声明。在所有程序块外部声明且与函数定义在同一级的对象总是静态的。可以通过static关键字将
+对象声明为某个特定翻译单元的局部对象，这种类型的对象将具有内部链接。
+当省略显示的存储类或通过关键字extern进行声明时，对象对整个程序来说是
+全局可访问的，并且具有外部连接。函数内部的extern声明表明，被声明的对象
+的存储空间定义在其他地方。</p>
+
+<h2>作用域规则</h2>
+
+<p>名字的作用域指的是程序中可以使用该名字的部分。对于在函数开头声明的自动
+变量来说，其作用域是声明该变量的函数。不同函数中声明的具有相同名字的
+各个局部变量之间没有任何关系。函数的参数实际上可以看做是局部变量。</p>
+
+<p>外部变量或函数的作用域从声明它的地方开始，到其所在的（带编译）的文件的
+末尾结束。</p>
+
+<p>另一方面，如果要在外部变量的定义之前使用该变量，或外部变量的定义与变量
+的使用不在同一个源文件中，则必须在相应变量声明中强制性地使用关键字
+extern。</p>
+
+<p>将外部变量的声明与定义严格区分开来很重要。变量声明用于说明变量的属性
+（主要是变量的类型），而变量定义除此以外还将引起存储器的分配。</p>
+
+<p>在一个源程序的所有源文件中，一个外部变量只能在某个文件中定义一次，而
+其他文件可以通过extern声明来访问它（定义外部变量的源文件中也可以包含
+对该外部变量的extern声明）。外部变量的定义中必须指定数组的长度，但
+extern声明则不一定要指定数组的长度。</p>
+
+<p>用static声明限定外部变量与函数，可以将其后声明的对象的作用域限定为被
+编译源文件的剩余部分。通过static限定外部对象，可以达到隐藏外部对象的
+目的。static类型的内部变量是一种只能在某个特定函数中使用但一直占据存储空间的变量。</p>
+
+<p>外部变量的初始化只能出现在其定义中。</p>
+
+<p>在一个好的程序设计风格中，应该避免出现变量名隐藏外部作用域中相同名字
+的情况，否则，很可能引起混乱和错误。</p>
+
+<h2>初始化</h2>
+
+<p>声明对象时，对象的初始化声明符可以为其指定一个初始值。初值紧跟在运算符
+<code>=</code>之后，它可以是一个表达式，也可以是嵌套在花括号中的初值序列。初值序列
+可以以逗号结束，这样可以使格式简洁美观。</p>
+
+<p>如果变量不是自动变量，则只能进行一次初始化操作，从概念上讲，应该是在
+程序开始执行之前进行，并且初始化表达式必须为常量表达式。每次进入函数或
+程序块时，显式初始化的自动变量都将被初始化一次，其初始化表达式可以是
+任何表达式。</p>
+
+<p>对静态对象或数组而言，初值中的所有表达式必须是常量表达式。如果初值是用
+花括号括起来的初值表，则对auto或register类型的对象或数组来说，初值中的
+表达式也同样必须是常量表达式。但是自动对象的初值是一个单个的表达式，
+则它不必是常量表达式，但必须符合对象赋值的类型要求。</p>
+
+<p>未显示初始化的静态对象将被隐式初始化，其效果等同于它（或它的成员）被
+赋以常量0。未显示初始化的自动对象的初始值没有定义。</p>
+
+<p>指针或算数类型对象的初值是一个单个的表达式，也可能扩在花括号中。
+该表达式将被赋值给对象。</p>
+
+<p>结构的初值可以是类型相同的表达式，也可以是扩在花括号中的按其成员次序
+排列的处置表。无名的位字段成员将被忽略，因此不被初始化。如果表中的初值
+的数目比结构的成员数少，则后面余下的结构成员将被初始化为0。初值的数目
+不能比成员数多。</p>
+
+<p>数组的初值是一个括在花括号中的、由数组成员的初值构成的表。如果数组大小
+未知，则初值的数目将决定数组的大小，从而使数组类型成为完整类型。若数组
+大小固定，则初值的数目不能超过数组成员的数目。如果初值数目比数组成员
+数目少，则尾部余下的数组成员将被初始化为0。</p>
+
+<p>联合的初值可以是类型相同的单个表达式，也可以是括在花括号中的联合的第一个成员的初值。</p>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/'>http://812lcl.com/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
+
+
+        <div>
+        
+        <a class="pull-left" href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/" title="Previous Post: 重学C语言(三)——复杂声明分析">&laquo; 重学C语言(三)——复杂声明分析</a>
+        
+        
+        <div class="clear"></div>
+        </div>
+        
+            <div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+    
+    <!-- JiaThis BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
+<!-- JiaThis END -->
+
+<!-- Baidu Button BEGIN 
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+	<a class="bds_tsina"></a>
+	<a class="bds_qzone"></a>
+	<a class="bds_tqq"></a>
+	<a class="bds_renren"></a>
+	<a class="bds_t163"></a>
+	<a class="bds_hi"></a>
+	<span class="bds_more"></span>
+	<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+ Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<!-- UY END -->
+
+    
+</div>
+
+        
+    </div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-28T14:36:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/chu-shi-hua/'>初始化</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</div>
+
+
+	
+</div>
+
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-28T14:36:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2013</time></div>
+        <div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+        <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+        </div>
+        
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/chu-shi-hua/'>初始化</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</div>
+
+
+        <br />
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+                </li>
+                
+            </ul>
+        </section>
+        <br />
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (4)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+        <br />
+        <section>
+  <h1>最近博文</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">VIM补全配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">vim插件配置续</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">Octopress主题样式修改</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">Octopress侧边栏及评论系统定制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a>
+      </li>
+    
+  </ul>
+</section>
+
+        <br />
+        <section>
+<h1>评论热榜</h1>
+<div id="uyan_hotcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+        <section>
+<h1>最新评论</h1>
+<div id="uyan_newcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+    </div>
+</article>
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-45001565-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>

@@ -1,1 +1,846 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="首先来声明几个概念： 存储类说明符： auto register static extern typedef 类型说明符： void char short int long float double signed unsigned 结构或联合说明符 枚举说明符 类型定义名 类型限定符： &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+    <!--
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:812lcl.com">
+	</form>
+    -->
+    
+        <form method="get" action="/search.html" id="search" class="search">
+            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+        </form>
+    
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">
+		
+			重学C语言(四)——变量初始化</a>
+	</h2>
+	<div class="entry-content">
+		<p>首先来声明几个概念：</p>
+
+<p>存储类说明符：</p>
+
+<p><code>auto  register  static  extern  typedef</code></p>
+
+<p>类型说明符：</p>
+
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
+
+<p>类型限定符：</p>
+
+<p><code>const  volatile</code></p>
+
+
+		
+		<a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-28T14:36:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/chu-shi-hua/'>初始化</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">
+		
+			重学C语言(三)——复杂声明分析</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>
+是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂
+声明。C语言中的声明是不能从左往右读的，时而往左时而往右，
+有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数
+指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为
+例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过
+这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，
+作者还时不时的小幽默一把。</p>
+
+
+		
+		<a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-22T12:14:00+08:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">
+		
+			重学C语言(二)——运算符优先级与计算顺序</a>
+	</h2>
+	<div class="entry-content">
+		<p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的
+意义，就要了解清运算符之间的优先关系与结合顺序。要确保
+表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。</p>
+
+<h2>1. 运算符优先级与结合顺序</h2>
+
+<p>复杂的表达式可能会有较多的运算符，有时候弄的头大，虽然可以
+添加括号来使表达式的意义更加明确，但有时候括号太多也会造成
+混乱，而更不容易理解。掌握C语言中的运算符优先级是非常必要
+的，也是非常有益的。</p>
+
+<p>下表列出了各类运算符的优先级关系与结合顺序，表中由上至下，
+优先级依次递减。</p>
+
+
+		
+		<a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-21T14:36:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">
+		
+			重学C语言(一)——类型转换</a>
+	</h2>
+	<div class="entry-content">
+		<h2>1. 整型提升</h2>
+
+<p>在一个表达式中，凡是可以使用整型的地方都可以使用带符号或无
+符号的字符、短整型或整型位字段，还可以使用枚举类型的对象。
+如果原始类型的所有值都可用int类型表示，则其值将被转换为int
+类型；否则将被转换为unsigned int类型。这一过程称为整型提升。</p>
+
+<p>以下面的代码为例：</p>
+
+<p><code>printf(" %d ", sizeof'A');</code></p>
+
+<p>这个代码本想打印出一个字符字面值类型的长度，但你会发现结果
+是4（或是你机器上int的长度）。这里就根据提升规则，由char
+转换为int。</p>
+
+
+		
+		<a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-17T19:42:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/c/'>c</a>, <a class='tag' href='/blog/tags/bian-cheng-yu-yan/'>编程语言</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">
+		
+			VIM补全配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
+
+<h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
+
+<p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，
+然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
+
+<p>另外Java补全，还可以使用<a href="http://eclim.org/">eclim</a>。</p>
+
+
+		
+		<a href="/blog/2013/12/06/vimbu-quan-pei-zhi/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-06T18:54:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/12/06/vimbu-quan-pei-zhi/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">
+		
+			Vim插件配置续</a>
+	</h2>
+	<div class="entry-content">
+		<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子
+<a href="http://blog.jobbole.com/">伯乐在线</a> 上的一篇文章，就又开始了我好几天
+的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
+弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十
+四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete
+和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大
+，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，
+这里重要介绍一些我新增加的一些插件。</p>
+
+<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+
+<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件
+管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用
+了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不
+干扰，想删谁删谁，添加也很简单。安装该插件方法如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim
+</span><span class='line'>git clone git://github.com/tpope/vim-pathogen.git
+</span><span class='line'>mkdir bundle</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后再<code>.vimrc</code>中加入<code>execute pathogen#infect()</code>，这样就可以管理插件了。</p>
+
+
+		
+		<a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-04T20:56:00+08:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">
+		
+			Octopress添加统计与SEO</a>
+	</h2>
+	<div class="entry-content">
+		<p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让
+自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章
+，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎
+提交自己的博客地址。</p>
+
+<p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
+
+<p><a href="http://tool.lusongsong.com/addurl.html">http://tool.lusongsong.com/addurl.html</a></p>
+
+<p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述
+信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的
+元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+
+		
+		<a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-29T19:28:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/seo/'>SEO</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">
+		
+			Octopress主题样式修改</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
+说一说，主题样式的修改。</p>
+
+<h2>1. Header，Navigation，footer</h2>
+
+<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件
+，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑
+<code>source/_includes/custom</code>下的文件来实现修改。</p>
+
+<h3>1.1 Header（标题栏）</h3>
+
+<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
+和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;hgroup&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>{{ site.title }}<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>  {% if site.subtitle %}
+</span><span class='line'>    <span class="nt">&lt;h2&gt;</span>{{ site.subtitle }}<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/hgroup&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+
+		
+		<a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T11:52:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">
+		
+			Octopress侧边栏及评论系统定制</a>
+	</h2>
+	<div class="entry-content">
+		<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式
+千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
+如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造
+中国特色octopress博客的。</p>
+
+<h2>1. 第三方主题</h2>
+
+<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置
+，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西
+被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
+
+<p>你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。
+<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用
+该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd blog
+</span><span class='line'>$ git clone https://github.com/shashankmehta/greyshade.git ./themes/greyshade
+</span><span class='line'>$ rake install['greyshade']
+</span><span class='line'>$ rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行
+更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>
+预览新的主题样式，不满意可以更换其他主题。</p>
+
+
+		
+		<a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-26T22:36:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">
+		
+			Octopress博客搭建及目录结构</a>
+	</h2>
+	<div class="entry-content">
+		<p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
+思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
+服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
+等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、
+GitHub pages让我搭建个人博客成为了可能。</p>
+
+<p>最终选择了octopress，也是因为他的简单，他基于Jekyll，处理了Jekyll的很多麻烦
+设置，也不需要对前端技术有很深的了解，从一开始什么也没有，到搭建起一个可用的
+博客只需花费十几分钟，十分方便，虽然想要配置齐自己想要的东西还是需要一番折腾
+的，但那是后话了。</p>
+
+<p>我的搭建环境是ubuntu 13.04，不同的系统需要作出相应的修改，但变化不大。我的
+博客中添加了3D标签、微博秀、豆瓣读书、相关文章推荐、访客地图、评论分享、
+文章热度排名等等很多东西，本文主要介绍简单博客的搭建和目录结构，之后会写篇
+文章介绍各个模块的搭建。</p>
+
+
+		
+		<a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-25T11:49:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+<nav id="pagenavi">
+    
+    
+        <a href="/blog/page/2/" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-45001565-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>
