@@ -2,8 +2,8 @@
 layout: page
 title: "category_cloud"
 date: 2013-10-14 22:43
-comments: true
-sharing: true
+comments: false
+sharing: false
 footer: true
 ---
 
@@ -32,4 +32,7 @@ footer: true
 			{% tag_list font-size: 90-210%, limit: 10, style: para %}
 		</ul>
 	</section>
+</div>
+<div>
+<script type="text/javascript" src="http://jd.revolvermaps.com/2/1.js?i=3epahcya604&amp;s=350&amp;m=0&amp;v=true&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
 </div>
