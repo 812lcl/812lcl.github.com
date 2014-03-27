@@ -1,4 +1,5 @@
-source "https://rubygems.org"
+source "http://ruby.taobao.org"
+# source "http://rubygems.org"
 
 group :development do
   gem 'rake', '~> 10'
@@ -21,5 +22,5 @@ gem 'sinatra', '~> 1.4.2'
 gem 'octopress-popular-posts'
 gem 'jekyll-assets'
 gem 'jasmine'
-gem 'guard-jasmine-headless-webkit'
-gem 'jasmine-headless-webkit'
+#gem 'jasmine-headless-webkit'
+#gem 'guard-jasmine-headless-webkit'

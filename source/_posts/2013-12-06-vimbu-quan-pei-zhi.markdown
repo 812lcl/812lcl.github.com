@@ -114,7 +114,7 @@ tag文件并加载了。这个插件需要系统安装了clang，对vim也有一
 因为移植其他电脑，需要重新编译一遍，有时候费时费力，我就把编译好的一个
 YouCompleteMe包存在我的`.vim/bundle`中了，把其他依赖工具包安装好了，
 直接解压缩到bundle目录中即可使用YCM了，省心多了，可以参看我的
-[.vim](https://github.com/812lcl/.vim)。
+[.vim](https://github.com/812lcl/)。
 
 我的YCM配置如下
 ```
