@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.com/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-03-29T10:52:26+08:00</updated>
+  <updated>2014-03-29T11:08:28+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -1738,13 +1738,9 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h2>1. 第三方主题</h2>
 
-<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置
-，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西
-被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
+<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
 
-<p>你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。
-<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用
-该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
+<p>你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1756,33 +1752,26 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 </span><span class='line'>$ rake generate</span></code></pre></td></tr></table></div></figure>
 
 
-<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行
-更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>
-预览新的主题样式，不满意可以更换其他主题。</p>
+<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>预览新的主题样式，不满意可以更换其他主题。</p>
 
 <!--more-->
 
 
 <h2>2. 侧边栏</h2>
 
-<p>侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到
-<a href="https://github.com/imathis/octopress/wiki">octopress的wiki页面</a>寻找。</p>
+<p>侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到<a href="https://github.com/imathis/octopress/wiki">octopress的wiki页面</a>寻找。</p>
 
-<p>侧边栏在<code>_config.yml</code>中设置，添加进<code>default_asides</code>中，先后顺序代表显示的
-先后顺序，各个侧边栏插件代码放入相应的位置即可，自己添加的一般放入<code>source/_includes/custom/asides</code>，<code>default_asides</code>中默认从<code>_includes</code>之后路径开始写。</p>
+<p>侧边栏在<code>_config.yml</code>中设置，添加进<code>default_asides</code>中，先后顺序代表显示的先后顺序，各个侧边栏插件代码放入相应的位置即可，自己添加的一般放入<code>source/_includes/custom/asides</code>，<code>default_asides</code>中默认从<code>_includes</code>之后路径开始写。</p>
 
 <h3>2.1 最新文章</h3>
 
 <p>首先说一下主题中可用的插件。</p>
 
-<p><code>asides/recent_posts.html</code>是最近写的文章的一个
-展示，添加到<code>default_asides</code>中即可显示，在<code>_config.yml</code>中可以设置显示最近
-多少篇文章，<code>recent_posts: 5</code>，注意冒号后有空格。</p>
+<p><code>asides/recent_posts.html</code>是最近写的文章的一个展示，添加到<code>default_asides</code>中即可显示，在<code>_config.yml</code>中可以设置显示最近多少篇文章，<code>recent_posts: 5</code>，注意冒号后有空格。</p>
 
 <h3>2.2 GitHub Repos</h3>
 
-<p><code>asides/github.html</code>则是GitHub repos的一个展示，可以直接到达你的GitHub页面，
-在<code>_config.yml</code>中设置你的Github账号，并设置为<code>true</code>即可，如下：</p>
+<p><code>asides/github.html</code>则是GitHub repos的一个展示，可以直接到达你的GitHub页面，在<code>_config.yml</code>中设置你的Github账号，并设置为<code>true</code>即可，如下：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1798,11 +1787,9 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h3>2.3 微博秀</h3>
 
-<p>新浪微博是一个信息传播非常迅速的媒介，如果你热衷于微博，可以在侧边栏添加
-自己的微博秀。首先需要获得自己的微博秀代码，链接为<a href="http://app.weibo.com/tool/weiboshow">http://app.weibo.com/tool/weiboshow</a>，进行相应的设置即可获得微博秀代码。</p>
+<p>新浪微博是一个信息传播非常迅速的媒介，如果你热衷于微博，可以在侧边栏添加自己的微博秀。首先需要获得自己的微博秀代码，链接为<a href="http://app.weibo.com/tool/weiboshow">http://app.weibo.com/tool/weiboshow</a>，进行相应的设置即可获得微博秀代码。</p>
 
-<p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得
-的微博秀代码也要添加到相应位置：</p>
+<p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得的微博秀代码也要添加到相应位置：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1831,11 +1818,9 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h3>2.4 豆瓣展示</h3>
 
-<p>你可以通过豆瓣读书、豆瓣电影、豆瓣音乐等多方面展示你自己，豆瓣也提供了类似
-微博秀的展示方式，添加方法也类似。获得豆瓣收藏秀的链接<a href="http://www.douban.com/service/badgemakerjs">http://www.douban.com/service/badgemakerjs</a>，根据自己的喜欢进行设置</p>
+<p>你可以通过豆瓣读书、豆瓣电影、豆瓣音乐等多方面展示你自己，豆瓣也提供了类似微博秀的展示方式，添加方法也类似。获得豆瓣收藏秀的链接<a href="http://www.douban.com/service/badgemakerjs">http://www.douban.com/service/badgemakerjs</a>，根据自己的喜欢进行设置</p>
 
-<p>然后在<code>source/_includes/custom/asides</code>创建douban.html，添加如下代码，
-刚刚获得的代码添加到<code>&lt;div&gt;</code>之间：</p>
+<p>然后在<code>source/_includes/custom/asides</code>创建douban.html，添加如下代码，刚刚获得的代码添加到<code>&lt;div&gt;</code>之间：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1856,9 +1841,7 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h3>2.5 访客地图</h3>
 
-<p>效果如我的博客右侧那个精美的3D旋转地球所示，它可以显示访客数量，访客来自的
-地域，既有装饰作用，又有统计作用。它也有2D效果版，可以根据自己喜欢进行设置，
-地址在<a href="http://www.revolvermaps.com/?target=setup">这里</a>，然后获得代码。</p>
+<p>效果如我的博客右侧那个精美的3D旋转地球所示，它可以显示访客数量，访客来自的地域，既有装饰作用，又有统计作用。它也有2D效果版，可以根据自己喜欢进行设置，地址在<a href="http://www.revolvermaps.com/?target=setup">这里</a>，然后获得代码。</p>
 
 <p>依然在<code>source/_includes/custom/asides</code>创建earth.html，代码如下：</p>
 
@@ -1877,8 +1860,7 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h3>2.6 酷站博客</h3>
 
-<p>你有一些经常去的网站、博客，想推荐给大家，则可以在侧边栏加上一个“酷站博客”
-，当然名字你自己取即可。</p>
+<p>你有一些经常去的网站、博客，想推荐给大家，则可以在侧边栏加上一个“酷站博客”，当然名字你自己取即可。</p>
 
 <p>在<code>source/_includes/custom/asides</code>创建blog_link.html，代码如下：</p>
 
@@ -1931,8 +1913,7 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h3>2.7 最热文章</h3>
 
-<p>Octopress Popular Posts Plugin是根据Google page rank计算，展示出权值最高的
-文章，插件的项目主页为<a href="https://github.com/octopress-themes/popular-posts">点击这里</a>。</p>
+<p>Octopress Popular Posts Plugin是根据Google page rank计算，展示出权值最高的文章，插件的项目主页为<a href="https://github.com/octopress-themes/popular-posts">点击这里</a>。</p>
 
 <p>这个插件的安装与之前的方法不同，首先在<code>Gemfile</code>中添加</p>
 
@@ -1963,11 +1944,7 @@ sublime text2中的功能，很好用，有人就写了这么个插件，也确�
 
 <h3>2.8 3D标签云与标签列表</h3>
 
-<p>octopress默认的只支持category的分类，而并没有tag。category和tag分别代表有序/
-无序的知识点归纳。一篇文章只能属于一个category，但可以有多个tag。原来的
-plugin下只有category_generator.rb插件，实现category功能，在github上有两个插件帮助实现了tag生成和tag cloud功能<a href="https://github.com/robbyedwards/octopress-tag-pages">插件1</a>，<a href="https://github.com/robbyedwards/octopress-tag-cloud">插件2</a>。
-但似乎并不支持中文，而category_generator.rb是支持中文的，所以我有样学样，改
-成了支持中文的，并且实现了3D标签云的，插件已经上传到<a href="https://github.com/812lcl/category_tag">github</a>。clone到你博客的目录即可。</p>
+<p>octopress默认的只支持category的分类，而并没有tag。category和tag分别代表有序/无序的知识点归纳。一篇文章只能属于一个category，但可以有多个tag。原来的plugin下只有category_generator.rb插件，实现category功能，在github上有两个插件帮助实现了tag生成和tag cloud功能<a href="https://github.com/robbyedwards/octopress-tag-pages">插件1</a>，<a href="https://github.com/robbyedwards/octopress-tag-cloud">插件2</a>。但似乎并不支持中文，而category_generator.rb是支持中文的，所以我有样学样，改成了支持中文的，并且实现了3D标签云的，插件已经上传到<a href="https://github.com/812lcl/category_tag">github</a>。clone到你博客的目录即可。</p>
 
 <p>包含文件如下：</p>
 
@@ -2002,10 +1979,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>其中<code>category_generator.rb</code>和<code>tag_generator.rb</code>定义了根据文章的category和tag
-标签分类存储文章的方法，<code>category_tag_cloud.rb</code>则可以定义了根据category或tag
-生成3D标签云的方法。<code>category_list.rb</code>和<code>tag_list.rb</code>实现了将所有文章的category和tag列出来的方法，其中category可以显示文章个数，tag根据此标签文章多少，
-大小随着改变。</p>
+<p>其中<code>category_generator.rb</code>和<code>tag_generator.rb</code>定义了根据文章的category和tag标签分类存储文章的方法，<code>category_tag_cloud.rb</code>则可以定义了根据category或tag生成3D标签云的方法。<code>category_list.rb</code>和<code>tag_list.rb</code>实现了将所有文章的category和tag列出来的方法，其中category可以显示文章个数，tag根据此标签文章多少，大小随着改变。</p>
 
 <p>四个HTML文件则是category和tag的列表和3D标签云的侧边栏实现。需要哪个，在<code>default_asides</code>中添加即可。</p>
 
@@ -2031,15 +2005,9 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <h3>2.9 相关文章功能</h3>
 
-<p>此功能即根据当前阅读的文章，分析博客中其他与此相近的文章，进行推荐的一个功能
-，在octopress wiki中推荐的第三方插件中有一个插件实现此功能，项目主页<a href="https://github.com/jcftang/octopress-relatedposts">点击这里</a>。该插件，利用octopress自带的LSI实现对文章分析分类，然后进行推荐，但当文章较多时分类过慢，它推荐
-安装GSL来进行分类。我安装过这个功能，但不知道它是根据什么规则分类，而且之后
-不知道安装了什么，之后每次分类都会出错。你可以自己尝试一下，项目主页都有
-详细的步骤。</p>
+<p>此功能即根据当前阅读的文章，分析博客中其他与此相近的文章，进行推荐的一个功能，在octopress wiki中推荐的第三方插件中有一个插件实现此功能，项目主页<a href="https://github.com/jcftang/octopress-relatedposts">点击这里</a>。该插件，利用octopress自带的LSI实现对文章分析分类，然后进行推荐，但当文章较多时分类过慢，它推荐安装GSL来进行分类。我安装过这个功能，但不知道它是根据什么规则分类，而且之后不知道安装了什么，之后每次分类都会出错。你可以自己尝试一下，项目主页都有详细的步骤。</p>
 
-<p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。
-这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，
-然后在想添加相关文章推荐的地方添加如下语句：</p>
+<p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，然后在想添加相关文章推荐的地方添加如下语句：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2064,11 +2032,9 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时
-的布局，我将相关文章添加在博文的结束处。</p>
+<p>我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时的布局，我将相关文章添加在博文的结束处。</p>
 
-<p>这个插件是根据文章的tag进行分类的，根据所有博文与本篇文章共同tag的多少依次
-排序进行推荐，还是很简单有效的。</p>
+<p>这个插件是根据文章的tag进行分类的，根据所有博文与本篇文章共同tag的多少依次排序进行推荐，还是很简单有效的。</p>
 
 <p>参考<a href="http://techtinkering.com/2011/08/17/improving-related-posts-on-jekyll/">这里</a></p>
 
@@ -2076,17 +2042,11 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <h3>3.1 友言和加网</h3>
 
-<p>octopress内置了disqus评论系统，不适合我国基本国情，所以需要用一些国内的第三
-方评论系统，如友言、多说，可以以微博、人人、QQ等账号登陆发表评论，网站通过
-验证后可以对评论进行分析，管理。</p>
+<p>octopress内置了disqus评论系统，不适合我国基本国情，所以需要用一些国内的第三方评论系统，如友言、多说，可以以微博、人人、QQ等账号登陆发表评论，网站通过验证后可以对评论进行分析，管理。</p>
 
 <p>多说评论系统可参见<a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">为 Octopress 添加多说评论系统</a>，不多做介绍。</p>
 
-<p>我主要使用的是友言的一套评论系统及插件，分享使用的是加网JiaThis。首先注册
-<a href="http://www.uyan.cc/">友言</a>账号，否则无法进行后台管理。注册之后获得代码，
-添加到<code>source/_includes/post/share_comment.html</code>。
-加网<a href="http://www.jiathis.com/getcode/icon">点击这里</a>，定制自己喜欢的样式，
-获得代码也添加到上述文件中。</p>
+<p>我主要使用的是友言的一套评论系统及插件，分享使用的是加网JiaThis。首先注册<a href="http://www.uyan.cc/">友言</a>账号，否则无法进行后台管理。注册之后获得代码，添加到<code>source/_includes/post/share_comment.html</code>。加网<a href="http://www.jiathis.com/getcode/icon">点击这里</a>，定制自己喜欢的样式，获得代码也添加到上述文件中。</p>
 
 <p>share_comment.html文件中代码如下（每个人不同）：</p>
 
@@ -2163,8 +2123,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或
-评论，代码也可以添加到这。</p>
+<p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或评论，代码也可以添加到这。</p>
 
 <p>现在功能代码在share_comment.html中了，下面需要使其显示到博文的底部。</p>
 
@@ -2188,16 +2147,13 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、
-社交影响力分析、和评论栏的风格功能设置。</p>
+<p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、社交影响力分析、和评论栏的风格功能设置。</p>
 
 <h3>3.2 评论热榜和最新评论侧边栏</h3>
 
-<p>友言提供了多个嵌入式组件，如评论热榜、最新评论、评论计数等。我们可以将他们
-做成侧边栏进行展示，或在首页文章列表中，显示每篇文章的评论数目。</p>
+<p>友言提供了多个嵌入式组件，如评论热榜、最新评论、评论计数等。我们可以将他们做成侧边栏进行展示，或在首页文章列表中，显示每篇文章的评论数目。</p>
 
-<p>首先在你的友言后台管理中找到<code>安装设置-&gt;嵌入式组件</code>获得评论热榜和最新评论的
-代码，分别创建<code>source/_includes/custom/asides/uyan_hotcmt.html</code>和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
+<p>首先在你的友言后台管理中找到<code>安装设置-&gt;嵌入式组件</code>获得评论热榜和最新评论的代码，分别创建<code>source/_includes/custom/asides/uyan_hotcmt.html</code>和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2233,8 +2189,7 @@ plugin下只有category_generator.rb插件，实现category功能，在github上
 
 <h3>3.3 评论计数显示</h3>
 
-<p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。
-实现方法为：在<code>source/_includes/article.html</code>中</p>
+<p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。实现方法为：在<code>source/_includes/article.html</code>中</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'>{% include post/date.html %}{{ time }}
@@ -3277,63 +3232,20 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
     <link href="http://812lcl.com/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua/"/>
     <updated>2013-10-22T22:18:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/10/22/zi-jing-zi-sheng-zi-gui-hua</id>
-    <content type="html"><![CDATA[<p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手
-，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我
-一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有
-的插件，让它变成自己理想的样子。所以经过了多天的调试布局，才开始写这第一篇文
-章。这也可能是我自身拖延症的一种表现吧（我这毛病还不少），不知道怎么下笔开始
-写博客，不过万事开头难，我相信只要我坚持下去，一定会有收获的。今天的第一篇文
-章就不写博客是怎么搭建的了，想回顾一下自己的过去，展望一下将来（老调调了）。
-主要是反省一下自己，给自己一个警示作用，并订立一个明确的规划，希望自己能够持
-之以恒。</p>
+    <content type="html"><![CDATA[<p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有的插件，让它变成自己理想的样子。所以经过了多天的调试布局，才开始写这第一篇文章。这也可能是我自身拖延症的一种表现吧（我这毛病还不少），不知道怎么下笔开始写博客，不过万事开头难，我相信只要我坚持下去，一定会有收获的。今天的第一篇文章就不写博客是怎么搭建的了，想回顾一下自己的过去，展望一下将来（老调调了）。主要是反省一下自己，给自己一个警示作用，并订立一个明确的规划，希望自己能够持之以恒。</p>
 
 <!-- more -->
 
 
 <hr />
 
-<p>现在已经是十月份了，我的校招季也算过去了，不知道算是幸运或是不幸，8月底获得
-了某互联网大公司的一个offer，职位并不算令自己满意，但公司是我十分向往的，当
-时接受了offer，心里想着“又不着急签三方，还可以再找找其他的”。但获得了offer
-之后整个人就松了好多，十月份各大小公司来招聘的，自然就没那么卖力了。虽然参加
-不多，但还是备受打击，感觉的自己的不足，也下定决心补足自己。</p>
+<p>现在已经是十月份了，我的校招季也算过去了，不知道算是幸运或是不幸，8月底获得了某互联网大公司的一个offer，职位并不算令自己满意，但公司是我十分向往的，当时接受了offer，心里想着“又不着急签三方，还可以再找找其他的”。但获得了offer之后整个人就松了好多，十月份各大小公司来招聘的，自然就没那么卖力了。虽然参加不多，但还是备受打击，感觉的自己的不足，也下定决心补足自己。</p>
 
-<p>现在我在一所985名校读研究生，学的计算机专业。本科是来自一所默默无名的一本院
-校，高考时的失利，也许是我考研究生的最大的动力。从小学习一直不错，但高考却发
-挥失利，进入了一所自己不满意的学校。当时想的是“反正到时候考个好的研究生就好
-了”，现在想想多少有些后悔，进入了名校之后，更让我深刻体会到这一点，周围的环
-境确实决定了很多。这并不是在抱怨本科的学校，学校会尽自己最大的力给你最好的教
-育，我们应该感激。在本科时候似乎学每门课都没用很费力过，甚至很多课程都是靠考
-试前突击几天，照样高分通过，曾经还自诩学习能力强。回想起来才知道错过了什么，
-也导致了现在基础松动。当时考研，自己比较努力，也比较幸运获得了好的成绩，进入
-了理想的学校，这也是我有机会重新认识所学的专业，更明确自己将来想做些什么。</p>
+<p>现在我在一所985名校读研究生，学的计算机专业。本科是来自一所默默无名的一本院校，高考时的失利，也许是我考研究生的最大的动力。从小学习一直不错，但高考却发挥失利，进入了一所自己不满意的学校。当时想的是“反正到时候考个好的研究生就好了”，现在想想多少有些后悔，进入了名校之后，更让我深刻体会到这一点，周围的环境确实决定了很多。这并不是在抱怨本科的学校，学校会尽自己最大的力给你最好的教育，我们应该感激。在本科时候似乎学每门课都没用很费力过，甚至很多课程都是靠考试前突击几天，照样高分通过，曾经还自诩学习能力强。回想起来才知道错过了什么，也导致了现在基础松动。当时考研，自己比较努力，也比较幸运获得了好的成绩，进入了理想的学校，这也是我有机会重新认识所学的专业，更明确自己将来想做些什么。</p>
 
-<p>终于进入了研究生阶段，进入学校才发现周围很多的强人，和他们交谈的时候很多东西
-我都没听说过，他们却都能侃侃而谈，相谈甚欢。开始我都是默默地记在心里，之后再
-上网去搜索了解。慢慢的就发现了原来自己对所学专业的了解，甚至连入门都不算，大
-学真是浪费了太多时间了。从那时开始我才开始一点一点弥补不足，希望能赶上他人的
-脚步。开始的时候上课，学到很多的知识，从网上和周围同学那也接触到一些时下比较
-火的技术，如数据挖掘、信息检索、机器学习等等。也曾探索过一些方向，但发现没有
-实际的项目加以运用，只停留在讲课内容，理论层面，而且也不是我将来想从事的方向
-。之后也对自己的研究方向进行过思考，发现自己兴趣在于linux系统层开发，一个原
-因是linux的魅力，还有就是周围同学的影响，最后就是项目相关，用于实践。</p>
+<p>终于进入了研究生阶段，进入学校才发现周围很多的强人，和他们交谈的时候很多东西我都没听说过，他们却都能侃侃而谈，相谈甚欢。开始我都是默默地记在心里，之后再上网去搜索了解。慢慢的就发现了原来自己对所学专业的了解，甚至连入门都不算，大学真是浪费了太多时间了。从那时开始我才开始一点一点弥补不足，希望能赶上他人的脚步。开始的时候上课，学到很多的知识，从网上和周围同学那也接触到一些时下比较火的技术，如数据挖掘、信息检索、机器学习等等。也曾探索过一些方向，但发现没有实际的项目加以运用，只停留在讲课内容，理论层面，而且也不是我将来想从事的方向。之后也对自己的研究方向进行过思考，发现自己兴趣在于linux系统层开发，一个原因是linux的魅力，还有就是周围同学的影响，最后就是项目相关，用于实践。</p>
 
-<p>一年的时间很快就过去了，追赶的脚步还在继续，但他人前进的脚步一点也不慢于我，
-所以差距一直存在，这似乎也在消磨我的自信心，自卑感逐渐加强。研二上学期就面临
-校招，我总想，若是再给我一年的时间就好了，现在我所准备的并不足以信心十足的面
-对校招，取得理想offer。但不回一切都顺你心意的，该来的总是要来。开学要毕业论
-文开题答辩，准备的焦头烂额。刚答辩完就去参加了我的第一次笔试，也是人生中应聘
-的第二次笔试。笔试还顺利，晚上就收到面试通知。自己还是很紧张，比较没有过面试
-经历，而且对自己的技术也并不有信心。果然第二天的面试及其惨烈，算法答得一塌糊
-涂，linux问的及其深入，都是内核方面的问题，交叉面了两轮，然后就没有然后了，
-我也知道这是婉拒了。毕竟自己的表现自己清楚。也是这次面试给了我极大的打击，甚
-至有一些阴影，感觉自己什么都不会，什么都不行，不敢去面试，有时候甚至消极地想
-最后笔试都不要过。接下来我也没有广投简历，只是投了几家比自己手中offer好的公
-司，有些面试感受很好，也相对顺利，但最后也是一无所获。就这样也就在前不久把三
-方寄给了某度，工作就这么定了。找工作的过程并不算很曲折，因为早早的提前offer
-使自己心里有底，但面其他公司也充分让我感受的自身的不足，也让我清楚的认识到，
-我还是想要走技术这条路，进入国企银行混个北京户口并不是我那么想要的。总之是与
-我有益的。</p>
+<p>一年的时间很快就过去了，追赶的脚步还在继续，但他人前进的脚步一点也不慢于我，所以差距一直存在，这似乎也在消磨我的自信心，自卑感逐渐加强。研二上学期就面临校招，我总想，若是再给我一年的时间就好了，现在我所准备的并不足以信心十足的面对校招，取得理想offer。但不回一切都顺你心意的，该来的总是要来。开学要毕业论文开题答辩，准备的焦头烂额。刚答辩完就去参加了我的第一次笔试，也是人生中应聘的第二次笔试。笔试还顺利，晚上就收到面试通知。自己还是很紧张，比较没有过面试经历，而且对自己的技术也并不有信心。果然第二天的面试及其惨烈，算法答得一塌糊涂，linux问的及其深入，都是内核方面的问题，交叉面了两轮，然后就没有然后了，我也知道这是婉拒了。毕竟自己的表现自己清楚。也是这次面试给了我极大的打击，甚至有一些阴影，感觉自己什么都不会，什么都不行，不敢去面试，有时候甚至消极地想最后笔试都不要过。接下来我也没有广投简历，只是投了几家比自己手中offer好的公司，有些面试感受很好，也相对顺利，但最后也是一无所获。就这样也就在前不久把三方寄给了某度，工作就这么定了。找工作的过程并不算很曲折，因为早早的提前offer使自己心里有底，但面其他公司也充分让我感受的自身的不足，也让我清楚的认识到，我还是想要走技术这条路，进入国企银行混个北京户口并不是我那么想要的。总之是与我有益的。</p>
 
 <p>既然工作定了就该想一想自己以后的路了，距离入职还有小一年的时间。该好好计划一下这段时间了，估计今后也不会有这么自由的时间了。我打算主要从三条线进行查漏补缺：</p>
 
@@ -3353,15 +3265,7 @@ windows，改为<code>default 4</code>，保存的时候需要强制保存，输
 </ol>
 
 
-<p>这是一个很粗略的规划，要学的东西很多，按照陈皓的<a href="http://coolshell.cn/articles/4990.html">程序员技术练级攻略</a>，自己在启蒙入门还有很多需要学习。看书必须与动手
-实践相结合，很多书之前也都看过，可一段时间用，又忘了，现在是一个知识快餐化的
-时代，来的快走的快，反复实践才能留住知识。写这篇文章也只是想驱动自己马上开始
-，拖延症是病，得治啊，文章写的我都惨不认识，但坚持下去肯定会越写越好，这篇文
-章是为了警示自己，我还有很多东西要学，现在不学迟早是要补的。当然做好一件事我
-个人觉得需要两点：耻辱感和成就感。知耻而后勇，耻辱感会刺激你更努力，做得更好
-。但一直努力仍然没有回报，你也不会坚持下去，所以还需要成就感，即使小小的成就
-。成就感会使你更开心的努力，而且小小的成就慢慢积累也许就会达到你不敢想象的程
-度。</p>
+<p>这是一个很粗略的规划，要学的东西很多，按照陈皓的<a href="http://coolshell.cn/articles/4990.html">程序员技术练级攻略</a>，自己在启蒙入门还有很多需要学习。看书必须与动手实践相结合，很多书之前也都看过，可一段时间用，又忘了，现在是一个知识快餐化的时代，来的快走的快，反复实践才能留住知识。写这篇文章也只是想驱动自己马上开始，拖延症是病，得治啊，文章写的我都惨不认识，但坚持下去肯定会越写越好，这篇文章是为了警示自己，我还有很多东西要学，现在不学迟早是要补的。当然做好一件事我个人觉得需要两点：耻辱感和成就感。知耻而后勇，耻辱感会刺激你更努力，做得更好。但一直努力仍然没有回报，你也不会坚持下去，所以还需要成就感，即使小小的成就。成就感会使你更开心的努力，而且小小的成就慢慢积累也许就会达到你不敢想象的程度。</p>
 
 <p>加油吧，少年，我改努力了！</p>
 
