@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-03-29T10:44:05+08:00</updated>
+  <updated>2014-03-29T10:52:26+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -398,10 +398,7 @@ function goTop(acceleration, time)
     <link href="http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/"/>
     <updated>2013-10-26T22:36:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi</id>
-    <content type="html"><![CDATA[<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式
-千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，
-如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造
-中国特色octopress博客的。</p>
+    <content type="html"><![CDATA[<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。</p>
 
 <h2>1. 第三方主题</h2>
 
@@ -703,7 +700,7 @@ tag_dir: blog/tags
         <a class="jiathis_button_tqq"></a>
         <a class="jiathis_button_weixin"></a>
         <a class="jiathis_button_renren"></a>
-        <a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+        <a href="http://www.jiathis.com/share?uid=*******" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
         <a class="jiathis_counter_style"></a>
 </div>
 
@@ -743,7 +740,7 @@ tag_dir: blog/tags
 <div id="uyan_frame"></div>
 
 
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=*******"></script>
 
 
 <!-- UY END -->
@@ -790,7 +787,7 @@ tag_dir: blog/tags
 <div id="uyan_hotcmt_unit"></div>
 
 
-<pre><code>    &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
+<pre><code>    &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=*******"&gt;&lt;/script&gt;
 </code></pre>
 
 <p></section>
@@ -805,7 +802,7 @@ tag_dir: blog/tags
 <div id="uyan_newcmt_unit"></div>
 
 
-<pre><code>    &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
+<pre><code>    &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=*******"&gt;&lt;/script&gt;
 </code></pre>
 
 <p></section>
@@ -828,7 +825,7 @@ tag_dir: blog/tags
 
 <code>
  | &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments" id="uyan_count_unit" du="" su=""&gt;0条评论&lt;/a&gt;
-  &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=*******"&gt;&lt;/script&gt;
 </code>
 </p>
 
