@@ -8,20 +8,10 @@ tags: [vim, linux, 编辑器, 编程环境]
 keywords: vim, linux, easymotion, syntastic, nerdtree
 description: vim插件配置，包括十几种好用高效的插件
 ---
-之前写过一篇[文章](http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/)，介绍了当时用的一些vim插件，不过前些日子
-[伯乐在线](http://blog.jobbole.com/) 上的一篇文章，就又开始了我好几天
-的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
-弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十
-四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete
-和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大
-，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，
-这里重要介绍一些我新增加的一些插件。
+之前写过一篇[文章](http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/)，介绍了当时用的一些vim插件，不过前些日子[伯乐在线](http://blog.jobbole.com/)上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
 
 ## 1. [pathogen](https://github.com/tpope/vim-pathogen)
-首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件
-管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用
-了一个管理插件的工具`pathogen`。它可以使所有插件具有独立的目录，互不
-干扰，想删谁删谁，添加也很简单。安装该插件方法如下
+首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用了一个管理插件的工具`pathogen`。它可以使所有插件具有独立的目录，互不干扰，想删谁删谁，添加也很简单。安装该插件方法如下
 ```
 cd ~/.vim
 git clone git://github.com/tpope/vim-pathogen.git
@@ -59,26 +49,17 @@ cd ~/.vim
 git submodule init
 git submodule update
 ```
-如果你的整个`.vim`目录并不作为git仓库，也可以用pathogen管理插件，只需
-将插件下好，将其作为独立文件夹放入`~/.vim/bundle/`中即可。
+如果你的整个`.vim`目录并不作为git仓库，也可以用pathogen管理插件，只需将插件下好，将其作为独立文件夹放入`~/.vim/bundle/`中即可。
 ## 2. [Easymotion](https://github.com/Lokaltog/vim-easymotion)
-在vim原有功能中使用`f<char>`可以定位到一行中的某个字符，如fa可定位到
-本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是
-第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母
-代替，然后输入想跳到位置的字母即可。
+在vim原有功能中使用`f<char>`可以定位到一行中的某个字符，如fa可定位到本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母代替，然后输入想跳到位置的字母即可。
 
-<leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”
-，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作
-，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在`.vimrc`中
-加入下面这条语句：
+<leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在`.vimrc`中加入下面这条语句：
 
 `let g:EasyMotion_leader_key = 'f'`
 
 ![Easymotion](http://812lcl.github.io/images/blog/easymotion.gif)
 ## 3. [surround](https://github.com/tpope/vim-surround)
-这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML
-标签，功能也十分好用，尤其写HTML时。主要使用就是增加`ys`、删除`ds`、
-替换`cs`，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
+这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML标签，功能也十分好用，尤其写HTML时。主要使用就是增加`ys`、删除`ds`、替换`cs`，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
 ```
 Text              	Command     	New Text
 ---------------   	-------    	 	-----------
@@ -158,9 +139,7 @@ endif
 
 `nmap <silent> <Leader>t :TagbarToggle<cr>`
 ## 7. [NERDTree](https://github.com/scrooloose/nerdtree)
-这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，
-但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。
-在nerdtree的窗口中按？可显示快捷键操作。
+这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。在nerdtree的窗口中按？可显示快捷键操作。
 
 `nmap <silent> <Leader>n :NERDTreeToggle<CR>`映射打开快捷键，根据自己喜欢设定。
 ## 8. [Nerdcommenter](https://github.com/scrooloose/nerdcommenter)
@@ -196,9 +175,7 @@ nmap <Leader>z :lpre<cr>
 ```
 ![Syntastic](https://raw.github.com/scrooloose/syntastic/master/_assets/screenshot_1.png)
 ## 11. [Singlecompile](https://github.com/xuhdev/SingleCompile)
-自动编译插件，支持多种语言的不同编译器，具体可查看[相关主页](http://www.topbug.net/SingleCompile/)。
-`:SCCompileRun`编译并运行当前文件，`:SCCompile`仅编译，`:SCViewResult`查看运行结果，就在当前窗口中显示，十分方便。
-映射快捷键
+自动编译插件，支持多种语言的不同编译器，具体可查看[相关主页](http://www.topbug.net/SingleCompile/)。`:SCCompileRun`编译并运行当前文件，`:SCCompile`仅编译，`:SCViewResult`查看运行结果，就在当前窗口中显示，十分方便。映射快捷键
 
 ```
 nmap <Leader>g :SCCompileRun<cr><cr><cr>
@@ -232,8 +209,7 @@ nmap hg <Plug>GitGutterPrevHunk
 :Gremove	git rm
 ```
 ## 14. [CtrlP](https://github.com/kien/ctrlp.vim)
-快速查找file、buffer、mru、tag的插件，由<c-p>快捷键呼出而得名，好像是
-sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。
+快速查找file、buffer、mru、tag的插件，由<c-p>快捷键呼出而得名，好像是sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。
 
 ![CtrlP](https://github-camo.global.ssl.fastly.net/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67)
 

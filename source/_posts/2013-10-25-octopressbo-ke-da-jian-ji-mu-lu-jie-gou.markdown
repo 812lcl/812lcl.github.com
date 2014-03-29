@@ -8,40 +8,22 @@ tags: [octopress, 博客]
 keywords: octopress, linux, blog, ruby
 description:
 ---
-搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反
-思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个
-服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css
-等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、
-GitHub pages让我搭建个人博客成为了可能。
+搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。
 
-最终选择了octopress，也是因为他的简单，他基于Jekyll，处理了Jekyll的很多麻烦
-设置，也不需要对前端技术有很深的了解，从一开始什么也没有，到搭建起一个可用的
-博客只需花费十几分钟，十分方便，虽然想要配置齐自己想要的东西还是需要一番折腾
-的，但那是后话了。
+最终选择了octopress，也是因为他的简单，他基于Jekyll，处理了Jekyll的很多麻烦设置，也不需要对前端技术有很深的了解，从一开始什么也没有，到搭建起一个可用的博客只需花费十几分钟，十分方便，虽然想要配置齐自己想要的东西还是需要一番折腾的，但那是后话了。
 
-我的搭建环境是ubuntu 13.04，不同的系统需要作出相应的修改，但变化不大。我的
-博客中添加了3D标签、微博秀、豆瓣读书、相关文章推荐、访客地图、评论分享、
-文章热度排名等等很多东西，本文主要介绍简单博客的搭建和目录结构，之后会写篇
-文章介绍各个模块的搭建。
+我的搭建环境是ubuntu 13.04，不同的系统需要作出相应的修改，但变化不大。我的博客中添加了3D标签、微博秀、豆瓣读书、相关文章推荐、访客地图、评论分享、文章热度排名等等很多东西，本文主要介绍简单博客的搭建和目录结构，之后会写篇文章介绍各个模块的搭建。
 <!--more-->
 ## 开始搭建
-Octopress博客是搭建在github上的静态网页，octopress相当于一个自动化生成静态网
-页的工具，网页并没有使用数据库等，使用的是github提供的服务器和域名。github 
-pages为每个用户提供一个名为`http://username.github.com`的域名。你首先需要
-在github上建立一个名为`username.github.com`的仓库，之后的博客将会部署到这个
-仓库中，部署成后你就可以从`http://username.github.com`访问你的博客了，不过
-可能需要等待十分钟。
+Octopress博客是搭建在github上的静态网页，octopress相当于一个自动化生成静态网页的工具，网页并没有使用数据库等，使用的是github提供的服务器和域名。github pages为每个用户提供一个名为`http://username.github.com`的域名。你首先需要在github上建立一个名为`username.github.com`的仓库，之后的博客将会部署到这个仓库中，部署成后你就可以从`http://username.github.com`访问你的博客了，不过可能需要等待十分钟。
 
-利用到了github，所以首先应该配置好你的git环境，包括安装git，创建ssh公私钥与
-github建立信任连接，设置github用户名和邮箱，如果你不熟悉可以参考[GotGitHub](http://www.worldhello.net/gotgithub/index.html)。当然你还有熟悉git的基本操作了，[这里](http://rogerdudler.github.io/git-guide/index.zh.html)是一个简易教程。
+利用到了github，所以首先应该配置好你的git环境，包括安装git，创建ssh公私钥与github建立信任连接，设置github用户名和邮箱，如果你不熟悉可以参考[GotGitHub](http://www.worldhello.net/gotgithub/index.html)。当然你还有熟悉git的基本操作了，[这里](http://rogerdudler.github.io/git-guide/index.zh.html)是一个简易教程。
 
-octopress和jekyll都是依赖于Ruby的，所以如果你没装，先要装一下它咯。octopress
- 2.0是依赖于Ruby 1.9.3版本的，所以我们指明版本安装：
+octopress和jekyll都是依赖于Ruby的，所以如果你没装，先要装一下它咯。octopress 2.0是依赖于Ruby 1.9.3版本的，所以我们指明版本安装：
 
 	sudo apt-get install ruby1.9.3
 
-接下来就可以安装Octopress了，首先将octopress库clone到本地，在想要放置本地仓
-库的位置，建一个文件夹，文件夹名随你，比如我在$HOME/处建立了blog：
+接下来就可以安装Octopress了，首先将octopress库clone到本地，在想要放置本地仓库的位置，建一个文件夹，文件夹名随你，比如我在$HOME/处建立了blog：
 ```
 $ cd ~
 $ mkdir blog
@@ -78,18 +60,13 @@ Repository url:
 rake generate 	#生成静态网页
 rake deploy 	#发布网页
 ```
-等待几分钟后，网页就已经部署好了，你可以访问你的域名查看自己的博客了。然后可
-以将源码添加到github中进行管理，你仓库中有两个分支，master分支是静态网页，
-source分支则是你的生成网页的源码，这样在另一台电脑上你可以clone你的仓库，很
-容易的进行你的博客编写。
+等待几分钟后，网页就已经部署好了，你可以访问你的域名查看自己的博客了。然后可以将源码添加到github中进行管理，你仓库中有两个分支，master分支是静态网页，source分支则是你的生成网页的源码，这样在另一台电脑上你可以clone你的仓库，很容易的进行你的博客编写。
 ```
 git add .
 git commit -m 'init'
 git push origin source
 ```
-现在就可以进行文章的编写了，编写文章使用markdown语法，十分便捷，语法简单，可
-参见[markdown语法说明](http://wowubuntu.com/markdown/index.html#code)。
-输入如下命令：
+现在就可以进行文章的编写了，编写文章使用markdown语法，十分便捷，语法简单，可参见[markdown语法说明](http://wowubuntu.com/markdown/index.html#code)。输入如下命令：
 
 	rake new_post['title']
 
@@ -104,8 +81,7 @@ rake deploy 	#发布网页
 
 然后可以通过`http://localhost:4000`访问，状态满意即可发布网页，以上几步同样适用于更改网页布局、样式等，重新发布网页。
 ## _config.yml
-这是你的博客根目录下下的一个文件，通过编写它，可以设置网站基本信息，设置边栏
-等：
+这是你的博客根目录下下的一个文件，通过编写它，可以设置网站基本信息，设置边栏等：
 ```
 url: http://812lcl.github.io 		#网站地址
 title: 812lcl的博客 				#网站名
@@ -120,9 +96,7 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html, custom/
 ```
 这个文件是很重要的配置文件，配置博客需要经常修改此文件。
 ## 目录结构
-之所以要介绍目录结构，是为了更清晰的了解各个文件是做什么用的，修改网站样式
-添加侧栏等等需要修改那些文件。以免按着教程一个一个设置完成，在脑子中却一团糟
-不记得修改了什么，万一出现了错误就不好了。
+之所以要介绍目录结构，是为了更清晰的了解各个文件是做什么用的，修改网站样式添加侧栏等等需要修改那些文件。以免按着教程一个一个设置完成，在脑子中却一团糟不记得修改了什么，万一出现了错误就不好了。
 ```
 ├─ config.rb  #指定额外的compass插件
 ├─ config.ru  
@@ -148,20 +122,12 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html, custom/
    └─ images/  		#图片目录
 ```
 
-其中需要添加第三方插件时，将插件xxx.rb放入plugins文件夹中。最主要的文件夹是
-source文件夹，因为修改网页都是在这个文件夹中进行。自己添加的边栏的HTML文件
-都放置于`source/_includes/custom/asides`中，然后再_config.yml中的default_asides:中添加对应的路径，即可在网页上显示出边栏。
-修改`source/_includes/`中的其他HTML文件，如header.html等，则可以修改标题栏、
-导航栏、尾栏等等。
+其中需要添加第三方插件时，将插件xxx.rb放入plugins文件夹中。最主要的文件夹是source文件夹，因为修改网页都是在这个文件夹中进行。自己添加的边栏的HTML文件都放置于`source/_includes/custom/asides`中，然后再_config.yml中的default_asides:中添加对应的路径，即可在网页上显示出边栏。修改`source/_includes/`中的其他HTML文件，如header.html等，则可以修改标题栏、导航栏、尾栏等等。
 
-`source/_layouts`中则是网站的布局的一些HTML文件，可以修改文件布局等等。三个
-文件夹目录是非常重要并且常修改的。source中images中则放置网站相关的一些图片，
-javascripts文件家中放置一些模块需要调用的javascript脚本，_post中则是你的每篇
-博客。
+`source/_layouts`中则是网站的布局的一些HTML文件，可以修改文件布局等等。三个文件夹目录是非常重要并且常修改的。source中images中则放置网站相关的一些图片，javascripts文件家中放置一些模块需要调用的javascript脚本，_post中则是你的每篇博客。
 
 ---
-以上就是Octopress博客搭建的一个简单过程和目录结构，之后会详细介绍我的博客
-中各个模块建立的过程及出现的问题，敬请关注。
+以上就是Octopress博客搭建的一个简单过程和目录结构，之后会详细介绍我的博客中各个模块建立的过程及出现的问题，敬请关注。
 
 参考文章：
 

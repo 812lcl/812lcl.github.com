@@ -34,7 +34,7 @@
 <div class="meta">
 	<div class="date">{% include post/date.html %}{{ time }}</div>
 	<div class="tags">{% include post/categories.html %}</div>
-    <div class="comments"><a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <div class="comments"><a href="{{ root_url }}{{ post.url }}#comments" id="uyan_count_unit" du="" su="">0条评论</a>
     <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
     </div>
 	{% include post/taglist.html %}
