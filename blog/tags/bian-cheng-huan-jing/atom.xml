@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 编程环境 | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/bian-cheng-huan-jing/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-03-29T13:17:06+08:00</updated>
+  <updated>2014-03-29T13:51:42+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -22,8 +22,7 @@
 
 <h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
 
-<p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，
-然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
+<p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
 
 <p>另外Java补全，还可以使用<a href="http://eclim.org/">eclim</a>。</p>
 
@@ -34,8 +33,7 @@
 
 <h2>2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></h2>
 
-<p>这个插件是用来补全C++的，需要ctags生成项目的tag文件并加载到当前vim中，
-然后可以根据<code>. -&gt; ::</code>等符号自动补全，在之前的文章中也都介绍过了。</p>
+<p>这个插件是用来补全C++的，需要ctags生成项目的tag文件并加载到当前vim中，然后可以根据<code>. -&gt; ::</code>等符号自动补全，在之前的文章中也都介绍过了。</p>
 
 <h2>3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></h2>
 
@@ -53,9 +51,7 @@
 不同的补全，可以使用&lt;c-p>或&lt;c-n>进行上下选择不同的补全，如果有supertab
 插件更是如虎添翼了。</p>
 
-<p>这是我在配合YCM的时候的配置，由YCM补全c、cpp、java、python的文件，其他
-文件的补全则由neocomplcache实现。
-配置文件查看<a href="https://github.com/812lcl/.vim">.vim</a>。
+<p>这是我在配合YCM的时候的配置，由YCM补全c、cpp、java、python的文件，其他文件的补全则由neocomplcache实现。配置文件查看<a href="https://github.com/812lcl/.vim">.vim</a>。
 <code>
 let g:neocomplcache_enable_at_startup = 1
 au Filetype c,cpp,java,python let g:neocomplcache_enable_at_startup = 0
@@ -68,8 +64,7 @@ let g:neocomplcache_fuzzy_completion_start_length = 3         " 3个字母后开
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 </code>
-在和clang-complete配合补全时，会有一些冲突，配置时需要配置时去除冲突。
-配置文件查看<a href="https://github.com/812lcl/vim_withoutYCM">vim_withoutYCM</a>。
+在和clang-complete配合补全时，会有一些冲突，配置时需要配置时去除冲突。配置文件查看<a href="https://github.com/812lcl/vim_withoutYCM">vim_withoutYCM</a>。
 ```
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
@@ -109,23 +104,9 @@ let g:clang_auto_select = 0
 
 <h2>4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></h2>
 
-<p>这也是用于C/C++/Objective-C/Objective-C++的补全，它是利用clang自动分析
-当前项目，实现补全，比omnicppcoplete方便且高级多了，不需要每一次生成
-tag文件并加载了。这个插件需要系统安装了clang，对vim也有一定的要求，需要
-7.3以上且支持python。把需要的东西都安装好，将插件放入<code>~/.vim/bundle</code>
-目录下即可使用，并不需要在<code>.vimrc</code>中添加什么配置，很是方便。试用了下
-效果很不错，而且使用这个插件比YCM可是轻便多了，整个.vim目录也不过几MB
-而已，而且不用耗费心力配置。所以对YCM编译发憷的同志们使用这个插件也可
-满足了，只不过据说在工程文件太大的时候它比较慢。</p>
+<p>这也是用于C/C++/Objective-C/Objective-C++的补全，它是利用clang自动分析当前项目，实现补全，比omnicppcoplete方便且高级多了，不需要每一次生成tag文件并加载了。这个插件需要系统安装了clang，对vim也有一定的要求，需要7.3以上且支持python。把需要的东西都安装好，将插件放入<code>~/.vim/bundle</code>目录下即可使用，并不需要在<code>.vimrc</code>中添加什么配置，很是方便。试用了下效果很不错，而且使用这个插件比YCM可是轻便多了，整个.vim目录也不过几MB而已，而且不用耗费心力配置。所以对YCM编译发憷的同志们使用这个插件也可满足了，只不过据说在工程文件太大的时候它比较慢。## 5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a><img src="https://github-camo.global.ssl.fastly.net/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="YCM" /></p>
 
-<h2>5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></h2>
-
-<p><img src="https://github-camo.global.ssl.fastly.net/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="YCM" /></p>
-
-<p>重头戏登场了，从名字来看就够霸气了，公认的补全神奇，只不过属于编译行
-插件，稍微麻烦一些，而且体积确实大了一些，编译完后这个插件就达到了七八十MB大小。不过补全效果最好，支持<code>C/C++/Objective-C/Objective-C++</code>的补全
-，还支持基于Jedi的Python补全和基于OmniSharp的C#补全，号称安了这个插件
-就不需要下面四个了</p>
+<p>重头戏登场了，从名字来看就够霸气了，公认的补全神奇，只不过属于编译行插件，稍微麻烦一些，而且体积确实大了一些，编译完后这个插件就达到了七八十MB大小。不过补全效果最好，支持<code>C/C++/Objective-C/Objective-C++</code>的补全，还支持基于Jedi的Python补全和基于OmniSharp的C#补全，号称安了这个插件就不需要下面四个了</p>
 
 <ul>
 <li>clang_complete</li>
@@ -135,24 +116,13 @@ tag文件并加载了。这个插件需要系统安装了clang，对vim也有一
 </ul>
 
 
-<p>而且这插件和Syntastic和ultisnips的配合也都很好。而我最终选用这个插件是
-因为它支持模糊匹配功能，你只需要输入想要输入的单词的子序列即可匹配到，
-如你想匹配的名为<code>printf</code>，只需输入<code>ptf</code>即可。而且它还支持从一个变量跳转
-到它的声明或定义处的功能，都是很好用的，所以费了一番功夫编译好它还是
-值得的。</p>
+<p>而且这插件和Syntastic和ultisnips的配合也都很好。而我最终选用这个插件是因为它支持模糊匹配功能，你只需要输入想要输入的单词的子序列即可匹配到，如你想匹配的名为<code>printf</code>，只需输入<code>ptf</code>即可。而且它还支持从一个变量跳转到它的声明或定义处的功能，都是很好用的，所以费了一番功夫编译好它还是值得的。</p>
 
-<p>这个插件是需要<code>build-essential</code>、<code>camke</code>、<code>clang</code>、<code>python-dev</code>等很多
-支持的，还需要vim高于7.3.584。ubuntu用户需要重新编译安装更高版本的vim
-了，方法参见<a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">compile Vim from source</a>，fedor用户就省事多了。具体编译和使用参看<a href="https://github.com/Valloric/YouCompleteMe">项目主页</a>即可。</p>
+<p>这个插件是需要<code>build-essential</code>、<code>camke</code>、<code>clang</code>、<code>python-dev</code>等很多支持的，还需要vim高于7.3.584。ubuntu用户需要重新编译安装更高版本的vim了，方法参见<a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">compile Vim from source</a>，fedor用户就省事多了。具体编译和使用参看<a href="https://github.com/Valloric/YouCompleteMe">项目主页</a>即可。</p>
 
-<p>看过好多博客写的YCM编译的教程，最后还是感觉项目主页上的原版安装教程最好
-，所以我也就不过多介绍了，而且编译过程中可能出现各种问题，仔细阅读作者
-的教程，一切问题都可以解决。</p>
+<p>看过好多博客写的YCM编译的教程，最后还是感觉项目主页上的原版安装教程最好，所以我也就不过多介绍了，而且编译过程中可能出现各种问题，仔细阅读作者的教程，一切问题都可以解决。</p>
 
-<p>因为移植其他电脑，需要重新编译一遍，有时候费时费力，我就把编译好的一个
-YouCompleteMe包存在我的<code>.vim/bundle</code>中了，把其他依赖工具包安装好了，
-直接解压缩到bundle目录中即可使用YCM了，省心多了，可以参看我的
-<a href="https://github.com/812lcl/">.vim</a>。</p>
+<p>因为移植其他电脑，需要重新编译一遍，有时候费时费力，我就把编译好的一个YouCompleteMe包存在我的<code>.vim/bundle</code>中了，把其他依赖工具包安装好了，直接解压缩到bundle目录中即可使用YCM了，省心多了，可以参看我的<a href="https://github.com/812lcl/">.vim</a>。</p>
 
 <p>我的YCM配置如下
 <code>
@@ -180,21 +150,11 @@ nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
     <link href="http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
     <updated>2013-12-04T20:56:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
-    <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子
-<a href="http://blog.jobbole.com/">伯乐在线</a> 上的一篇文章，就又开始了我好几天
-的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件
-弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十
-四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete
-和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大
-，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，
-这里重要介绍一些我新增加的一些插件。</p>
+    <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
 
 <h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
 
-<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件
-管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用
-了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不
-干扰，想删谁删谁，添加也很简单。安装该插件方法如下
+<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不干扰，想删谁删谁，添加也很简单。安装该插件方法如下
 <code>
 cd ~/.vim
 git clone git://github.com/tpope/vim-pathogen.git
@@ -236,20 +196,13 @@ cd ~/.vim
 git submodule init
 git submodule update
 <code>``
-如果你的整个</code>.vim<code>目录并不作为git仓库，也可以用pathogen管理插件，只需
-将插件下好，将其作为独立文件夹放入</code>~/.vim/bundle/`中即可。</p>
+如果你的整个</code>.vim<code>目录并不作为git仓库，也可以用pathogen管理插件，只需将插件下好，将其作为独立文件夹放入</code>~/.vim/bundle/`中即可。</p>
 
 <h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
 
-<p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到
-本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是
-第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母
-代替，然后输入想跳到位置的字母即可。</p>
+<p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母代替，然后输入想跳到位置的字母即可。</p>
 
-<p><leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”
-，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作
-，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在<code>.vimrc</code>中
-加入下面这条语句：</p>
+<p><leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在<code>.vimrc</code>中加入下面这条语句：</p>
 
 <p><code>let g:EasyMotion_leader_key = 'f'</code></p>
 
@@ -257,9 +210,7 @@ git submodule update
 
 <h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
 
-<p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML
-标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、
-替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
+<p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
 ```
 Text                Command         New Text</p>
 
@@ -362,9 +313,7 @@ set undodir=’~/.undo/’
 
 <h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
 
-<p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，
-但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。
-在nerdtree的窗口中按？可显示快捷键操作。</p>
+<p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。在nerdtree的窗口中按？可显示快捷键操作。</p>
 
 <p><code>nmap &lt;silent&gt; &lt;Leader&gt;n :NERDTreeToggle&lt;CR&gt;</code>映射打开快捷键，根据自己喜欢设定。</p>
 
@@ -408,9 +357,7 @@ nmap &lt;Leader&gt;z :lpre&lt;cr&gt;
 
 <h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
 
-<p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。
-<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。
-映射快捷键</p>
+<p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。映射快捷键</p>
 
 <p><code>
 nmap &lt;Leader&gt;g :SCCompileRun&lt;cr&gt;&lt;cr&gt;&lt;cr&gt;
@@ -450,8 +397,7 @@ nmap hg &lt;Plug&gt;GitGutterPrevHunk
 
 <h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
 
-<p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是
-sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
+<p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
 
 <p><img src="https://github-camo.global.ssl.fastly.net/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67" alt="CtrlP" /></p>
 
@@ -516,23 +462,14 @@ let g:ctrlp_follow_symlinks=1
     <link href="http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
     <updated>2013-10-24T20:28:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
-    <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的
-功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满
-，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+    <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
 
-<p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自
-己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可
-，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
+<p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
 
 <!--more-->
 
 
-<p>首先，vim一般是linux自带了，在/usr/share/vim文件夹中，可以将要安装的插件及说
-明文档等放置这个目录的相应位置。其中有连接指向/etc/vim，可修改/etc/vim中的
-vimrc配置文件对vim进行设置。但不推荐这样做，这样以后想删除哪个插件比较麻烦。
-一般的做法是在$HOME文件夹下建立一个.vim文件夹，自己的插件、说明文档、语法高
-亮、配色方案等可以放在这个文件夹中的相应位置，配置文件为$HOME/.vimrc。这样
-不影响其他用户的配置，而且自己想恢复原来的vim，删除.vimrc和.vim文件夹即可。</p>
+<p>首先，vim一般是linux自带了，在/usr/share/vim文件夹中，可以将要安装的插件及说明文档等放置这个目录的相应位置。其中有连接指向/etc/vim，可修改/etc/vim中的vimrc配置文件对vim进行设置。但不推荐这样做，这样以后想删除哪个插件比较麻烦。一般的做法是在$HOME文件夹下建立一个.vim文件夹，自己的插件、说明文档、语法高亮、配色方案等可以放在这个文件夹中的相应位置，配置文件为$HOME/.vimrc。这样不影响其他用户的配置，而且自己想恢复原来的vim，删除.vimrc和.vim文件夹即可。</p>
 
 <p>```
 |&ndash; .vim</p>
@@ -562,10 +499,7 @@ $ cd ctags-5.6
 $ make
 $ sudo make install
 </code>
-有了ctags，可以生成标签文件，识别出程序中的函数定义调用关系，变量，宏定义等
-，看到一个函数调用时，只需按下"Ctrl+]&ldquo;，就可以跳转到其定义的地方，然后可以按
-"Ctrl+T"调回调用处。而且，有些其他插件的实现是依赖ctags实现的，所以ctags还是
-很重要的。使用方法如下
+有了ctags，可以生成标签文件，识别出程序中的函数定义调用关系，变量，宏定义等，看到一个函数调用时，只需按下"Ctrl+]&ldquo;，就可以跳转到其定义的地方，然后可以按"Ctrl+T"调回调用处。而且，有些其他插件的实现是依赖ctags实现的，所以ctags还是很重要的。使用方法如下
 <code>
 cd 程序根目录
 ctags -R        //生成tags文件
@@ -575,9 +509,7 @@ vim 程序源文件
 
 <h2>2. taglist</h2>
 
-<p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看
-到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。
-安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句
+<p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句
 <code>
 let Tlist_Show_One_File=1       "让taglist可以同时展示一个文件的函数列表
 let Tlist_Exit_OnlyWindow=1     "当taglist是最后一个分割窗口时，自动退出vim
@@ -586,11 +518,7 @@ let Tlist_Exit_OnlyWindow=1     "当taglist是最后一个分割窗口时，自�
 
 <h2>3. netrw和winmanager</h2>
 
-<p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情
-况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件
-文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。
-而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在
-~/.vim/plugin中，然后在.vimrc中填入如下
+<p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在~/.vim/plugin中，然后在.vimrc中填入如下
 <code>
 let g:winManagerWindowLayout='FileExplorer|TagList'
 let g:persistentBehaviour=0         "如果所有编辑文件都关闭了，退出vim
@@ -602,8 +530,7 @@ nmap &lt;silent&gt; &lt;F8&gt; :WMToggle&lt;cr&gt;
 
 <h2>4. cscope</h2>
 
-<p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个
-工程文件中更强大的查找功能。</p>
+<p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个工程文件中更强大的查找功能。</p>
 
 <p>首先安装，仍可以使用apt-get</p>
 
@@ -615,8 +542,7 @@ nmap &lt;silent&gt; &lt;F8&gt; :WMToggle&lt;cr&gt;
 <pre><code>:set cscopequickfix=s-,c-,d-,i-,t-,e-        " 使用QuickFix窗口来显示cscope查找结果
 </code></pre>
 
-<p>使用也是如ctags类似，先在工程根目录下生成一个cscope的数据库，要查找时，需要
-把cscope.out导入到vim中，然后可以进行各种查找。
+<p>使用也是如ctags类似，先在工程根目录下生成一个cscope的数据库，要查找时，需要把cscope.out导入到vim中，然后可以进行各种查找。
 <code>
 cd 工作目录
 cscope -Rbq
@@ -635,9 +561,7 @@ vim 工程文件
 7 或 f 查找本文件
 8 或 i 查找包含本文件的文件                        
 </code>
-查找后vim会自动跳到第一个符合的地方，如果不满意可以用<code>:cw</code>打开quickfix窗口，
-自己选择跳转位置。当然查找命令可能有些长，总去输入不太方便，可设置快捷键，在
-.vimrc中添加
+查找后vim会自动跳到第一个符合的地方，如果不满意可以用<code>:cw</code>打开quickfix窗口，自己选择跳转位置。当然查找命令可能有些长，总去输入不太方便，可设置快捷键，在.vimrc中添加
 <code>
 " 按下面这种组合键有技巧,按了&lt;C-_&gt;后要马上按下一个键,否则屏幕一闪
 " 就回到nomal状态了
@@ -655,28 +579,18 @@ nmap &lt;C-_&gt;d :cs find d &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr
 
 <h2>5. quickfix</h2>
 
-<p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误
-列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了
-。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。
-<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。
+<p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。
 <code>
 nmap &lt;F6&gt; :cp&lt;cr&gt;
 nmap &lt;F7&gt; :cn&lt;cr&gt;
 </code>
-可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个
-makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界
-面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误
-，回车可以到达错误所在的行，进行修改。</p>
+可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误，回车可以到达错误所在的行，进行修改。</p>
 
 <h2>6. minibufexplorer</h2>
 
 <p>仍然是将下载的minibufexplorer.vim放入plugin中即可。</p>
 
-<p>在编程的时候不可能永远只编辑一个文件, 肯定会打开很多源文件进行编辑, 如果每个
-文件都打开一个vim进行编辑的话那操作起来将很多麻烦, 所以vim有buffer(缓冲区)的
-概念,当你只编辑一个buffer的时候MiniBufExplorer派不上用场, 当你打开第二个
-buffer的时候, MiniBufExplorer窗口就自动弹出来了。列出了当前所有已经打开的
-buffer, 当你把光标置于这个窗口时, 有下面几个快捷键可以用:
+<p>在编程的时候不可能永远只编辑一个文件,肯定会打开很多源文件进行编辑,如果每个文件都打开一个vim进行编辑的话那操作起来将很多麻烦,所以vim有buffer(缓冲区)的概念,当你只编辑一个buffer的时候MiniBufExplorer派不上用场,当你打开第二个buffer的时候,MiniBufExplorer窗口就自动弹出来了。列出了当前所有已经打开的buffer,当你把光标置于这个窗口时,有下面几个快捷键可以用:
 <code>
 &lt;Tab&gt;   向前循环切换到每个buffer名上
 &lt;S-Tab&gt; 向后循环切换到每个buffer名上
@@ -714,8 +628,7 @@ let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口�
 
 <h2>8. Grep</h2>
 
-<p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程
-范围内，查找你想查找的任何东西。
+<p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程范围内，查找你想查找的任何东西。
 <code>
 :Grep       按照指定的规则在指定的文件中查找
 :Rgrep      同上, 但是是递归的grep
@@ -747,8 +660,7 @@ let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口�
 
 <h2>9.visualmark</h2>
 
-<p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。
-但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。
+<p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。
 <code>
 mm      设定标签
 F2      正向切换
@@ -757,12 +669,9 @@ shift+F2    反向切换
 
 <h2>10. 补全功能</h2>
 
-<p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，
-ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要
-omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
+<p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
 
-<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，
-解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令
+<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令
 <code>
 cd ~/.vim/autoload
 javac Reflection.java
@@ -802,8 +711,7 @@ let OmniCpp_GlobalScopeSearch=1         " enable the global scope search
 let OmniCpp_DisplayMode=1               " Class scope completion mode: always show all members
 let OmniCpp_ShowScopeInAbbr=1           " show scope in abbreviation and remove the last column
 </code>
-现在一切都设置好了，比如编写个a.java，输入Math.然后按<code>ctrl+x ctrl+o</code>就可以出
-现可以补全的选项了，我设置了F4和F5两个快捷键，不同的补全方式和操作如下：
+现在一切都设置好了，比如编写个a.java，输入Math.然后按<code>ctrl+x ctrl+o</code>就可以出现可以补全的选项了，我设置了F4和F5两个快捷键，不同的补全方式和操作如下：
 ```
 Ctrl+P  向前切换成员
 Ctrl+N  向后切换成员
@@ -825,8 +733,7 @@ Ctrl+X Ctrl+S   拼写建议
 
 <h2>11. supertab</h2>
 
-<p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式
-.vimrc中添加
+<p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式.vimrc中添加
 ```
 let g:SuperTabRetainCompletionType=2                              <br/>
 &ldquo; 0 &ndash; 不记录上次的补全方式
@@ -867,63 +774,35 @@ mv ~/.vim/autoload/Reflection.class ~
     <id>http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
     <content type="html"><![CDATA[<h2>1. 多系统安装</h2>
 
-<p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越
-喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫
-的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且
-使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版
-本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的
-感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持
-centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的
-校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的
-第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
+<p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
 
 <!-- more -->
 
 
-<p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些
-，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos
-的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常
-采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub
-引导，开机引导到centos镜像进行安装。而ubuntu的镜像只有七八百兆，刻进u盘，都
-都可以忽略它的存在，只要开机u盘启动即可进入安装了。这里也不讲具体如何安装了
-，可以参考一下
-<a href="http://blog.csdn.net/xiazdong/article/details/7523331">U盘安装Linux图解</a>。
-中间linux安装过程也不多讲了，安装提示一步一步来就好了。</p>
+<p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub引导，开机引导到centos镜像进行安装。而ubuntu的镜像只有七八百兆，刻进u盘，都都可以忽略它的存在，只要开机u盘启动即可进入安装了。这里也不讲具体如何安装了，可以参考一下<a href="http://blog.csdn.net/xiazdong/article/details/7523331">U盘安装Linux图解</a>。中间linux安装过程也不多讲了，安装提示一步一步来就好了。</p>
 
-<p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系
-统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后
-ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows
-也启动不起来。</p>
+<p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows也启动不起来。</p>
 
 <h2>2. 更新软件源</h2>
 
-<p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改
-<code>/etc/apt/sources.list</code>文件。</p>
+<p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改<code>/etc/apt/sources.list</code>文件。</p>
 
 <p>只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点</p>
 
-<p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择
-即可，非常方便。</p>
+<p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择即可，非常方便。</p>
 
 <h2>3. 安装喜欢的编辑器――VIM</h2>
 
-<p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑
-器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级
-编辑器。</p>
+<p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级编辑器。</p>
 
-<p>vim有很多的插件，通过添加插件可以将原本就强大的vim，改装成近似IDE的样子。
-我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的
-<a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然
-这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags
-和cscope。
+<p>vim有很多的插件，通过添加插件可以将原本就强大的vim，改装成近似IDE的样子。我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的<a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags和cscope。
 <code>
 sudo apt-get install gcc g++ git
 sudo apt-get install build-essential
 sudo apt-get install default-jre default-jdk
 sudo apt-get install ctags cscope
 </code>
-必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装
-图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令
+必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令
 <code>
 cd ~
 git clone https://github.com/812lcl/vim.git
@@ -937,8 +816,7 @@ mv ~/.vim/autoload/Reflection.class ~
 cd /usr/include/c++
 ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
 </code>
-以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章
-<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
+以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
 
 <h2>4. 一些常用软件</h2>
 
@@ -967,8 +845,7 @@ ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
 <pre><code>sudo vim /boot/grub/grub.cfg
 </code></pre>
 
-<p>其中有一句<code>default 0</code>，修改数字即可，如启动菜单第五项是windows，要默认启动
-windows，改为<code>default 4</code>，保存的时候需要强制保存，输入<code>:wq!</code></p>
+<p>其中有一句<code>default 0</code>，修改数字即可，如启动菜单第五项是windows，要默认启动windows，改为<code>default 4</code>，保存的时候需要强制保存，输入<code>:wq!</code></p>
 
 <p>有时候想设置开机自动挂载windows分区</p>
 

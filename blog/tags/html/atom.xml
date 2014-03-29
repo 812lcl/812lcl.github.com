@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: html | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/html/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-03-29T13:17:06+08:00</updated>
+  <updated>2014-03-29T13:51:42+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -18,19 +18,15 @@
     <link href="http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/"/>
     <updated>2013-10-27T11:52:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai</id>
-    <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在
-说一说，主题样式的修改。</p>
+    <content type="html"><![CDATA[<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
 
 <h2>1. Header，Navigation，footer</h2>
 
-<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件
-，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑
-<code>source/_includes/custom</code>下的文件来实现修改。</p>
+<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑<code>source/_includes/custom</code>下的文件来实现修改。</p>
 
 <h3>1.1 Header（标题栏）</h3>
 
-<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title
-和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：
+<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：
 
 ``` html
 <hgroup>
@@ -65,10 +61,7 @@
 <p>```
 </p>
 
-<p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建
-，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此
-文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径
-即可，如<code>&lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
+<p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径即可，如<code>&lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
 
 <h3>1.3 footer（尾栏）</h3>
 
@@ -87,13 +80,11 @@
 
 <p><code>``
 
-默认显示</code>Copyright@2013 &ndash; author &ndash; Powered by Octopress`，你可以添加自己想
-显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
+默认显示</code>Copyright@2013 &ndash; author &ndash; Powered by Octopress`，你可以添加自己想显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
 
 <h2>2. 样式修改</h2>
 
-<p>添加或修改控制样式，需编辑<code>sass/custom/_styles.scss</code>，博客的所有颜色控制在
-<code>/sass/base/_theme.scss</code>中进行设置。定制自己的配色，编辑<code>sass/custom/_colors.scss</code>。查看<a href="http://hslpicker.com/#e1ff00">HSL COLOR PICKER</a>，帮你挑选喜欢的颜色。</p>
+<p>添加或修改控制样式，需编辑<code>sass/custom/_styles.scss</code>，博客的所有颜色控制在<code>/sass/base/_theme.scss</code>中进行设置。定制自己的配色，编辑<code>sass/custom/_colors.scss</code>。查看<a href="http://hslpicker.com/#e1ff00">HSL COLOR PICKER</a>，帮你挑选喜欢的颜色。</p>
 
 <p>修改布局，需要编辑<code>sass/base/_layout.scss</code>，可以修改各部分的宽度等。</p>
 
@@ -132,14 +123,11 @@ html {</p>
 
 <h3>2.2 LOGO图片</h3>
 
-<p>我所说的logo图片有两种，一个是打开一个网页时，标签栏上显示的小图片。还有一个
-是标题栏主标题旁的图片。</p>
+<p>我所说的logo图片有两种，一个是打开一个网页时，标签栏上显示的小图片。还有一个是标题栏主标题旁的图片。</p>
 
-<p>首先针对于第一种可以选择你喜欢的图片（大小适中），替换<code>source</code>目录下的
-<code>favicon.png</code>即可。</p>
+<p>首先针对于第一种可以选择你喜欢的图片（大小适中），替换<code>source</code>目录下的<code>favicon.png</code>即可。</p>
 
-<p>或者将logo图片放入<code>source/images</code>中，然后修改<code>source/_includes/head.html</code>，
-找到<code>favicon.png</code>，修改其路径指向你的图片即可。</p>
+<p>或者将logo图片放入<code>source/images</code>中，然后修改<code>source/_includes/head.html</code>，找到<code>favicon.png</code>，修改其路径指向你的图片即可。</p>
 
 <p>对于主标题旁的图片需要在<code>sass/custom/_styles.scss</code>中填入如下语句：
 ``` scss
@@ -179,8 +167,7 @@ html {</p>
 
 <h2>3. 滑动返回顶部按钮</h2>
 
-<p>当文章较长，通常希望有一个返回顶部的按钮，如下方法实现了在页面右下方添加一个
-返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
+<p>当文章较长，通常希望有一个返回顶部的按钮，如下方法实现了在页面右下方添加一个返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
 
 <p>首先创建<code>source/javascripts/top.js</code>，实现滑动返回顶部效果，添加如下代码：
 ``` js
@@ -247,11 +234,9 @@ function goTop(acceleration, time)
 
 <h2>4. 二维码展示</h2>
 
-<p>在关于页面或边栏可以展示你的个人博客的二维码，方便移动终端扫描访问你的博客，
-插件主页<a href="https://github.com/sailor79/Octopress-dynamic-QR-Code-aside">点击这里</a>。</p>
+<p>在关于页面或边栏可以展示你的个人博客的二维码，方便移动终端扫描访问你的博客，插件主页<a href="https://github.com/sailor79/Octopress-dynamic-QR-Code-aside">点击这里</a>。</p>
 
-<p>在侧边栏显示，则将<code>qrcode.html</code>放入<code>source/_includes/custom/asides/</code>中，在
-<code>_config.yml</code>中<code>default_asides</code>添加<code>custom/asides/qrcode.html</code>即可显示。</p>
+<p>在侧边栏显示，则将<code>qrcode.html</code>放入<code>source/_includes/custom/asides/</code>中，在<code>_config.yml</code>中<code>default_asides</code>添加<code>custom/asides/qrcode.html</code>即可显示。</p>
 
 <p>或者将<code>qrcode.html</code>代码添加到你想展示的页面的HTML文件中亦可。</p>
 
