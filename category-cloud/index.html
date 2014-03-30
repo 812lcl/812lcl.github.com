@@ -53,7 +53,7 @@ vim
 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
-			<form action="http://google.com/search" method="get">
+			<form action="/search" method="get">
 				<input type="text" name="q" results="0">
 				<input type="hidden" name="q" value="site:812lcl.com">
 			</form>
@@ -78,10 +78,12 @@ vim
 		
         
 	</div>
-	<form class="search" action="http://google.com/search" method="get">
+
+	<form class="search" action="/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:812lcl.com">
+        <!--		<input type="hidden" name="q" value="site:812lcl.com"> -->
 	</form>
+
     <!--
     
         <form method="get" action="/search.html" id="search" class="search">
