@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="Search Results (function() { var cx = '006534083336499807012:jms_jq2srvo'; var gcse = document.createElement('script'); gcse.type = 'text/javascript &hellip;">
+	<meta name="description" content="(function() { var cx = '006534083336499807012:jms_jq2srvo'; var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -44,7 +44,7 @@
 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
-			<form action="/search" method="get">
+			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
 				<input type="hidden" name="q" value="site:812lcl.com">
 			</form>
@@ -70,19 +70,23 @@
         
 	</div>
 
+    <!-- default search
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+        <input type="hidden" name="q" value="site:812lcl.com"> 
+	</form>
+    -->
+
+    <!-- tapir search
+    <form method="get" action="/search.html" id="search" class="search">
+        <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </form>
+    -->
 
 	<form class="search" action="/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-        <!--       	<input type="hidden" name="q" value="site:812lcl.com"> -->
 	</form>
 
-    <!-- tapir search
-    
-        <form method="get" action="/search.html" id="search" class="search">
-            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
-        </form>
-    
-    -->
 </nav>
 
 </header>
@@ -93,23 +97,7 @@
     
     <h1 class="title">Search</h1>
     
-    <div class="entry-content"><h1 class="entry-title"><center>Search Results</center></h1>
-
-
-<div id="search_loading" style="margin: 40px 0">
-    <center><img src="/images/loading.gif"></center>
-</div>
-
-
-
-
-<script type="text/javascript" src="/javascripts/jquery-1.6.1.min.js"></script>
-
-
-<script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
-
-
-<div id="search_results">
+    <div class="entry-content"><div id="search_results">
 <br>
 </div>
 

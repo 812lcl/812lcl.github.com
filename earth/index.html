@@ -45,7 +45,7 @@
 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
-			<form action="/search" method="get">
+			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
 				<input type="hidden" name="q" value="site:812lcl.com">
 			</form>
@@ -71,19 +71,23 @@
         
 	</div>
 
+    <!-- default search
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+        <input type="hidden" name="q" value="site:812lcl.com"> 
+	</form>
+    -->
+
+    <!-- tapir search
+    <form method="get" action="/search.html" id="search" class="search">
+        <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </form>
+    -->
 
 	<form class="search" action="/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-        <!--       	<input type="hidden" name="q" value="site:812lcl.com"> -->
 	</form>
 
-    <!-- tapir search
-    
-        <form method="get" action="/search.html" id="search" class="search">
-            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
-        </form>
-    
-    -->
 </nav>
 
 </header>
