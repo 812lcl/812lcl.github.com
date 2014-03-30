@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 重学C语言 | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/categories/zhong-xue-cyu-yan/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-03-29T13:51:42+08:00</updated>
+  <updated>2014-03-30T09:21:32+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[test-c]]></title>
+    <link href="http://812lcl.com/blog/2014/03/30/test-c/"/>
+    <updated>2014-03-30T09:15:00+08:00</updated>
+    <id>http://812lcl.com/blog/2014/03/30/test-c</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[重学C语言(四)——变量初始化]]></title>
