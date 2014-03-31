@@ -9,6 +9,7 @@ author: 812lcl
 #original_url_pre: 原文地址
 lunr_search: false
 simple_search: http://google.com/search
+cse_search: /search
 description: 812lcl的博客，记录学习过程、学习心得，有关于Linux、C/C++、Octopress等等。
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -103,7 +104,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id: UA-45001565-1
+google_analytics_tracking_id: UA-49529601-1
 
 # Facebook Like
 facebook_like: false

@@ -3,6 +3,7 @@ layout: post
 title: "重学C语言(四)——变量初始化"
 date: 2013-12-28 14:36
 comments: true
+content: false
 categories: 重学C语言
 tags: [c, 编程语言, 初始化]
 keywords: c, 变量, 初始化
