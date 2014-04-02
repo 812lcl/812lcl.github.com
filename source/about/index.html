@@ -3,14 +3,14 @@ layout: page
 title: 关于我
 footer: false
 sharing: false
-comments: false
+comments: true
 ---
 
 <div id="about me">
     <h1>I'm 812lcl</h1>
     <p>目前，我还是一名在校研究生，计算机专业，2014年7月毕业，前往北京工作。</p>
     <br />
-    <p>喜欢折腾Linux、vim，还没有机会折腾mac。有强迫症、拖延症、密集恐惧证，在不断克服中。</p>
+    <p>喜欢折腾Linux、vim，还没有机会折腾mac。有强迫症、拖延症、密集恐惧症，在不断克服中。</p>
     <br />
     <p>Linux环境：Ubuntu或Fedora、i3wm、urxvt、zsh、vim、tmux、samba，自动化配置见<a href="https://github.com/812lcl/dotfiles">dotfiles</a>。</p>
     <br />
@@ -24,7 +24,7 @@ comments: false
         </style>
         <div id="left">
             <h1>新浪微博</h1>
-            <iframe width="70%" height="120" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1884203661&verifier=9f204b90&dpc=1"></iframe>
+            <iframe width="70%" height="120" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1884203661&verifier=9f204b90&dpc=1"></iframe>
         </div>
 
         <div id="right">
@@ -50,3 +50,7 @@ comments: false
         <div style="clear:both"></div>
     </div>
 </div>
+{% if page.comments %}
+    <div id="uyan_frame" width="75%"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+{% endif %}
