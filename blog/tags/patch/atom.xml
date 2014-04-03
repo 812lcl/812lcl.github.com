@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: patch | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/patch/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-04-03T22:24:01+08:00</updated>
+  <updated>2014-04-03T22:29:54+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -24,9 +24,13 @@
 
 <p>diff的基本格式如下：</p>
 
-<blockquote><p>$ diff [options] &lt;变动前的文件> &lt;变动后的文件></p></blockquote>
+<pre><code>$ diff [options] &lt;变动前的文件&gt; &lt;变动后的文件&gt;
+</code></pre>
 
 <p>diff有大概四种格式：<strong>正常格式</strong>、<strong>并列格式</strong>、<strong>上下文格式</strong>、<strong>合并格式</strong>。</p>
+
+<!--more-->
+
 
 <p>diff可以比较文件或目录之间的差异，首先来讲解文件之间的diff，示例文件如下：</p>
 
