@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: patch | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/patch/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-04-03T22:29:54+08:00</updated>
+  <updated>2014-04-04T08:29:37+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Linux命令学习（1）：diff和patch]]></title>
+    <title type="html"><![CDATA[Linux命令学习（1）：diff 和 patch]]></title>
     <link href="http://812lcl.com/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/"/>
     <updated>2014-04-03T21:03:00+08:00</updated>
     <id>http://812lcl.com/blog/2014/04/03/linuxming-ling-xue-xi-(1):diffhe-patch</id>
@@ -24,15 +24,34 @@
 
 <p>diff的基本格式如下：</p>
 
-<pre><code>$ diff [options] &lt;变动前的文件&gt; &lt;变动后的文件&gt;
+<pre><code>$ diff [参数] &lt;变动前的文件&gt; &lt;变动后的文件&gt;
 </code></pre>
 
-<p>diff有大概四种格式：<strong>正常格式</strong>、<strong>并列格式</strong>、<strong>上下文格式</strong>、<strong>合并格式</strong>。</p>
+<p>命令参数有以下常用的一些，可以根据不同的模式选用：</p>
+
+<pre><code>-b 或--ignore-space-change 　   不检查空格字符的不同。
+-B 或--ignore-blank-lines 　    不检查空白行。
+-w 或--ignore-all-space     　  忽略全部的空格字符。
+-i 或--ignore-case 　           不检查大小写的不同。
+-q 或--brief 　                 仅显示有无差异，不显示详细的信息。
+</code></pre>
 
 <!--more-->
 
 
-<p>diff可以比较文件或目录之间的差异，首先来讲解文件之间的diff，示例文件如下：</p>
+<p>在diff目录时常用的参数如下：</p>
+
+<pre><code>-r 或--recursive 　             比较子目录中的文件。
+-N 或--new-file 　              文件A仅出现在某个目录中，预设会显示：Only in目录
+                                文件A若使用-N参数，则diff会将文件A与一个空白的文件比较。
+-P或--unidirectional-new-file 　与-N类似，只有当第二个目录包含了一个第一个目录所没有的文件时，                                    才会将这个文件与空白的文件做比较。
+</code></pre>
+
+<p>diff有大概四种格式：<strong>正常格式</strong>、<strong>并列格式</strong>、<strong>上下文格式</strong>、<strong>合并格式</strong>。</p>
+
+<p>还有git diff与vimdiff模式。</p>
+
+<p>diff可以比较文本文件或目录之间的差异，首先来讲解文本文件之间的diff，示例文件如下：</p>
 
 <p>文件f1</p>
 
@@ -188,6 +207,143 @@ index 924a897..c3b09ff 100644
 </code></pre>
 
 <p>和合并格式diff的区别在头部文件基本信息，<code>git diff</code>显示的是a、b两个版本的f1文件的内容变化，并且显示了两个版本的git哈希值（924a897..c3b09ff），与文件的权限（644）。</p>
+
+<h2>vimdiff</h2>
+
+<p>Vim提供的diff模式称作imdiff，可以很清晰形象的观察到文件内容的变化，方便的进行合并工作。vimdiff的使用方法如下：</p>
+
+<pre><code>vimdiff f1 f2
+或者
+vim -d f1 f2
+</code></pre>
+
+<p>下图为结果的画面</p>
+
+<p><img src="http://812lcl.github.io/images/blog/vimdiff.png" alt="vimdiff" /></p>
+
+<p>默认屏幕垂直分割，对比显示两个文件的不同，如果想要水平分割可以使用参数<code>-o</code>（不过怎么也是垂直的好看）。这里可以看到f1和f2中都有的但是内容改变的行被高亮为红色，次行内修改的具体位置被高亮为黄色；f1里有但是在f2中被删除的行，f1中显示为蓝色，f2中显示为绿色；相反，f2中增加的行显示为蓝色，f1中相应位置显示为绿色。这样更突出引起差异的地方，并且如果文件内容较多，连续相同的行会折叠起来，可以使用<code>zo</code>和<code>zc</code>打开和关闭折叠。</p>
+
+<p>对不同修改内容的高亮显示，颜色可以自己自定义，在自己的Vim配置文件<code>~/.vimrc</code>中添加如下语句：</p>
+
+<pre><code>hi DiffAdd ctermbg=blue ctermfg=white
+hi DiffDelete ctermbg=green ctermfg=none
+hi DiffChange ctermbg=red ctermfg=White
+hi DiffText ctermbg=yellow ctermfg=black
+</code></pre>
+
+<p>使用GUI的话可以配置<code>guibg</code>和<code>guifg</code>。</p>
+
+<p>切换不同的窗口可以使用下列命令：</p>
+
+<pre><code>Ctrl-w l        切换到右边窗口
+Ctrl-w h        切换到左边窗口
+Ctrl-w j        切换到下边窗口
+Ctrl-w k        切换到上边窗口
+</code></pre>
+
+<p>在编辑文件时也可以使用命令模式启动vimdiff模式：</p>
+
+<pre><code>vim f1
+:vertical diffsplit f2
+</code></pre>
+
+<p>如果不加<code>vertical</code>默认使用的水平分割。在Vim中除了<code>diffsplit</code>还有一些其他的命令，利于对文件进行合并和其他操作。</p>
+
+<pre><code>:diffget        把差异点中另一个文件对应的内容复制到当前行
+:diffput        把差异点中当前行的内容复制到另一个文件对应的位置
+:diffpatch      根据补丁文件更新文件内容，后面需要跟一个参数指定文件
+:diffupdate     手动刷新比较结果
+
+:qa             同时退出两个文件
+:wqa            同时保存并退出
+</code></pre>
+
+<p>如果Vim安装来<a href="https://github.com/tpope/vim-fugitive">vim-fugitive</a>插件，还可以使用<code>:Gdiff</code>命令来比较当前文件和暫存区中的文件的不同，也是利用的vimdiff，显示和操作同上。</p>
+
+<h2>目录的diff</h2>
+
+<p>目录间的diff比较目录中相同文件名的文件，也可以使用正常格式、上下文格式、合并格式、并列格式。</p>
+
+<p>示例目录为d1和d2目录，d1中有文件f1、f3，d2中有f1、f2，其中f1有一些改动。</p>
+
+<p>如果不是用其他参数，不会递归比较子目录中的文件，会显示只存在目录一个目录中的文件，但不显示其详细信息，如下结果是使用<code>diff -u d1 d2</code>的结果：</p>
+
+<pre><code>diff -u d1/f1 d2/f1
+--- d1/f1   2014-04-03 19:29:25.910803383 +0800
++++ d2/f1   2014-04-03 19:28:52.918639783 +0800
+@@ -1,5 +1,5 @@
+-a b c
++a b
+b
++c
+d
+e
+-f
+只在 d2 存在：f2
+只在 d1 存在：f3
+</code></pre>
+
+<p>在目录的diff中常使用的参数是<code>-ruN</code>，r表示递归比较子目录中的文件，u是合并格式，N表示diff会将只存在与某个目录中的文件与一个空白的文件比较。</p>
+
+<h1>patch</h1>
+
+<p>将diff的输出重定向到文本文件中，即得到补丁文件(patch)，可以使用patch命令对文本文件或目录打补丁，从而进行内容更新。</p>
+
+<p>patch的基本用法</p>
+
+<pre><code>patch [参数] &lt;patchfile&gt;
+</code></pre>
+
+<p>参数：</p>
+
+<pre><code>-p Num  忽略几层文件夹
+-E      选项说明如果发现了空文件，那么就删除它
+-R      取消打过的补丁。
+</code></pre>
+
+<p>如果使用参数<code>-p0</code>，表示从当前目录找打补丁的目标文件夹，再对该目录中的文件执行patch操作。
+而使用参数<code>-p1</code>，表示忽略第一层目录，从当前目录寻找目标文件夹中的子目录和文件，进行patch操作。</p>
+
+<h2>处理单个文件补丁</h2>
+
+<p>产生补丁</p>
+
+<pre><code>diff -uN f1 f2 &gt; file.patch
+</code></pre>
+
+<p>打补丁</p>
+
+<pre><code>patch -p0 &lt; file.patch
+或者
+patch f1 file.patch
+</code></pre>
+
+<p>取消补丁</p>
+
+<pre><code>patch -RE -p0 &lt; file.patch
+或者
+patch -RE f1 file.patch
+</code></pre>
+
+<h2>处理目录补丁</h2>
+
+<p>产生补丁</p>
+
+<pre><code>diff -urN d1 d2 &gt; dir.patch
+</code></pre>
+
+<p>打补丁</p>
+
+<pre><code>cd d1
+patch -p1 &lt; ../dir.patch
+</code></pre>
+
+<p>取消补丁</p>
+
+<pre><code>patch -R -p1 &lt; ../dir.patch
+</code></pre>
+
+<p>应用补丁时的目标代码和生成补丁时的代码未必相同，打补丁操作可能失败，补丁失败的文件会以.rej结尾。</p>
 ]]></content>
   </entry>
   
