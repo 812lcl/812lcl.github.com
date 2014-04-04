@@ -4,7 +4,7 @@
   <title><![CDATA[812lcl的博客]]></title>
   <link href="http://812lcl.com/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-04-04T08:34:59+08:00</updated>
+  <updated>2014-04-04T08:51:39+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -44,7 +44,8 @@
 <pre><code>-r 或--recursive 　             比较子目录中的文件。
 -N 或--new-file 　              文件A仅出现在某个目录中，预设会显示：Only in目录
                                 文件A若使用-N参数，则diff会将文件A与一个空白的文件比较。
--P或--unidirectional-new-file 　与-N类似，只有当第二个目录包含了一个第一个目录所没有的文件时，                                    才会将这个文件与空白的文件做比较。
+-P或--unidirectional-new-file 　与-N类似，只有当第二个目录包含了一个第一个目录所没有的文件时
+                                才会将这个文件与空白的文件做比较。
 </code></pre>
 
 <p>diff有大概四种格式：<strong>正常格式</strong>、<strong>并列格式</strong>、<strong>上下文格式</strong>、<strong>合并格式</strong>。</p>
