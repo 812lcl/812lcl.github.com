@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SEO | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/seo/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-04-04T08:29:37+08:00</updated>
+  <updated>2014-04-04T08:36:45+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -51,14 +51,14 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 
 <p>如果你没有为文章添加描述，octopress会自动以文章的前150个字符作为描述，以为
 每一篇文章都添加描述，octopress模板实现以上功能的代码在<code>source/_includes/head.html</code>中：
-</p>
+{% raw %}</p>
 
 <p><code>html
 {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
   &lt;meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}"&gt;
 {% if page.keywords %}&lt;meta name="keywords" content="{{ page.keywords }}"&gt;{% endif %}
 </code>
-
+{% endraw %}
 此外，也可以在<code>_config.yml</code>里添加默认的<code>description</code>和<code>keywords</code>。</p>
 
 <h2>统计工具</h2>
@@ -73,7 +73,7 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 <p>最后还要提的就是<a href="http://zhanzhang.baidu.com/site/index">百度站长工具</a>和<a href="http://tongji.baidu.com/web/welcome/login">百度统计了</a>，方法和CNZZ方法类似，统计代码也可以添加到<code>source/_includes/custom/footer.html</code>中。但是我发现似乎百度统计并不太准确，并且百度很难搜的到我的博客。</p>
 
 <p>我的统计代码添加如下，包括百度统计和CNZZ：
-
+{% raw %}
 ``` html</p>
 
 <p>
@@ -91,7 +91,7 @@ keywords: seo, octopress, analytics, 站内搜索</p>
 
 
 <p>```
-</p>
+{% endraw %}</p>
 
 <h2>摘要和语法高亮</h2>
 
