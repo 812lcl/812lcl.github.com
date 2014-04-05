@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "VIM插件配置，比肩IDE"
+title: "Vim插件配置，比肩IDE"
 date: 2013-10-24 20:28
 comments: true
-categories: 磨刀利刃
+categories: Vim
 tags: [vim, linux, 编辑器, 编程环境]
 keywords: vim, linux, IDE
 description:

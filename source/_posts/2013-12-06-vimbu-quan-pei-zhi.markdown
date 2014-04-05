@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "VIM补全配置"
+title: "Vim补全配置"
 date: 2013-12-06 18:54
 comments: true
-categories: 磨刀利刃
+categories: Vim
 tags: [vim, linux, 编辑器, 编程环境]
 keywords: vim, linux, omnicppcomplete, neocomplcache, youcompleteme, clang-complete, javacomplete
 description: vim补全配置

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "vim插件配置续"
+title: "Vim插件配置续"
 date: 2013-12-04 20:56
 comments: true
-categories: 磨刀利刃
+categories: Vim
 tags: [vim, linux, 编辑器, 编程环境]
 keywords: vim, linux, easymotion, syntastic, nerdtree
 description: vim插件配置，包括十几种好用高效的插件

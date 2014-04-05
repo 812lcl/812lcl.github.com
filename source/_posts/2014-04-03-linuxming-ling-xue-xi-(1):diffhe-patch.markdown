@@ -3,7 +3,7 @@ layout: post
 title: "Linux命令学习（1）：diff 和 patch"
 date: 2014-04-03 21:03
 comments: true
-categories: Linux命令
+categories: Linux
 tags: [linux, diff, patch]
 ---
 diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
@@ -300,3 +300,13 @@ patch的基本用法
     patch -R -p1 < ../dir.patch
 
 应用补丁时的目标代码和生成补丁时的代码未必相同，打补丁操作可能失败，补丁失败的文件会以.rej结尾。
+
+参考文章：
+
+- [读懂diff - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html)
+
+- [每天一个linux命令（36）：diff 命令](http://www.cnblogs.com/peida/archive/2012/12/12/2814048.html)
+
+- [补丁(patch)的制作与应用 - Linux Wiki](http://linux-wiki.cn/wiki)
+
+- [技巧：Vimdiff 使用 - IBM](http://www.ibm.com/developerworks/cn/linux/l-vimdiff/index.html)
