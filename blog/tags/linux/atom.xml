@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/linux/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-04-04T18:58:59+08:00</updated>
+  <updated>2014-04-05T22:37:41+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -12,6 +12,143 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vim 基本配置]]></title>
+    <link href="http://812lcl.com/blog/2014/04/05/vim-ji-ben-pei-zhi/"/>
+    <updated>2014-04-05T21:44:00+08:00</updated>
+    <id>http://812lcl.com/blog/2014/04/05/vim-ji-ben-pei-zhi</id>
+    <content type="html"><![CDATA[<p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的配置，下面列出我的基本配置。</p>
+
+<h2>General</h2>
+
+<p>一些基本配置</p>
+
+<pre><code>syntax on                       " 关键字上色
+syntax enable                   " 语法高亮
+set nu                          " 显示行号
+set nocp                        " 不兼容vi
+set hidden                      " 允许不保存切换buffer
+set splitright                  " 新分割窗口在右边
+set splitbelow                  " 新分割窗口在下边
+set autoread                    " 文件在Vim之外修改过，自动重新读入
+set timeoutlen=350              " 等待时间,如&lt;leader&gt;键后的输入
+set encoding=utf-8              " 编码，使汉语正常显示
+set scrolljump=3                " 当光标离开屏幕滑动行数
+set scrolloff=1                 " 保持在光标上下最少行数
+set showmatch                   " 短暂回显匹配括号
+
+set hlsearch                    " 检索时高亮显示匹配项
+set incsearch                   " 边输入边搜索
+set ignorecase                  " 搜索忽略大小写
+set smartcase                   " 智能大小写搜索
+
+set wildmenu                    " 命令模式下补全以菜单形式显示
+set wildmode=list:longest,full  " 命令模式补全模式
+set foldenable                  " 启动折叠
+set foldmethod=marker           " 设置折叠模式
+</code></pre>
+
+<p>还有相关的编码问题可以参考<a href="http://edyfox.codecarver.org/html/vim_fileencodings_detection.html">VIM文件编码识别与乱码处理</a>。</p>
+
+<h2>Formatting</h2>
+
+<p>关于缩进</p>
+
+<pre><code>set expandtab                   " tab=空格
+set tabstop=4                   " tab缩进4个空格
+set shiftwidth=4                " 自动缩进空格数
+set softtabstop=4               " 退格删除缩进
+set backspace=indent,start      " 退格可删除缩进和原有字符
+set autoindent                  " 与前一行同样等级缩进
+</code></pre>
+
+<p>当切割窗口显示多文件时，如果窗口大小改变，本来分布均匀的窗口不会重新调整大小，变得很难看，可以添加下面这条来配置自动调整大小。</p>
+
+<pre><code>au VimResized * exe "normal! \&lt;c-w&gt;="
+</code></pre>
+
+<p>在粘贴时候，如果前边的行带有注释符号，如<code>#</code>、<code>//</code>、<code>"</code>等时，后边的行会自动加上注释符号，很是麻烦，下面可以配置不自动添加成注释。</p>
+
+<pre><code>au BufReadPost * if line("'\"") &gt; 0|if line("'\"") &lt;= line("$")|exe("norm '\"")|else|exe "no      rm $"|endif|endif
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+</code></pre>
+
+<h2>Key (re)Mappings</h2>
+
+<p>一些按键的重映射，很多用了真是让人上瘾，而且便捷很多，如<code>&lt;Esc&gt;</code>用<code>jj</code>来代替，<code>:</code>用<code>;</code>来代替，还有一些常输错的一些命令的修正，如<code>Q</code>、<code>W</code>等。</p>
+
+<pre><code>let mapleader=","           " 映射&lt;leader&gt;键到为,
+nmap Y y$
+nmap V v$h
+nmap j gj
+nmap k gk
+nnoremap ; :
+
+nnoremap &lt;silent&gt; J :bp&lt;CR&gt;
+nnoremap &lt;silent&gt; K :bn&lt;CR&gt;
+noremap &lt;silent&gt;&lt;Leader&gt;h :set hlsearch! hlsearch?&lt;CR&gt;
+nnoremap &lt;space&gt; @=((foldclosed(line('.')) &lt; 0) ? 'zc' : 'zo')&lt;CR&gt;
+nmap &lt;leader&gt;tag  :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .&lt;CR&gt;&lt;CR&gt;:TlistUpdate &lt;      CR&gt;:NeoComplCacheCachingTags&lt;CR&gt;
+
+" 更方便窗口间移动
+nnoremap &lt;C-h&gt; &lt;C-w&gt;h
+nnoremap &lt;C-j&gt; &lt;C-w&gt;j
+nnoremap &lt;C-k&gt; &lt;C-w&gt;k
+nnoremap &lt;C-l&gt; &lt;C-w&gt;l
+
+cnoremap &lt;C-a&gt; &lt;Home&gt;
+cnoremap &lt;C-e&gt; &lt;End&gt;
+
+" 修正易错命令
+command -bang -nargs=* Q q&lt;bang&gt;
+command -bang -nargs=* Wa wa&lt;bang&gt;
+command -bang -nargs=* WA wa&lt;bang&gt;
+command -bang -nargs=* -complete=file W w&lt;bang&gt; &lt;args&gt;
+command -bang -nargs=* -complete=file Wq wq&lt;bang&gt; &lt;args&gt;
+command -bang -nargs=* -complete=file WQ wq&lt;bang&gt; &lt;args&gt;
+</code></pre>
+
+<h2>Vim UI</h2>
+
+<p>因为我主要在终端使用Vim，所以一些UI的配置是针对终端的。</p>
+
+<pre><code>set t_Co=256                    " 终端显示256色                                             
+set tabpagemax=15               " 最多15个Tab
+set showmode                    " 显示当前mode
+set cursorline                  " 高亮当前行
+
+hi clear SignColumn             " 标记列背景和主题背景匹配
+hi clear LineNr                 " 当前行列背景和主题背景匹配
+
+hi CursorLineNr ctermfg=red
+hi VertSplit ctermbg=Grey ctermfg=Grey cterm=none
+hi Visual ctermbg=81 ctermfg=black cterm=none
+hi Comment ctermfg=blue
+hi Statement ctermfg=cyan
+hi DiffAdd ctermbg=blue ctermfg=white
+hi DiffDelete ctermbg=green ctermfg=none
+hi DiffChange ctermbg=red ctermfg=White
+hi DiffText ctermbg=yellow ctermfg=black
+
+if has('cmdline_info')
+    set showcmd                 " 右下角显示当前操作
+    set ruler                   " 右下角显示状态说明
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " 设定格式
+endif
+
+if has('statusline')
+    set laststatus=2
+    set statusline=%&lt;%f\                     " Filename
+    set statusline+=%w%h%m%r                 " Options
+    set statusline+=%{fugitive#statusline()} " Git Hotness
+    set statusline+=\ [%{&amp;ff}/%Y]            " Filetype
+    set statusline+=\ [%{getcwd()}]          " Current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux命令学习（1）：diff 和 patch]]></title>
@@ -359,7 +496,7 @@ patch -p1 &lt; ../dir.patch
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[VIM补全配置]]></title>
+    <title type="html"><![CDATA[Vim补全配置]]></title>
     <link href="http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
     <updated>2013-12-06T18:54:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi</id>
@@ -491,7 +628,7 @@ nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[vim插件配置续]]></title>
+    <title type="html"><![CDATA[Vim插件配置续]]></title>
     <link href="http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
     <updated>2013-12-04T20:56:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
@@ -803,7 +940,7 @@ let g:ctrlp_follow_symlinks=1
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[VIM插件配置，比肩IDE]]></title>
+    <title type="html"><![CDATA[Vim插件配置，比肩IDE]]></title>
     <link href="http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
     <updated>2013-10-24T20:28:00+08:00</updated>
     <id>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
@@ -1109,107 +1246,6 @@ mv ~/.vim/autoload/Reflection.class ~
 <blockquote><p><a href="http://blog.csdn.net/wooin/article/details/1858917">手把手教你把Vim改装成一个IDE编程环境</a></p>
 
 <p><a href="http://blog.csdn.net/tge7618291/article/details/4216977">经典vim插件功能说明、安装方法和使用方法</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[多系统Linux安装及配置]]></title>
-    <link href="http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/"/>
-    <updated>2013-10-23T21:54:00+08:00</updated>
-    <id>http://812lcl.com/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi</id>
-    <content type="html"><![CDATA[<h2>1. 多系统安装</h2>
-
-<p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
-
-<!-- more -->
-
-
-<p>ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub引导，开机引导到centos镜像进行安装。而ubuntu的镜像只有七八百兆，刻进u盘，都都可以忽略它的存在，只要开机u盘启动即可进入安装了。这里也不讲具体如何安装了，可以参考一下<a href="http://blog.csdn.net/xiazdong/article/details/7523331">U盘安装Linux图解</a>。中间linux安装过程也不多讲了，安装提示一步一步来就好了。</p>
-
-<p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows也启动不起来。</p>
-
-<h2>2. 更新软件源</h2>
-
-<p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改<code>/etc/apt/sources.list</code>文件。</p>
-
-<p>只需要打开软件中心->编辑->软件源，然后点击源的列表->其他站点</p>
-
-<p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择即可，非常方便。</p>
-
-<h2>3. 安装喜欢的编辑器――VIM</h2>
-
-<p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级编辑器。</p>
-
-<p>vim有很多的插件，通过添加插件可以将原本就强大的vim，改装成近似IDE的样子。我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的<a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags和cscope。
-<code>
-sudo apt-get install gcc g++ git
-sudo apt-get install build-essential
-sudo apt-get install default-jre default-jdk
-sudo apt-get install ctags cscope
-</code>
-必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令
-<code>
-cd ~
-git clone https://github.com/812lcl/vim.git
-mv vim .vim
-mv .vim/vimrc-lcl .vimrc
-</code>
-配置C/C++和java的只能补全
-<code>
-javac ~/.vim/autoload/Reflection.java
-mv ~/.vim/autoload/Reflection.class ~
-cd /usr/include/c++
-ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
-</code>
-以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
-
-<h2>4. 一些常用软件</h2>
-
-<p>当然linux也是离不开娱乐的，看电影、听歌还是要的。</p>
-
-<ul>
-<li><p>听歌：自带的rhythm box播放器就可以了，但是缺少一些解码插件，打开一首歌，会自动寻找，统一安装即可。</p></li>
-<li><p>看电影：我一般是安装smplayer，在软件中心里可以搜到，点点鼠标就OK了。</p></li>
-<li><p>浏览器：linux都自带了firefox，但我还是习惯用chrome，软件中心里没有，去官网下一个deb包就可以了，<code>dpkg -i</code>安装。</p></li>
-<li><p>虚拟机：有时候还是需要以下windows的，用个网银、MS office等等，装个虚拟机也是必要的，virtual box就搞定了，同样软件中心点一点。</p></li>
-<li><p>其他：codeblocks、eclipse等，软件中心或是apt-get install即可。</p></li>
-</ul>
-
-
-<h2>5. 更新</h2>
-
-<p>没有什么要设置的了，可以更新一下软件了。</p>
-
-<pre><code>sudo apt-get update
-</code></pre>
-
-<h2>6. 其他</h2>
-
-<p>多系统可能需要修改一下启动顺序</p>
-
-<pre><code>sudo vim /boot/grub/grub.cfg
-</code></pre>
-
-<p>其中有一句<code>default 0</code>，修改数字即可，如启动菜单第五项是windows，要默认启动windows，改为<code>default 4</code>，保存的时候需要强制保存，输入<code>:wq!</code></p>
-
-<p>有时候想设置开机自动挂载windows分区</p>
-
-<pre><code>sudo vim /etc/fstab
-</code></pre>
-
-<p>添加想开机挂载的分区即可
-<code>sh
-/dev/sda5   /media/data     ntfs    defaults    0   0
-挂载分区    挂载位置        分区类型
-</code></p>
-
-<p>很多时候需要翻墙，查阅国外网站，这就需要<a href="https://code.google.com/p/goagent/">goagent</a>了，安装过程参阅<a href="https://code.google.com/p/goagent/wiki/GoAgent_Linux">GoAgent_Linux</a>。</p>
-
-<p>另外推荐一个工具Terminator，使用方法见<a href="http://dikar.iteye.com/blog/940085">linux 多窗口Terminator</a>。</p>
-
-<hr />
-
-<p>OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)</p>
 ]]></content>
   </entry>
   

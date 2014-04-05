@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。 &hellip;">
+	<meta name="description" content="在上一篇文章中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。 1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -99,6 +99,78 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">
+		
+			Octopress侧边栏及评论系统定制</a>
+	</h2>
+	<div class="entry-content">
+		<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。</p>
+
+<h2>1. 第三方主题</h2>
+
+<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
+
+<p>你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd blog
+</span><span class='line'>$ git clone https://github.com/shashankmehta/greyshade.git ./themes/greyshade
+</span><span class='line'>$ rake install['greyshade']
+</span><span class='line'>$ rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>预览新的主题样式，不满意可以更换其他主题。</p>
+
+
+		
+		<a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-26T22:36:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">
 		
 			Octopress博客搭建及目录结构</a>
@@ -159,7 +231,7 @@
 		
 		<a href="/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">
 		
-			VIM插件配置，比肩IDE</a>
+			Vim插件配置，比肩IDE</a>
 	</h2>
 	<div class="entry-content">
 		<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
@@ -189,7 +261,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mo-dao-li-ren/'>磨刀利刃</a>
+	<a class='category' href='/blog/categories/vim/'>Vim</a>
 
 
 </div>
