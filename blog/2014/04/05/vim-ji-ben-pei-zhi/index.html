@@ -26,6 +26,8 @@
 <nav id="main-nav"><ul class="main">
 	<li><a href="/">Home</a></li>
 	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
 	<li><a href="/category-cloud">Category</a></li>
 	<li><a href="/about">About</a></li>
 </ul>
@@ -36,6 +38,8 @@
 		<div class="container"><ul class="main">
 	<li><a href="/">Home</a></li>
 	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
 	<li><a href="/category-cloud">Category</a></li>
 	<li><a href="/about">About</a></li>
 </ul>
@@ -103,9 +107,6 @@
 
 <p>一些基本配置</p>
 
-<!--more-->
-
-
 <pre><code>syntax on                       " 关键字上色
 syntax enable                   " 语法高亮
 set nu                          " 显示行号
@@ -118,8 +119,12 @@ set timeoutlen=350              " 等待时间,如&lt;leader&gt;键后的输入
 set scrolljump=3                " 当光标离开屏幕滑动行数
 set scrolloff=1                 " 保持在光标上下最少行数
 set showmatch                   " 短暂回显匹配括号
+</code></pre>
 
-set hlsearch                    " 检索时高亮显示匹配项
+<!--more-->
+
+
+<pre><code>set hlsearch                    " 检索时高亮显示匹配项
 set incsearch                   " 边输入边搜索
 set ignorecase                  " 搜索忽略大小写
 set smartcase                   " 智能大小写搜索
@@ -396,7 +401,7 @@ endif
         <section>
  <h1>分类目录</h1>
  <ul id="categories">
-	 <li class='category'><a href='/blog/categories/linuxming-ling/'>Linux命令 (1)</a></li>
+	 <li class='category'><a href='/blog/categories/linux/'>Linux (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
 <li class='category'><a href='/blog/categories/vim/'>Vim (4)</a></li>
 <li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (1)</a></li>
