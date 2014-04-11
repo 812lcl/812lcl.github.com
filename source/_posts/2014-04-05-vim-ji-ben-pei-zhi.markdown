@@ -22,6 +22,7 @@ Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE�
     set splitbelow                  " 新分割窗口在下边
     set autoread                    " 文件在Vim之外修改过，自动重新读入
     set timeoutlen=350              " 等待时间,如<leader>键后的输入
+    set helpheight=999              " 查看帮助文档全屏
     set scrolljump=3                " 当光标离开屏幕滑动行数
     set scrolloff=1                 " 保持在光标上下最少行数
     set showmatch                   " 短暂回显匹配括号
@@ -63,20 +64,18 @@ Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE�
 
 ## Key (re)Mappings ##
 
-一些按键的重映射，很多用了真是让人上瘾，而且便捷很多，如`<Esc>`用`jj`来代替，`:`用`;`来代替，还有一些常输错的一些命令的修正，如`Q`、`W`等。
+一些按键的重映射，很多用了真是让人上瘾，而且便捷很多，如`<Esc>`用`jj`来代替，还有一些常输错的一些命令的修正，如`Q`、`W`等。
 
     let mapleader=","           " 映射<leader>键到为,
-    nmap Y y$
-    nmap V v$h
     nmap j gj
     nmap k gk
-    nnoremap ; :
-
+    inoremap jj <ESC>
     nnoremap <silent> J :bp<CR>
     nnoremap <silent> K :bn<CR>
-    noremap <silent><Leader>h :set hlsearch! hlsearch?<CR>
-    nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-    nmap <leader>tag  :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>:TlistUpdate <      CR>:NeoComplCacheCachingTags<CR>
+    noremap <silent><space> :set hls! hls?<CR>
+    noremap <silent><Leader>s :set rnu! rnu?<CR>
+    noremap <silent><Leader>l :set list! list?<CR>
+    nnoremap <Leader>c @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
     " 更方便窗口间移动
     nnoremap <C-h> <C-w>h
@@ -84,8 +83,17 @@ Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE�
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 
+    " 命令模式按键映射
     cnoremap <C-a> <Home>
     cnoremap <C-e> <End>
+    cnoremap <C-p> <Up>
+    cnoremap <C-n> <Down>
+
+    " Tab操作
+    nnoremap <Leader>tc :tabc<CR>
+    nnoremap <Leader>tn :tabn<CR>
+    nnoremap <Leader>tp :tabp<CR>
+    nnoremap <Leader>te :tabe<Space>
 
     " 修正易错命令
     command -bang -nargs=* Q q<bang>
@@ -99,14 +107,16 @@ Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE�
 
 因为我主要在终端使用Vim，所以一些UI的配置是针对终端的。GUI的话基本相似，把`ctermbg`等换成`guibg`等就可以了。
 
-    set t_Co=256                    " 终端显示256色                                             
+    set t_Co=256                    " 终端显示256色
     set tabpagemax=15               " 最多15个Tab
     set showmode                    " 显示当前mode
     set cursorline                  " 高亮当前行
-    
+    set list                        " 显示特殊符号
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
     hi clear SignColumn             " 标记列背景和主题背景匹配
     hi clear LineNr                 " 当前行列背景和主题背景匹配
-    
+
     hi CursorLineNr ctermfg=red
     hi VertSplit ctermbg=Grey ctermfg=Grey cterm=none
     hi Visual ctermbg=81 ctermfg=black cterm=none
@@ -116,18 +126,17 @@ Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE�
     hi DiffDelete ctermbg=green ctermfg=none
     hi DiffChange ctermbg=red ctermfg=White
     hi DiffText ctermbg=yellow ctermfg=black
-    
+
     if has('cmdline_info')
         set showcmd                 " 右下角显示当前操作
         set ruler                   " 右下角显示状态说明
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " 设定格式
     endif
-    
+
     if has('statusline')
-        set laststatus=2
+        set laststatus=1
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
-        set statusline+=%{fugitive#statusline()} " Git Hotness
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
