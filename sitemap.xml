@@ -69,7 +69,11 @@
         <lastmod>2014-04-20T10:05:27+08:00</lastmod>
     </url>
     <url>
-        <loc>http://812lcl.com/earth/</loc>
+        <loc>http://812lcl.com/about/</loc>
+        <lastmod>2014-04-20T10:05:27+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://812lcl.com/search.html</loc>
         <lastmod>2014-04-20T10:05:27+08:00</lastmod>
     </url>
     <url>
@@ -77,15 +81,7 @@
         <lastmod>2014-04-20T10:05:27+08:00</lastmod>
     </url>
     <url>
-        <loc>http://812lcl.com/blog/archives/</loc>
-        <lastmod>2014-04-20T10:05:27+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://812lcl.com/about/</loc>
-        <lastmod>2014-04-20T10:05:27+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://812lcl.com/search.html</loc>
+        <loc>http://812lcl.com/earth/</loc>
         <lastmod>2014-04-20T10:05:27+08:00</lastmod>
     </url>
     <url>
@@ -98,6 +94,10 @@
     </url>
     <url>
         <loc>http://812lcl.com/search/</loc>
+        <lastmod>2014-04-20T10:05:27+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://812lcl.com/blog/archives/</loc>
         <lastmod>2014-04-20T10:05:27+08:00</lastmod>
     </url>
 </urlset>
