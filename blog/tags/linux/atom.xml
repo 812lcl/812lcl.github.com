@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
   <link href="http://812lcl.com/blog/tags/linux/atom.xml" rel="self"/>
   <link href="http://812lcl.com/"/>
-  <updated>2014-05-04T16:20:49+08:00</updated>
+  <updated>2014-05-04T16:56:34+08:00</updated>
   <id>http://812lcl.com/</id>
   <author>
     <name><![CDATA[812lcl]]></name>
@@ -18,7 +18,7 @@
     <link href="http://812lcl.com/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/"/>
     <updated>2014-05-04T15:18:00+08:00</updated>
     <id>http://812lcl.com/blog/2014/05/04/linuxming-ling-xue-xi-(2):rsync</id>
-    <content type="html"><![CDATA[<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="http://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
+    <content type="html"><![CDATA[<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
 
 <h3>rsync的基本用法</h3>
 
@@ -32,6 +32,9 @@
 <li>rsync有对源文件到读权限，且对目标路径有写权限，rsync就能确保目的端文件同步到和源端一致。</li>
 <li>rsync只能以登录目的端到帐号来创建文件，无法保持目的端文件到属主和属组和源端一致。</li>
 </ol>
+
+
+<!--more-->
 
 
 <h3>[-t选项]</h3>
@@ -103,7 +106,7 @@ skipping directory superman
 <h3>[-a选项]</h3>
 
 <ol>
-<li>-a选项是rsync里比较霸道的一个选项，因为你使用-a选项，就相当于使用了-rlptgoD这一坨选项。以一敌七，唯-a选项也。</li>
+<li>-a选项是rsync里比较霸道的一个选项，因为你使用-a选项，就相当于使用了<code>-rlptgoD</code>这一坨选项。以一敌七，唯-a选项也。</li>
 <li>-a选项的学名应该叫做archive option，中文叫做归档选项。使用-a选项，就表明你希望采取递归方式来同步，且尽可能的保持各个方面的一致性。</li>
 <li>但是-a无法同步“硬链接”情况。如果有这方面需求，要加上-H选项。</li>
 </ol>
@@ -138,6 +141,123 @@ skipping directory superman
 
 <p>使用这个选项，rsync会显示出传输进度信息，有什么用呢，rsync给了一个很有意思的解释：
 This gives a bored user something to watch.</p>
+
+<h2>rsync核心算法</h2>
+
+<p>rsync的算法十分高效，酷壳上 <a href="coolshell.cn/articles/7425.html">一篇文章</a> 介绍来其核心算法，就不再赘述来。</p>
+
+<h2>rsync服务器架设</h2>
+
+<p>可以架设rsync服务器，rsync以守护进程运行，客户端将rsync指令写成一个shell脚本，通过crontab定期执行脚本，以实现服务器和客户端间特定文件或目录到同步，这样就不需要你每次手动同步来，而且rsync服务器配置也十分简单。</p>
+
+<p>主要涉及三个文件：</p>
+
+<ol>
+<li>/etc/rsyncd.conf 是rsync服务器主要配置文件</li>
+<li>/etc/rsyncd.secrets 是登录rsync服务器到密码文件</li>
+<li>/etc/rsyncd.motd 是定义用户登录时显示到信息</li>
+</ol>
+
+
+<h3>rsyncd.conf</h3>
+
+<p>文件内容大体如下：</p>
+
+<p>```</p>
+
+<h1>Minimal configuration file for rsync daemon</h1>
+
+<h1>See rsync(1) and rsyncd.conf(5) man pages for help</h1>
+
+<h1>This line is required by the /etc/init.d/rsync script</h1>
+
+<p>pid file = /var/run/rsyncd.pid
+motd file = /etc/rsyncd.motd
+port = 873
+address = 192.168.20.24</p>
+
+<h1>uid = nobody</h1>
+
+<h1>gid = nobody</h1>
+
+<p>uid = root
+gid = root
+use chroot = yes
+read only = no</p>
+
+<h1>limit access to private LANs</h1>
+
+<p>hosts allow = *
+hosts deny = *</p>
+
+<p>max connections = 5</p>
+
+<h1>This will give you a separate log file</h1>
+
+<p>log file = /var/log/rsync.log</p>
+
+<h1>This will log every file transferred &ndash; up to 85,000+ per user, per sync</h1>
+
+<h1>transfer logging = yes</h1>
+
+<p>log format = %t %a %m %f %b
+syslog facility = local3
+timeout = 300</p>
+
+<p>[test]
+path = /home/lcl/test
+list = yes
+ignore errors
+auth users = lcl
+secrets file = /etc/rsyncd.secrets
+comment = lcl test</p>
+
+<h1>exclude = samba/</h1>
+
+<p>```</p>
+
+<p>rsync使用到是873好端口，上面到配置中<code>hosts allow</code>是允许使用这台rsync服务到机器到IP地址，<code>hosts deny</code>则是拒绝到，不同IP以空格隔开。</p>
+
+<p>[test]及之后到配置则是，配置rsync目录，包括目录到路径，使用到用户，密码文件，可以使用<code>exclude</code>排除不要同步到文件或目录。</p>
+
+<h3>rsyncd.secrets</h3>
+
+<p>这是存储rsync服务用户到用户名和密码，是一个明文文本文件，非常重要，属性需要设为600，只允许所有者读写，文件格式如下：</p>
+
+<pre><code>lcl:12345
+</code></pre>
+
+<h3>rsyncd.motd</h3>
+
+<p>文件记录来rsync服务到欢迎信息，当用户使用该服务时会显示，可以设置为任何文本信息，如：</p>
+
+<pre><code>++++++++++++++++++++++++++++++++++++++
++ Welcome to use lcl rsync services! +
+++++++++++++++++++++++++++++++++++++++
+</code></pre>
+
+<p>配置完以上文件，可以启动rsync服务来：</p>
+
+<pre><code>rsync --daemon
+</code></pre>
+
+<p>客户端可以通过rsync命令活脚本来进行同步数据来</p>
+
+<p>rsync的命令格式可以为：
+1. rsync [OPTION]&hellip; SRC [SRC]&hellip; [USER@]HOST:DEST]
+2. rsync [OPTION]&hellip; [USER@]HOST:SRC DEST]
+3. rsync [OPTION]&hellip; SRC [SRC]&hellip; DEST]
+4. rsync [OPTION]&hellip; [USER@]HOST::SRC [DEST]
+5. rsync [OPTION]&hellip; SRC [SRC]&hellip; [USER@]HOST::DEST]
+6. rsync [OPTION]&hellip; rsync://[USER@]HOST[:PORT]/SRC [DEST]</p>
+
+<p>rsync有六种不同的工作模式：
+1. 拷贝本地文件；当SRC和DES路径信息都不包含有单个冒号":&ldquo;分隔符时就启动这种工作模式。
+2. 使用一个远程shell程序（如rsh、ssh）来实现将本地机器的内容拷贝到远程机器。当DST地址包含单个冒号&rdquo;:&ldquo;分隔符时启动该模式。
+3. 使用一个远程shell程序（如rsh、ssh）来实现将远程机器的内容拷贝到本地机器。当SRC路径包含单个冒号&rdquo;:&ldquo;分隔符时启动该模式。
+4. 从远程rsync服务器中拷贝文件到本地机。当SRC路径信息包含&rdquo;::&ldquo;分隔符时启动该模式。
+5. 从本地机器拷贝文件到远程rsync服务器中。当DST路径信息包含&rdquo;::&ldquo;分隔符时启动该模式。
+6. 列远程机的文件列表。这类似于rsync传输，不过只要在命令中省略掉本地机信息即可。</p>
 ]]></content>
   </entry>
   
