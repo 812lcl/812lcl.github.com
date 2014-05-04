@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="在上一篇文章中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。 1 &hellip;">
+	<meta name="description" content="上一篇文章写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。 1. Header，Navigation，footer 这几个部分是经常需要个性化定制的，在source/_includes中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -98,6 +98,85 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">
+		
+			Octopress主题样式修改</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
+
+<h2>1. Header，Navigation，footer</h2>
+
+<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑<code>source/_includes/custom</code>下的文件来实现修改。</p>
+
+<h3>1.1 Header（标题栏）</h3>
+
+<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;hgroup&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>{{ site.title }}<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>  {% if site.subtitle %}
+</span><span class='line'>    <span class="nt">&lt;h2&gt;</span>{{ site.subtitle }}<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/hgroup&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+
+		
+		<a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/" class="more-link">继续阅读</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T11:52:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+</article>
 
 
     <article class="post">
