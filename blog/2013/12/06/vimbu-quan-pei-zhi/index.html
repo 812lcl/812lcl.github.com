@@ -101,9 +101,9 @@
     
 	<h2 class="title">Vim补全配置</h2>
 	<div class="entry-content">
-        <p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
+        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir66">1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></a><br/>    <a href="#markdir67">2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></a><br/>    <a href="#markdir68">3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></a><br/>    <a href="#markdir69">4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></a><br/>    <a href="#markdir70">5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></a><br/></div><p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
 
-<h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
+<span id ="markdir66"></span><h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
 
 <p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
 
@@ -114,11 +114,11 @@
 
 <p><img src="http://pic002.cnblogs.com/images/2012/342823/2012041511171014.png" alt="javacomplete" /></p>
 
-<h2>2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></h2>
+<span id ="markdir67"></span><h2>2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></h2>
 
 <p>这个插件是用来补全C++的，需要ctags生成项目的tag文件并加载到当前vim中，然后可以根据<code>. -&gt; ::</code>等符号自动补全，在之前的文章中也都介绍过了。</p>
 
-<h2>3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></h2>
+<span id ="markdir68"></span><h2>3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></h2>
 
 <p>Original filename completion</p>
 
@@ -200,11 +200,11 @@
 </span><span class='line'>let g:clang_auto_select = 0</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></h2>
+<span id ="markdir69"></span><h2>4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></h2>
 
 <p>这也是用于C/C++/Objective-C/Objective-C++的补全，它是利用clang自动分析当前项目，实现补全，比omnicppcoplete方便且高级多了，不需要每一次生成tag文件并加载了。这个插件需要系统安装了clang，对vim也有一定的要求，需要7.3以上且支持python。把需要的东西都安装好，将插件放入<code>~/.vim/bundle</code>目录下即可使用，并不需要在<code>.vimrc</code>中添加什么配置，很是方便。试用了下效果很不错，而且使用这个插件比YCM可是轻便多了，整个.vim目录也不过几MB而已，而且不用耗费心力配置。所以对YCM编译发憷的同志们使用这个插件也可满足了，只不过据说在工程文件太大的时候它比较慢。</p>
 
-<h2>5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></h2>
+<span id ="markdir70"></span><h2>5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></h2>
 
 <p><img src="https://github-camo.global.ssl.fastly.net/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="YCM" /></p>
 

@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 &hellip;">
+	<meta name="description" content="Contents rsync的基本用法 [-t选项] [-I选项] [-v选项] [-z选项] [-r选项] [-l选项] [-p选项] [-g选项和-o选项] [-D选项] [-a选项] [&mdash;delete选项、&mdash;delete-excluded选项和&mdash; &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -108,9 +108,9 @@
 			Linux命令学习（2）：rsync</a>
 	</h2>
 	<div class="entry-content">
-		<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>        <a href="#markdir106">rsync的基本用法</a><br/>        <a href="#markdir107">[-t选项]</a><br/>        <a href="#markdir108">[-I选项]</a><br/>        <a href="#markdir109">[-v选项]</a><br/>        <a href="#markdir110">[-z选项]</a><br/>        <a href="#markdir111">[-r选项]</a><br/>        <a href="#markdir112">[-l选项]</a><br/>        <a href="#markdir113">[-p选项]</a><br/>        <a href="#markdir114">[-g选项和-o选项]</a><br/>        <a href="#markdir115">[-D选项]</a><br/>        <a href="#markdir116">[-a选项]</a><br/>        <a href="#markdir117">[&mdash;delete选项、&mdash;delete-excluded选项和&mdash;delete-after选项]</a><br/>        <a href="#markdir118">[&mdash;exclude选项和&mdash;exclude-from选项]</a><br/>        <a href="#markdir119">[&mdash;partial选项]</a><br/>        <a href="#markdir120">[&mdash;progress选项]</a><br/>        <a href="#markdir121">rsync核心算法</a><br/>    <a href="#markdir122">rsync服务器架设</a><br/>        <a href="#markdir123">rsyncd.conf</a><br/>        <a href="#markdir124">rsyncd.secrets</a><br/>        <a href="#markdir125">rsyncd.motd</a><br/></div><p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
 
-<h3>rsync的基本用法</h3>
+<span id ="markdir106"></span><h3>rsync的基本用法</h3>
 
 <pre><code>$ rsync [options] src dest
 </code></pre>
@@ -176,9 +176,9 @@
 			Vim 基本配置</a>
 	</h2>
 	<div class="entry-content">
-		<p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir102">General</a><br/>    <a href="#markdir103">Formatting</a><br/>    <a href="#markdir104">Key (re)Mappings</a><br/>    <a href="#markdir105">Vim UI</a><br/></div><p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。</p>
 
-<h2>General</h2>
+<span id ="markdir102"></span><h2>General</h2>
 
 <p>一些基本配置</p>
 
@@ -249,9 +249,9 @@ set showmatch                   " 短暂回显匹配括号
 			Linux命令学习（1）：diff 和 Patch</a>
 	</h2>
 	<div class="entry-content">
-		<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。</p>
+		<div id='markdir'><p><strong>Contents</strong></p><a href="#markdir92">diff</a><br/>    <a href="#markdir93">正常格式diff</a><br/>    <a href="#markdir94">并列格式diff</a><br/>    <a href="#markdir95">上下文格式diff</a><br/>    <a href="#markdir96">合并格式diff</a><br/>    <a href="#markdir97">vimdiff</a><br/>    <a href="#markdir98">目录的diff</a><br/><a href="#markdir99">patch</a><br/>    <a href="#markdir100">处理单个文件补丁</a><br/>    <a href="#markdir101">处理目录补丁</a><br/></div><p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。</p>
 
-<h1>diff</h1>
+<span id ="markdir92"></span><h1>diff</h1>
 
 <p>diff的基本格式如下：</p>
 
@@ -319,7 +319,7 @@ set showmatch                   " 短暂回显匹配括号
 			重学C语言(四)——变量初始化</a>
 	</h2>
 	<div class="entry-content">
-		<p>首先来声明几个概念：</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir89">存储类</a><br/>    <a href="#markdir90">作用域规则</a><br/>    <a href="#markdir91">初始化</a><br/></div><p>首先来声明几个概念：</p>
 
 <p>存储类说明符：</p>
 
@@ -388,7 +388,7 @@ signed  unsigned  结构或联合说明符
 			重学C语言(三)——复杂声明分析</a>
 	</h2>
 	<div class="entry-content">
-		<p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir84">1. 声明是如何形成的</a><br/>    <a href="#markdir85">2. 优先级规则</a><br/>    <a href="#markdir86">3. 通过图表分析C语言的声明</a><br/>    <a href="#markdir87">4. 一个例子</a><br/>    <a href="#markdir88">参考书籍</a><br/></div><p><a href="http://812lcl.github.io/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">上一篇文章</a>是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
 
 <pre><code>void (*signal(int, void(*)))(int);
 </code></pre>
@@ -447,9 +447,9 @@ signed  unsigned  结构或联合说明符
 			重学C语言(二)——运算符优先级与计算顺序</a>
 	</h2>
 	<div class="entry-content">
-		<p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir82">1. 运算符优先级与结合顺序</a><br/>    <a href="#markdir83">2. 计算顺序</a><br/></div><p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。</p>
 
-<h2>1. 运算符优先级与结合顺序</h2>
+<span id ="markdir82"></span><h2>1. 运算符优先级与结合顺序</h2>
 
 <p>复杂的表达式可能会有较多的运算符，有时候弄的头大，虽然可以添加括号来使表达式的意义更加明确，但有时候括号太多也会造成混乱，而更不容易理解。掌握C语言中的运算符优先级是非常必要的，也是非常有益的。</p>
 
@@ -507,7 +507,7 @@ signed  unsigned  结构或联合说明符
 			重学C语言(一)——类型转换</a>
 	</h2>
 	<div class="entry-content">
-		<h2>1. 整型提升</h2>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir71">1. 整型提升</a><br/>    <a href="#markdir72">2. 整型转换</a><br/>    <a href="#markdir73">3. 整数和浮点数</a><br/>    <a href="#markdir74">4. 浮点类型</a><br/>    <a href="#markdir75">5. 算术类型转换</a><br/>    <a href="#markdir76">6. 参数传递中的类型转换</a><br/>    <a href="#markdir77">7. 指针和整数</a><br/>    <a href="#markdir78">8. void</a><br/>    <a href="#markdir79">9. 指向void的指针</a><br/>    <a href="#markdir80">10. 强制类型转换</a><br/>        <a href="#markdir81">参考文献</a><br/></div><span id ="markdir71"></span><h2>1. 整型提升</h2>
 
 <p>在一个表达式中，凡是可以使用整型的地方都可以使用带符号或无符号的字符、短整型或整型位字段，还可以使用枚举类型的对象。如果原始类型的所有值都可用int类型表示，则其值将被转换为int类型；否则将被转换为unsigned int类型。这一过程称为整型提升。</p>
 
@@ -569,9 +569,9 @@ signed  unsigned  结构或联合说明符
 			Vim补全配置</a>
 	</h2>
 	<div class="entry-content">
-		<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir66">1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></a><br/>    <a href="#markdir67">2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></a><br/>    <a href="#markdir68">3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></a><br/>    <a href="#markdir69">4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></a><br/>    <a href="#markdir70">5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></a><br/></div><p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
 
-<h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
+<span id ="markdir66"></span><h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
 
 <p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
 
@@ -629,9 +629,9 @@ signed  unsigned  结构或联合说明符
 			Vim插件配置续</a>
 	</h2>
 	<div class="entry-content">
-		<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir50">1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></a><br/>    <a href="#markdir51">2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></a><br/>    <a href="#markdir52">3. <a href="https://github.com/tpope/vim-surround">surround</a></a><br/>    <a href="#markdir53">4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></a><br/>    <a href="#markdir54">5. <a href="https://github.com/mbbill/undotree">Undotree</a></a><br/>    <a href="#markdir55">6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></a><br/>    <a href="#markdir56">7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></a><br/>    <a href="#markdir57">8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></a><br/>    <a href="#markdir58">9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></a><br/>    <a href="#markdir59">10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></a><br/>    <a href="#markdir60">11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></a><br/>    <a href="#markdir61">12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></a><br/>    <a href="#markdir62">13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></a><br/>    <a href="#markdir63">14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></a><br/>    <a href="#markdir64">15. <a href="https://github.com/Shougo/unite.vim">unite</a></a><br/>    <a href="#markdir65">16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></a><br/></div><p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
 
-<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+<span id ="markdir50"></span><h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
 
 <p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不干扰，想删谁删谁，添加也很简单。安装该插件方法如下</p>
 
@@ -697,7 +697,7 @@ signed  unsigned  结构或联合说明符
 			Octopress添加统计与SEO</a>
 	</h2>
 	<div class="entry-content">
-		<p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir47">统计工具</a><br/>    <a href="#markdir48">摘要和语法高亮</a><br/>    <a href="#markdir49">站内搜索</a><br/></div><p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
 
 <p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
 

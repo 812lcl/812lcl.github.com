@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。 &hellip;">
+	<meta name="description" content="Contents 开始搭建 _config.yml 目录结构搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript &hellip;">
 	<meta name="keywords" content="octopress, linux, blog, ruby">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,7 +101,7 @@
     
 	<h2 class="title">Octopress博客搭建及目录结构</h2>
 	<div class="entry-content">
-        <p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。</p>
+        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir17">开始搭建</a><br/>    <a href="#markdir18">_config.yml</a><br/>    <a href="#markdir19">目录结构</a><br/></div><p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。</p>
 
 <p>最终选择了octopress，也是因为他的简单，他基于Jekyll，处理了Jekyll的很多麻烦设置，也不需要对前端技术有很深的了解，从一开始什么也没有，到搭建起一个可用的博客只需花费十几分钟，十分方便，虽然想要配置齐自己想要的东西还是需要一番折腾的，但那是后话了。</p>
 
@@ -110,7 +110,7 @@
 <!--more-->
 
 
-<h2>开始搭建</h2>
+<span id ="markdir17"></span><h2>开始搭建</h2>
 
 <p>Octopress博客是搭建在github上的静态网页，octopress相当于一个自动化生成静态网页的工具，网页并没有使用数据库等，使用的是github提供的服务器和域名。github pages为每个用户提供一个名为<code>http://username.github.com</code>的域名。你首先需要在github上建立一个名为<code>username.github.com</code>的仓库，之后的博客将会部署到这个仓库中，部署成后你就可以从<code>http://username.github.com</code>访问你的博客了，不过可能需要等待十分钟。</p>
 
@@ -209,7 +209,7 @@
 
 <p>然后可以通过<code>http://localhost:4000</code>访问，状态满意即可发布网页，以上几步同样适用于更改网页布局、样式等，重新发布网页。</p>
 
-<h2>_config.yml</h2>
+<span id ="markdir18"></span><h2>_config.yml</h2>
 
 <p>这是你的博客根目录下下的一个文件，通过编写它，可以设置网站基本信息，设置边栏等：</p>
 
@@ -237,7 +237,7 @@
 
 <p>这个文件是很重要的配置文件，配置博客需要经常修改此文件。</p>
 
-<h2>目录结构</h2>
+<span id ="markdir19"></span><h2>目录结构</h2>
 
 <p>之所以要介绍目录结构，是为了更清晰的了解各个文件是做什么用的，修改网站样式添加侧栏等等需要修改那些文件。以免按着教程一个一个设置完成，在脑子中却一团糟不记得修改了什么，万一出现了错误就不好了。</p>
 

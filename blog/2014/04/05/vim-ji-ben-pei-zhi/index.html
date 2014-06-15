@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在~/.vimrc中配置，从而方便我们操作。使用Vim也有一段时间来 &hellip;">
+	<meta name="description" content="Contents General Formatting Key (re)Mappings Vim UIVim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习， &hellip;">
 	<meta name="keywords" content="vim, linux, set">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,9 +101,9 @@
     
 	<h2 class="title">Vim 基本配置</h2>
 	<div class="entry-content">
-        <p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。</p>
+        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir102">General</a><br/>    <a href="#markdir103">Formatting</a><br/>    <a href="#markdir104">Key (re)Mappings</a><br/>    <a href="#markdir105">Vim UI</a><br/></div><p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。</p>
 
-<h2>General</h2>
+<span id ="markdir102"></span><h2>General</h2>
 
 <p>一些基本配置</p>
 
@@ -141,7 +141,7 @@ set fileencodings=utf-8,gb2312,gbk,gb18030
 
 <p>还有相关的编码问题可以参考<a href="http://edyfox.codecarver.org/html/vim_fileencodings_detection.html">VIM文件编码识别与乱码处理</a>。</p>
 
-<h2>Formatting</h2>
+<span id ="markdir103"></span><h2>Formatting</h2>
 
 <p>关于缩进</p>
 
@@ -164,7 +164,7 @@ set autoindent                  " 与前一行同样等级缩进
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 </code></pre>
 
-<h2>Key (re)Mappings</h2>
+<span id ="markdir104"></span><h2>Key (re)Mappings</h2>
 
 <p>一些按键的重映射，很多用了真是让人上瘾，而且便捷很多，如<code>&lt;Esc&gt;</code>用<code>jj</code>来代替，还有一些常输错的一些命令的修正，如<code>Q</code>、<code>W</code>等。</p>
 
@@ -206,7 +206,7 @@ command -bang -nargs=* -complete=file Wq wq&lt;bang&gt; &lt;args&gt;
 command -bang -nargs=* -complete=file WQ wq&lt;bang&gt; &lt;args&gt;
 </code></pre>
 
-<h2>Vim UI</h2>
+<span id ="markdir105"></span><h2>Vim UI</h2>
 
 <p>因为我主要在终端使用Vim，所以一些UI的配置是针对终端的。GUI的话基本相似，把<code>ctermbg</code>等换成<code>guibg</code>等就可以了。</p>
 

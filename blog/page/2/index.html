@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="上一篇文章写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。 1. Header，Navigation，footer 这几个部分是经常需要个性化定制的，在source/_includes中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖， &hellip;">
+	<meta name="description" content="Contents 1. Header，Navigation，footer 1.1 Header（标题栏） 1.2 Navigation（导航栏） 1.3 footer（尾栏） 2. 样式修改 2.1 添加背景图片 2.2 LOGO图片 2.3 导航栏倒圆角 3. 滑动返回顶部按钮 4. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -108,13 +108,13 @@
 			Octopress主题样式修改</a>
 	</h2>
 	<div class="entry-content">
-		<p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir37">1. Header，Navigation，footer</a><br/>        <a href="#markdir38">1.1 Header（标题栏）</a><br/>        <a href="#markdir39">1.2 Navigation（导航栏）</a><br/>        <a href="#markdir40">1.3 footer（尾栏）</a><br/>    <a href="#markdir41">2. 样式修改</a><br/>        <a href="#markdir42">2.1 添加背景图片</a><br/>        <a href="#markdir43">2.2 LOGO图片</a><br/>        <a href="#markdir44">2.3 导航栏倒圆角</a><br/>    <a href="#markdir45">3. 滑动返回顶部按钮</a><br/>    <a href="#markdir46">4. 二维码展示</a><br/></div><p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
 
-<h2>1. Header，Navigation，footer</h2>
+<span id ="markdir37"></span><h2>1. Header，Navigation，footer</h2>
 
 <p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑<code>source/_includes/custom</code>下的文件来实现修改。</p>
 
-<h3>1.1 Header（标题栏）</h3>
+<span id ="markdir38"></span><h3>1.1 Header（标题栏）</h3>
 
 <p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
 
@@ -187,9 +187,9 @@
 			Octopress侧边栏及评论系统定制</a>
 	</h2>
 	<div class="entry-content">
-		<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir20">1. 第三方主题</a><br/>    <a href="#markdir21">2. 侧边栏</a><br/>        <a href="#markdir22">2.1 最新文章</a><br/>        <a href="#markdir23">2.2 GitHub Repos</a><br/>        <a href="#markdir24">2.3 微博秀</a><br/>        <a href="#markdir25">2.4 豆瓣展示</a><br/>        <a href="#markdir26">2.5 访客地图</a><br/>        <a href="#markdir27">2.6 酷站博客</a><br/>        <a href="#markdir28">2.7 最热文章</a><br/>        <a href="#markdir29">2.8 3D标签云与标签列表</a><br/>        <a href="#markdir30">2.9 相关文章功能</a><br/>    <a href="#markdir31">3. 社会化评论与分享</a><br/>        <a href="#markdir32">3.1 友言和加网</a><br/>        <a href="#markdir33">3.2 评论热榜和最新评论侧边栏</a><br/>        <a href="#markdir34">3.3 评论计数显示</a><br/>    <a href="#markdir35">4. 为博文添加原文链接及声明</a><br/>    <a href="#markdir36">5. 公益404</a><br/></div><p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。</p>
 
-<h2>1. 第三方主题</h2>
+<span id ="markdir20"></span><h2>1. 第三方主题</h2>
 
 <p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
 
@@ -259,7 +259,7 @@
 			Octopress博客搭建及目录结构</a>
 	</h2>
 	<div class="entry-content">
-		<p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir17">开始搭建</a><br/>    <a href="#markdir18">_config.yml</a><br/>    <a href="#markdir19">目录结构</a><br/></div><p>搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。</p>
 
 <p>最终选择了octopress，也是因为他的简单，他基于Jekyll，处理了Jekyll的很多麻烦设置，也不需要对前端技术有很深的了解，从一开始什么也没有，到搭建起一个可用的博客只需花费十几分钟，十分方便，虽然想要配置齐自己想要的东西还是需要一番折腾的，但那是后话了。</p>
 
@@ -317,7 +317,7 @@
 			Vim插件配置，比肩IDE</a>
 	</h2>
 	<div class="entry-content">
-		<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir6">1. ctags</a><br/>    <a href="#markdir7">2. taglist</a><br/>    <a href="#markdir8">3. netrw和winmanager</a><br/>    <a href="#markdir9">4. cscope</a><br/>    <a href="#markdir10">5. quickfix</a><br/>    <a href="#markdir11">6. minibufexplorer</a><br/>    <a href="#markdir12">7. a.vim</a><br/>    <a href="#markdir13">8. Grep</a><br/>    <a href="#markdir14">9.visualmark</a><br/>    <a href="#markdir15">10. 补全功能</a><br/>    <a href="#markdir16">11. supertab</a><br/></div><p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
 
 <p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
 
@@ -373,7 +373,7 @@
 			多系统Linux安装及配置</a>
 	</h2>
 	<div class="entry-content">
-		<h2>1. 多系统安装</h2>
+		<div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir0">1. 多系统安装</a><br/>    <a href="#markdir1">2. 更新软件源</a><br/>    <a href="#markdir2">3. 安装喜欢的编辑器――VIM</a><br/>    <a href="#markdir3">4. 一些常用软件</a><br/>    <a href="#markdir4">5. 更新</a><br/>    <a href="#markdir5">6. 其他</a><br/></div><span id ="markdir0"></span><h2>1. 多系统安装</h2>
 
 <p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
 
@@ -429,7 +429,7 @@
 			自警自省自规划</a>
 	</h2>
 	<div class="entry-content">
-		<p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有的插件，让它变成自己理想的样子。所以经过了多天的调试布局，才开始写这第一篇文章。这也可能是我自身拖延症的一种表现吧（我这毛病还不少），不知道怎么下笔开始写博客，不过万事开头难，我相信只要我坚持下去，一定会有收获的。今天的第一篇文章就不写博客是怎么搭建的了，想回顾一下自己的过去，展望一下将来（老调调了）。主要是反省一下自己，给自己一个警示作用，并订立一个明确的规划，希望自己能够持之以恒。</p>
+		<div id='markdir'><p><strong>Contents</strong></p></div><p>经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有的插件，让它变成自己理想的样子。所以经过了多天的调试布局，才开始写这第一篇文章。这也可能是我自身拖延症的一种表现吧（我这毛病还不少），不知道怎么下笔开始写博客，不过万事开头难，我相信只要我坚持下去，一定会有收获的。今天的第一篇文章就不写博客是怎么搭建的了，想回顾一下自己的过去，展望一下将来（老调调了）。主要是反省一下自己，给自己一个警示作用，并订立一个明确的规划，希望自己能够持之以恒。</p>
 
 
 		
