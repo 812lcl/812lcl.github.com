@@ -101,9 +101,9 @@
     
 	<h2 class="title">Vim插件配置续</h2>
 	<div class="entry-content">
-        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir50">1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></a><br/>    <a href="#markdir51">2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></a><br/>    <a href="#markdir52">3. <a href="https://github.com/tpope/vim-surround">surround</a></a><br/>    <a href="#markdir53">4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></a><br/>    <a href="#markdir54">5. <a href="https://github.com/mbbill/undotree">Undotree</a></a><br/>    <a href="#markdir55">6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></a><br/>    <a href="#markdir56">7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></a><br/>    <a href="#markdir57">8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></a><br/>    <a href="#markdir58">9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></a><br/>    <a href="#markdir59">10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></a><br/>    <a href="#markdir60">11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></a><br/>    <a href="#markdir61">12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></a><br/>    <a href="#markdir62">13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></a><br/>    <a href="#markdir63">14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></a><br/>    <a href="#markdir64">15. <a href="https://github.com/Shougo/unite.vim">unite</a></a><br/>    <a href="#markdir65">16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></a><br/></div><p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
+        <p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
 
-<span id ="markdir50"></span><h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
 
 <p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不干扰，想删谁删谁，添加也很简单。安装该插件方法如下</p>
 
@@ -170,7 +170,7 @@
 
 <p>如果你的整个<code>.vim</code>目录并不作为git仓库，也可以用pathogen管理插件，只需将插件下好，将其作为独立文件夹放入<code>~/.vim/bundle/</code>中即可。</p>
 
-<span id ="markdir51"></span><h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
+<h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
 
 <p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母代替，然后输入想跳到位置的字母即可。</p>
 
@@ -180,7 +180,7 @@
 
 <p><img src="http://812lcl.github.io/images/blog/easymotion.gif" alt="Easymotion" /></p>
 
-<span id ="markdir52"></span><h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
+<h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
 
 <p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。</p>
 
@@ -266,11 +266,11 @@
 </span><span class='line'>&lt;C-s&gt;&lt;C-s&gt;    添加、换行、缩进</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir53"></span><h2>4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></h2>
+<h2>4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></h2>
 
 <p>%跳转到下一个匹配符号如匹配括号，是 vim 原有功能，添加这个功能后，可以使用%跳转到匹配的HTML标签。</p>
 
-<span id ="markdir54"></span><h2>5. <a href="https://github.com/mbbill/undotree">Undotree</a></h2>
+<h2>5. <a href="https://github.com/mbbill/undotree">Undotree</a></h2>
 
 <p>可视化撤销，可以看见你所做的改变，可视化的恢复到某一状态。<code>:UndotreeToggle</code>打开undo-tree面板，可以映射为其他按键，只需在<code>.vimrc</code>中添加</p>
 
@@ -300,19 +300,19 @@
 </span><span class='line'>endif</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir55"></span><h2>6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></h2>
+<h2>6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></h2>
 
 <p>也是大名鼎鼎，同Taglist差不多，但更适合于C++，可以显示类中的声明、定义等等。<code>:TagbarToggle</code>打开Tagbar窗口，映射快捷键</p>
 
 <p><code>nmap &lt;silent&gt; &lt;Leader&gt;t :TagbarToggle&lt;cr&gt;</code></p>
 
-<span id ="markdir56"></span><h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
+<h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
 
 <p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。在nerdtree的窗口中按？可显示快捷键操作。</p>
 
 <p><code>nmap &lt;silent&gt; &lt;Leader&gt;n :NERDTreeToggle&lt;CR&gt;</code>映射打开快捷键，根据自己喜欢设定。</p>
 
-<span id ="markdir57"></span><h2>8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></h2>
+<h2>8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></h2>
 
 <p>快速添加注释的插件，使用方法如下：</p>
 
@@ -328,7 +328,7 @@
 
 <p>只列出了几个常用的，具体效果你可以自己一试。</p>
 
-<span id ="markdir58"></span><h2>9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></h2>
+<h2>9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></h2>
 
 <p>需要python的支持，很强大的代码补全插件，大大提高编写代码的速度。可以自己定义模板，在该插件目录下的<code>UltiSnips</code>目录中有各种语言的补全模板。默认使用tab键补全，因为与ycm有冲突，重新映射为&lt;C-j>。</p>
 
@@ -336,7 +336,7 @@
 
 <p>补全比如for循环的语句，可以通过&lt;c-j>切换更该要修改的参数。</p>
 
-<span id ="markdir59"></span><h2>10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></h2>
+<h2>10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></h2>
 
 <p>语法检查的插件，可以查看当前代码的错误，无需等到编译出错后再来修改。
 <code>:Errors</code>打开错误列表，<code>:lnext</code>和<code>lpre</code>切换下一个和前一个错误。
@@ -366,7 +366,7 @@
 
 <p><img src="https://raw.github.com/scrooloose/syntastic/master/_assets/screenshot_1.png" alt="Syntastic" /></p>
 
-<span id ="markdir60"></span><h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
+<h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
 
 <p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。映射快捷键</p>
 
@@ -376,7 +376,7 @@
 </span><span class='line'>nmap &lt;Leader&gt;v :SCViewResult&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir61"></span><h2>12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></h2>
+<h2>12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></h2>
 
 <p><img src="https://raw.github.com/airblade/vim-gitgutter/master/screenshot.png" alt="Gitgutter" /></p>
 
@@ -402,7 +402,7 @@
 
 <p>其中我定义了<code>gh</code>跳到下一条变化之处，<code>hg</code>跳到上一条。</p>
 
-<span id ="markdir62"></span><h2>13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></h2>
+<h2>13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></h2>
 
 <p>这个插件使你可以在vim中执行git操作。</p>
 
@@ -424,7 +424,7 @@
 </span><span class='line'>:Gremove  git rm</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir63"></span><h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
+<h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
 
 <p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
 
@@ -488,7 +488,7 @@
 </span><span class='line'>let g:ctrlp_follow_symlinks=1</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir64"></span><h2>15. <a href="https://github.com/Shougo/unite.vim">unite</a></h2>
+<h2>15. <a href="https://github.com/Shougo/unite.vim">unite</a></h2>
 
 <p>和CtrlP功能类似，也可以搜索文件、缓冲区等，我使用这个插件主要是它可以查询当前vim中的所有命令和按键映射等，命令多了，一时记不住可以查查看，很方便。</p>
 
@@ -504,7 +504,7 @@
 
 <p><img src="https://s3.amazonaws.com/github-csexton/unite-01.gif" alt="unite" /></p>
 
-<span id ="markdir65"></span><h2>16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></h2>
+<h2>16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></h2>
 
 <p>这个插件有人很讨厌，也有一些人会喜欢，我也还在试用，习惯。它能自动添加和删除匹配的括号、引号。大家选择性安装吧。</p>
 

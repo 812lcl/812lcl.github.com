@@ -101,13 +101,13 @@
     
 	<h2 class="title">Octopress主题样式修改</h2>
 	<div class="entry-content">
-        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir37">1. Header，Navigation，footer</a><br/>        <a href="#markdir38">1.1 Header（标题栏）</a><br/>        <a href="#markdir39">1.2 Navigation（导航栏）</a><br/>        <a href="#markdir40">1.3 footer（尾栏）</a><br/>    <a href="#markdir41">2. 样式修改</a><br/>        <a href="#markdir42">2.1 添加背景图片</a><br/>        <a href="#markdir43">2.2 LOGO图片</a><br/>        <a href="#markdir44">2.3 导航栏倒圆角</a><br/>    <a href="#markdir45">3. 滑动返回顶部按钮</a><br/>    <a href="#markdir46">4. 二维码展示</a><br/></div><p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
+        <p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
 
-<span id ="markdir37"></span><h2>1. Header，Navigation，footer</h2>
+<h2>1. Header，Navigation，footer</h2>
 
 <p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑<code>source/_includes/custom</code>下的文件来实现修改。</p>
 
-<span id ="markdir38"></span><h3>1.1 Header（标题栏）</h3>
+<h3>1.1 Header（标题栏）</h3>
 
 <p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
 
@@ -131,7 +131,7 @@
 <!--more-->
 
 
-<span id ="markdir39"></span><h3>1.2 Navigation（导航栏）</h3>
+<h3>1.2 Navigation（导航栏）</h3>
 
 <p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。</p>
 
@@ -152,7 +152,7 @@
 
 <p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径即可，如<code>&lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
 
-<span id ="markdir40"></span><h3>1.3 footer（尾栏）</h3>
+<h3>1.3 footer（尾栏）</h3>
 
 <p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：</p>
 
@@ -175,13 +175,13 @@
 
 <p>默认显示<code>Copyright@2013 - author - Powered by Octopress</code>，你可以添加自己想显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
 
-<span id ="markdir41"></span><h2>2. 样式修改</h2>
+<h2>2. 样式修改</h2>
 
 <p>添加或修改控制样式，需编辑<code>sass/custom/_styles.scss</code>，博客的所有颜色控制在<code>/sass/base/_theme.scss</code>中进行设置。定制自己的配色，编辑<code>sass/custom/_colors.scss</code>。查看<a href="http://hslpicker.com/#e1ff00">HSL COLOR PICKER</a>，帮你挑选喜欢的颜色。</p>
 
 <p>修改布局，需要编辑<code>sass/base/_layout.scss</code>，可以修改各部分的宽度等。</p>
 
-<span id ="markdir42"></span><h3>2.1 添加背景图片</h3>
+<h3>2.1 添加背景图片</h3>
 
 <p>在<code>sass/custom/_styles.scss</code>中添加：</p>
 
@@ -222,7 +222,7 @@
 更改博客、侧边栏或文章的背景图片。博客使用背景图片后，与Header区不太和谐，
 所以我在<code>/sass/base/_theme.scss</code>中将<code>header-bg</code>设置成透明色了。</p>
 
-<span id ="markdir43"></span><h3>2.2 LOGO图片</h3>
+<h3>2.2 LOGO图片</h3>
 
 <p>我所说的logo图片有两种，一个是打开一个网页时，标签栏上显示的小图片。还有一个是标题栏主标题旁的图片。</p>
 
@@ -257,7 +257,7 @@
 
 <p>根据自己情况进行修改即可。</p>
 
-<span id ="markdir44"></span><h3>2.3 导航栏倒圆角</h3>
+<h3>2.3 导航栏倒圆角</h3>
 
 <p>我设置的header区背景色透明，所以导航栏的直角有些尖锐，在<code>sass/custom/_styles.scss</code>中添加如下语句，将其修改为圆角：</p>
 
@@ -284,7 +284,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir45"></span><h2>3. 滑动返回顶部按钮</h2>
+<h2>3. 滑动返回顶部按钮</h2>
 
 <p>当文章较长，通常希望有一个返回顶部的按钮，如下方法实现了在页面右下方添加一个返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
 
@@ -386,7 +386,7 @@
 
 <p>最后，还需要将返回顶部的图片放入<code>source/images</code>，命名为<code>top.png</code>（或修改totop.html中图片的路径）。</p>
 
-<span id ="markdir46"></span><h2>4. 二维码展示</h2>
+<h2>4. 二维码展示</h2>
 
 <p>在关于页面或边栏可以展示你的个人博客的二维码，方便移动终端扫描访问你的博客，插件主页<a href="https://github.com/sailor79/Octopress-dynamic-QR-Code-aside">点击这里</a>。</p>
 

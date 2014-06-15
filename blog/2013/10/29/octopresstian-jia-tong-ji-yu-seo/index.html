@@ -101,7 +101,7 @@
     
 	<h2 class="title">Octopress添加统计与SEO</h2>
 	<div class="entry-content">
-        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir47">统计工具</a><br/>    <a href="#markdir48">摘要和语法高亮</a><br/>    <a href="#markdir49">站内搜索</a><br/></div><p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
+        <p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
 
 <p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
 
@@ -154,7 +154,7 @@
 
 <p>此外，也可以在<code>_config.yml</code>里添加默认的<code>description</code>和<code>keywords</code>。</p>
 
-<span id ="markdir47"></span><h2>统计工具</h2>
+<h2>统计工具</h2>
 
 <p>octopress模板里面默认带了Google Analytics工具，只需要注册<a href="http://www.google.com/analytics/">Google Analytics</a>，
 获得一个google_analytics_tracking_id，添加到<code>_config.yml</code>中对应位置，并对网站进行验证即可。然后可以通过Google Analytics分析网站的流量了。而且可以使用<a href="https://www.google.com/webmasters/tools/home?hl=zh-CN">Google站长工具</a>，对网站进行更全面的分析，进行SEO。</p>
@@ -194,7 +194,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir48"></span><h2>摘要和语法高亮</h2>
+<h2>摘要和语法高亮</h2>
 
 <p>如果想让文章在首页只显示一部分，只需要在文章中相应的位置添加<code>&lt;!-- more --&gt;</code>即可，在<code>_config.yml</code>中修改<code>excerpt_link: "继续阅读 &amp;rarr;"</code>来修改继续阅读按钮的显示内容。</p>
 
@@ -202,7 +202,7 @@
 
 <p>其他方法见<a href="http://octopress.org/docs/plugins/include-code/">embed code from a file</a>、<a href="http://octopress.org/docs/plugins/gist-tag/">embed GitHub gists</a>或<a href="http://xiongbupt.github.io/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>。</p>
 
-<span id ="markdir49"></span><h2>站内搜索</h2>
+<h2>站内搜索</h2>
 
 <p>最后，还有一点我想实现但却始终没实现了的功能，就是站内搜索。octopress自带了google的搜索，在搜索栏中搜索后，相当于在google中指定搜索域为你的博客进行搜索，然后跳到Google页面，虽然能搜到你博客中的相关内容，但是作为有强迫症的我认为这和整个博客风格不太符。我想实现的效果是如<a href="http://yortz.it/about">这个博客</a>所实现的站内搜索一样。这就需要使用<a href="https://github.com/yortz/octopress-lunr-js-search">Octopress Lunr.js plugin</a>，但我安装安装方法试验了好几次，还是没有成功。</p>
 

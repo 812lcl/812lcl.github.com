@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="Contents 1. ctags 2. taglist 3. netrw和winmanager 4. cscope 5. quickfix 6. minibufexplorer 7. a.vim 8. Grep 9.visualmark 10. 补全功能 11. &hellip;">
+	<meta name="description" content="vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。 现在有很多的vim插件管理插件，如bundle、pathogen。 &hellip;">
 	<meta name="keywords" content="vim, linux, IDE">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,7 +101,7 @@
     
 	<h2 class="title">Vim插件配置，比肩IDE</h2>
 	<div class="entry-content">
-        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir6">1. ctags</a><br/>    <a href="#markdir7">2. taglist</a><br/>    <a href="#markdir8">3. netrw和winmanager</a><br/>    <a href="#markdir9">4. cscope</a><br/>    <a href="#markdir10">5. quickfix</a><br/>    <a href="#markdir11">6. minibufexplorer</a><br/>    <a href="#markdir12">7. a.vim</a><br/>    <a href="#markdir13">8. Grep</a><br/>    <a href="#markdir14">9.visualmark</a><br/>    <a href="#markdir15">10. 补全功能</a><br/>    <a href="#markdir16">11. supertab</a><br/></div><p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+        <p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
 
 <p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
 
@@ -128,7 +128,7 @@
 
 <p>下面正式开始配置了，提到的插件插件可以到<a href="http://www.vim.org/index.php">vim online</a>下载，下载好放入~/.vim/plugin即可。</p>
 
-<span id ="markdir6"></span><h2>1. ctags</h2>
+<h2>1. ctags</h2>
 
 <p>这是很重要的一个插件，大多数linux发行版本默认安装了ctags，如果没有可如下安装</p>
 
@@ -159,7 +159,7 @@
 </span><span class='line'>:set tags=程序根目录/tags</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir7"></span><h2>2. taglist</h2>
+<h2>2. taglist</h2>
 
 <p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句</p>
 
@@ -171,7 +171,7 @@
 
 <p>然后可以在vim中输入<code>:Tlist</code>查看效果了。</p>
 
-<span id ="markdir8"></span><h2>3. netrw和winmanager</h2>
+<h2>3. netrw和winmanager</h2>
 
 <p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在~/.vim/plugin中，然后在.vimrc中填入如下</p>
 
@@ -189,7 +189,7 @@
 
 <p>最后一句为设置快捷键，按F8或者<code>:WMToggle</code>即可打开两个窗口。</p>
 
-<span id ="markdir9"></span><h2>4. cscope</h2>
+<h2>4. cscope</h2>
 
 <p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个工程文件中更强大的查找功能。</p>
 
@@ -265,7 +265,7 @@
 
 <p>好了，暂时就这些，cscope在大型工程中查找非常方便，但也需要慢慢学习适应使用。</p>
 
-<span id ="markdir10"></span><h2>5. quickfix</h2>
+<h2>5. quickfix</h2>
 
 <p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。</p>
 
@@ -277,7 +277,7 @@
 
 <p>可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误，回车可以到达错误所在的行，进行修改。</p>
 
-<span id ="markdir11"></span><h2>6. minibufexplorer</h2>
+<h2>6. minibufexplorer</h2>
 
 <p>仍然是将下载的minibufexplorer.vim放入plugin中即可。</p>
 
@@ -309,7 +309,7 @@
 
 <p>这样就很清晰的看到，当前打开了多少个文件，切换也很方便。</p>
 
-<span id ="markdir12"></span><h2>7. a.vim</h2>
+<h2>7. a.vim</h2>
 
 <p>这是一个很方便在源文件和头文件间进行切换的插件，下载好放入plugin中即可，命令如下：</p>
 
@@ -330,7 +330,7 @@
 
 <p>之后按F12即可打开同名的头文件，再配合minibufexplorer，可以很好的进行切换。</p>
 
-<span id ="markdir13"></span><h2>8. Grep</h2>
+<h2>8. Grep</h2>
 
 <p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程范围内，查找你想查找的任何东西。</p>
 
@@ -386,7 +386,7 @@
 
 <p>也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
 
-<span id ="markdir14"></span><h2>9.visualmark</h2>
+<h2>9.visualmark</h2>
 
 <p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。</p>
 
@@ -398,7 +398,7 @@
 </span><span class='line'>shift+F2  反向切换</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir15"></span><h2>10. 补全功能</h2>
+<h2>10. 补全功能</h2>
 
 <p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
 
@@ -514,7 +514,7 @@
 </span><span class='line'>Ctrl+X Ctrl+S 拼写建议</span></code></pre></td></tr></table></div></figure>
 
 
-<span id ="markdir16"></span><h2>11. supertab</h2>
+<h2>11. supertab</h2>
 
 <p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式.vimrc中添加</p>
 

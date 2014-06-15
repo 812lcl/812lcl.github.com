@@ -7,7 +7,7 @@
 	<meta name="author" content="812lcl">
 
 	
-	<meta name="description" content="Contents 1. 多系统安装 2. 更新软件源 3. 安装喜欢的编辑器――VIM 4. 一些常用软件 5. 更新 6. 其他1. 多系统安装 开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、 &hellip;">
+	<meta name="description" content="1. 多系统安装 开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos， &hellip;">
 	<meta name="keywords" content="linux, ubuntu, os, vim">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,7 +101,7 @@
     
 	<h2 class="title">多系统Linux安装及配置</h2>
 	<div class="entry-content">
-        <div id='markdir'><p><strong>Contents</strong></p>    <a href="#markdir0">1. 多系统安装</a><br/>    <a href="#markdir1">2. 更新软件源</a><br/>    <a href="#markdir2">3. 安装喜欢的编辑器――VIM</a><br/>    <a href="#markdir3">4. 一些常用软件</a><br/>    <a href="#markdir4">5. 更新</a><br/>    <a href="#markdir5">6. 其他</a><br/></div><span id ="markdir0"></span><h2>1. 多系统安装</h2>
+        <h2>1. 多系统安装</h2>
 
 <p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。而且centos要挂载</p>
 
@@ -112,7 +112,7 @@
 
 <p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows也启动不起来。</p>
 
-<span id ="markdir1"></span><h2>2. 更新软件源</h2>
+<h2>2. 更新软件源</h2>
 
 <p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改<code>/etc/apt/sources.list</code>文件。</p>
 
@@ -120,7 +120,7 @@
 
 <p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择即可，非常方便。</p>
 
-<span id ="markdir2"></span><h2>3. 安装喜欢的编辑器――VIM</h2>
+<h2>3. 安装喜欢的编辑器――VIM</h2>
 
 <p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级编辑器。</p>
 
@@ -162,7 +162,7 @@
 
 <p>以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">VIM插件配置，比肩IDE</a>.</p>
 
-<span id ="markdir3"></span><h2>4. 一些常用软件</h2>
+<h2>4. 一些常用软件</h2>
 
 <p>当然linux也是离不开娱乐的，看电影、听歌还是要的。</p>
 
@@ -175,14 +175,14 @@
 </ul>
 
 
-<span id ="markdir4"></span><h2>5. 更新</h2>
+<h2>5. 更新</h2>
 
 <p>没有什么要设置的了，可以更新一下软件了。</p>
 
 <pre><code>sudo apt-get update
 </code></pre>
 
-<span id ="markdir5"></span><h2>6. 其他</h2>
+<h2>6. 其他</h2>
 
 <p>多系统可能需要修改一下启动顺序</p>
 
