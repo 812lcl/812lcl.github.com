@@ -1,2 +1,16 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+#markdir {
+    float: right;
+    background:#ebebeb;
+    margin-left:1em;
+    padding:1em;
+    border-radius:10px;
+    border:1px solid #3cc;
+    max-width:30%;
+    max-height:90%;
+}
+#markdir p {
+    font-size:18px;
+    margin-bottom:3px;
+}
