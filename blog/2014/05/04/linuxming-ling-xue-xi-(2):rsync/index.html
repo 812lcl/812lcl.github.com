@@ -101,7 +101,7 @@
     
 	<h2 class="title">Linux命令学习（2）：rsync</h2>
 	<div class="entry-content">
-        <div id='markdir'><p><strong>Contents</strong></p>        <a href="#markdir106">rsync的基本用法</a><br/>        <a href="#markdir107">[-t选项]</a><br/>        <a href="#markdir108">[-I选项]</a><br/>        <a href="#markdir109">[-v选项]</a><br/>        <a href="#markdir110">[-z选项]</a><br/>        <a href="#markdir111">[-r选项]</a><br/>        <a href="#markdir112">[-l选项]</a><br/>        <a href="#markdir113">[-p选项]</a><br/>        <a href="#markdir114">[-g选项和-o选项]</a><br/>        <a href="#markdir115">[-D选项]</a><br/>        <a href="#markdir116">[-a选项]</a><br/>        <a href="#markdir117">[&mdash;delete选项、&mdash;delete-excluded选项和&mdash;delete-after选项]</a><br/>        <a href="#markdir118">[&mdash;exclude选项和&mdash;exclude-from选项]</a><br/>        <a href="#markdir119">[&mdash;partial选项]</a><br/>        <a href="#markdir120">[&mdash;progress选项]</a><br/>        <a href="#markdir121">rsync核心算法</a><br/>    <a href="#markdir122">rsync服务器架设</a><br/>        <a href="#markdir123">rsyncd.conf</a><br/>        <a href="#markdir124">rsyncd.secrets</a><br/>        <a href="#markdir125">rsyncd.motd</a><br/></div><p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
+        <div id='markdir'><p><strong>Contents</strong></p>        <a href="#markdir106">rsync的基本用法</a><br/>            <a href="#markdir107">[-t选项]</a><br/>            <a href="#markdir108">[-I选项]</a><br/>            <a href="#markdir109">[-v选项]</a><br/>            <a href="#markdir110">[-z选项]</a><br/>            <a href="#markdir111">[-r选项]</a><br/>            <a href="#markdir112">[-l选项]</a><br/>            <a href="#markdir113">[-p选项]</a><br/>            <a href="#markdir114">[-g选项和-o选项]</a><br/>            <a href="#markdir115">[-D选项]</a><br/>            <a href="#markdir116">[-a选项]</a><br/>            <a href="#markdir117">[&mdash;delete选项、&mdash;delete-excluded选项和&mdash;delete-after选项]</a><br/>            <a href="#markdir118">[&mdash;exclude选项和&mdash;exclude-from选项]</a><br/>            <a href="#markdir119">[&mdash;partial选项]</a><br/>            <a href="#markdir120">[&mdash;progress选项]</a><br/>        <a href="#markdir121">rsync核心算法</a><br/>    <a href="#markdir122">rsync服务器架设</a><br/>        <a href="#markdir123">rsyncd.conf</a><br/>        <a href="#markdir124">rsyncd.secrets</a><br/>        <a href="#markdir125">rsyncd.motd</a><br/></div><p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
 
 <span id ="markdir106"></span><h3>rsync的基本用法</h3>
 
@@ -120,7 +120,7 @@
 <!--more-->
 
 
-<span id ="markdir107"></span><h3>[-t选项]</h3>
+<span id ="markdir107"></span><h4>[-t选项]</h4>
 
 <ol>
 <li>使用-t选项后，rsync总会想着一件事，那就是将源文件的“modify time”同步到目标机器。</li>
@@ -130,7 +130,7 @@
 </ol>
 
 
-<span id ="markdir108"></span><h3>[-I选项]</h3>
+<span id ="markdir108"></span><h4>[-I选项]</h4>
 
 <ol>
 <li>-I选项会让rsync变得很乖很老实，它会挨个文件去发起数据同步。</li>
@@ -139,15 +139,15 @@
 </ol>
 
 
-<span id ="markdir109"></span><h3>[-v选项]</h3>
+<span id ="markdir109"></span><h4>[-v选项]</h4>
 
 <p>这个选项，简单易懂，就是让rsync输出更多的信息，你增加越多的v，就可以获得越多的日志信息。</p>
 
-<span id ="markdir110"></span><h3>[-z选项]</h3>
+<span id ="markdir110"></span><h4>[-z选项]</h4>
 
 <p>这是个压缩选项，只要使用了这个选项，rsync就会把发向对端的数据先进行压缩再传输。对于网络环境较差的情况下建议使用。一般情况下，-z的压缩算法会和gzip的一样。</p>
 
-<span id ="markdir111"></span><h3>[-r选项]</h3>
+<span id ="markdir111"></span><h4>[-r选项]</h4>
 
 <p>我们在第一次使用rsync时，往往会遇到这样的囧境：</p>
 
@@ -162,11 +162,11 @@ skipping directory superman
 
 <p>对于文件夹，rsync是会明察秋毫的，只要你加了-r选项，它就会恪尽职守的进入到文件夹里去检查，而不会只对文件夹本身做“quick check”的。</p>
 
-<span id ="markdir112"></span><h3>[-l选项]</h3>
+<span id ="markdir112"></span><h4>[-l选项]</h4>
 
 <p>rsync一旦发现某个文件是软链接，就会无视它，除非我们增加-l选项。使用了-l选项后，rsync会完全保持软链接文件类型，原原本本的将软链接文件复制到目的端，而不会“follow link”到指向的实体文件。如果我偏偏就想让rsync采取follow link的方式，那就用-L选项就可以了。你可以自己试试效果。</p>
 
-<span id ="markdir113"></span><h3>[-p选项]</h3>
+<span id ="markdir113"></span><h4>[-p选项]</h4>
 
 <p>这个选项的全名是“perserve permissions”，顾名思义，就是保持权限。如果你不使用此选项的话，rsync是这样来处理权限问题的：</p>
 
@@ -178,15 +178,15 @@ skipping directory superman
 
 <p>如果你使用了-p选项，则无论如何，rsync都会让目的端保持与源端的权限一致的。</p>
 
-<span id ="markdir114"></span><h3>[-g选项和-o选项]</h3>
+<span id ="markdir114"></span><h4>[-g选项和-o选项]</h4>
 
 <p>这两个选项是一对，用来保持文件的属组(group)和属主（owner），作用应该很清晰明了。不过要注意的一点是，改变属主和属组，往往只有管理员权限才可以。</p>
 
-<span id ="markdir115"></span><h3>[-D选项]</h3>
+<span id ="markdir115"></span><h4>[-D选项]</h4>
 
 <p>-D选项，原文解释是“preserve devices(root only)”，从字面意思看，就是保持设备文件的原始信息。</p>
 
-<span id ="markdir116"></span><h3>[-a选项]</h3>
+<span id ="markdir116"></span><h4>[-a选项]</h4>
 
 <ol>
 <li>-a选项是rsync里比较霸道的一个选项，因为你使用-a选项，就相当于使用了<code>-rlptgoD</code>这一坨选项。以一敌七，唯-a选项也。</li>
@@ -195,7 +195,7 @@ skipping directory superman
 </ol>
 
 
-<span id ="markdir117"></span><h3>[&mdash;delete选项、&mdash;delete-excluded选项和&mdash;delete-after选项]</h3>
+<span id ="markdir117"></span><h4>[&mdash;delete选项、&mdash;delete-excluded选项和&mdash;delete-after选项]</h4>
 
 <p>三个选项都是和“删除”有关的：</p>
 
@@ -210,17 +210,17 @@ skipping directory superman
 
 <p>可以使用-n选项，它会用受影响的文件列表来警告你，但不会真的去删除，这就让我们有了确认的机会和回旋的余地。</p>
 
-<span id ="markdir118"></span><h3>[&mdash;exclude选项和&mdash;exclude-from选项]</h3>
+<span id ="markdir118"></span><h4>[&mdash;exclude选项和&mdash;exclude-from选项]</h4>
 
 <p>如果你不希望同步一些东西到目的端的话，可以使用–exclude选项来隐藏，rsync还是很重视大家隐私的，你可以多次使用–exclude选项来设置很多的“隐私”。
 如果你要隐藏的隐私太多的话，在命令行选项中设置会比较麻烦，rsync还是很体贴，它提供了–exclude-from选项，让你可以把隐私一一列在一个文件里，然后让rsync直接读取这个文件就好了。</p>
 
-<span id ="markdir119"></span><h3>[&mdash;partial选项]</h3>
+<span id ="markdir119"></span><h4>[&mdash;partial选项]</h4>
 
 <p>这就是传说中的断点续传功能。默认情况下，rsync会删除那些传输中断的文件，然后重新传输。但在一些特别情况下，我们不希望重传，而是续传。
 我们在使用中，经常会看到有人会使用-P选项，这个选项其实是为了偷懒而设计的。以前人们总是要手动写–partial –progress，觉得太费劲了，倒不如用一个新的选项来代替，于是-P应运而生了。</p>
 
-<span id ="markdir120"></span><h3>[&mdash;progress选项]</h3>
+<span id ="markdir120"></span><h4>[&mdash;progress选项]</h4>
 
 <p>使用这个选项，rsync会显示出传输进度信息，有什么用呢，rsync给了一个很有意思的解释：
 This gives a bored user something to watch.</p>
