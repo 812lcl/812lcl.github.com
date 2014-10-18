@@ -6,7 +6,7 @@ comments: true
 categories: Linux
 tags: [linux, rsync]
 ---
-rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 回复这些配置文件，这是很方便自动化的（我就是这么干的 [dotfiles](https://github.com/812lcl/dotfiles))。
+rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 [dotfiles](https://github.com/812lcl/dotfiles))。
 
 ###rsync的基本用法
 
