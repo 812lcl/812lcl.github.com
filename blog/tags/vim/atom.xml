@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: vim | 812lcl的博客]]></title>
+  <link href="http://812lcl.com/blog/tags/vim/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-10-19T10:08:44+08:00</updated>
+  <id>http://812lcl.com/</id>
+  <author>
+    <name><![CDATA[812lcl]]></name>
+    <email><![CDATA[812liuchunlei@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim 基本配置]]></title>
+    <link href="http://812lcl.com/blog/2014/04/05/vim-ji-ben-pei-zhi/"/>
+    <updated>2014-04-05T21:44:00+08:00</updated>
+    <id>http://812lcl.com/blog/2014/04/05/vim-ji-ben-pei-zhi</id>
+    <content type="html"><![CDATA[<p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。</p>
+
+<h2>General</h2>
+
+<p>一些基本配置</p>
+
+<pre><code>syntax on                       " 关键字上色
+syntax enable                   " 语法高亮
+set nu                          " 显示行号
+set nocp                        " 不兼容vi
+set hidden                      " 允许不保存切换buffer
+set splitright                  " 新分割窗口在右边
+set splitbelow                  " 新分割窗口在下边
+set autoread                    " 文件在Vim之外修改过，自动重新读入
+set timeoutlen=350              " 等待时间,如&lt;leader&gt;键后的输入
+set helpheight=999              " 查看帮助文档全屏
+set scrolljump=3                " 当光标离开屏幕滑动行数
+set scrolloff=1                 " 保持在光标上下最少行数
+set showmatch                   " 短暂回显匹配括号
+</code></pre>
+
+<!--more-->
+
+
+<pre><code>set hlsearch                    " 检索时高亮显示匹配项
+set incsearch                   " 边输入边搜索
+set ignorecase                  " 搜索忽略大小写
+set smartcase                   " 智能大小写搜索
+
+set wildmenu                    " 命令模式下补全以菜单形式显示
+set wildmode=list:longest,full  " 命令模式补全模式
+set foldenable                  " 启动折叠
+set foldmethod=marker           " 设置折叠模式
+set encoding=utf-8              " 编码，使汉语正常显示
+set termencoding=utf-8
+set fileencodings=utf-8,gb2312,gbk,gb18030
+</code></pre>
+
+<p>还有相关的编码问题可以参考<a href="http://edyfox.codecarver.org/html/vim_fileencodings_detection.html">VIM文件编码识别与乱码处理</a>。</p>
+
+<h2>Formatting</h2>
+
+<p>关于缩进</p>
+
+<pre><code>set expandtab                   " tab=空格
+set tabstop=4                   " tab缩进4个空格
+set shiftwidth=4                " 自动缩进空格数
+set softtabstop=4               " 退格删除缩进
+set backspace=indent,start      " 退格可删除缩进和原有字符
+set autoindent                  " 与前一行同样等级缩进
+</code></pre>
+
+<p>当切割窗口显示多文件时，如果窗口大小改变，本来分布均匀的窗口不会重新调整大小，变得很难看，可以添加下面这条来配置自动调整大小。</p>
+
+<pre><code>au VimResized * exe "normal! \&lt;c-w&gt;="
+</code></pre>
+
+<p>在粘贴时候，如果前边的行带有注释符号，如<code>#</code>、<code>//</code>、<code>"</code>等时，后边的行会自动加上注释符号，很是麻烦，下面可以配置不自动添加成注释。</p>
+
+<pre><code>au BufReadPost * if line("'\"") &gt; 0|if line("'\"") &lt;= line("$")|exe("norm '\"")|else|exe "no rm $"|endif|endif
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+</code></pre>
+
+<h2>Key (re)Mappings</h2>
+
+<p>一些按键的重映射，很多用了真是让人上瘾，而且便捷很多，如<code>&lt;Esc&gt;</code>用<code>jj</code>来代替，还有一些常输错的一些命令的修正，如<code>Q</code>、<code>W</code>等。</p>
+
+<pre><code>let mapleader=","           " 映射&lt;leader&gt;键到为,
+nmap j gj
+nmap k gk
+inoremap jj &lt;ESC&gt;
+nnoremap &lt;silent&gt; J :bp&lt;CR&gt;
+nnoremap &lt;silent&gt; K :bn&lt;CR&gt;
+noremap &lt;silent&gt;&lt;space&gt; :set hls! hls?&lt;CR&gt;
+noremap &lt;silent&gt;&lt;Leader&gt;s :set rnu! rnu?&lt;CR&gt;
+noremap &lt;silent&gt;&lt;Leader&gt;l :set list! list?&lt;CR&gt;
+nnoremap &lt;Leader&gt;c @=((foldclosed(line('.')) &lt; 0) ? 'zc' : 'zo')&lt;CR&gt;
+
+" 更方便窗口间移动
+nnoremap &lt;C-h&gt; &lt;C-w&gt;h
+nnoremap &lt;C-j&gt; &lt;C-w&gt;j
+nnoremap &lt;C-k&gt; &lt;C-w&gt;k
+nnoremap &lt;C-l&gt; &lt;C-w&gt;l
+
+" 命令模式按键映射
+cnoremap &lt;C-a&gt; &lt;Home&gt;
+cnoremap &lt;C-e&gt; &lt;End&gt;
+cnoremap &lt;C-p&gt; &lt;Up&gt;
+cnoremap &lt;C-n&gt; &lt;Down&gt;
+
+" Tab操作
+nnoremap &lt;Leader&gt;tc :tabc&lt;CR&gt;
+nnoremap &lt;Leader&gt;tn :tabn&lt;CR&gt;
+nnoremap &lt;Leader&gt;tp :tabp&lt;CR&gt;
+nnoremap &lt;Leader&gt;te :tabe&lt;Space&gt;
+
+" 修正易错命令
+command -bang -nargs=* Q q&lt;bang&gt;
+command -bang -nargs=* Wa wa&lt;bang&gt;
+command -bang -nargs=* WA wa&lt;bang&gt;
+command -bang -nargs=* -complete=file W w&lt;bang&gt; &lt;args&gt;
+command -bang -nargs=* -complete=file Wq wq&lt;bang&gt; &lt;args&gt;
+command -bang -nargs=* -complete=file WQ wq&lt;bang&gt; &lt;args&gt;
+</code></pre>
+
+<h2>Vim UI</h2>
+
+<p>因为我主要在终端使用Vim，所以一些UI的配置是针对终端的。GUI的话基本相似，把<code>ctermbg</code>等换成<code>guibg</code>等就可以了。</p>
+
+<pre><code>set t_Co=256                    " 终端显示256色
+set tabpagemax=15               " 最多15个Tab
+set showmode                    " 显示当前mode
+set cursorline                  " 高亮当前行
+set list                        " 显示特殊符号
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+hi clear SignColumn             " 标记列背景和主题背景匹配
+hi clear LineNr                 " 当前行列背景和主题背景匹配
+
+hi CursorLineNr ctermfg=red
+hi VertSplit ctermbg=Grey ctermfg=Grey cterm=none
+hi Visual ctermbg=81 ctermfg=black cterm=none
+hi Comment ctermfg=blue
+hi Statement ctermfg=cyan
+hi DiffAdd ctermbg=blue ctermfg=white
+hi DiffDelete ctermbg=green ctermfg=none
+hi DiffChange ctermbg=red ctermfg=White
+hi DiffText ctermbg=yellow ctermfg=black
+
+if has('cmdline_info')
+    set showcmd                 " 右下角显示当前操作
+    set ruler                   " 右下角显示状态说明
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " 设定格式
+endif
+
+if has('statusline')
+    set laststatus=1
+    set statusline=%&lt;%f\                     " Filename
+    set statusline+=%w%h%m%r                 " Options
+    set statusline+=\ [%{&amp;ff}/%Y]            " Filetype
+    set statusline+=\ [%{getcwd()}]          " Current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim补全配置]]></title>
+    <link href="http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
+    <updated>2013-12-06T18:54:00+08:00</updated>
+    <id>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi</id>
+    <content type="html"><![CDATA[<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
+
+<h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
+
+<p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
+
+<p>另外Java补全，还可以使用<a href="http://eclim.org/">eclim</a>。</p>
+
+<!--more-->
+
+
+<p><img src="http://pic002.cnblogs.com/images/2012/342823/2012041511171014.png" alt="javacomplete" /></p>
+
+<h2>2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></h2>
+
+<p>这个插件是用来补全C++的，需要ctags生成项目的tag文件并加载到当前vim中，然后可以根据<code>. -&gt; ::</code>等符号自动补全，在之前的文章中也都介绍过了。</p>
+
+<h2>3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></h2>
+
+<p>Original filename completion</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/5c0c143ad7b1b39fb3a1ec5e2b39c315d6e70391/687474703a2f2f312e62702e626c6f6773706f742e636f6d2f5f63693279426e717a4a674d2f5444314f355f624f5132492f41414141414141414144452f7648663958675f6d7254492f73313630302f66696c656e616d655f636f6d706c6574652e706e67" alt="neocomplcache" /></p>
+
+<p>Omni completion</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/9fc2701fcb8b4a54ab9e0d0ff2902b11aadb825f/687474703a2f2f322e62702e626c6f6773706f742e636f6d2f5f63693279426e717a4a674d2f54443150546f6c6b5442492f41414141414141414144552f6b6e4a33656e69754857492f73313630302f6f6d6e695f636f6d706c6574652e706e67" alt="neo" /></p>
+
+<p>这种补全我是作为<code>clang-complete</code>或<code>YouCompleteMe</code>的一种补充，对于
+/nginx/tmux/shell/vimscript等文件，它都有默认的关键字支持，还有目录文件
+补全，一边输入就会一边列出可以补全的项，而不用按&lt;c-x>&lt;c-f>等命令来选择
+不同的补全，可以使用&lt;c-p>或&lt;c-n>进行上下选择不同的补全，如果有supertab
+插件更是如虎添翼了。</p>
+
+<p>这是我在配合YCM的时候的配置，由YCM补全c、cpp、java、python的文件，其他文件的补全则由neocomplcache实现。配置文件查看<a href="https://github.com/812lcl/.vim">.vim</a>。
+<code>
+let g:neocomplcache_enable_at_startup = 1
+au Filetype c,cpp,java,python let g:neocomplcache_enable_at_startup = 0
+set dict+=$HOME/.vim/static/dict_with_cases
+let g:neocomplcache_dictionary_filetype_lists = {'_' : $HOME . "/.vim/static/english_dict"}
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_fuzzy_completion = 1               " 开启模糊匹配
+let g:neocomplcache_fuzzy_completion_start_length = 3         " 3个字母后开启模糊匹配
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+</code>
+在和clang-complete配合补全时，会有一些冲突，配置时需要配置时去除冲突。配置文件查看<a href="https://github.com/812lcl/vim_withoutYCM">vim_withoutYCM</a>。
+```
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = &lsquo;*ku*&rsquo;</p>
+
+<p>if !exists(&lsquo;g:neocomplcache_force_omni_patterns&rsquo;)</p>
+
+<pre><code>    let g:neocomplcache_force_omni_patterns = {}
+</code></pre>
+
+<p>endif
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_force_omni_patterns.c =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)'
+</code></pre>
+
+<p>let g:neocomplcache_force_omni_patterns.cpp =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'
+</code></pre>
+
+<p>let g:neocomplcache_force_omni_patterns.objc =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)'
+</code></pre>
+
+<p>let g:neocomplcache_force_omni_patterns.objcpp =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'
+</code></pre>
+
+<p>let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+```</p>
+
+<h2>4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></h2>
+
+<p>这也是用于C/C++/Objective-C/Objective-C++的补全，它是利用clang自动分析当前项目，实现补全，比omnicppcoplete方便且高级多了，不需要每一次生成tag文件并加载了。这个插件需要系统安装了clang，对vim也有一定的要求，需要7.3以上且支持python。把需要的东西都安装好，将插件放入<code>~/.vim/bundle</code>目录下即可使用，并不需要在<code>.vimrc</code>中添加什么配置，很是方便。试用了下效果很不错，而且使用这个插件比YCM可是轻便多了，整个.vim目录也不过几MB而已，而且不用耗费心力配置。所以对YCM编译发憷的同志们使用这个插件也可满足了，只不过据说在工程文件太大的时候它比较慢。</p>
+
+<h2>5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></h2>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="YCM" /></p>
+
+<p>重头戏登场了，从名字来看就够霸气了，公认的补全神奇，只不过属于编译行插件，稍微麻烦一些，而且体积确实大了一些，编译完后这个插件就达到了七八十MB大小。不过补全效果最好，支持<code>C/C++/Objective-C/Objective-C++</code>的补全，还支持基于Jedi的Python补全和基于OmniSharp的C#补全，号称安了这个插件就不需要下面四个了</p>
+
+<ul>
+<li>clang_complete</li>
+<li>AutoComplPop</li>
+<li>Supertab</li>
+<li>neocomplcache</li>
+</ul>
+
+
+<p>而且这插件和Syntastic和ultisnips的配合也都很好。而我最终选用这个插件是因为它支持模糊匹配功能，你只需要输入想要输入的单词的子序列即可匹配到，如你想匹配的名为<code>printf</code>，只需输入<code>ptf</code>即可。而且它还支持从一个变量跳转到它的声明或定义处的功能，都是很好用的，所以费了一番功夫编译好它还是值得的。</p>
+
+<p>这个插件是需要<code>build-essential</code>、<code>camke</code>、<code>clang</code>、<code>python-dev</code>等很多支持的，还需要vim高于7.3.584。ubuntu用户需要重新编译安装更高版本的vim了，方法参见<a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">compile Vim from source</a>，fedora用户就省事多了。具体编译和使用参看<a href="https://github.com/Valloric/YouCompleteMe">项目主页</a>即可。</p>
+
+<p>编译安装vim</p>
+
+<p>1.安装依赖库
+```
+sudo apt-get install ctags cscope libncurses5-dev libgnome2-dev libgnomeui-dev \</p>
+
+<pre><code>                 libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+                 libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial
+</code></pre>
+
+<p><code>
+2.删除vim
+</code>
+sudo apt-get remove vim vim-runtime gvim vim-tiny vim-common vim-gui-common
+<code>
+3.编译安装vim
+</code>
+cd ~
+hg clone <a href="https://code.google.com/p/vim/">https://code.google.com/p/vim/</a>
+cd vim
+./configure &mdash;with-features=huge \</p>
+
+<pre><code>        --enable-rubyinterp \
+        --enable-pythoninterp \
+        --with-python-config-dir=/usr/lib/python2.7-config \
+        --enable-perlinterp \
+        --enable-gui=gtk2 --enable-cscope \
+        --enable-luainterp \
+        --prefix=/usr
+</code></pre>
+
+<p>make VIMRUNTIMEDIR=/usr/share/vim/vim74
+sudo make install
+<code>
+4.设置vim为默认编辑器
+</code>
+sudo update-alternatives &mdash;install /usr/bin/editor editor /usr/bin/vim 1
+sudo update-alternatives &mdash;set editor /usr/bin/vim
+sudo update-alternatives &mdash;install /usr/bin/vi vi /usr/bin/vim 1
+sudo update-alternatives &mdash;set vi /usr/bin/vim
+```
+看过好多博客写的YCM编译的教程，最后还是感觉项目主页上的原版安装教程最好，而且编译过程中可能出现各种问题，仔细阅读作者的教程，一切问题都可以解决。下面是安装编译YCM的步骤，包括几种不同的编译方法。</p>
+
+<p>1.安装依赖软件
+<code>
+sudo apt-get install build-essential cmake python-dev clang llvm
+</code>
+2.安装YCM</p>
+
+<p>在<code>~/.vimrc</code>中添加<code>"Bundle Valloric/YouCompleteMe"</code>，打开Vim，执行<code>:BundleInstall</code>命令，等待安装完毕。</p>
+
+<p>3.编译YCM</p>
+
+<p>编译根据系统clang和llvm的情况有所不同，分为几种情况。</p>
+
+<ul>
+<li>clang、llvm等级高于3.3</li>
+</ul>
+
+
+<p>这种情况最简单，执行YouCompleteMe中自带的安装脚本即可。
+<code>
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer [--omnisharp-completer]
+</code>
+<code>--omnisharp-completer</code>是使YCM支持C#的补全，根据自己需要选择。</p>
+
+<ul>
+<li>系统的clang等级高于3.3，手动编译
+<code>
+mkdir ~/ycm_build
+cd ~/ycm_build
+cmake -G "Unix Makefiles" -DUSE_SYSTEM_LIBCLANG=ON . ~/.vim/bundle/YouCompleteMe/cpp
+make ycm_core
+make ycm_support_libs
+make
+</code></li>
+<li>下载对应系统版本的clang+llvm的Pre-build Binaries包，<a href="http://llvm.org/releases/download.html#3.4">下载地址</a>，编译。此时系统不必装clang和llvm，编译完成后，可删除Pre-build Binaries包。
+<code>
+mkdir ~/ycm_tmp
+tar -zxvf clang+llvm-3.4.tar.gz -C ~/ycm_tmp/llvm
+mkdir ~/ycm_build
+cd ~/ycm_build
+cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_tmp/llvm . ~/.vim/bundle/YouCompleteMe/cpp
+或者
+cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=~/ycm_tmp/llvm/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp
+make ycm_core
+make ycm_support_libs
+make
+</code>
+最后来说一说clang和llvm的编译安装，可以使用<code>apt-get</code>或<code>yum</code>等安装，但等级可能不满足，ubuntu库中clang的等级只到来3.2，fedora则比较高。所以有时候可能需要编译安装，或下载对应的Pre-build Binaries包。</li>
+</ul>
+
+
+<p><a href="http://llvm.org/releases/download.html#3.4">llvm.org</a>如果有对应系统版本的Pre-build Binaries包，解压到<code>/usr/local</code>即可。</p>
+
+<p>否则只好自己编译安装来，耗时比较长。
+<code>
+下载clang source code和LLVM source code
+cd ~/ycm_tmp
+tar -zxvf llvm-3.4.src.tar.gz -C llvm
+tar -zxvf clang-3.4.src.tar.gz -C ./llvm/tools/clang
+mkdir build
+cd build
+cmake ../llvm/CMAKElist.txt ../llvm
+make
+sudo make install
+</code>
+完成后，clang和llvm就已经安装好来，可以按照第一二种编译方法，编译YCM了。</p>
+
+<p>因为YCM默认开启来syntastic功能，即静态预防检查，随着你的输入会刷新gutter，以显示错误或警告的signs。如果你还使用vim-gitgutter插件，则无法正常显示。这时我的做法是，关闭YouCompleteMe的syntastic，独立安装syntastic插件。</p>
+
+<p>我的YCM配置如下
+<code>
+set completeopt=longest,menu                    " 关掉补全时的预览窗口
+let g:ycm_confirm_extra_conf = 0                " 不用每次提示加载.ycm_extra_conf.py文件
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0               " 关闭ycm的syntastic
+let g:ycm_filetype_whitelist = {'c' : 1, 'cpp' : 1, 'java' : 1, 'python' : 1}
+let g:ycm_complete_in_comments = 1              " 评论中也应用补全
+let g:ycm_min_num_of_chars_for_completion = 2   " 两个字开始补全
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_key_invoke_completion = '&lt;C-Space&gt;'
+let g:ycm_semantic_triggers =  {'c' : ['-&gt;', '.'], 'objc' : ['-&gt;', '.'], 'ocaml' : ['.', '#'], 'cpp,objcpp' : ['-&gt;', '.', '::'], 'php' : ['-&gt;', '::'], 'cs,java,javascript,vim,coffee,python,scala,go' : ['.'], 'ruby' : ['.', '::']}
+nnoremap &lt;F5&gt; :YcmForceCompileAndDiagnostics&lt;CR&gt;
+nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
+</code></p>
+
+<p>vim就先折腾到这了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim插件配置续]]></title>
+    <link href="http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
+    <updated>2013-12-04T20:56:00+08:00</updated>
+    <id>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
+    <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
+
+<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+
+<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不干扰，想删谁删谁，添加也很简单。安装该插件方法如下
+<code>
+cd ~/.vim
+git clone git://github.com/tpope/vim-pathogen.git
+mkdir bundle
+</code>
+然后再<code>.vimrc</code>中加入<code>execute pathogen#infect()</code>，这样就可以管理插件了。</p>
+
+<!--more-->
+
+
+<p>安装插件
+```</p>
+
+<h1>git submodule add 插件GitHub仓库地址 bundle/插件文件夹</h1>
+
+<p>git submodule add <a href="https://github.com/Lokaltog/vim-easymotion.git">https://github.com/Lokaltog/vim-easymotion.git</a> bundle/easymotion
+<code>
+升级插件
+</code>
+cd ~/.vim/bundle/easymotion # 将 easymotion 替换为需要升级的插件名字
+git pull origin master
+<code>
+升级所有插件
+</code>
+cd ~/.vim
+git submodule foreach git pull origin master
+<code>
+删除插件
+</code>
+cd ~/.vim
+rm -rf bundle/easymotion
+git rm -rf bundle/easymotion
+<code>
+如果你将你的`.vim`仓库穿到GitHub上，可以很容易的在其他机器上恢复相同的配置，方法如下：
+</code>
+git clone <a href="http://github.com/username/dotvim.git">http://github.com/username/dotvim.git</a> ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+cd ~/.vim
+git submodule init
+git submodule update
+<code>``
+如果你的整个</code>.vim<code>目录并不作为git仓库，也可以用pathogen管理插件，只需将插件下好，将其作为独立文件夹放入</code>~/.vim/bundle/`中即可。</p>
+
+<h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
+
+<p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母代替，然后输入想跳到位置的字母即可。</p>
+
+<p><leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在<code>.vimrc</code>中加入下面这条语句：</p>
+
+<p><code>let g:EasyMotion_leader_key = 'f'</code></p>
+
+<p><img src="http://812lcl.github.io/images/blog/easymotion.gif" alt="Easymotion" /></p>
+
+<h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
+
+<p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
+```
+Text                Command         New Text</p>
+
+<hr />
+
+<p>&ldquo;Hello |world&rdquo;      cs"&lsquo;            'Hello world&rsquo;
+&ldquo;Hello |world&rdquo;      cs"<q>          <q>Hello world</q>
+(123+4|56)/2        cs)]            [123+456]/2
+(123+4|56)/2        cs)[            [ 123+456 ]/2</p>
+
+<div>foo|</div>
+
+
+<p>     cst<p>          <p>foo</p>
+fo|o!               csw'            &lsquo;foo&rsquo;!
+fo|o!               csW'            &lsquo;foo!&rsquo;
+<code>
+</code>
+Text                Command         New Text</p>
+
+<hr />
+
+<p>Hello w|orld!       ysiw)           Hello (world)!
+Hello w|orld!       csw)            Hello (world)!
+fo|o                ysiwt<html>      <html>foo</html>
+foo quu|x baz       yss"            &ldquo;foo quux baz&rdquo;
+foo quu|x baz       ySS"            "</p>
+
+<pre><code>                                 foo quux baz
+                                "
+</code></pre>
+
+<p><code>
+</code>
+Text                Command         New Text</p>
+
+<hr />
+
+<p>&ldquo;|hello&rdquo;            ds"             hello
+<code>
+在不同的模式下操作有所不同
+</code>
+normal模式
+ds  删除surrounding
+cs  替换surrounding
+ys  添加surrounding
+yS  添加、换行、缩进
+yss 整行添加surrounding
+ySs 整行添加换行缩进
+<code>
+</code>
+visual模式
+s   添加surrounding
+S   添加、换行、缩进
+<code>
+</code>
+insert模式
+&lt;C-s>   添加surrounding
+&lt;C-s>&lt;C-s>  添加、换行、缩进
+```</p>
+
+<h2>4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></h2>
+
+<p>%跳转到下一个匹配符号如匹配括号，是 vim 原有功能，添加这个功能后，可以使用%跳转到匹配的HTML标签。</p>
+
+<h2>5. <a href="https://github.com/mbbill/undotree">Undotree</a></h2>
+
+<p>可视化撤销，可以看见你所做的改变，可视化的恢复到某一状态。<code>:UndotreeToggle</code>打开undo-tree面板，可以映射为其他按键，只需在<code>.vimrc</code>中添加</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;u :UndotreeToggle&lt;cr&gt;</code>。</p>
+
+<p>打开的面板中还可以看到每一步修改的前后对比，在面板中按？可获得快捷键帮助。面板效果如下：</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/bcebe1b159a62ce1b010af4ba1e99e461116dd23/687474703a2f2f66696c65732e6d796f706572612e636f6d2f6d6262696c6c2f66696c65732f756e646f747265652e706e67" alt="Undotree" /></p>
+
+<p>当前位置被标记为<code>&gt;seq&lt;</code></p>
+
+<p>下一变化被标记为<code>{seq}</code>，可以通过<code>:redo</code>或 <code>&lt;ctrl-r&gt;</code>跳到下一状态</p>
+
+<p>最近的变化标记为<code>[seq]</code></p>
+
+<p>保存的变化被标记为s，最后被保存的变化被标记为大写S</p>
+
+<p>vim 默认是不保存undo信息的，可以在<code>.vimrc</code>中添加语句实现退出编辑的文件，再打开仍可以undo。
+```
+if has(&lsquo;persistent_undo&rsquo;)</p>
+
+<pre><code>set undofile
+set undodir=’~/.undo/’
+</code></pre>
+
+<p>endif
+```</p>
+
+<h2>6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></h2>
+
+<p>也是大名鼎鼎，同Taglist差不多，但更适合于C++，可以显示类中的声明、定义等等。<code>:TagbarToggle</code>打开Tagbar窗口，映射快捷键</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;t :TagbarToggle&lt;cr&gt;</code></p>
+
+<h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
+
+<p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。在nerdtree的窗口中按？可显示快捷键操作。</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;n :NERDTreeToggle&lt;CR&gt;</code>映射打开快捷键，根据自己喜欢设定。</p>
+
+<h2>8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></h2>
+
+<p>快速添加注释的插件，使用方法如下：
+<code>
+&lt;Leader&gt;cc      最基本注释
+&lt;Leader&gt;cu      撤销注释
+&lt;Leader&gt;cm      多行注释
+&lt;Leader&gt;cs      性感的注释方式
+</code>
+只列出了几个常用的，具体效果你可以自己一试。</p>
+
+<h2>9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></h2>
+
+<p>需要python的支持，很强大的代码补全插件，大大提高编写代码的速度。可以自己定义模板，在该插件目录下的<code>UltiSnips</code>目录中有各种语言的补全模板。默认使用tab键补全，因为与ycm有冲突，重新映射为&lt;C-j>。</p>
+
+<p><code>let g:UltiSnipsExpandTrigger = "&lt;c-j&gt;"</code></p>
+
+<p>补全比如for循环的语句，可以通过&lt;c-j>切换更该要修改的参数。</p>
+
+<h2>10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></h2>
+
+<p>语法检查的插件，可以查看当前代码的错误，无需等到编译出错后再来修改。
+<code>:Errors</code>打开错误列表，<code>:lnext</code>和<code>lpre</code>切换下一个和前一个错误。
+在<code>.vimrc</code>中添加以下语句，对其进行配置及快捷键映射：
+<code>
+let g:syntastic_che_on_open=1
+let g:syntastic_auto_jump=1
+let g:syntastic_error_symbol = 'e&gt;'
+let g:syntastic_warning_symbol = 'w&gt;'
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_loc_list_height = 6
+let g:syntastic_enable_highlighting = 0
+nmap &lt;Leader&gt;e :Errors&lt;cr&gt;
+nmap &lt;Leader&gt;c :lnext&lt;cr&gt;
+nmap &lt;Leader&gt;z :lpre&lt;cr&gt;
+</code>
+<img src="https://raw.github.com/scrooloose/syntastic/master/_assets/screenshot_1.png" alt="Syntastic" /></p>
+
+<h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
+
+<p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。映射快捷键</p>
+
+<p><code>
+nmap &lt;Leader&gt;g :SCCompileRun&lt;cr&gt;&lt;cr&gt;&lt;cr&gt;
+nmap &lt;Leader&gt;v :SCViewResult&lt;cr&gt;
+</code></p>
+
+<h2>12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></h2>
+
+<p><img src="https://raw.github.com/airblade/vim-gitgutter/master/screenshot.png" alt="Gitgutter" /></p>
+
+<p>显示当前文件中与git仓库提交的版本的变化，在最左侧以不同符号显示不同状态。可以在<code>.vimrc</code>中自己定义
+<code>
+let g:gitgutter_enabled = 1
+let g:gitgutter_highlight_lines = 0
+" let g:gitgutter_sign_added = 'xx'
+" let g:gitgutter_sign_modified = 'yy'
+" let g:gitgutter_sign_removed = 'zz'
+" let g:gitgutter_sign_modified_removed = 'ww'
+nmap gh &lt;Plug&gt;GitGutterNextHunk
+nmap hg &lt;Plug&gt;GitGutterPrevHunk
+</code>
+其中我定义了<code>gh</code>跳到下一条变化之处，<code>hg</code>跳到上一条。</p>
+
+<h2>13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></h2>
+
+<p>这个插件使你可以在vim中执行git操作。
+<code>
+:Gstatus    git status
+:Gcommit    git commit
+:Gdiff      git diff
+:Glog       git log
+:Gread      git checkout file
+:Gwrite     git add file
+:Gmove      git mv
+:Gremove    git rm
+</code></p>
+
+<h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
+
+<p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67" alt="CtrlP" /></p>
+
+<p>ctrl-p打开搜索框后即可搜索，有以下功能键：
+<code>
+&lt;c-f&gt; &lt;c-b&gt;     切换模式
+&lt;c-d&gt;           切换按全路径或文件名查找
+&lt;c-r&gt;           改变regexp模式
+&lt;c-j&gt; &lt;c-k&gt;     下一个/上一个文件
+&lt;c-t&gt;           新tab打开文件
+&lt;c-v&gt; &lt;c-x&gt;     新split打开文件
+&lt;c-n&gt; &lt;c-p&gt;     上一个或下一个查找
+&lt;c-y&gt;           创建新文件和他的父目录
+&lt;c-z&gt;           标记文件
+&lt;c-o&gt;           打开标记文件
+</code>
+可以在<code>.vimrc</code>中配置CtrlP显示的位置，显示条目，忽略搜索目录等等,就不一一说明了，可以点击<a href="http://kien.github.io/ctrlp.vim/">这里</a>查看。
+<code>
+我的配置
+let g:ctrlp_map = '&lt;c-p&gt;'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_open_multiple_files = 'v'         " &lt;C-Z&gt;&lt;C-O&gt;时垂直分屏打开多个文件
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git)$',
+  \ 'file': '\v\.(log|jpg|png|jpeg)$',
+  \ }
+let g:ctrlp_working_path_mode= 'ra'
+let g:ctrlp_match_window_bottom= 1
+let g:ctrlp_max_height= 10
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+</code></p>
+
+<h2>15. <a href="https://github.com/Shougo/unite.vim">unite</a></h2>
+
+<p>和CtrlP功能类似，也可以搜索文件、缓冲区等，我使用这个插件主要是它可以查询当前vim中的所有命令和按键映射等，命令多了，一时记不住可以查查看，很方便。</p>
+
+<p>如果你在Unite窗口进入插入模式，光标将会移到该窗口的最上方，并显示“>”提示符。输入字符会搜索该列表&mdash;这里和FuzzyFinder相似。和常规vim一样，按<ESC>键可以退出插入模式回到命令模式，而且可以使用通配符*、|、!。</p>
+
+<p>命令模式和插入模式都有相应的快捷键映射。比如在命令模式下，当光标在一个文件上，按下a，Unite会显示一个可以操作该文件命令的列表。这个命令列表被称为actions，这个列表可以像Unite其他部分一样被搜索和调用。</p>
+
+<p>actions可以组合通配符。如果输入:Unite file, 然后按下*将会标记所有文件，再输入a将会列出所有actions，最后选择above，Unite将会打开所有被标记的文件。</p>
+
+<p>可以映射快捷键调用，根据自己喜好，自行定义</p>
+
+<p><code>nnoremap &lt;leader&gt;f :Unite -start-insert file</code></p>
+
+<p><img src="https://s3.amazonaws.com/github-csexton/unite-01.gif" alt="unite" /></p>
+
+<h2>16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></h2>
+
+<p>这个插件有人很讨厌，也有一些人会喜欢，我也还在试用，习惯。它能自动添加和删除匹配的括号、引号。大家选择性安装吧。</p>
+
+<p>OK，先这么多了，准备下一篇文章写一下vim中各种强大的补全。而且提醒一下，vim本身功能已经很强大，虽然各种插件可以帮助你更高效，但不要离了他们就不会使用vim了，也不要太专注于各种插件，写的内容才是最主要的。推荐一篇文章<a href="http://www.kunli.info/2013/08/13/vim/">不要复杂化vim</a>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim插件配置，比肩IDE]]></title>
+    <link href="http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/"/>
+    <updated>2013-10-24T20:28:00+08:00</updated>
+    <id>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-,bi-jian-ide</id>
+    <content type="html"><![CDATA[<p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+
+<p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
+
+<!--more-->
+
+
+<p>首先，vim一般是linux自带了，在/usr/share/vim文件夹中，可以将要安装的插件及说明文档等放置这个目录的相应位置。其中有连接指向/etc/vim，可修改/etc/vim中的vimrc配置文件对vim进行设置。但不推荐这样做，这样以后想删除哪个插件比较麻烦。一般的做法是在$HOME文件夹下建立一个.vim文件夹，自己的插件、说明文档、语法高亮、配色方案等可以放在这个文件夹中的相应位置，配置文件为$HOME/.vimrc。这样不影响其他用户的配置，而且自己想恢复原来的vim，删除.vimrc和.vim文件夹即可。</p>
+
+<p>```
+|&ndash; .vim</p>
+
+<pre><code>└colors   配色方案
+└plugin   插件
+└doc      说明文档
+└syntax   语法高亮
+└after    修正脚本
+└autoload     自动加载
+</code></pre>
+
+<p>```
+下面正式开始配置了，提到的插件插件可以到<a href="http://www.vim.org/index.php">vim online</a>下载，下载好放入~/.vim/plugin即可。</p>
+
+<h2>1. ctags</h2>
+
+<p>这是很重要的一个插件，大多数linux发行版本默认安装了ctags，如果没有可如下安装</p>
+
+<pre><code>$ sudo apt-get install ctags
+</code></pre>
+
+<p>或者下载源文件，编译安装
+<code>
+$ tar -xzvf ctags-5.6.tar.gz
+$ cd ctags-5.6
+$ make
+$ sudo make install
+</code>
+有了ctags，可以生成标签文件，识别出程序中的函数定义调用关系，变量，宏定义等，看到一个函数调用时，只需按下"Ctrl+]&ldquo;，就可以跳转到其定义的地方，然后可以按"Ctrl+T"调回调用处。而且，有些其他插件的实现是依赖ctags实现的，所以ctags还是很重要的。使用方法如下
+<code>
+cd 程序根目录
+ctags -R        //生成tags文件
+vim 程序源文件
+:set tags=程序根目录/tags
+</code></p>
+
+<h2>2. taglist</h2>
+
+<p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句
+<code>
+let Tlist_Show_One_File=1       "让taglist可以同时展示一个文件的函数列表
+let Tlist_Exit_OnlyWindow=1     "当taglist是最后一个分割窗口时，自动退出vim
+</code>
+然后可以在vim中输入<code>:Tlist</code>查看效果了。</p>
+
+<h2>3. netrw和winmanager</h2>
+
+<p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在~/.vim/plugin中，然后在.vimrc中填入如下
+<code>
+let g:winManagerWindowLayout='FileExplorer|TagList'
+let g:persistentBehaviour=0         "如果所有编辑文件都关闭了，退出vim
+let g:winManagerWidth = 30          "窗口默认宽带        
+let g:defaultExplorer=1
+nmap &lt;silent&gt; &lt;F8&gt; :WMToggle&lt;cr&gt;
+</code>
+最后一句为设置快捷键，按F8或者<code>:WMToggle</code>即可打开两个窗口。</p>
+
+<h2>4. cscope</h2>
+
+<p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个工程文件中更强大的查找功能。</p>
+
+<p>首先安装，仍可以使用apt-get</p>
+
+<pre><code>sudo apt-get install cscope
+</code></pre>
+
+<p>在~/.vimrc中增加一句：</p>
+
+<pre><code>:set cscopequickfix=s-,c-,d-,i-,t-,e-        " 使用QuickFix窗口来显示cscope查找结果
+</code></pre>
+
+<p>使用也是如ctags类似，先在工程根目录下生成一个cscope的数据库，要查找时，需要把cscope.out导入到vim中，然后可以进行各种查找。
+<code>
+cd 工作目录
+cscope -Rbq
+vim 工程文件
+:cs add 工作目录/cscope.out 工程文件
+:cs find c|d|e|f|g|i|s|t name
+</code>
+其中c、d、e等代表不同的查找类型
+<code>
+0 或 s 查找本 C 符号(可以跳过注释)
+1 或 g 查找本定义
+2 或 d 查找本函数调用的函数
+3 或 c 查找调用本函数的函数
+4 或 t 查找本字符串
+6 或 e 查找本 egrep 模式
+7 或 f 查找本文件
+8 或 i 查找包含本文件的文件                        
+</code>
+查找后vim会自动跳到第一个符合的地方，如果不满意可以用<code>:cw</code>打开quickfix窗口，自己选择跳转位置。当然查找命令可能有些长，总去输入不太方便，可设置快捷键，在.vimrc中添加
+<code>
+" 按下面这种组合键有技巧,按了&lt;C-_&gt;后要马上按下一个键,否则屏幕一闪
+" 就回到nomal状态了
+" &lt;C-_&gt;s的按法是先按"Ctrl+Shift+-",然后很快再按"s"
+nmap &lt;C-_&gt;s :cs find s &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;g :cs find g &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;c :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;t :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;e :cs find e &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;f :cs find f &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt;
+nmap &lt;C-_&gt;i :cs find i &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+nmap &lt;C-_&gt;d :cs find d &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</code>
+好了，暂时就这些，cscope在大型工程中查找非常方便，但也需要慢慢学习适应使用。</p>
+
+<h2>5. quickfix</h2>
+
+<p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。
+<code>
+nmap &lt;F6&gt; :cp&lt;cr&gt;
+nmap &lt;F7&gt; :cn&lt;cr&gt;
+</code>
+可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误，回车可以到达错误所在的行，进行修改。</p>
+
+<h2>6. minibufexplorer</h2>
+
+<p>仍然是将下载的minibufexplorer.vim放入plugin中即可。</p>
+
+<p>在编程的时候不可能永远只编辑一个文件,肯定会打开很多源文件进行编辑,如果每个文件都打开一个vim进行编辑的话那操作起来将很多麻烦,所以vim有buffer(缓冲区)的概念,当你只编辑一个buffer的时候MiniBufExplorer派不上用场,当你打开第二个buffer的时候,MiniBufExplorer窗口就自动弹出来了。列出了当前所有已经打开的buffer,当你把光标置于这个窗口时,有下面几个快捷键可以用:
+<code>
+&lt;Tab&gt;   向前循环切换到每个buffer名上
+&lt;S-Tab&gt; 向后循环切换到每个buffer名上
+&lt;Enter&gt; 在打开光标所在的buffer
+d       删除光标所在的buffer
+</code>
+在.vimrc中添加如下语句，进行一定的设置
+```
+let g:miniBufExplMapCTabSwitchBufs = 1      &ldquo;启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；</p>
+
+<pre><code>                                        "Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
+</code></pre>
+
+<p>let g:miniBufExplMapWindowNavVim = 1        &ldquo;可以用&lt;C-h,j,k,l>切换到上下左右的窗口中
+let g:miniBufExplMapWindowNavArrows = 1     "可用&lt;C-箭头键>切换到上下左右窗口中
+let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
+```
+这样就很清晰的看到，当前打开了多少个文件，切换也很方便。</p>
+
+<h2>7. a.vim</h2>
+
+<p>这是一个很方便在源文件和头文件间进行切换的插件，下载好放入plugin中即可，命令如下：
+<code>
+:A  在新Buffer中切换到c/h文件
+:AS 横向分割窗口并打开c/h文件
+:AV 纵向分割窗口并打开c/h文件
+:AT 新建一个标签页并打开c/h文件
+</code>
+还可以在.vimrc中添加快捷键设置</p>
+
+<pre><code>nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;
+</code></pre>
+
+<p>之后按F12即可打开同名的头文件，再配合minibufexplorer，可以很好的进行切换。</p>
+
+<h2>8. Grep</h2>
+
+<p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程范围内，查找你想查找的任何东西。
+<code>
+:Grep       按照指定的规则在指定的文件中查找
+:Rgrep      同上, 但是是递归的grep
+:GrepBuffer 在所有打开的缓冲区中查找
+:Bgrep      同上
+:GrepArgs   在vim的argument filenames (:args)中查找
+:Fgrep      运行fgrep
+:Rfgrep     运行递归的fgrep
+:Egrep      运行egrep
+:Regrep     运行递归的egrep
+:Agrep      运行agrep
+:Ragrep     运行递归的agrep
+</code>
+使用方法如下
+<code>
+:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Egrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Regrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Agrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:Ragrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+:GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+:Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+:GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</code>
+也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
+
+<h2>9.visualmark</h2>
+
+<p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。
+<code>
+mm      设定标签
+F2      正向切换
+shift+F2    反向切换
+</code></p>
+
+<h2>10. 补全功能</h2>
+
+<p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
+
+<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令
+<code>
+cd ~/.vim/autoload
+javac Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+</code>
+一切准备就绪，最后就是在.vimrc中添加相应的设置，开启补全功能
+<code>
+"-----------------------------------------------------------
+"AutoComple
+"-----------------------------------------------------------
+filetype plugin on                  "开启文件类型识别功能
+filetype plugin indent on           "打开文件类型检测, 加了这句才可以用智能补全
+set completeopt=longest,menu        "关掉智能补全时的预览窗口
+setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType java set omnifunc=javacomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+"-----------------------------------------------------------
+"OmniCppComplete
+"-----------------------------------------------------------
+" 按下F4自动补全代码
+imap &lt;F4&gt; &lt;C-X&gt;&lt;C-O&gt;
+" 按下F5根据头文件内关键字补全
+imap &lt;F5&gt; &lt;C-X&gt;&lt;C-I&gt;
+let OmniCpp_MayCompleteDot = 1           " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1         " autocomplete with -&gt;
+let OmniCpp_MayCompleteScope = 1         " autocomplete with ::
+let OmniCpp_SelectFirstItem = 2          " select first item (but don't insert)
+let OmniCpp_NamespaceSearch = 2         " search namespaces in this and included file
+let OmniCpp_ShowPrototypeInAbbr = 1     " show function prototype in popup window
+let OmniCpp_GlobalScopeSearch=1         " enable the global scope search
+let OmniCpp_DisplayMode=1               " Class scope completion mode: always show all members
+let OmniCpp_ShowScopeInAbbr=1           " show scope in abbreviation and remove the last column
+</code>
+现在一切都设置好了，比如编写个a.java，输入Math.然后按<code>ctrl+x ctrl+o</code>就可以出现可以补全的选项了，我设置了F4和F5两个快捷键，不同的补全方式和操作如下：
+```
+Ctrl+P  向前切换成员
+Ctrl+N  向后切换成员
+Ctrl+E  表示退出下拉窗口, 并退回到原来录入的文字
+Ctrl+Y  表示退出下拉窗口, 并接受当前选项</p>
+
+<p>Ctrl+X Ctrl+L   整行补全
+Ctrl+X Ctrl+N   根据当前文件里关键字补全
+Ctrl+X Ctrl+K   根据字典补全
+Ctrl+X Ctrl+T   根据同义词字典补全
+Ctrl+X Ctrl+I   根据头文件内关键字补全
+Ctrl+X Ctrl+]   根据标签补全
+Ctrl+X Ctrl+F   补全文件名
+Ctrl+X Ctrl+D   补全宏定义
+Ctrl+X Ctrl+V   补全vim命令
+Ctrl+X Ctrl+U   用户自定义补全方式
+Ctrl+X Ctrl+S   拼写建议
+```</p>
+
+<h2>11. supertab</h2>
+
+<p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式.vimrc中添加
+```
+let g:SuperTabRetainCompletionType=2                              <br/>
+&ldquo; 0 &ndash; 不记录上次的补全方式
+&rdquo; 1 &ndash; 记住上次的补全方式,直到用其他的补全命令改变它
+&ldquo; 2 &ndash; 记住上次的补全方式,直到按ESC退出插入模式为止
+let g:SuperTabDefaultCompletionType=&rdquo;&lt;C-X>&lt;C-O>&ldquo;     <br/>
+&rdquo; 设置按下<Tab>后默认的补全方式, 默认是&lt;C-P></p>
+
+<h2>```</h2>
+
+<p>这些就是我使用的vim插件的配置过程，有个简单粗暴的方法即可完成上述配置
+<code>
+cd ~
+git clone https://github.com/812lcl/vim.git
+mv vim .vim
+mv .vim/vimrc-lcl .vimrc
+javac ~/.vim/autoload/Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+</code></p>
+
+<p>vim本身已经足够强大，这些插件是锦上添花。vim是需要不断的练习的，可以参考
+<a href="http://coolshell.cn/articles/5426.html">简明Vim练级攻略</a>。</p>
+
+<p>这里是我自己整理的一个vim、bash、git的命令操作的查询表格<a href="http://pan.baidu.com/s/1rFcMP">点击查看</a></p>
+
+<p>参考文章：</p>
+
+<blockquote><p><a href="http://blog.csdn.net/wooin/article/details/1858917">手把手教你把Vim改装成一个IDE编程环境</a></p>
+
+<p><a href="http://blog.csdn.net/tge7618291/article/details/4216977">经典vim插件功能说明、安装方法和使用方法</a></p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

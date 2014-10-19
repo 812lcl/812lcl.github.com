@@ -1,0 +1,947 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Octopress侧边栏及评论系统定制 - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="在上一篇文章中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。 1 &hellip;">
+	<meta name="keywords" content="octopress, linux, github, blog">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+            <form action="/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+
+    <!-- default search
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+        <input type="hidden" name="q" value="site:812lcl.com"> 
+	</form>
+    -->
+
+    <!-- tapir search
+    <form method="get" action="/search.html" id="search" class="search">
+        <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </form>
+    -->
+
+	<form class="search" action="/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+	</form>
+
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+    
+	<h2 class="title">Octopress侧边栏及评论系统定制</h2>
+	<div class="entry-content">
+        <p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。</p>
+
+<h2>1. 第三方主题</h2>
+
+<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。</p>
+
+<p>你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd blog
+</span><span class='line'>$ git clone https://github.com/shashankmehta/greyshade.git ./themes/greyshade
+</span><span class='line'>$ rake install['greyshade']
+</span><span class='line'>$ rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>预览新的主题样式，不满意可以更换其他主题。</p>
+
+<!--more-->
+
+
+<h2>2. 侧边栏</h2>
+
+<p>侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到<a href="https://github.com/imathis/octopress/wiki">octopress的wiki页面</a>寻找。</p>
+
+<p>侧边栏在<code>_config.yml</code>中设置，添加进<code>default_asides</code>中，先后顺序代表显示的先后顺序，各个侧边栏插件代码放入相应的位置即可，自己添加的一般放入<code>source/_includes/custom/asides</code>，<code>default_asides</code>中默认从<code>_includes</code>之后路径开始写。</p>
+
+<h3>2.1 最新文章</h3>
+
+<p>首先说一下主题中可用的插件。</p>
+
+<p><code>asides/recent_posts.html</code>是最近写的文章的一个展示，添加到<code>default_asides</code>中即可显示，在<code>_config.yml</code>中可以设置显示最近多少篇文章，<code>recent_posts: 5</code>，注意冒号后有空格。</p>
+
+<h3>2.2 GitHub Repos</h3>
+
+<p><code>asides/github.html</code>则是GitHub repos的一个展示，可以直接到达你的GitHub页面，在<code>_config.yml</code>中设置你的Github账号，并设置为<code>true</code>即可，如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Github repositories
+</span><span class='line'>github_user: 812lcl   #我的github
+</span><span class='line'>github_repo_count: 0
+</span><span class='line'>github_show_profile_link: true
+</span><span class='line'>github_skip_forks: true</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2.3 微博秀</h3>
+
+<p>新浪微博是一个信息传播非常迅速的媒介，如果你热衷于微博，可以在侧边栏添加自己的微博秀。首先需要获得自己的微博秀代码，链接为<a href="http://app.weibo.com/tool/weiboshow">http://app.weibo.com/tool/weiboshow</a>，进行相应的设置即可获得微博秀代码。</p>
+
+<p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得的微博秀代码也要添加到相应位置：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h1&gt;</span>新浪微博<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;weibo&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c">&lt;!-- 在此插入获得的微博秀代码 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/weibo.html</code>即可显示你的微博秀了。</p>
+
+<h3>2.4 豆瓣展示</h3>
+
+<p>你可以通过豆瓣读书、豆瓣电影、豆瓣音乐等多方面展示你自己，豆瓣也提供了类似微博秀的展示方式，添加方法也类似。获得豆瓣收藏秀的链接<a href="http://www.douban.com/service/badgemakerjs">http://www.douban.com/service/badgemakerjs</a>，根据自己的喜欢进行设置</p>
+
+<p>然后在<code>source/_includes/custom/asides</code>创建douban.html，添加如下代码，刚刚获得的代码添加到<code>&lt;div&gt;</code>之间：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>My Douban<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--添加到这--&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/douban.html</code>显示你的豆瓣展示。</p>
+
+<h3>2.5 访客地图</h3>
+
+<p>效果如我的博客右侧那个精美的3D旋转地球所示，它可以显示访客数量，访客来自的地域，既有装饰作用，又有统计作用。它也有2D效果版，可以根据自己喜欢进行设置，地址在<a href="http://www.revolvermaps.com/?target=setup">这里</a>，然后获得代码。</p>
+
+<p>依然在<code>source/_includes/custom/asides</code>创建earth.html，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>访客地图<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--获得代码添加到这--&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>default_asides</code>中加入<code>custom/asides/earth.html</code>显示你定制的访客地图。</p>
+
+<h3>2.6 酷站博客</h3>
+
+<p>你有一些经常去的网站、博客，想推荐给大家，则可以在侧边栏加上一个“酷站博客”，当然名字你自己取即可。</p>
+
+<p>在<code>source/_includes/custom/asides</code>创建blog_link.html，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>酷站博客<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://blog.jobbole.com/&quot;</span><span class="nt">&gt;</span>伯乐在线<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.csdn.net/&quot;</span><span class="nt">&gt;</span>CSDN<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.cnblogs.com/&quot;</span><span class="nt">&gt;</span>博客园<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://coolshell.cn/&quot;</span><span class="nt">&gt;</span>酷壳CoolShell<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.cnblogs.com/Solstice/&quot;</span><span class="nt">&gt;</span>陈硕<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以自行添加喜爱网站，然后在<code>default_asides</code>中加入<code>custom/asides/blog_link.html</code>。</p>
+
+<p>看到这，你应该很熟悉添加侧边栏的流程了吧。</p>
+
+<h3>2.7 最热文章</h3>
+
+<p>Octopress Popular Posts Plugin是根据Google page rank计算，展示出权值最高的文章，插件的项目主页为<a href="https://github.com/octopress-themes/popular-posts">点击这里</a>。</p>
+
+<p>这个插件的安装与之前的方法不同，首先在<code>Gemfile</code>中添加</p>
+
+<pre><code>gem 'octopress-popular-posts'
+</code></pre>
+
+<p><code>Gemfile</code>中的是bundle安装时安装的所有依赖的软件，然后用bundle安装</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>执行命令，将插件拷贝到你的source目录，如下：</p>
+
+<pre><code>bundle exec octopress-popular-posts install
+</code></pre>
+
+<p>到这就安装完了，可以设置显示了，在<code>_config.yml</code>中设置，增加下面一行：</p>
+
+<pre><code>popular_posts_count: 5      # Posts in the sidebar Popular Posts section
+</code></pre>
+
+<p>设置边栏显示文章数，最后在<code>default_asides</code>中添加<code>custom/asides/popular_posts.html</code>，即可显示出来。</p>
+
+<p>这样就设置好了，同时建议将缓存的page rank文件添加进你的<code>.gitignore</code>中</p>
+
+<pre><code>.page_rank
+</code></pre>
+
+<h3>2.8 3D标签云与标签列表</h3>
+
+<p>octopress默认的只支持category的分类，而并没有tag。category和tag分别代表有序/无序的知识点归纳。一篇文章只能属于一个category，但可以有多个tag。原来的plugin下只有category_generator.rb插件，实现category功能，在github上有两个插件帮助实现了tag生成和tag cloud功能<a href="https://github.com/robbyedwards/octopress-tag-pages">插件1</a>，<a href="https://github.com/robbyedwards/octopress-tag-cloud">插件2</a>。但似乎并不支持中文，而category_generator.rb是支持中文的，所以我有样学样，改成了支持中文的，并且实现了3D标签云的，插件已经上传到<a href="https://github.com/812lcl/category_tag">github</a>。clone到你博客的目录即可。</p>
+
+<p>包含文件如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> ├─ plugins/
+</span><span class='line'>    │  ├─ category_generator.rb
+</span><span class='line'>    │  ├─ category_list.rb
+</span><span class='line'>    │  ├─ category_tag_cloud.rb
+</span><span class='line'>    │  ├─ tag_generator.rb
+</span><span class='line'>    │  └─ tag_list.rb
+</span><span class='line'>    └─ source/
+</span><span class='line'>       └─ _includes/
+</span><span class='line'>          └─ custom/
+</span><span class='line'>             └─ asides/
+</span><span class='line'>                ├─ category_cloud.html
+</span><span class='line'>                ├─ category_list.html
+</span><span class='line'>                ├─ tag_cloud.html
+</span><span class='line'>                └─ tag_list.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中<code>category_generator.rb</code>和<code>tag_generator.rb</code>定义了根据文章的category和tag标签分类存储文章的方法，<code>category_tag_cloud.rb</code>则可以定义了根据category或tag生成3D标签云的方法。<code>category_list.rb</code>和<code>tag_list.rb</code>实现了将所有文章的category和tag列出来的方法，其中category可以显示文章个数，tag根据此标签文章多少，大小随着改变。</p>
+
+<p>四个HTML文件则是category和tag的列表和3D标签云的侧边栏实现。需要哪个，在<code>default_asides</code>中添加即可。</p>
+
+<p>还有一点需要注意，在_config.yml中默认设置了category的目录，需自己加入tag目录</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>category_dir: blog/categories
+</span><span class='line'>tag_dir: blog/tags
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样可以观看效果了，不过3D效果的标签云，对于不支持flash的浏览器无效，如<code>safari</code>。</p>
+
+<p>标签功能的实现，我参考了一下几篇文章：</p>
+
+<ul>
+<li><p><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p></li>
+<li><p><a href="http://blog.log4d.com/2012/05/tag-cloud/">给 Octopress 加上标签功能</a></p></li>
+<li><p><a href="http://guori12321.github.io/blog/2013/08/20/gei-octopresstian-jia-3dyun-biao-qian/">给octopress添加3D标签云</a></p></li>
+</ul>
+
+
+<h3>2.9 相关文章功能</h3>
+
+<p>此功能即根据当前阅读的文章，分析博客中其他与此相近的文章，进行推荐的一个功能，在octopress wiki中推荐的第三方插件中有一个插件实现此功能，项目主页<a href="https://github.com/jcftang/octopress-relatedposts">点击这里</a>。该插件，利用octopress自带的LSI实现对文章分析分类，然后进行推荐，但当文章较多时分类过慢，它推荐安装GSL来进行分类。我安装过这个功能，但不知道它是根据什么规则分类，而且之后不知道安装了什么，之后每次分类都会出错。你可以自己尝试一下，项目主页都有详细的步骤。</p>
+
+<p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，然后在想添加相关文章推荐的地方添加如下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h2&gt;</span>相关文章：<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;posts&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>       {% for post in site.related_posts limit:5 %}
+</span><span class='line'>          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;related&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}{{ post.url }}&quot;</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      {% endfor %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'> <span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时的布局，我将相关文章添加在博文的结束处。</p>
+
+<p>这个插件是根据文章的tag进行分类的，根据所有博文与本篇文章共同tag的多少依次排序进行推荐，还是很简单有效的。</p>
+
+<p>参考<a href="http://techtinkering.com/2011/08/17/improving-related-posts-on-jekyll/">这里</a></p>
+
+<h2>3. 社会化评论与分享</h2>
+
+<h3>3.1 友言和加网</h3>
+
+<p>octopress内置了disqus评论系统，不适合我国基本国情，所以需要用一些国内的第三方评论系统，如友言、多说，可以以微博、人人、QQ等账号登陆发表评论，网站通过验证后可以对评论进行分析，管理。</p>
+
+<p>多说评论系统可参见<a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">为 Octopress 添加多说评论系统</a>，不多做介绍。</p>
+
+<p>我主要使用的是友言的一套评论系统及插件，分享使用的是加网JiaThis。首先注册<a href="http://www.uyan.cc/">友言</a>账号，否则无法进行后台管理。注册之后获得代码，添加到<code>source/_includes/post/share_comment.html</code>。加网<a href="http://www.jiathis.com/getcode/icon">点击这里</a>，定制自己喜欢的样式，获得代码也添加到上述文件中。</p>
+
+<p>share_comment.html文件中代码如下（每个人不同）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- JiaThis BEGIN --&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;jiathis_style_32x32&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_qzone&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_tsina&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_tqq&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_weixin&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_button_renren&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.jiathis.com/share?uid=*******&quot;</span> <span class="na">class=</span><span class="s">&quot;jiathis jiathis_txt jtico jtico_jiathis&quot;</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;jiathis_counter_style&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v3.jiathis.com/code/jia.js?uid=1361705530382241&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- JiaThis END --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- Baidu Button BEGIN </span>
+</span><span class='line'><span class="c">&lt;div id=&quot;bdshare&quot; class=&quot;bdshare_t bds_tools_32 get-codes-bdshare&quot;&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_tsina&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_qzone&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_tqq&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_renren&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_t163&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;bds_hi&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">        &lt;span class=&quot;bds_more&quot;&gt;&lt;/span&gt;</span>
+</span><span class='line'><span class="c">        &lt;a class=&quot;shareCount&quot;&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="c">&lt;/div&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot; id=&quot;bdshare_js&quot; data=&quot;type=tools&amp;amp;uid=6839808&quot; &gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot; id=&quot;bdshell_js&quot;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;script type=&quot;text/javascript&quot;&gt;</span>
+</span><span class='line'><span class="c">        document.getElementById(&quot;bdshell_js&quot;).src = &quot;http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=&quot; + Math.ceil(new Date()/3600000)</span>
+</span><span class='line'><span class="c">&lt;/script&gt;</span>
+</span><span class='line'><span class="c"> Baidu Button END --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- UY BEGIN --&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_frame&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- UY END --&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或评论，代码也可以添加到这。</p>
+
+<p>现在功能代码在share_comment.html中了，下面需要使其显示到博文的底部。</p>
+
+<p>首先在_config.yml中添加开关：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'># comment and share
+</span><span class='line'>comment_share: true
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后在<code>source/_includes/post/sharing.html</code>中添加如下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.comment_share %}
+</span><span class='line'>  {% include post/share_comment.html %}
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、社交影响力分析、和评论栏的风格功能设置。</p>
+
+<h3>3.2 评论热榜和最新评论侧边栏</h3>
+
+<p>友言提供了多个嵌入式组件，如评论热榜、最新评论、评论计数等。我们可以将他们做成侧边栏进行展示，或在首页文章列表中，显示每篇文章的评论数目。</p>
+
+<p>首先在你的友言后台管理中找到<code>安装设置-&gt;嵌入式组件</code>获得评论热榜和最新评论的代码，分别创建<code>source/_includes/custom/asides/uyan_hotcmt.html</code>和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>评论热榜<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_hotcmt_unit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>最新评论<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;uyan_newcmt_unit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后再<code>_config.yml</code>的<code>default_asides</code>中添加其路径即可显示在侧边栏中。</p>
+
+<p>友言评论框、评论热榜、最新评论可以在后台进行设置，改变设置并不需要更改代码。</p>
+
+<h3>3.3 评论计数显示</h3>
+
+<p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。实现方法为：在<code>source/_includes/article.html</code>中</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% include post/date.html %}{{ time }}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments&quot;</span> <span class="na">id=</span><span class="s">&quot;uyan_count_unit&quot;</span> <span class="na">du=</span><span class="s">&quot;&quot;</span> <span class="na">su=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>0条评论<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. 为博文添加原文链接及声明</h2>
+
+<p>可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建<code>plugins/post_footer_filter.rb</code>，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># post_footer_filter.rb</span>
+</span><span class='line'><span class="c1"># Append every post some footer infomation like original url </span>
+</span><span class='line'><span class="c1"># Kevin Lynx</span>
+</span><span class='line'><span class="c1"># 7.26.2012</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;./plugins/post_filters&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">AppendFooterFilter</span>
+</span><span class='line'>        <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">author</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;author&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">url</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">pre</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;original_url_pre&#39;</span><span class="o">]</span>
+</span><span class='line'>                <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">+</span> <span class="sx">%Q[&lt;p class=&#39;post-footer&#39;&gt;</span>
+</span><span class='line'><span class="sx">                        </span><span class="si">#{</span><span class="n">pre</span> <span class="ow">or</span> <span class="s2">&quot;original link:&quot;</span><span class="si">}</span><span class="sx">&lt;a href=&#39;</span><span class="si">#{</span><span class="n">post</span><span class="o">.</span><span class="n">full_url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">post</span><span class="o">.</span><span class="n">full_url</span><span class="si">}</span><span class="sx">&lt;/a&gt;&lt;br/&gt;&amp;nbsp;written by &lt;a href=&#39;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">author</span><span class="si">}</span><span class="sx">&lt;/a&gt;&amp;nbsp;posted at &lt;a href=&#39;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&#39;&gt;</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sx">&lt;/a&gt;&lt;/p&gt;]</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
+</span><span class='line'>        <span class="k">class</span> <span class="nc">AppendFooter</span> <span class="o">&lt;</span> <span class="no">PostFilter</span>
+</span><span class='line'>                <span class="kp">include</span> <span class="no">AppendFooterFilter</span>
+</span><span class='line'>                <span class="k">def</span> <span class="nf">pre_render</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</span><span class='line'>                        <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">is_post?</span>
+</span><span class='line'>                <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_filter</span> <span class="no">AppendFooterFilter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>并可以针对这一区域的样式进行美化，在<code>sass/custom/_style.scss</code>末尾增加下列内容：</p>
+
+<pre><code>.post-footer{margin-top:10px;padding:5px;background:none repeat scroll 0pt 0pt #eee;font-size:90%;color:gray}
+</code></pre>
+
+<p>尊重原创，此功能来源<a href="http://codemacro.com/2012/07/26/post-footer-plugin-for-octopress/">为octopress每篇文章添加一个文章信息</a>。</p>
+
+<h2>5. 公益404</h2>
+
+<p>在<code>source</code>目录下创建404.markdown，添加如下代码，即可实现公益404的功能，当你的网页出错找不到时，可以为公益尽一份力。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="ss">layout</span><span class="p">:</span> <span class="n">page</span>
+</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;404 Error&quot;</span>
+</span><span class='line'><span class="ss">date</span><span class="p">:</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">10</span> <span class="mi">19</span><span class="p">:</span><span class="mi">17</span>
+</span><span class='line'><span class="ss">comments</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="ss">sharing</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="ss">footer</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">script</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;http://www.qq.com/404/search_children,js&quot;</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>好了先写到这了，还有一些东西没写，等后续再写吧。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://biaobiaoqi.me/blog/2013/07/10/decorate-octopress/">定制Octopress</a></p></li>
+<li><p><a href="http://xuhehuan.com/141.html">精美的3D旋转地球统计RevolverMaps</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/'>http://812lcl.com/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
+
+
+        <div>
+        
+        <a class="pull-left" href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/" title="Previous Post: Octopress博客搭建及目录结构">&laquo; Octopress博客搭建及目录结构</a>
+        
+        
+        <a class="pull-right" href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/" title="Next Post: Octopress主题样式修改">Octopress主题样式修改 &raquo;</a>
+        
+        <div class="clear"></div>
+        </div>
+        
+            <div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+    
+    <!-- JiaThis BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
+<!-- JiaThis END -->
+
+<!-- Baidu Button BEGIN 
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+	<a class="bds_tsina"></a>
+	<a class="bds_qzone"></a>
+	<a class="bds_tqq"></a>
+	<a class="bds_renren"></a>
+	<a class="bds_t163"></a>
+	<a class="bds_hi"></a>
+	<span class="bds_more"></span>
+	<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+ Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<!-- UY END -->
+
+    
+</div>
+
+        
+    </div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-26T22:36:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-26T22:36:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time></div>
+        <div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+        <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+        </div>
+        
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+        <br />
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/">Octopress主题样式修改</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a>
+                </li>
+                
+            </ul>
+        </section>
+        <br />
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/linux/'>Linux (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/vim/'>Vim (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (1)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+        <br />
+        <section>
+  <h1>最近博文</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/">Linux命令学习（2）：rsync</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/05/vim-ji-ben-pei-zhi/">Vim 基本配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/">Linux命令学习（1）：diff 和 patch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">Vim补全配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">Vim插件配置续</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+      </li>
+    
+  </ul>
+</section>
+
+        <br />
+        <section>
+<h1>评论热榜</h1>
+<div id="uyan_hotcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+        <section>
+<h1>最新评论</h1>
+<div id="uyan_newcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+    </div>
+</article>
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49529601-1', '812lcl.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>

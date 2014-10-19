@@ -1,0 +1,843 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Vim插件配置，比肩IDE - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。 现在有很多的vim插件管理插件，如bundle、pathogen。 &hellip;">
+	<meta name="keywords" content="vim, linux, IDE">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+            <form action="/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+
+    <!-- default search
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+        <input type="hidden" name="q" value="site:812lcl.com"> 
+	</form>
+    -->
+
+    <!-- tapir search
+    <form method="get" action="/search.html" id="search" class="search">
+        <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </form>
+    -->
+
+	<form class="search" action="/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+	</form>
+
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+    
+	<h2 class="title">Vim插件配置，比肩IDE</h2>
+	<div class="entry-content">
+        <p>vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。</p>
+
+<p>现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看<a href="https://github.com/812lcl">我的GitHub</a>。</p>
+
+<!--more-->
+
+
+<p>首先，vim一般是linux自带了，在/usr/share/vim文件夹中，可以将要安装的插件及说明文档等放置这个目录的相应位置。其中有连接指向/etc/vim，可修改/etc/vim中的vimrc配置文件对vim进行设置。但不推荐这样做，这样以后想删除哪个插件比较麻烦。一般的做法是在$HOME文件夹下建立一个.vim文件夹，自己的插件、说明文档、语法高亮、配色方案等可以放在这个文件夹中的相应位置，配置文件为$HOME/.vimrc。这样不影响其他用户的配置，而且自己想恢复原来的vim，删除.vimrc和.vim文件夹即可。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|- .vim
+</span><span class='line'>  └colors   配色方案
+</span><span class='line'>  └plugin   插件
+</span><span class='line'>  └doc      说明文档
+</span><span class='line'>  └syntax   语法高亮
+</span><span class='line'>  └after    修正脚本
+</span><span class='line'>  └autoload     自动加载</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下面正式开始配置了，提到的插件插件可以到<a href="http://www.vim.org/index.php">vim online</a>下载，下载好放入~/.vim/plugin即可。</p>
+
+<h2>1. ctags</h2>
+
+<p>这是很重要的一个插件，大多数linux发行版本默认安装了ctags，如果没有可如下安装</p>
+
+<pre><code>$ sudo apt-get install ctags
+</code></pre>
+
+<p>或者下载源文件，编译安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ tar -xzvf ctags-5.6.tar.gz
+</span><span class='line'>$ cd ctags-5.6
+</span><span class='line'>$ make
+</span><span class='line'>$ sudo make install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有了ctags，可以生成标签文件，识别出程序中的函数定义调用关系，变量，宏定义等，看到一个函数调用时，只需按下&#8221;Ctrl+]&ldquo;，就可以跳转到其定义的地方，然后可以按&#8221;Ctrl+T&#8221;调回调用处。而且，有些其他插件的实现是依赖ctags实现的，所以ctags还是很重要的。使用方法如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd 程序根目录
+</span><span class='line'>ctags -R      //生成tags文件
+</span><span class='line'>vim 程序源文件
+</span><span class='line'>:set tags=程序根目录/tags</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>2. taglist</h2>
+
+<p>taglist是依赖ctags发挥作用的，查看源文件时，可以打开taglist，就可以清晰的看到该文件中的函数名、变量名、宏定义等。可以选择相应的名字，查看定义的位置。安装只需下载taglis.vim，置于~/.vim/plugin中，然后在~/.vimrc中添加如下两句</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let Tlist_Show_One_File=1       "让taglist可以同时展示一个文件的函数列表
+</span><span class='line'>let Tlist_Exit_OnlyWindow=1     "当taglist是最后一个分割窗口时，自动退出vim</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后可以在vim中输入<code>:Tlist</code>查看效果了。</p>
+
+<h2>3. netrw和winmanager</h2>
+
+<p>netrw是自带一个插件，不需要自己安装了，作用是显示文件夹中的子文件夹和文件情况。当用vim打开一个文件夹时，就是netrw的功能，可以进而删除、创建、修改文件文件夹。配合taglist使用，可以使vim更像一个IDE，更方便查看源程序文件。而winmanager就是整合taglist和netrw窗口的。同样下载winmanager.vim，放在~/.vim/plugin中，然后在.vimrc中填入如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:winManagerWindowLayout='FileExplorer|TagList'
+</span><span class='line'>let g:persistentBehaviour=0         "如果所有编辑文件都关闭了，退出vim
+</span><span class='line'>let g:winManagerWidth = 30          "窗口默认宽带        
+</span><span class='line'>let g:defaultExplorer=1
+</span><span class='line'>nmap &lt;silent&gt; &lt;F8&gt; :WMToggle&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后一句为设置快捷键，按F8或者<code>:WMToggle</code>即可打开两个窗口。</p>
+
+<h2>4. cscope</h2>
+
+<p>这又是个强大的工具，是和ctags有类似功能，但比ctags更加强大的工具，具有在整个工程文件中更强大的查找功能。</p>
+
+<p>首先安装，仍可以使用apt-get</p>
+
+<pre><code>sudo apt-get install cscope
+</code></pre>
+
+<p>在~/.vimrc中增加一句：</p>
+
+<pre><code>:set cscopequickfix=s-,c-,d-,i-,t-,e-        " 使用QuickFix窗口来显示cscope查找结果
+</code></pre>
+
+<p>使用也是如ctags类似，先在工程根目录下生成一个cscope的数据库，要查找时，需要把cscope.out导入到vim中，然后可以进行各种查找。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd 工作目录
+</span><span class='line'>cscope -Rbq
+</span><span class='line'>vim 工程文件
+</span><span class='line'>:cs add 工作目录/cscope.out 工程文件
+</span><span class='line'>:cs find c|d|e|f|g|i|s|t name</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中c、d、e等代表不同的查找类型</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>0 或 s  查找本 C 符号(可以跳过注释)
+</span><span class='line'>1 或 g   查找本定义
+</span><span class='line'>2 或 d   查找本函数调用的函数
+</span><span class='line'>3 或 c   查找调用本函数的函数
+</span><span class='line'>4 或 t   查找本字符串
+</span><span class='line'>6 或 e   查找本 egrep 模式
+</span><span class='line'>7 或 f   查找本文件
+</span><span class='line'>8 或 i   查找包含本文件的文件                        </span></code></pre></td></tr></table></div></figure>
+
+
+<p>查找后vim会自动跳到第一个符合的地方，如果不满意可以用<code>:cw</code>打开quickfix窗口，自己选择跳转位置。当然查找命令可能有些长，总去输入不太方便，可设置快捷键，在.vimrc中添加</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>" 按下面这种组合键有技巧,按了&lt;C-_&gt;后要马上按下一个键,否则屏幕一闪
+</span><span class='line'>" 就回到nomal状态了
+</span><span class='line'>" &lt;C-_&gt;s的按法是先按"Ctrl+Shift+-",然后很快再按"s"
+</span><span class='line'>nmap &lt;C-_&gt;s :cs find s &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;g :cs find g &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;c :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;t :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;e :cs find e &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;f :cs find f &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;i :cs find i &lt;C-R&gt;=expand("&lt;cfile&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;
+</span><span class='line'>nmap &lt;C-_&gt;d :cs find d &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;cr&gt;&lt;cr&gt; :cw&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好了，暂时就这些，cscope在大型工程中查找非常方便，但也需要慢慢学习适应使用。</p>
+
+<h2>5. quickfix</h2>
+
+<p>刚刚提到过quickfix窗口，可以显示查询结果，他也可以显示make的时候出现的错误列表，可以选择错误，找到出错位置，进而调试，这在IDE中是很常用的，vim也实现了。而且quickfix并不需要安装，是vim的标准插件，可以使用时，输入<code>:cw</code>即可。<code>:cn</code>和<code>:cp</code>是切换结果的命令，可以定义快捷键，在.vimrc中添加几句话。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nmap &lt;F6&gt; :cp&lt;cr&gt;
+</span><span class='line'>nmap &lt;F7&gt; :cn&lt;cr&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以试验一下功能，写一个简单的c程序，将其中几句话写成有错误的，写一个makefile文件，打开源文件，用<code>:make</code>进行编译，编译会报错。编译结束回到代码界面时输入<code>:cw</code>打开quickfix窗口，可以看到刚刚编译的几条错误，按F6或F7切换错误，回车可以到达错误所在的行，进行修改。</p>
+
+<h2>6. minibufexplorer</h2>
+
+<p>仍然是将下载的minibufexplorer.vim放入plugin中即可。</p>
+
+<p>在编程的时候不可能永远只编辑一个文件,肯定会打开很多源文件进行编辑,如果每个文件都打开一个vim进行编辑的话那操作起来将很多麻烦,所以vim有buffer(缓冲区)的概念,当你只编辑一个buffer的时候MiniBufExplorer派不上用场,当你打开第二个buffer的时候,MiniBufExplorer窗口就自动弹出来了。列出了当前所有已经打开的buffer,当你把光标置于这个窗口时,有下面几个快捷键可以用:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Tab&gt;  向前循环切换到每个buffer名上
+</span><span class='line'>&lt;S-Tab&gt; 向后循环切换到每个buffer名上
+</span><span class='line'>&lt;Enter&gt; 在打开光标所在的buffer
+</span><span class='line'>d         删除光标所在的buffer</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在.vimrc中添加如下语句，进行一定的设置</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:miniBufExplMapCTabSwitchBufs = 1      "启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；
+</span><span class='line'>                                            "Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
+</span><span class='line'>let g:miniBufExplMapWindowNavVim = 1        "可以用&lt;C-h,j,k,l&gt;切换到上下左右的窗口中
+</span><span class='line'>let g:miniBufExplMapWindowNavArrows = 1     "可用&lt;C-箭头键&gt;切换到上下左右窗口中
+</span><span class='line'>let g:miniBufExplModSelTarget = 1           "不在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就很清晰的看到，当前打开了多少个文件，切换也很方便。</p>
+
+<h2>7. a.vim</h2>
+
+<p>这是一个很方便在源文件和头文件间进行切换的插件，下载好放入plugin中即可，命令如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:A   在新Buffer中切换到c/h文件
+</span><span class='line'>:AS   横向分割窗口并打开c/h文件
+</span><span class='line'>:AV   纵向分割窗口并打开c/h文件
+</span><span class='line'>:AT   新建一个标签页并打开c/h文件</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还可以在.vimrc中添加快捷键设置</p>
+
+<pre><code>nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;
+</code></pre>
+
+<p>之后按F12即可打开同名的头文件，再配合minibufexplorer，可以很好的进行切换。</p>
+
+<h2>8. Grep</h2>
+
+<p>cscope可以在工程中找到函数、变量等的调用、定义的地方，Grep则可以在全工程范围内，查找你想查找的任何东西。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Grep        按照指定的规则在指定的文件中查找
+</span><span class='line'>:Rgrep        同上, 但是是递归的grep
+</span><span class='line'>:GrepBuffer   在所有打开的缓冲区中查找
+</span><span class='line'>:Bgrep        同上
+</span><span class='line'>:GrepArgs 在vim的argument filenames (:args)中查找
+</span><span class='line'>:Fgrep        运行fgrep
+</span><span class='line'>:Rfgrep       运行递归的fgrep
+</span><span class='line'>:Egrep        运行egrep
+</span><span class='line'>:Regrep       运行递归的egrep
+</span><span class='line'>:Agrep        运行agrep
+</span><span class='line'>:Ragrep       运行递归的agrep</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用方法如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:Grep   [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Rgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Fgrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Rfgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Egrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Regrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Agrep  [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:Ragrep [&lt;grep_options&gt;] [&lt;search_pattern&gt; [&lt;file_name(s)&gt;]]
+</span><span class='line'>:GrepBuffer [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</span><span class='line'>:Bgrep [&lt;grep_options&gt;] [&lt;search_pattern&gt;]
+</span><span class='line'>:GrepArgs [&lt;grep_options&gt;] [&lt;search_pattern&gt;]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以输入:Grep之后一步一步输入要查找的内容、名字等，会有提示。</p>
+
+<h2>9.visualmark</h2>
+
+<p>这是一个书签，可以将你认为有问题的代码行标记高亮，多个书签键很方便的切换。但退出文件后，标签消失，调试程序时，标注关键代码很有帮助。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mm       设定标签
+</span><span class='line'>F2        正向切换
+</span><span class='line'>shift+F2  反向切换</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>10. 补全功能</h2>
+
+<p>使用vs等IDE时，补全功能是很方便的，能使编写更加的高效。vim中也有补全功能，ctrl+p就可以补全，但不足以满足我们的要求，要像visual stdio那样补全，需要omnicppcoplete插件，如果你使用java编程，则需要javacomplete插件。</p>
+
+<p>安装方法与之前稍有不同，需要下载omnicppcoplete和javacomplete的zip压缩包，解压到~/.vim文件夹下，然后javacomplete还需要执行如下命令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim/autoload
+</span><span class='line'>javac Reflection.java
+</span><span class='line'>mv ~/.vim/autoload/Reflection.class ~</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一切准备就绪，最后就是在.vimrc中添加相应的设置，开启补全功能</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>"AutoComple
+</span><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>filetype plugin on                  "开启文件类型识别功能
+</span><span class='line'>filetype plugin indent on           "打开文件类型检测, 加了这句才可以用智能补全
+</span><span class='line'>set completeopt=longest,menu        "关掉智能补全时的预览窗口
+</span><span class='line'>setlocal completefunc=javacomplete#CompleteParamsInfo
+</span><span class='line'>autocmd FileType c set omnifunc=ccomplete#Complete
+</span><span class='line'>autocmd FileType java set omnifunc=javacomplete#Complete
+</span><span class='line'>autocmd FileType python set omnifunc=pythoncomplete#Complete
+</span><span class='line'>autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+</span><span class='line'>autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+</span><span class='line'>autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+</span><span class='line'>autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+</span><span class='line'>autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+</span><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>"OmniCppComplete
+</span><span class='line'>"-----------------------------------------------------------
+</span><span class='line'>" 按下F4自动补全代码
+</span><span class='line'>imap &lt;F4&gt; &lt;C-X&gt;&lt;C-O&gt;
+</span><span class='line'>" 按下F5根据头文件内关键字补全
+</span><span class='line'>imap &lt;F5&gt; &lt;C-X&gt;&lt;C-I&gt;
+</span><span class='line'>let OmniCpp_MayCompleteDot = 1           " autocomplete with .
+</span><span class='line'>let OmniCpp_MayCompleteArrow = 1         " autocomplete with -&gt;
+</span><span class='line'>let OmniCpp_MayCompleteScope = 1         " autocomplete with ::
+</span><span class='line'>let OmniCpp_SelectFirstItem = 2          " select first item (but don't insert)
+</span><span class='line'>let OmniCpp_NamespaceSearch = 2         " search namespaces in this and included file
+</span><span class='line'>let OmniCpp_ShowPrototypeInAbbr = 1     " show function prototype in popup window
+</span><span class='line'>let OmniCpp_GlobalScopeSearch=1         " enable the global scope search
+</span><span class='line'>let OmniCpp_DisplayMode=1               " Class scope completion mode: always show all members
+</span><span class='line'>let OmniCpp_ShowScopeInAbbr=1           " show scope in abbreviation and remove the last column</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在一切都设置好了，比如编写个a.java，输入Math.然后按<code>ctrl+x ctrl+o</code>就可以出现可以补全的选项了，我设置了F4和F5两个快捷键，不同的补全方式和操作如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Ctrl+P   向前切换成员
+</span><span class='line'>Ctrl+N    向后切换成员
+</span><span class='line'>Ctrl+E    表示退出下拉窗口, 并退回到原来录入的文字
+</span><span class='line'>Ctrl+Y    表示退出下拉窗口, 并接受当前选项
+</span><span class='line'>
+</span><span class='line'>Ctrl+X Ctrl+L     整行补全
+</span><span class='line'>Ctrl+X Ctrl+N 根据当前文件里关键字补全
+</span><span class='line'>Ctrl+X Ctrl+K 根据字典补全
+</span><span class='line'>Ctrl+X Ctrl+T 根据同义词字典补全
+</span><span class='line'>Ctrl+X Ctrl+I 根据头文件内关键字补全
+</span><span class='line'>Ctrl+X Ctrl+] 根据标签补全
+</span><span class='line'>Ctrl+X Ctrl+F 补全文件名
+</span><span class='line'>Ctrl+X Ctrl+D 补全宏定义
+</span><span class='line'>Ctrl+X Ctrl+V 补全vim命令
+</span><span class='line'>Ctrl+X Ctrl+U 用户自定义补全方式
+</span><span class='line'>Ctrl+X Ctrl+S 拼写建议</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>11. supertab</h2>
+
+<p>Tab键默认是根据之前输入补全，可以通过supertab插件，重定义Tab补全方式.vimrc中添加</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:SuperTabRetainCompletionType=2                                
+</span><span class='line'>" 0 - 不记录上次的补全方式
+</span><span class='line'>" 1 - 记住上次的补全方式,直到用其他的补全命令改变它
+</span><span class='line'>" 2 - 记住上次的补全方式,直到按ESC退出插入模式为止
+</span><span class='line'>let g:SuperTabDefaultCompletionType="&lt;C-X&gt;&lt;C-O&gt;"       
+</span><span class='line'>" 设置按下&lt;Tab&gt;后默认的补全方式, 默认是&lt;C-P&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>这些就是我使用的vim插件的配置过程，有个简单粗暴的方法即可完成上述配置</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~
+</span><span class='line'>git clone https://github.com/812lcl/vim.git
+</span><span class='line'>mv vim .vim
+</span><span class='line'>mv .vim/vimrc-lcl .vimrc
+</span><span class='line'>javac ~/.vim/autoload/Reflection.java
+</span><span class='line'>mv ~/.vim/autoload/Reflection.class ~</span></code></pre></td></tr></table></div></figure>
+
+
+<p>vim本身已经足够强大，这些插件是锦上添花。vim是需要不断的练习的，可以参考
+<a href="http://coolshell.cn/articles/5426.html">简明Vim练级攻略</a>。</p>
+
+<p>这里是我自己整理的一个vim、bash、git的命令操作的查询表格<a href="http://pan.baidu.com/s/1rFcMP">点击查看</a></p>
+
+<p>参考文章：</p>
+
+<blockquote><p><a href="http://blog.csdn.net/wooin/article/details/1858917">手把手教你把Vim改装成一个IDE编程环境</a></p>
+
+<p><a href="http://blog.csdn.net/tge7618291/article/details/4216977">经典vim插件功能说明、安装方法和使用方法</a></p></blockquote>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/'>http://812lcl.com/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
+
+
+        <div>
+        
+        <a class="pull-left" href="/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/" title="Previous Post: 多系统Linux安装及配置">&laquo; 多系统Linux安装及配置</a>
+        
+        
+        <a class="pull-right" href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/" title="Next Post: Octopress博客搭建及目录结构">Octopress博客搭建及目录结构 &raquo;</a>
+        
+        <div class="clear"></div>
+        </div>
+        
+            <div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+    
+    <!-- JiaThis BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
+<!-- JiaThis END -->
+
+<!-- Baidu Button BEGIN 
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+	<a class="bds_tsina"></a>
+	<a class="bds_qzone"></a>
+	<a class="bds_tqq"></a>
+	<a class="bds_renren"></a>
+	<a class="bds_t163"></a>
+	<a class="bds_hi"></a>
+	<span class="bds_more"></span>
+	<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+ Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<!-- UY END -->
+
+    
+</div>
+
+        
+    </div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-24T20:28:00+08:00" pubdate data-updated="true">Oct 24<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vim/'>Vim</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+	
+</div>
+
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-24T20:28:00+08:00" pubdate data-updated="true">Oct 24<span>th</span>, 2013</time></div>
+        <div class="tags">
+
+
+	<a class='category' href='/blog/categories/vim/'>Vim</a>
+
+
+</div>
+        <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+        </div>
+        
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+        <br />
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2014/04/05/vim-ji-ben-pei-zhi/">Vim 基本配置</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">Vim补全配置</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">Vim插件配置续</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/">多系统Linux安装及配置</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/">Linux命令学习（2）：rsync</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/">Linux命令学习（1）：diff 和 patch</a>
+                </li>
+                
+            </ul>
+        </section>
+        <br />
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/linux/'>Linux (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/vim/'>Vim (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (1)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+        <br />
+        <section>
+  <h1>最近博文</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/">Linux命令学习（2）：rsync</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/05/vim-ji-ben-pei-zhi/">Vim 基本配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/">Linux命令学习（1）：diff 和 patch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">Vim补全配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">Vim插件配置续</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+      </li>
+    
+  </ul>
+</section>
+
+        <br />
+        <section>
+<h1>评论热榜</h1>
+<div id="uyan_hotcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+        <section>
+<h1>最新评论</h1>
+<div id="uyan_newcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+    </div>
+</article>
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49529601-1', '812lcl.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>

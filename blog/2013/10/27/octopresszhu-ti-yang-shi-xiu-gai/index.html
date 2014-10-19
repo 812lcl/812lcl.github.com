@@ -1,0 +1,675 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Octopress主题样式修改 - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="Octopress主题样式修改">
+	<meta name="keywords" content="octopress, blog, github, linux">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+            <form action="/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+
+    <!-- default search
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+        <input type="hidden" name="q" value="site:812lcl.com"> 
+	</form>
+    -->
+
+    <!-- tapir search
+    <form method="get" action="/search.html" id="search" class="search">
+        <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </form>
+    -->
+
+	<form class="search" action="/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+	</form>
+
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+    
+	<h2 class="title">Octopress主题样式修改</h2>
+	<div class="entry-content">
+        <p><a href="http://812lcl.github.io/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">上一篇文章</a>写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。</p>
+
+<h2>1. Header，Navigation，footer</h2>
+
+<p>这几个部分是经常需要个性化定制的，在<code>source/_includes</code>中存在其对应的HTML文件，这是主题默认的文件，更换主题，更新octopress会被覆盖，所以应该编辑<code>source/_includes/custom</code>下的文件来实现修改。</p>
+
+<h3>1.1 Header（标题栏）</h3>
+
+<p>标题栏显示的内容为<code>/source/_includes/custom/header.html</code>所实现的，其中title和subtitle在<code>_config.yml</code>中定义，你可以进行适量的修改：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;hgroup&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>{{ site.title }}<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>  {% if site.subtitle %}
+</span><span class='line'>    <span class="nt">&lt;h2&gt;</span>{{ site.subtitle }}<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/hgroup&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<h3>1.2 Navigation（导航栏）</h3>
+
+<p>可以自行为导航栏添加项目，链接至不同的页面，在<code>/source/_includes/custom/navigation.html</code>中编辑即可。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/&quot;</span><span class="nt">&gt;</span>博客主页<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/blog/archives&quot;</span><span class="nt">&gt;</span>文章列表<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/category-cloud&quot;</span><span class="nt">&gt;</span>分类云<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ root_url }}/about&quot;</span><span class="nt">&gt;</span>关于<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当想添加一些页面，如“关于”页面，可以试验<code>rake new_page['name']</code>命令来创建，如<code>rake new_page['about']</code>后，会建立<code>source/about/index.html</code>文件，在此文件编辑，添加自己想要展示的内容，然后再<code>navigation.html</code>里添加正确的路径即可，如<code>&lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt;</code>。</p>
+
+<h3>1.3 footer（尾栏）</h3>
+
+<p>在<code>source/_includes/custom/footer.html</code>中编辑尾栏：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p&gt;</span>
+</span><span class='line'>  Copyright <span class="ni">&amp;copy;</span> {{ site.time | date: &quot;%Y&quot; }} - {{ site.author }} -
+</span><span class='line'>  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;credit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          Powered by
+</span><span class='line'>          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://octopress.org&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/span&gt;</span>
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>默认显示<code>Copyright@2013 - author - Powered by Octopress</code>，你可以添加自己想显示在尾栏的东西，第三方统计流量统计工具也可以添加到这，如CNZZ、Google analytics和百度统计等，使用这些工具可以更详细的分析网站流量，改善引流措施，完善网站，具体添加方法见<a href="http://812lcl.com/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo">统计工具与SEO</a>。</p>
+
+<h2>2. 样式修改</h2>
+
+<p>添加或修改控制样式，需编辑<code>sass/custom/_styles.scss</code>，博客的所有颜色控制在<code>/sass/base/_theme.scss</code>中进行设置。定制自己的配色，编辑<code>sass/custom/_colors.scss</code>。查看<a href="http://hslpicker.com/#e1ff00">HSL COLOR PICKER</a>，帮你挑选喜欢的颜色。</p>
+
+<p>修改布局，需要编辑<code>sass/base/_layout.scss</code>，可以修改各部分的宽度等。</p>
+
+<h3>2.1 添加背景图片</h3>
+
+<p>在<code>sass/custom/_styles.scss</code>中添加：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nt">html</span> <span class="p">{</span>
+</span><span class='line'>        <span class="na">background</span><span class="o">:</span> <span class="mh">#555555</span> <span class="sx">url(&quot;/images/bg3.jpg&quot;)</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #555555;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span>
+</span><span class='line'>        <span class="na">background-image</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #F5F5D5</span>
+</span><span class='line'><span class="p">}</span> <span class="c1">//侧边栏</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span> <span class="c1">//文章内容</span>
+</span><span class='line'>        <span class="na">background-image</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//background: #F5F5D5; </span>
+</span><span class='line'>        <span class="c1">//background: url(&quot;/images/bg.jpg&quot;);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>将背景图片放入<code>source/images/</code>中，修改上述代码中的路径指向想要的图片，即可
+更改博客、侧边栏或文章的背景图片。博客使用背景图片后，与Header区不太和谐，
+所以我在<code>/sass/base/_theme.scss</code>中将<code>header-bg</code>设置成透明色了。</p>
+
+<h3>2.2 LOGO图片</h3>
+
+<p>我所说的logo图片有两种，一个是打开一个网页时，标签栏上显示的小图片。还有一个是标题栏主标题旁的图片。</p>
+
+<p>首先针对于第一种可以选择你喜欢的图片（大小适中），替换<code>source</code>目录下的<code>favicon.png</code>即可。</p>
+
+<p>或者将logo图片放入<code>source/images</code>中，然后修改<code>source/_includes/head.html</code>，找到<code>favicon.png</code>，修改其路径指向你的图片即可。</p>
+
+<p>对于主标题旁的图片需要在<code>sass/custom/_styles.scss</code>中填入如下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">//Blog logo pic</span>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">550px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span><span class="p">{</span>
+</span><span class='line'>                <span class="na">background</span><span class="o">:</span> <span class="sx">url(&quot;/images/logo1.png&quot;)</span> <span class="no">no-repeat</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>                <span class="na">padding-left</span><span class="o">:</span> <span class="mi">65</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span> <span class="na">padding-left</span><span class="o">:</span> <span class="mi">65</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>根据自己情况进行修改即可。</p>
+
+<h3>2.3 导航栏倒圆角</h3>
+
+<p>我设置的header区背景色透明，所以导航栏的直角有些尖锐，在<code>sass/custom/_styles.scss</code>中添加如下语句，将其修改为圆角：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">//倒圆角</span>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">1040px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">nav</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">@include</span><span class="nd"> border-top-radius</span><span class="p">(</span><span class="mf">.4</span><span class="kt">em</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">footer</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">@include</span><span class="nd"> border-bottom-radius</span><span class="p">(</span><span class="mf">.4</span><span class="kt">em</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. 滑动返回顶部按钮</h2>
+
+<p>当文章较长，通常希望有一个返回顶部的按钮，如下方法实现了在页面右下方添加一个返回顶部的图片按钮，点击后可以滑动的返回顶部。</p>
+
+<p>首先创建<code>source/javascripts/top.js</code>，实现滑动返回顶部效果，添加如下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">goTop</span><span class="p">(</span><span class="nx">acceleration</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="nx">acceleration</span> <span class="o">=</span> <span class="nx">acceleration</span> <span class="o">||</span> <span class="mf">0.1</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">time</span> <span class="o">=</span> <span class="nx">time</span> <span class="o">||</span> <span class="mi">16</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="nx">x1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>                <span class="nx">y1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="nx">x2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>                <span class="nx">y2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x3</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollX</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y3</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">));</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">y1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">y2</span><span class="p">,</span> <span class="nx">y3</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">acceleration</span><span class="p">;</span>
+</span><span class='line'>        <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">x</span> <span class="o">/</span> <span class="nx">speed</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">y</span> <span class="o">/</span> <span class="nx">speed</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="kd">var</span> <span class="nx">invokeFunction</span> <span class="o">=</span> <span class="s2">&quot;goTop(&quot;</span> <span class="o">+</span> <span class="nx">acceleration</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">time</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+</span><span class='line'>                <span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">invokeFunction</span><span class="p">,</span> <span class="nx">time</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后创建<code>source/_includes/custom/totop.html</code>，设置返回顶部按钮样式和位置，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--返回顶部开始--&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;full&quot;</span> <span class="na">style=</span><span class="s">&quot;width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick=</span><span class="s">&quot;goTop();return false;&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;/images/top.png&quot;</span> <span class="na">border=</span><span class="s">0</span> <span class="na">alt=</span><span class="s">&quot;返回顶部&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/top.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c">&lt;!--返回顶部结束--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后，还需要将返回顶部的图片放入<code>source/images</code>，命名为<code>top.png</code>（或修改totop.html中图片的路径）。</p>
+
+<h2>4. 二维码展示</h2>
+
+<p>在关于页面或边栏可以展示你的个人博客的二维码，方便移动终端扫描访问你的博客，插件主页<a href="https://github.com/sailor79/Octopress-dynamic-QR-Code-aside">点击这里</a>。</p>
+
+<p>在侧边栏显示，则将<code>qrcode.html</code>放入<code>source/_includes/custom/asides/</code>中，在<code>_config.yml</code>中<code>default_asides</code>添加<code>custom/asides/qrcode.html</code>即可显示。</p>
+
+<p>或者将<code>qrcode.html</code>代码添加到你想展示的页面的HTML文件中亦可。</p>
+
+<hr />
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://yanping.me/cn/blog/2012/01/07/theming-and-customization/">为Octopress修改主题和自定义样式</a></p></li>
+<li><p><a href="http://shanewfx.github.io/blog/2012/08/13/improve-blog-theme/">Octopress主题改造</a></p></li>
+<li><p><a href="http://www.neoease.com/javascript-go-top/">用 JavaScript 实现变速回到顶部</a></p></li>
+</ul>
+
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/'>http://812lcl.com/blog/2013/10/27/octopresszhu-ti-yang-shi-xiu-gai/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
+
+
+        <div>
+        
+        <a class="pull-left" href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/" title="Previous Post: Octopress侧边栏及评论系统定制">&laquo; Octopress侧边栏及评论系统定制</a>
+        
+        
+        <a class="pull-right" href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/" title="Next Post: Octopress添加统计与SEO">Octopress添加统计与SEO &raquo;</a>
+        
+        <div class="clear"></div>
+        </div>
+        
+            <div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+    
+    <!-- JiaThis BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
+<!-- JiaThis END -->
+
+<!-- Baidu Button BEGIN 
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+	<a class="bds_tsina"></a>
+	<a class="bds_qzone"></a>
+	<a class="bds_tqq"></a>
+	<a class="bds_renren"></a>
+	<a class="bds_t163"></a>
+	<a class="bds_hi"></a>
+	<span class="bds_more"></span>
+	<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+ Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<!-- UY END -->
+
+    
+</div>
+
+        
+    </div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T11:52:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+	
+</div>
+
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T11:52:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time></div>
+        <div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+        <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+        </div>
+        
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/html/'>html</a>, <a class='tag' href='/blog/tags/octopress/'>octopress</a>, <a class='tag' href='/blog/tags/ruby/'>ruby</a>, <a class='tag' href='/blog/tags/bo-ke/'>博客</a>
+  
+</div>
+
+
+        <br />
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2013/10/26/octopressce-bian-lan-ji-ping-lun-xi-tong-ding-zhi/">Octopress侧边栏及评论系统定制</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/25/octopressbo-ke-da-jian-ji-mu-lu-jie-gou/">Octopress博客搭建及目录结构</a>
+                </li>
+                
+            </ul>
+        </section>
+        <br />
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/linux/'>Linux (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/vim/'>Vim (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (1)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+        <br />
+        <section>
+  <h1>最近博文</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/">Linux命令学习（2）：rsync</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/05/vim-ji-ben-pei-zhi/">Vim 基本配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/">Linux命令学习（1）：diff 和 patch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">Vim补全配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">Vim插件配置续</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+      </li>
+    
+  </ul>
+</section>
+
+        <br />
+        <section>
+<h1>评论热榜</h1>
+<div id="uyan_hotcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+        <section>
+<h1>最新评论</h1>
+<div id="uyan_newcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+    </div>
+</article>
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49529601-1', '812lcl.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>

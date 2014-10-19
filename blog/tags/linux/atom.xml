@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: linux | 812lcl的博客]]></title>
+  <link href="http://812lcl.com/blog/tags/linux/atom.xml" rel="self"/>
+  <link href="http://812lcl.com/"/>
+  <updated>2014-10-19T10:08:44+08:00</updated>
+  <id>http://812lcl.com/</id>
+  <author>
+    <name><![CDATA[812lcl]]></name>
+    <email><![CDATA[812liuchunlei@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux命令学习（2）：rsync]]></title>
+    <link href="http://812lcl.com/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/"/>
+    <updated>2014-05-04T15:18:00+08:00</updated>
+    <id>http://812lcl.com/blog/2014/05/04/linuxming-ling-xue-xi-(2):rsync</id>
+    <content type="html"><![CDATA[<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。</p>
+
+<h3>rsync的基本用法</h3>
+
+<pre><code>$ rsync [options] src dest
+</code></pre>
+
+<ol>
+<li>目的端和源端文件内容不同，触发同步</li>
+<li>rsync不同步文件到"modify time"，进行同步到文件，目的端到"modify time"总是被修改为最新时刻到时间。</li>
+<li>rsync不会太关注目的端文件到rwx权限，如果目的端无此文件，则权限与源端保持一致；如果目的端有此文件，则权限不会随着源端变更。</li>
+<li>rsync有对源文件到读权限，且对目标路径有写权限，rsync就能确保目的端文件同步到和源端一致。</li>
+<li>rsync只能以登录目的端到帐号来创建文件，无法保持目的端文件到属主和属组和源端一致。</li>
+</ol>
+
+
+<!--more-->
+
+
+<h4>[-t选项]</h4>
+
+<ol>
+<li>使用-t选项后，rsync总会想着一件事，那就是将源文件的“modify time”同步到目标机器。</li>
+<li>带有-t选项的rsync，会变得更聪明些，它会在同步前先对比两边文件的时间戳和文件大小，如果一致，则就认为两边文件一样，对此文件就不再采取更新动作了。</li>
+<li>因为rsync的聪明，也会反被聪明误。如果目的端的文件的时间戳、大小和源端完全一致，但是内容恰巧不一致时，rsync是发现不了的。这就是传说中的“坑”！</li>
+<li>对于rsync自作聪明的情况，解决办法就是使用-I选项。</li>
+</ol>
+
+
+<h4>[-I选项]</h4>
+
+<ol>
+<li>-I选项会让rsync变得很乖很老实，它会挨个文件去发起数据同步。</li>
+<li>-I选项可以确保数据的一致性，代价便是速度上会变慢，因为我们放弃了“quick check”策略。（quick check策略，就是先查看文件的时间戳和文件大小，依次先排除一批认为相同的文件）</li>
+<li>无论情况如何，目的端的文件的modify time总会被更新到当前时刻。</li>
+</ol>
+
+
+<h4>[-v选项]</h4>
+
+<p>这个选项，简单易懂，就是让rsync输出更多的信息，你增加越多的v，就可以获得越多的日志信息。</p>
+
+<h4>[-z选项]</h4>
+
+<p>这是个压缩选项，只要使用了这个选项，rsync就会把发向对端的数据先进行压缩再传输。对于网络环境较差的情况下建议使用。一般情况下，-z的压缩算法会和gzip的一样。</p>
+
+<h4>[-r选项]</h4>
+
+<p>我们在第一次使用rsync时，往往会遇到这样的囧境：</p>
+
+<pre><code>$ rsync superman machineB:/home/userB
+skipping directory superman
+</code></pre>
+
+<p>如果你不额外告诉rsync你需要它帮你同步文件夹的话，它是不会主动承担的，这也正是rsync的懒惰之处。所以，如果你真的想同步文件夹，那就要加上-r选项，即recursive（递归的、循环的），像这样：</p>
+
+<pre><code>$  rsync -r superman machineB:/home/userB
+</code></pre>
+
+<p>对于文件夹，rsync是会明察秋毫的，只要你加了-r选项，它就会恪尽职守的进入到文件夹里去检查，而不会只对文件夹本身做“quick check”的。</p>
+
+<h4>[-l选项]</h4>
+
+<p>rsync一旦发现某个文件是软链接，就会无视它，除非我们增加-l选项。使用了-l选项后，rsync会完全保持软链接文件类型，原原本本的将软链接文件复制到目的端，而不会“follow link”到指向的实体文件。如果我偏偏就想让rsync采取follow link的方式，那就用-L选项就可以了。你可以自己试试效果。</p>
+
+<h4>[-p选项]</h4>
+
+<p>这个选项的全名是“perserve permissions”，顾名思义，就是保持权限。如果你不使用此选项的话，rsync是这样来处理权限问题的：</p>
+
+<ol>
+<li>如果目的端没有此文件，那么在同步后会将目的端文件的权限保持与源端一致；</li>
+<li>如果目的端已存在此文件，那么只会同步文件内容，权限保持原有不变。</li>
+</ol>
+
+
+<p>如果你使用了-p选项，则无论如何，rsync都会让目的端保持与源端的权限一致的。</p>
+
+<h4>[-g选项和-o选项]</h4>
+
+<p>这两个选项是一对，用来保持文件的属组(group)和属主（owner），作用应该很清晰明了。不过要注意的一点是，改变属主和属组，往往只有管理员权限才可以。</p>
+
+<h4>[-D选项]</h4>
+
+<p>-D选项，原文解释是“preserve devices(root only)”，从字面意思看，就是保持设备文件的原始信息。</p>
+
+<h4>[-a选项]</h4>
+
+<ol>
+<li>-a选项是rsync里比较霸道的一个选项，因为你使用-a选项，就相当于使用了<code>-rlptgoD</code>这一坨选项。以一敌七，唯-a选项也。</li>
+<li>-a选项的学名应该叫做archive option，中文叫做归档选项。使用-a选项，就表明你希望采取递归方式来同步，且尽可能的保持各个方面的一致性。</li>
+<li>但是-a无法同步“硬链接”情况。如果有这方面需求，要加上-H选项。</li>
+</ol>
+
+
+<h4>[&mdash;delete选项、&mdash;delete-excluded选项和&mdash;delete-after选项]</h4>
+
+<p>三个选项都是和“删除”有关的：</p>
+
+<ol>
+<li>–delete：如果源端没有此文件，那么目的端也别想拥有，删除之。（如果你使用这个选项，就必须搭配-r选项一起）</li>
+<li>–delete-excluded：专门指定一些要在目的端删除的文件。</li>
+<li>–delete-after：默认情况下，rsync是先清理目的端的文件再开始数据同步；如果使用此选项，则rsync会先进行数据同步，都完成后再删除那些需要清理的文件。</li>
+</ol>
+
+
+<p>这个学习可是要小心使用到，一不小心会删除很多东西哦。</p>
+
+<p>可以使用-n选项，它会用受影响的文件列表来警告你，但不会真的去删除，这就让我们有了确认的机会和回旋的余地。</p>
+
+<h4>[&mdash;exclude选项和&mdash;exclude-from选项]</h4>
+
+<p>如果你不希望同步一些东西到目的端的话，可以使用–exclude选项来隐藏，rsync还是很重视大家隐私的，你可以多次使用–exclude选项来设置很多的“隐私”。
+如果你要隐藏的隐私太多的话，在命令行选项中设置会比较麻烦，rsync还是很体贴，它提供了–exclude-from选项，让你可以把隐私一一列在一个文件里，然后让rsync直接读取这个文件就好了。</p>
+
+<h4>[&mdash;partial选项]</h4>
+
+<p>这就是传说中的断点续传功能。默认情况下，rsync会删除那些传输中断的文件，然后重新传输。但在一些特别情况下，我们不希望重传，而是续传。
+我们在使用中，经常会看到有人会使用-P选项，这个选项其实是为了偷懒而设计的。以前人们总是要手动写–partial –progress，觉得太费劲了，倒不如用一个新的选项来代替，于是-P应运而生了。</p>
+
+<h4>[&mdash;progress选项]</h4>
+
+<p>使用这个选项，rsync会显示出传输进度信息，有什么用呢，rsync给了一个很有意思的解释：
+This gives a bored user something to watch.</p>
+
+<h3>rsync核心算法</h3>
+
+<p>rsync的算法十分高效，酷壳上 <a href="http://coolshell.cn/articles/7425.html">一篇文章</a> 介绍来其核心算法，就不再赘述来。</p>
+
+<h2>rsync服务器架设</h2>
+
+<p>可以架设rsync服务器，rsync以守护进程运行，客户端将rsync指令写成一个shell脚本，通过crontab定期执行脚本，以实现服务器和客户端间特定文件或目录到同步，这样就不需要你每次手动同步来，而且rsync服务器配置也十分简单。</p>
+
+<p>主要涉及三个文件：</p>
+
+<ol>
+<li>/etc/rsyncd.conf 是rsync服务器主要配置文件</li>
+<li>/etc/rsyncd.secrets 是登录rsync服务器到密码文件</li>
+<li>/etc/rsyncd.motd 是定义用户登录时显示到信息</li>
+</ol>
+
+
+<h3>rsyncd.conf</h3>
+
+<p>文件内容大体如下：</p>
+
+<p>```</p>
+
+<h1>Minimal configuration file for rsync daemon</h1>
+
+<h1>See rsync(1) and rsyncd.conf(5) man pages for help</h1>
+
+<h1>This line is required by the /etc/init.d/rsync script</h1>
+
+<p>pid file = /var/run/rsyncd.pid
+motd file = /etc/rsyncd.motd
+port = 873
+address = 192.168.20.24</p>
+
+<h1>uid = nobody</h1>
+
+<h1>gid = nobody</h1>
+
+<p>uid = root
+gid = root
+use chroot = yes
+read only = no</p>
+
+<h1>limit access to private LANs</h1>
+
+<p>hosts allow = *
+hosts deny = *</p>
+
+<p>max connections = 5</p>
+
+<h1>This will give you a separate log file</h1>
+
+<p>log file = /var/log/rsync.log</p>
+
+<h1>This will log every file transferred &ndash; up to 85,000+ per user, per sync</h1>
+
+<h1>transfer logging = yes</h1>
+
+<p>log format = %t %a %m %f %b
+syslog facility = local3
+timeout = 300</p>
+
+<p>[test]
+path = /home/lcl/test
+list = yes
+ignore errors
+auth users = lcl
+secrets file = /etc/rsyncd.secrets
+comment = lcl test</p>
+
+<h1>exclude = samba/</h1>
+
+<p>```</p>
+
+<p>rsync使用到是873好端口，上面到配置中<code>hosts allow</code>是允许使用这台rsync服务到机器到IP地址，<code>hosts deny</code>则是拒绝到，不同IP以空格隔开。</p>
+
+<p>[test]及之后到配置则是，配置rsync目录，包括目录到路径，使用到用户，密码文件，可以使用<code>exclude</code>排除不要同步到文件或目录。</p>
+
+<h3>rsyncd.secrets</h3>
+
+<p>这是存储rsync服务用户到用户名和密码，是一个明文文本文件，非常重要，属性需要设为600，只允许所有者读写，文件格式如下：</p>
+
+<pre><code>lcl:12345
+</code></pre>
+
+<h3>rsyncd.motd</h3>
+
+<p>文件记录来rsync服务到欢迎信息，当用户使用该服务时会显示，可以设置为任何文本信息，如：</p>
+
+<pre><code>++++++++++++++++++++++++++++++++++++++
++ Welcome to use lcl rsync services! +
+++++++++++++++++++++++++++++++++++++++
+</code></pre>
+
+<p>配置完以上文件，可以启动rsync服务来：</p>
+
+<pre><code>rsync --daemon
+</code></pre>
+
+<p>客户端可以通过rsync命令活脚本来进行同步数据来</p>
+
+<p>rsync的命令格式可以为：</p>
+
+<ol>
+<li>rsync [OPTION]&hellip; SRC [SRC]&hellip; [USER@]HOST:DEST]</li>
+<li>rsync [OPTION]&hellip; [USER@]HOST:SRC DEST]</li>
+<li>rsync [OPTION]&hellip; SRC [SRC]&hellip; DEST]</li>
+<li>rsync [OPTION]&hellip; [USER@]HOST::SRC [DEST]</li>
+<li>rsync [OPTION]&hellip; SRC [SRC]&hellip; [USER@]HOST::DEST]</li>
+<li>rsync [OPTION]&hellip; rsync://[USER@]HOST[:PORT]/SRC [DEST]</li>
+</ol>
+
+
+<p>rsync有六种不同的工作模式：</p>
+
+<ol>
+<li>拷贝本地文件；当SRC和DES路径信息都不包含有单个冒号":&ldquo;分隔符时就启动这种工作模式。</li>
+<li>使用一个远程shell程序（如rsh、ssh）来实现将本地机器的内容拷贝到远程机器。当DST地址包含单个冒号":&ldquo;分隔符时启动该模式。</li>
+<li>使用一个远程shell程序（如rsh、ssh）来实现将远程机器的内容拷贝到本地机器。当SRC路径包含单个冒号":&ldquo;分隔符时启动该模式。</li>
+<li>从远程rsync服务器中拷贝文件到本地机。当SRC路径信息包含"::&ldquo;分隔符时启动该模式。</li>
+<li>从本地机器拷贝文件到远程rsync服务器中。当DST路径信息包含"::&ldquo;分隔符时启动该模式。</li>
+<li>列远程机的文件列表。这类似于rsync传输，不过只要在命令中省略掉本地机信息即可。</li>
+</ol>
+
+
+<p>参考文章：</p>
+
+<ul>
+<li><a href="http://roclinux.cn/?p=2643">rsync同步的艺术</a></li>
+<li><a href="https:www.centos.bz/2011/06/rsync-server-setup">rsync服务器架设（数据同步|文件增量备份)</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim 基本配置]]></title>
+    <link href="http://812lcl.com/blog/2014/04/05/vim-ji-ben-pei-zhi/"/>
+    <updated>2014-04-05T21:44:00+08:00</updated>
+    <id>http://812lcl.com/blog/2014/04/05/vim-ji-ben-pei-zhi</id>
+    <content type="html"><![CDATA[<p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。</p>
+
+<h2>General</h2>
+
+<p>一些基本配置</p>
+
+<pre><code>syntax on                       " 关键字上色
+syntax enable                   " 语法高亮
+set nu                          " 显示行号
+set nocp                        " 不兼容vi
+set hidden                      " 允许不保存切换buffer
+set splitright                  " 新分割窗口在右边
+set splitbelow                  " 新分割窗口在下边
+set autoread                    " 文件在Vim之外修改过，自动重新读入
+set timeoutlen=350              " 等待时间,如&lt;leader&gt;键后的输入
+set helpheight=999              " 查看帮助文档全屏
+set scrolljump=3                " 当光标离开屏幕滑动行数
+set scrolloff=1                 " 保持在光标上下最少行数
+set showmatch                   " 短暂回显匹配括号
+</code></pre>
+
+<!--more-->
+
+
+<pre><code>set hlsearch                    " 检索时高亮显示匹配项
+set incsearch                   " 边输入边搜索
+set ignorecase                  " 搜索忽略大小写
+set smartcase                   " 智能大小写搜索
+
+set wildmenu                    " 命令模式下补全以菜单形式显示
+set wildmode=list:longest,full  " 命令模式补全模式
+set foldenable                  " 启动折叠
+set foldmethod=marker           " 设置折叠模式
+set encoding=utf-8              " 编码，使汉语正常显示
+set termencoding=utf-8
+set fileencodings=utf-8,gb2312,gbk,gb18030
+</code></pre>
+
+<p>还有相关的编码问题可以参考<a href="http://edyfox.codecarver.org/html/vim_fileencodings_detection.html">VIM文件编码识别与乱码处理</a>。</p>
+
+<h2>Formatting</h2>
+
+<p>关于缩进</p>
+
+<pre><code>set expandtab                   " tab=空格
+set tabstop=4                   " tab缩进4个空格
+set shiftwidth=4                " 自动缩进空格数
+set softtabstop=4               " 退格删除缩进
+set backspace=indent,start      " 退格可删除缩进和原有字符
+set autoindent                  " 与前一行同样等级缩进
+</code></pre>
+
+<p>当切割窗口显示多文件时，如果窗口大小改变，本来分布均匀的窗口不会重新调整大小，变得很难看，可以添加下面这条来配置自动调整大小。</p>
+
+<pre><code>au VimResized * exe "normal! \&lt;c-w&gt;="
+</code></pre>
+
+<p>在粘贴时候，如果前边的行带有注释符号，如<code>#</code>、<code>//</code>、<code>"</code>等时，后边的行会自动加上注释符号，很是麻烦，下面可以配置不自动添加成注释。</p>
+
+<pre><code>au BufReadPost * if line("'\"") &gt; 0|if line("'\"") &lt;= line("$")|exe("norm '\"")|else|exe "no rm $"|endif|endif
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+</code></pre>
+
+<h2>Key (re)Mappings</h2>
+
+<p>一些按键的重映射，很多用了真是让人上瘾，而且便捷很多，如<code>&lt;Esc&gt;</code>用<code>jj</code>来代替，还有一些常输错的一些命令的修正，如<code>Q</code>、<code>W</code>等。</p>
+
+<pre><code>let mapleader=","           " 映射&lt;leader&gt;键到为,
+nmap j gj
+nmap k gk
+inoremap jj &lt;ESC&gt;
+nnoremap &lt;silent&gt; J :bp&lt;CR&gt;
+nnoremap &lt;silent&gt; K :bn&lt;CR&gt;
+noremap &lt;silent&gt;&lt;space&gt; :set hls! hls?&lt;CR&gt;
+noremap &lt;silent&gt;&lt;Leader&gt;s :set rnu! rnu?&lt;CR&gt;
+noremap &lt;silent&gt;&lt;Leader&gt;l :set list! list?&lt;CR&gt;
+nnoremap &lt;Leader&gt;c @=((foldclosed(line('.')) &lt; 0) ? 'zc' : 'zo')&lt;CR&gt;
+
+" 更方便窗口间移动
+nnoremap &lt;C-h&gt; &lt;C-w&gt;h
+nnoremap &lt;C-j&gt; &lt;C-w&gt;j
+nnoremap &lt;C-k&gt; &lt;C-w&gt;k
+nnoremap &lt;C-l&gt; &lt;C-w&gt;l
+
+" 命令模式按键映射
+cnoremap &lt;C-a&gt; &lt;Home&gt;
+cnoremap &lt;C-e&gt; &lt;End&gt;
+cnoremap &lt;C-p&gt; &lt;Up&gt;
+cnoremap &lt;C-n&gt; &lt;Down&gt;
+
+" Tab操作
+nnoremap &lt;Leader&gt;tc :tabc&lt;CR&gt;
+nnoremap &lt;Leader&gt;tn :tabn&lt;CR&gt;
+nnoremap &lt;Leader&gt;tp :tabp&lt;CR&gt;
+nnoremap &lt;Leader&gt;te :tabe&lt;Space&gt;
+
+" 修正易错命令
+command -bang -nargs=* Q q&lt;bang&gt;
+command -bang -nargs=* Wa wa&lt;bang&gt;
+command -bang -nargs=* WA wa&lt;bang&gt;
+command -bang -nargs=* -complete=file W w&lt;bang&gt; &lt;args&gt;
+command -bang -nargs=* -complete=file Wq wq&lt;bang&gt; &lt;args&gt;
+command -bang -nargs=* -complete=file WQ wq&lt;bang&gt; &lt;args&gt;
+</code></pre>
+
+<h2>Vim UI</h2>
+
+<p>因为我主要在终端使用Vim，所以一些UI的配置是针对终端的。GUI的话基本相似，把<code>ctermbg</code>等换成<code>guibg</code>等就可以了。</p>
+
+<pre><code>set t_Co=256                    " 终端显示256色
+set tabpagemax=15               " 最多15个Tab
+set showmode                    " 显示当前mode
+set cursorline                  " 高亮当前行
+set list                        " 显示特殊符号
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+hi clear SignColumn             " 标记列背景和主题背景匹配
+hi clear LineNr                 " 当前行列背景和主题背景匹配
+
+hi CursorLineNr ctermfg=red
+hi VertSplit ctermbg=Grey ctermfg=Grey cterm=none
+hi Visual ctermbg=81 ctermfg=black cterm=none
+hi Comment ctermfg=blue
+hi Statement ctermfg=cyan
+hi DiffAdd ctermbg=blue ctermfg=white
+hi DiffDelete ctermbg=green ctermfg=none
+hi DiffChange ctermbg=red ctermfg=White
+hi DiffText ctermbg=yellow ctermfg=black
+
+if has('cmdline_info')
+    set showcmd                 " 右下角显示当前操作
+    set ruler                   " 右下角显示状态说明
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " 设定格式
+endif
+
+if has('statusline')
+    set laststatus=1
+    set statusline=%&lt;%f\                     " Filename
+    set statusline+=%w%h%m%r                 " Options
+    set statusline+=\ [%{&amp;ff}/%Y]            " Filetype
+    set statusline+=\ [%{getcwd()}]          " Current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux命令学习（1）：diff 和 patch]]></title>
+    <link href="http://812lcl.com/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/"/>
+    <updated>2014-04-03T21:03:00+08:00</updated>
+    <id>http://812lcl.com/blog/2014/04/03/linuxming-ling-xue-xi-(1):diffhe-patch</id>
+    <content type="html"><![CDATA[<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。</p>
+
+<h1>diff</h1>
+
+<p>diff的基本格式如下：</p>
+
+<pre><code>$ diff [参数] &lt;变动前的文件&gt; &lt;变动后的文件&gt;
+</code></pre>
+
+<p>命令参数有以下常用的一些，可以根据不同的模式选用：</p>
+
+<pre><code>-b 或--ignore-space-change 　   不检查空格字符的不同。
+-B 或--ignore-blank-lines 　    不检查空白行。
+-w 或--ignore-all-space     　  忽略全部的空格字符。
+-i 或--ignore-case 　           不检查大小写的不同。
+-q 或--brief 　                 仅显示有无差异，不显示详细的信息。
+</code></pre>
+
+<!--more-->
+
+
+<p>在diff目录时常用的参数如下：</p>
+
+<pre><code>-r 或--recursive 　             比较子目录中的文件。
+-N 或--new-file 　              文件A仅出现在某个目录中，预设会显示：Only in目录
+                                文件A若使用-N参数，则diff会将文件A与一个空白的文件比较。
+-P或--unidirectional-new-file 　与-N类似，只有当第二个目录包含了一个第一个目录所没有的文件时，
+                                才会将这个文件与空白的文件做比较。
+</code></pre>
+
+<p>diff有大概四种格式：<strong>正常格式</strong>、<strong>并列格式</strong>、<strong>上下文格式</strong>、<strong>合并格式</strong>。</p>
+
+<p>还有git diff与vimdiff模式。</p>
+
+<p>diff可以比较文本文件或目录之间的差异，首先来讲解文本文件之间的diff，示例文件如下：</p>
+
+<p>文件f1</p>
+
+<pre><code>a b
+b
+c
+d
+e
+</code></pre>
+
+<p>文件f2</p>
+
+<pre><code>a b c
+b
+d
+e
+f
+</code></pre>
+
+<h2>正常格式diff</h2>
+
+<p>正常格式不用加任何参数，<code>diff f1 f2</code>即可，显示结果如下：</p>
+
+<pre><code>1c1
+&lt; a b
+---
+&gt; a b c
+3d2
+&lt; c
+5a5
+&gt; f
+</code></pre>
+
+<p><code>1c1</code>、<code>3d2</code>、<code>5a5</code>是说明变动的位置，前边数字代表f1中变化的行，后边的则代表f2中变化的行，中间的字母分别代表“改变”（c）、“删除”（d）和“增加”（a）。</p>
+
+<p><code>&lt;</code>表示f1指定行的内容，<code>---</code>分割两个文件的，然后<code>&gt;</code>表示f2指定行的内容。删除或增加时，则分别f2、f1中指定行无内容。</p>
+
+<h2>并列格式diff</h2>
+
+<p>其他格式diff都是先后显示两个文件的内容变化，并列格式可以并排显示两个文件的内容变化，更形象的看出文件的变化，和vimdiff显示的有些相似。</p>
+
+<p>使用方法为加入<code>-y</code>参数，即可并列显示，<code>-W num</code>参数可设定并列的宽度，可以不使用。</p>
+
+<pre><code>diff -y -W 50 f1 f2
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>a b                   | a b c
+b                       b
+c                     &lt;
+d                       d
+e                       e
+                      &gt; f
+</code></pre>
+
+<p><code>|</code>说明此行有变化，<code>&lt;</code>说明此行被删除了，<code>&gt;</code>说明此行是后增加的。</p>
+
+<h2>上下文格式diff</h2>
+
+<p>标准格式diff显示的内容不够直观，上下文格式则通过显示变化的上下文，而更加的利于理解。</p>
+
+<p>使用方法为使用参数<code>-c</code>参数： <code>diff -c f1 f2</code>，结果如下：</p>
+
+<pre><code>*** f1  2014-04-03 21:24:23.581007082 +0800
+--- f2  2014-04-03 21:24:21.324995895 +0800
+***************
+*** 1,5 ****
+! a b
+  b
+- c
+  d
+  e
+--- 1,5 ----
+! a b c
+  b
+  d
+  e
++ f
+</code></pre>
+
+<p>首先，显示两个文件的基本情况：</p>
+
+<pre><code>*** f1  2014-04-03 21:24:23.581007082 +0800
+--- f2  2014-04-03 21:24:21.324995895 +0800
+</code></pre>
+
+<p><code>***</code>表示变动前的文件f1，<code>---</code>表示变动后的文件f2。</p>
+
+<p>然后，15个星号将文件的基本情况与变动内容分割开。</p>
+
+<p>最后，显示f1和f2文件的内容变动情况。</p>
+
+<p><code>*** 1,5 ****</code>表示f1文件的1~5行</p>
+
+<p><code>--- 1,5 ----</code>表示f2文件的1~5行</p>
+
+<p><code>!</code>代表次行内容有变动，<code>+</code>表示此行为新增加，<code>-</code>表示此行被删除了。</p>
+
+<p>上下文格式默认显示包括修改行前后的三行内容，可以使用<code>-num</code>来设置显示前后num行，如：</p>
+
+<pre><code>diff -c -1 f1 f2
+</code></pre>
+
+<h2>合并格式diff</h2>
+
+<p>两个文件大量内容重复，上下文格式将显示很多无用干扰信息，后来就退出了合并式diff。</p>
+
+<p>使用方法为，加入<code>-u</code>参数，<code>diff -u f1 f2</code>，结果如下：</p>
+
+<pre><code>--- f1  2014-04-03 21:24:23.581007082 +0800
++++ f2  2014-04-03 21:24:21.324995895 +0800
+@@ -1,5 +1,5 @@
+-a b
++a b c
+ b
+-c
+ d
+ e
++f
+</code></pre>
+
+<p>同样前两行表示两个文件的基本情况</p>
+
+<p>然后<code>@@ -1,5 +1,5 @@</code>表示修改的位置，<code>-</code>代表 f1 的1~5行，<code>+</code>代表 f2 的1~5行。</p>
+
+<p>最后是合并显示的变动具体内容，依旧是<code>-</code>代表f1，<code>+</code>代表f2。</p>
+
+<p>同上下文格式一样，合并格式也是默认显示修改前后3行的内容，也可以使用<code>-num</code>来设置显示前后num行：</p>
+
+<pre><code>diff -u -1 f1 f2
+</code></pre>
+
+<p>这里还要提到，git使用的是合并格式diff的变体。当前工作目录下<code>git add f1</code>后，修改f1的内容，可以使用如下命令，观察做出的修改</p>
+
+<pre><code>git diff
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>diff --git a/f1 b/f1
+index 924a897..c3b09ff 100644
+--- a/f1
++++ b/f1
+@@ -1,5 +1,5 @@
+-a b
++a b c
+ b
+-c
+ d
+ e
++f
+</code></pre>
+
+<p>和合并格式diff的区别在头部文件基本信息，<code>git diff</code>显示的是a、b两个版本的f1文件的内容变化，并且显示了两个版本的git哈希值（924a897..c3b09ff），与文件的权限（644）。</p>
+
+<h2>vimdiff</h2>
+
+<p>Vim提供的diff模式称作imdiff，可以很清晰形象的观察到文件内容的变化，方便的进行合并工作。vimdiff的使用方法如下：</p>
+
+<pre><code>vimdiff f1 f2
+或者
+vim -d f1 f2
+</code></pre>
+
+<p>下图为结果的画面</p>
+
+<p><img src="http://812lcl.github.io/images/blog/vimdiff.png" alt="vimdiff" /></p>
+
+<p>默认屏幕垂直分割，对比显示两个文件的不同，如果想要水平分割可以使用参数<code>-o</code>（不过怎么也是垂直的好看）。这里可以看到f1和f2中都有的但是内容改变的行被高亮为红色，次行内修改的具体位置被高亮为黄色；f1里有但是在f2中被删除的行，f1中显示为蓝色，f2中显示为绿色；相反，f2中增加的行显示为蓝色，f1中相应位置显示为绿色。这样更突出引起差异的地方，并且如果文件内容较多，连续相同的行会折叠起来，可以使用<code>zo</code>和<code>zc</code>打开和关闭折叠。</p>
+
+<p>对不同修改内容的高亮显示，颜色可以自己自定义，在自己的Vim配置文件<code>~/.vimrc</code>中添加如下语句：</p>
+
+<pre><code>hi DiffAdd ctermbg=blue ctermfg=white
+hi DiffDelete ctermbg=green ctermfg=none
+hi DiffChange ctermbg=red ctermfg=White
+hi DiffText ctermbg=yellow ctermfg=black
+</code></pre>
+
+<p>使用GUI的话可以配置<code>guibg</code>和<code>guifg</code>。</p>
+
+<p>切换不同的窗口可以使用下列命令：</p>
+
+<pre><code>Ctrl-w l        切换到右边窗口
+Ctrl-w h        切换到左边窗口
+Ctrl-w j        切换到下边窗口
+Ctrl-w k        切换到上边窗口
+</code></pre>
+
+<p>在编辑文件时也可以使用命令模式启动vimdiff模式：</p>
+
+<pre><code>vim f1
+:vertical diffsplit f2
+</code></pre>
+
+<p>如果不加<code>vertical</code>默认使用的水平分割。在Vim中除了<code>diffsplit</code>还有一些其他的命令，利于对文件进行合并和其他操作。</p>
+
+<pre><code>:diffget        把差异点中另一个文件对应的内容复制到当前行
+:diffput        把差异点中当前行的内容复制到另一个文件对应的位置
+:diffpatch      根据补丁文件更新文件内容，后面需要跟一个参数指定文件
+:diffupdate     手动刷新比较结果
+
+:qa             同时退出两个文件
+:wqa            同时保存并退出
+</code></pre>
+
+<p>如果Vim安装来<a href="https://github.com/tpope/vim-fugitive">vim-fugitive</a>插件，还可以使用<code>:Gdiff</code>命令来比较当前文件和暫存区中的文件的不同，也是利用的vimdiff，显示和操作同上。</p>
+
+<h2>目录的diff</h2>
+
+<p>目录间的diff比较目录中相同文件名的文件，也可以使用正常格式、上下文格式、合并格式、并列格式。</p>
+
+<p>示例目录为d1和d2目录，d1中有文件f1、f3，d2中有f1、f2，其中f1有一些改动。</p>
+
+<p>如果不是用其他参数，不会递归比较子目录中的文件，会显示只存在目录一个目录中的文件，但不显示其详细信息，如下结果是使用<code>diff -u d1 d2</code>的结果：</p>
+
+<pre><code>diff -u d1/f1 d2/f1
+--- d1/f1   2014-04-03 19:29:25.910803383 +0800
++++ d2/f1   2014-04-03 19:28:52.918639783 +0800
+@@ -1,5 +1,5 @@
+-a b c
++a b
+b
++c
+d
+e
+-f
+只在 d2 存在：f2
+只在 d1 存在：f3
+</code></pre>
+
+<p>在目录的diff中常使用的参数是<code>-ruN</code>，r表示递归比较子目录中的文件，u是合并格式，N表示diff会将只存在与某个目录中的文件与一个空白的文件比较。</p>
+
+<h1>patch</h1>
+
+<p>将diff的输出重定向到文本文件中，即得到补丁文件(patch)，可以使用patch命令对文本文件或目录打补丁，从而进行内容更新。</p>
+
+<p>patch的基本用法</p>
+
+<pre><code>patch [参数] &lt;patchfile&gt;
+</code></pre>
+
+<p>参数：</p>
+
+<pre><code>-p Num  忽略几层文件夹
+-E      选项说明如果发现了空文件，那么就删除它
+-R      取消打过的补丁。
+</code></pre>
+
+<p>如果使用参数<code>-p0</code>，表示从当前目录找打补丁的目标文件夹，再对该目录中的文件执行patch操作。
+而使用参数<code>-p1</code>，表示忽略第一层目录，从当前目录寻找目标文件夹中的子目录和文件，进行patch操作。</p>
+
+<h2>处理单个文件补丁</h2>
+
+<p>产生补丁</p>
+
+<pre><code>diff -uN f1 f2 &gt; file.patch
+</code></pre>
+
+<p>打补丁</p>
+
+<pre><code>patch -p0 &lt; file.patch
+或者
+patch f1 file.patch
+</code></pre>
+
+<p>取消补丁</p>
+
+<pre><code>patch -RE -p0 &lt; file.patch
+或者
+patch -RE f1 file.patch
+</code></pre>
+
+<h2>处理目录补丁</h2>
+
+<p>产生补丁</p>
+
+<pre><code>diff -urN d1 d2 &gt; dir.patch
+</code></pre>
+
+<p>打补丁</p>
+
+<pre><code>cd d1
+patch -p1 &lt; ../dir.patch
+</code></pre>
+
+<p>取消补丁</p>
+
+<pre><code>patch -R -p1 &lt; ../dir.patch
+</code></pre>
+
+<p>应用补丁时的目标代码和生成补丁时的代码未必相同，打补丁操作可能失败，补丁失败的文件会以.rej结尾。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html">读懂diff &ndash; 阮一峰的网络日志</a></p></li>
+<li><p><a href="http://www.cnblogs.com/peida/archive/2012/12/12/2814048.html">每天一个linux命令（36）：diff 命令</a></p></li>
+<li><p><a href="http://linux-wiki.cn/wiki">补丁(patch)的制作与应用 &ndash; Linux Wiki</a></p></li>
+<li><p><a href="http://www.ibm.com/developerworks/cn/linux/l-vimdiff/index.html">技巧：Vimdiff 使用 &ndash; IBM</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim补全配置]]></title>
+    <link href="http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/"/>
+    <updated>2013-12-06T18:54:00+08:00</updated>
+    <id>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi</id>
+    <content type="html"><![CDATA[<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
+
+<h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
+
+<p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
+
+<p>另外Java补全，还可以使用<a href="http://eclim.org/">eclim</a>。</p>
+
+<!--more-->
+
+
+<p><img src="http://pic002.cnblogs.com/images/2012/342823/2012041511171014.png" alt="javacomplete" /></p>
+
+<h2>2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></h2>
+
+<p>这个插件是用来补全C++的，需要ctags生成项目的tag文件并加载到当前vim中，然后可以根据<code>. -&gt; ::</code>等符号自动补全，在之前的文章中也都介绍过了。</p>
+
+<h2>3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></h2>
+
+<p>Original filename completion</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/5c0c143ad7b1b39fb3a1ec5e2b39c315d6e70391/687474703a2f2f312e62702e626c6f6773706f742e636f6d2f5f63693279426e717a4a674d2f5444314f355f624f5132492f41414141414141414144452f7648663958675f6d7254492f73313630302f66696c656e616d655f636f6d706c6574652e706e67" alt="neocomplcache" /></p>
+
+<p>Omni completion</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/9fc2701fcb8b4a54ab9e0d0ff2902b11aadb825f/687474703a2f2f322e62702e626c6f6773706f742e636f6d2f5f63693279426e717a4a674d2f54443150546f6c6b5442492f41414141414141414144552f6b6e4a33656e69754857492f73313630302f6f6d6e695f636f6d706c6574652e706e67" alt="neo" /></p>
+
+<p>这种补全我是作为<code>clang-complete</code>或<code>YouCompleteMe</code>的一种补充，对于
+/nginx/tmux/shell/vimscript等文件，它都有默认的关键字支持，还有目录文件
+补全，一边输入就会一边列出可以补全的项，而不用按&lt;c-x>&lt;c-f>等命令来选择
+不同的补全，可以使用&lt;c-p>或&lt;c-n>进行上下选择不同的补全，如果有supertab
+插件更是如虎添翼了。</p>
+
+<p>这是我在配合YCM的时候的配置，由YCM补全c、cpp、java、python的文件，其他文件的补全则由neocomplcache实现。配置文件查看<a href="https://github.com/812lcl/.vim">.vim</a>。
+<code>
+let g:neocomplcache_enable_at_startup = 1
+au Filetype c,cpp,java,python let g:neocomplcache_enable_at_startup = 0
+set dict+=$HOME/.vim/static/dict_with_cases
+let g:neocomplcache_dictionary_filetype_lists = {'_' : $HOME . "/.vim/static/english_dict"}
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_fuzzy_completion = 1               " 开启模糊匹配
+let g:neocomplcache_fuzzy_completion_start_length = 3         " 3个字母后开启模糊匹配
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+</code>
+在和clang-complete配合补全时，会有一些冲突，配置时需要配置时去除冲突。配置文件查看<a href="https://github.com/812lcl/vim_withoutYCM">vim_withoutYCM</a>。
+```
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = &lsquo;*ku*&rsquo;</p>
+
+<p>if !exists(&lsquo;g:neocomplcache_force_omni_patterns&rsquo;)</p>
+
+<pre><code>    let g:neocomplcache_force_omni_patterns = {}
+</code></pre>
+
+<p>endif
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_force_omni_patterns.c =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)'
+</code></pre>
+
+<p>let g:neocomplcache_force_omni_patterns.cpp =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'
+</code></pre>
+
+<p>let g:neocomplcache_force_omni_patterns.objc =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)'
+</code></pre>
+
+<p>let g:neocomplcache_force_omni_patterns.objcpp =</p>
+
+<pre><code>                    \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'
+</code></pre>
+
+<p>let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+```</p>
+
+<h2>4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></h2>
+
+<p>这也是用于C/C++/Objective-C/Objective-C++的补全，它是利用clang自动分析当前项目，实现补全，比omnicppcoplete方便且高级多了，不需要每一次生成tag文件并加载了。这个插件需要系统安装了clang，对vim也有一定的要求，需要7.3以上且支持python。把需要的东西都安装好，将插件放入<code>~/.vim/bundle</code>目录下即可使用，并不需要在<code>.vimrc</code>中添加什么配置，很是方便。试用了下效果很不错，而且使用这个插件比YCM可是轻便多了，整个.vim目录也不过几MB而已，而且不用耗费心力配置。所以对YCM编译发憷的同志们使用这个插件也可满足了，只不过据说在工程文件太大的时候它比较慢。</p>
+
+<h2>5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></h2>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="YCM" /></p>
+
+<p>重头戏登场了，从名字来看就够霸气了，公认的补全神奇，只不过属于编译行插件，稍微麻烦一些，而且体积确实大了一些，编译完后这个插件就达到了七八十MB大小。不过补全效果最好，支持<code>C/C++/Objective-C/Objective-C++</code>的补全，还支持基于Jedi的Python补全和基于OmniSharp的C#补全，号称安了这个插件就不需要下面四个了</p>
+
+<ul>
+<li>clang_complete</li>
+<li>AutoComplPop</li>
+<li>Supertab</li>
+<li>neocomplcache</li>
+</ul>
+
+
+<p>而且这插件和Syntastic和ultisnips的配合也都很好。而我最终选用这个插件是因为它支持模糊匹配功能，你只需要输入想要输入的单词的子序列即可匹配到，如你想匹配的名为<code>printf</code>，只需输入<code>ptf</code>即可。而且它还支持从一个变量跳转到它的声明或定义处的功能，都是很好用的，所以费了一番功夫编译好它还是值得的。</p>
+
+<p>这个插件是需要<code>build-essential</code>、<code>camke</code>、<code>clang</code>、<code>python-dev</code>等很多支持的，还需要vim高于7.3.584。ubuntu用户需要重新编译安装更高版本的vim了，方法参见<a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">compile Vim from source</a>，fedora用户就省事多了。具体编译和使用参看<a href="https://github.com/Valloric/YouCompleteMe">项目主页</a>即可。</p>
+
+<p>编译安装vim</p>
+
+<p>1.安装依赖库
+```
+sudo apt-get install ctags cscope libncurses5-dev libgnome2-dev libgnomeui-dev \</p>
+
+<pre><code>                 libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+                 libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial
+</code></pre>
+
+<p><code>
+2.删除vim
+</code>
+sudo apt-get remove vim vim-runtime gvim vim-tiny vim-common vim-gui-common
+<code>
+3.编译安装vim
+</code>
+cd ~
+hg clone <a href="https://code.google.com/p/vim/">https://code.google.com/p/vim/</a>
+cd vim
+./configure &mdash;with-features=huge \</p>
+
+<pre><code>        --enable-rubyinterp \
+        --enable-pythoninterp \
+        --with-python-config-dir=/usr/lib/python2.7-config \
+        --enable-perlinterp \
+        --enable-gui=gtk2 --enable-cscope \
+        --enable-luainterp \
+        --prefix=/usr
+</code></pre>
+
+<p>make VIMRUNTIMEDIR=/usr/share/vim/vim74
+sudo make install
+<code>
+4.设置vim为默认编辑器
+</code>
+sudo update-alternatives &mdash;install /usr/bin/editor editor /usr/bin/vim 1
+sudo update-alternatives &mdash;set editor /usr/bin/vim
+sudo update-alternatives &mdash;install /usr/bin/vi vi /usr/bin/vim 1
+sudo update-alternatives &mdash;set vi /usr/bin/vim
+```
+看过好多博客写的YCM编译的教程，最后还是感觉项目主页上的原版安装教程最好，而且编译过程中可能出现各种问题，仔细阅读作者的教程，一切问题都可以解决。下面是安装编译YCM的步骤，包括几种不同的编译方法。</p>
+
+<p>1.安装依赖软件
+<code>
+sudo apt-get install build-essential cmake python-dev clang llvm
+</code>
+2.安装YCM</p>
+
+<p>在<code>~/.vimrc</code>中添加<code>"Bundle Valloric/YouCompleteMe"</code>，打开Vim，执行<code>:BundleInstall</code>命令，等待安装完毕。</p>
+
+<p>3.编译YCM</p>
+
+<p>编译根据系统clang和llvm的情况有所不同，分为几种情况。</p>
+
+<ul>
+<li>clang、llvm等级高于3.3</li>
+</ul>
+
+
+<p>这种情况最简单，执行YouCompleteMe中自带的安装脚本即可。
+<code>
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer [--omnisharp-completer]
+</code>
+<code>--omnisharp-completer</code>是使YCM支持C#的补全，根据自己需要选择。</p>
+
+<ul>
+<li>系统的clang等级高于3.3，手动编译
+<code>
+mkdir ~/ycm_build
+cd ~/ycm_build
+cmake -G "Unix Makefiles" -DUSE_SYSTEM_LIBCLANG=ON . ~/.vim/bundle/YouCompleteMe/cpp
+make ycm_core
+make ycm_support_libs
+make
+</code></li>
+<li>下载对应系统版本的clang+llvm的Pre-build Binaries包，<a href="http://llvm.org/releases/download.html#3.4">下载地址</a>，编译。此时系统不必装clang和llvm，编译完成后，可删除Pre-build Binaries包。
+<code>
+mkdir ~/ycm_tmp
+tar -zxvf clang+llvm-3.4.tar.gz -C ~/ycm_tmp/llvm
+mkdir ~/ycm_build
+cd ~/ycm_build
+cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_tmp/llvm . ~/.vim/bundle/YouCompleteMe/cpp
+或者
+cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=~/ycm_tmp/llvm/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp
+make ycm_core
+make ycm_support_libs
+make
+</code>
+最后来说一说clang和llvm的编译安装，可以使用<code>apt-get</code>或<code>yum</code>等安装，但等级可能不满足，ubuntu库中clang的等级只到来3.2，fedora则比较高。所以有时候可能需要编译安装，或下载对应的Pre-build Binaries包。</li>
+</ul>
+
+
+<p><a href="http://llvm.org/releases/download.html#3.4">llvm.org</a>如果有对应系统版本的Pre-build Binaries包，解压到<code>/usr/local</code>即可。</p>
+
+<p>否则只好自己编译安装来，耗时比较长。
+<code>
+下载clang source code和LLVM source code
+cd ~/ycm_tmp
+tar -zxvf llvm-3.4.src.tar.gz -C llvm
+tar -zxvf clang-3.4.src.tar.gz -C ./llvm/tools/clang
+mkdir build
+cd build
+cmake ../llvm/CMAKElist.txt ../llvm
+make
+sudo make install
+</code>
+完成后，clang和llvm就已经安装好来，可以按照第一二种编译方法，编译YCM了。</p>
+
+<p>因为YCM默认开启来syntastic功能，即静态预防检查，随着你的输入会刷新gutter，以显示错误或警告的signs。如果你还使用vim-gitgutter插件，则无法正常显示。这时我的做法是，关闭YouCompleteMe的syntastic，独立安装syntastic插件。</p>
+
+<p>我的YCM配置如下
+<code>
+set completeopt=longest,menu                    " 关掉补全时的预览窗口
+let g:ycm_confirm_extra_conf = 0                " 不用每次提示加载.ycm_extra_conf.py文件
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0               " 关闭ycm的syntastic
+let g:ycm_filetype_whitelist = {'c' : 1, 'cpp' : 1, 'java' : 1, 'python' : 1}
+let g:ycm_complete_in_comments = 1              " 评论中也应用补全
+let g:ycm_min_num_of_chars_for_completion = 2   " 两个字开始补全
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_key_invoke_completion = '&lt;C-Space&gt;'
+let g:ycm_semantic_triggers =  {'c' : ['-&gt;', '.'], 'objc' : ['-&gt;', '.'], 'ocaml' : ['.', '#'], 'cpp,objcpp' : ['-&gt;', '.', '::'], 'php' : ['-&gt;', '::'], 'cs,java,javascript,vim,coffee,python,scala,go' : ['.'], 'ruby' : ['.', '::']}
+nnoremap &lt;F5&gt; :YcmForceCompileAndDiagnostics&lt;CR&gt;
+nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
+</code></p>
+
+<p>vim就先折腾到这了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim插件配置续]]></title>
+    <link href="http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu/"/>
+    <updated>2013-12-04T20:56:00+08:00</updated>
+    <id>http://812lcl.com/blog/2013/12/04/vimcha-jian-pei-zhi-xu</id>
+    <content type="html"><![CDATA[<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。</p>
+
+<h2>1. <a href="https://github.com/tpope/vim-pathogen">pathogen</a></h2>
+
+<p>首先，我改变了插件的管理方式，以前只用了十个左右的插件，没想去用插件管理插件，但也发现想删除某个插件或使用某个插件时很不方便，最后还是选用了一个管理插件的工具<code>pathogen</code>。它可以使所有插件具有独立的目录，互不干扰，想删谁删谁，添加也很简单。安装该插件方法如下
+<code>
+cd ~/.vim
+git clone git://github.com/tpope/vim-pathogen.git
+mkdir bundle
+</code>
+然后再<code>.vimrc</code>中加入<code>execute pathogen#infect()</code>，这样就可以管理插件了。</p>
+
+<!--more-->
+
+
+<p>安装插件
+```</p>
+
+<h1>git submodule add 插件GitHub仓库地址 bundle/插件文件夹</h1>
+
+<p>git submodule add <a href="https://github.com/Lokaltog/vim-easymotion.git">https://github.com/Lokaltog/vim-easymotion.git</a> bundle/easymotion
+<code>
+升级插件
+</code>
+cd ~/.vim/bundle/easymotion # 将 easymotion 替换为需要升级的插件名字
+git pull origin master
+<code>
+升级所有插件
+</code>
+cd ~/.vim
+git submodule foreach git pull origin master
+<code>
+删除插件
+</code>
+cd ~/.vim
+rm -rf bundle/easymotion
+git rm -rf bundle/easymotion
+<code>
+如果你将你的`.vim`仓库穿到GitHub上，可以很容易的在其他机器上恢复相同的配置，方法如下：
+</code>
+git clone <a href="http://github.com/username/dotvim.git">http://github.com/username/dotvim.git</a> ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+cd ~/.vim
+git submodule init
+git submodule update
+<code>``
+如果你的整个</code>.vim<code>目录并不作为git仓库，也可以用pathogen管理插件，只需将插件下好，将其作为独立文件夹放入</code>~/.vim/bundle/`中即可。</p>
+
+<h2>2. <a href="https://github.com/Lokaltog/vim-easymotion">Easymotion</a></h2>
+
+<p>在vim原有功能中使用<code>f&lt;char&gt;</code>可以定位到一行中的某个字符，如fa可定位到本行光标后的第一个a字母，f2a则定位到第二个。但往往你并不知道要到的是第几个a，这时easymotion就是个很高效方便的插件了。只需敲击<leader><leader>fa，就可以定位光标之后的所有字母a（包括下边行内的a），所有的a都用字母代替，然后输入想跳到位置的字母即可。</p>
+
+<p><leader><leader>是easymotion默认的引导键，可以自定义，我将其定义为“f”，所以定位时只需按ff<char>即可。easymotion还支持配合w、e、t位置移动操作，可以调到光标之后的第几个词尾、词头等。更改默认引导键只需在<code>.vimrc</code>中加入下面这条语句：</p>
+
+<p><code>let g:EasyMotion_leader_key = 'f'</code></p>
+
+<p><img src="http://812lcl.github.io/images/blog/easymotion.gif" alt="Easymotion" /></p>
+
+<h2>3. <a href="https://github.com/tpope/vim-surround">surround</a></h2>
+
+<p>这个插件可以轻松的在单词或句子外增加、删除或替换如括号、引号，甚至HTML标签，功能也十分好用，尤其写HTML时。主要使用就是增加<code>ys</code>、删除<code>ds</code>、替换<code>cs</code>，有不同的扩展，而且在normal、insert和visual模式下都可以操作。例子如下，其中|代表光标位置。
+```
+Text                Command         New Text</p>
+
+<hr />
+
+<p>&ldquo;Hello |world&rdquo;      cs"&lsquo;            'Hello world&rsquo;
+&ldquo;Hello |world&rdquo;      cs"<q>          <q>Hello world</q>
+(123+4|56)/2        cs)]            [123+456]/2
+(123+4|56)/2        cs)[            [ 123+456 ]/2</p>
+
+<div>foo|</div>
+
+
+<p>     cst<p>          <p>foo</p>
+fo|o!               csw'            &lsquo;foo&rsquo;!
+fo|o!               csW'            &lsquo;foo!&rsquo;
+<code>
+</code>
+Text                Command         New Text</p>
+
+<hr />
+
+<p>Hello w|orld!       ysiw)           Hello (world)!
+Hello w|orld!       csw)            Hello (world)!
+fo|o                ysiwt<html>      <html>foo</html>
+foo quu|x baz       yss"            &ldquo;foo quux baz&rdquo;
+foo quu|x baz       ySS"            "</p>
+
+<pre><code>                                 foo quux baz
+                                "
+</code></pre>
+
+<p><code>
+</code>
+Text                Command         New Text</p>
+
+<hr />
+
+<p>&ldquo;|hello&rdquo;            ds"             hello
+<code>
+在不同的模式下操作有所不同
+</code>
+normal模式
+ds  删除surrounding
+cs  替换surrounding
+ys  添加surrounding
+yS  添加、换行、缩进
+yss 整行添加surrounding
+ySs 整行添加换行缩进
+<code>
+</code>
+visual模式
+s   添加surrounding
+S   添加、换行、缩进
+<code>
+</code>
+insert模式
+&lt;C-s>   添加surrounding
+&lt;C-s>&lt;C-s>  添加、换行、缩进
+```</p>
+
+<h2>4. <a href="https://github.com/vim-scripts/matchit.zip">Matchit</a></h2>
+
+<p>%跳转到下一个匹配符号如匹配括号，是 vim 原有功能，添加这个功能后，可以使用%跳转到匹配的HTML标签。</p>
+
+<h2>5. <a href="https://github.com/mbbill/undotree">Undotree</a></h2>
+
+<p>可视化撤销，可以看见你所做的改变，可视化的恢复到某一状态。<code>:UndotreeToggle</code>打开undo-tree面板，可以映射为其他按键，只需在<code>.vimrc</code>中添加</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;u :UndotreeToggle&lt;cr&gt;</code>。</p>
+
+<p>打开的面板中还可以看到每一步修改的前后对比，在面板中按？可获得快捷键帮助。面板效果如下：</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/bcebe1b159a62ce1b010af4ba1e99e461116dd23/687474703a2f2f66696c65732e6d796f706572612e636f6d2f6d6262696c6c2f66696c65732f756e646f747265652e706e67" alt="Undotree" /></p>
+
+<p>当前位置被标记为<code>&gt;seq&lt;</code></p>
+
+<p>下一变化被标记为<code>{seq}</code>，可以通过<code>:redo</code>或 <code>&lt;ctrl-r&gt;</code>跳到下一状态</p>
+
+<p>最近的变化标记为<code>[seq]</code></p>
+
+<p>保存的变化被标记为s，最后被保存的变化被标记为大写S</p>
+
+<p>vim 默认是不保存undo信息的，可以在<code>.vimrc</code>中添加语句实现退出编辑的文件，再打开仍可以undo。
+```
+if has(&lsquo;persistent_undo&rsquo;)</p>
+
+<pre><code>set undofile
+set undodir=’~/.undo/’
+</code></pre>
+
+<p>endif
+```</p>
+
+<h2>6. <a href="https://github.com/majutsushi/tagbar">Tagbar</a></h2>
+
+<p>也是大名鼎鼎，同Taglist差不多，但更适合于C++，可以显示类中的声明、定义等等。<code>:TagbarToggle</code>打开Tagbar窗口，映射快捷键</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;t :TagbarToggle&lt;cr&gt;</code></p>
+
+<h2>7. <a href="https://github.com/scrooloose/nerdtree">NERDTree</a></h2>
+
+<p>这个是比系统原代的netrw更好用的file explorer，可以以树形显示文件结构，但和winmanager有冲突，无法像netrw一样和谐地整合到winmanager中。在nerdtree的窗口中按？可显示快捷键操作。</p>
+
+<p><code>nmap &lt;silent&gt; &lt;Leader&gt;n :NERDTreeToggle&lt;CR&gt;</code>映射打开快捷键，根据自己喜欢设定。</p>
+
+<h2>8. <a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></h2>
+
+<p>快速添加注释的插件，使用方法如下：
+<code>
+&lt;Leader&gt;cc      最基本注释
+&lt;Leader&gt;cu      撤销注释
+&lt;Leader&gt;cm      多行注释
+&lt;Leader&gt;cs      性感的注释方式
+</code>
+只列出了几个常用的，具体效果你可以自己一试。</p>
+
+<h2>9. <a href="https://github.com/SirVer/ultisnips">Ultisnips</a></h2>
+
+<p>需要python的支持，很强大的代码补全插件，大大提高编写代码的速度。可以自己定义模板，在该插件目录下的<code>UltiSnips</code>目录中有各种语言的补全模板。默认使用tab键补全，因为与ycm有冲突，重新映射为&lt;C-j>。</p>
+
+<p><code>let g:UltiSnipsExpandTrigger = "&lt;c-j&gt;"</code></p>
+
+<p>补全比如for循环的语句，可以通过&lt;c-j>切换更该要修改的参数。</p>
+
+<h2>10. <a href="https://github.com/scrooloose/syntastic">Syntastic</a></h2>
+
+<p>语法检查的插件，可以查看当前代码的错误，无需等到编译出错后再来修改。
+<code>:Errors</code>打开错误列表，<code>:lnext</code>和<code>lpre</code>切换下一个和前一个错误。
+在<code>.vimrc</code>中添加以下语句，对其进行配置及快捷键映射：
+<code>
+let g:syntastic_che_on_open=1
+let g:syntastic_auto_jump=1
+let g:syntastic_error_symbol = 'e&gt;'
+let g:syntastic_warning_symbol = 'w&gt;'
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_loc_list_height = 6
+let g:syntastic_enable_highlighting = 0
+nmap &lt;Leader&gt;e :Errors&lt;cr&gt;
+nmap &lt;Leader&gt;c :lnext&lt;cr&gt;
+nmap &lt;Leader&gt;z :lpre&lt;cr&gt;
+</code>
+<img src="https://raw.github.com/scrooloose/syntastic/master/_assets/screenshot_1.png" alt="Syntastic" /></p>
+
+<h2>11. <a href="https://github.com/xuhdev/SingleCompile">Singlecompile</a></h2>
+
+<p>自动编译插件，支持多种语言的不同编译器，具体可查看<a href="http://www.topbug.net/SingleCompile/">相关主页</a>。<code>:SCCompileRun</code>编译并运行当前文件，<code>:SCCompile</code>仅编译，<code>:SCViewResult</code>查看运行结果，就在当前窗口中显示，十分方便。映射快捷键</p>
+
+<p><code>
+nmap &lt;Leader&gt;g :SCCompileRun&lt;cr&gt;&lt;cr&gt;&lt;cr&gt;
+nmap &lt;Leader&gt;v :SCViewResult&lt;cr&gt;
+</code></p>
+
+<h2>12. <a href="https://github.com/airblade/vim-gitgutter">Gitgutter</a></h2>
+
+<p><img src="https://raw.github.com/airblade/vim-gitgutter/master/screenshot.png" alt="Gitgutter" /></p>
+
+<p>显示当前文件中与git仓库提交的版本的变化，在最左侧以不同符号显示不同状态。可以在<code>.vimrc</code>中自己定义
+<code>
+let g:gitgutter_enabled = 1
+let g:gitgutter_highlight_lines = 0
+" let g:gitgutter_sign_added = 'xx'
+" let g:gitgutter_sign_modified = 'yy'
+" let g:gitgutter_sign_removed = 'zz'
+" let g:gitgutter_sign_modified_removed = 'ww'
+nmap gh &lt;Plug&gt;GitGutterNextHunk
+nmap hg &lt;Plug&gt;GitGutterPrevHunk
+</code>
+其中我定义了<code>gh</code>跳到下一条变化之处，<code>hg</code>跳到上一条。</p>
+
+<h2>13. <a href="https://github.com/tpope/vim-fugitive">fugitive</a></h2>
+
+<p>这个插件使你可以在vim中执行git操作。
+<code>
+:Gstatus    git status
+:Gcommit    git commit
+:Gdiff      git diff
+:Glog       git log
+:Gread      git checkout file
+:Gwrite     git add file
+:Gmove      git mv
+:Gremove    git rm
+</code></p>
+
+<h2>14. <a href="https://github.com/kien/ctrlp.vim">CtrlP</a></h2>
+
+<p>快速查找file、buffer、mru、tag的插件，由&lt;c-p>快捷键呼出而得名，好像是sublime text2中的功能，很好用，有人就写了这么个插件，也确实很好用。</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67" alt="CtrlP" /></p>
+
+<p>ctrl-p打开搜索框后即可搜索，有以下功能键：
+<code>
+&lt;c-f&gt; &lt;c-b&gt;     切换模式
+&lt;c-d&gt;           切换按全路径或文件名查找
+&lt;c-r&gt;           改变regexp模式
+&lt;c-j&gt; &lt;c-k&gt;     下一个/上一个文件
+&lt;c-t&gt;           新tab打开文件
+&lt;c-v&gt; &lt;c-x&gt;     新split打开文件
+&lt;c-n&gt; &lt;c-p&gt;     上一个或下一个查找
+&lt;c-y&gt;           创建新文件和他的父目录
+&lt;c-z&gt;           标记文件
+&lt;c-o&gt;           打开标记文件
+</code>
+可以在<code>.vimrc</code>中配置CtrlP显示的位置，显示条目，忽略搜索目录等等,就不一一说明了，可以点击<a href="http://kien.github.io/ctrlp.vim/">这里</a>查看。
+<code>
+我的配置
+let g:ctrlp_map = '&lt;c-p&gt;'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_open_multiple_files = 'v'         " &lt;C-Z&gt;&lt;C-O&gt;时垂直分屏打开多个文件
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git)$',
+  \ 'file': '\v\.(log|jpg|png|jpeg)$',
+  \ }
+let g:ctrlp_working_path_mode= 'ra'
+let g:ctrlp_match_window_bottom= 1
+let g:ctrlp_max_height= 10
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+</code></p>
+
+<h2>15. <a href="https://github.com/Shougo/unite.vim">unite</a></h2>
+
+<p>和CtrlP功能类似，也可以搜索文件、缓冲区等，我使用这个插件主要是它可以查询当前vim中的所有命令和按键映射等，命令多了，一时记不住可以查查看，很方便。</p>
+
+<p>如果你在Unite窗口进入插入模式，光标将会移到该窗口的最上方，并显示“>”提示符。输入字符会搜索该列表&mdash;这里和FuzzyFinder相似。和常规vim一样，按<ESC>键可以退出插入模式回到命令模式，而且可以使用通配符*、|、!。</p>
+
+<p>命令模式和插入模式都有相应的快捷键映射。比如在命令模式下，当光标在一个文件上，按下a，Unite会显示一个可以操作该文件命令的列表。这个命令列表被称为actions，这个列表可以像Unite其他部分一样被搜索和调用。</p>
+
+<p>actions可以组合通配符。如果输入:Unite file, 然后按下*将会标记所有文件，再输入a将会列出所有actions，最后选择above，Unite将会打开所有被标记的文件。</p>
+
+<p>可以映射快捷键调用，根据自己喜好，自行定义</p>
+
+<p><code>nnoremap &lt;leader&gt;f :Unite -start-insert file</code></p>
+
+<p><img src="https://s3.amazonaws.com/github-csexton/unite-01.gif" alt="unite" /></p>
+
+<h2>16. <a href="https://github.com/Raimondi/delimitMate">delimitmate</a></h2>
+
+<p>这个插件有人很讨厌，也有一些人会喜欢，我也还在试用，习惯。它能自动添加和删除匹配的括号、引号。大家选择性安装吧。</p>
+
+<p>OK，先这么多了，准备下一篇文章写一下vim中各种强大的补全。而且提醒一下，vim本身功能已经很强大，虽然各种插件可以帮助你更高效，但不要离了他们就不会使用vim了，也不要太专注于各种插件，写的内容才是最主要的。推荐一篇文章<a href="http://www.kunli.info/2013/08/13/vim/">不要复杂化vim</a>。</p>
+]]></content>
+  </entry>
+  
+</feed>

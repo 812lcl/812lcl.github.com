@@ -1,0 +1,701 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Vim补全配置 - 812lcl的博客</title>
+	<meta name="author" content="812lcl">
+
+	
+	<meta name="description" content="vim补全配置">
+	<meta name="keywords" content="vim, linux, omnicppcomplete, neocomplcache, youcompleteme, clang-complete, javacomplete">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="812lcl的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">812lcl的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Home</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/blog/categories/linux">Linux</a></li>
+	<li><a href="/blog/categories/vim">Vim</a></li>
+	<li><a href="/category-cloud">Category</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+            <form action="/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:812lcl.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/812lcl" title="GitHub">GitHub</a>
+		
+        
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+        
+	</div>
+
+    <!-- default search
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+        <input type="hidden" name="q" value="site:812lcl.com"> 
+	</form>
+    -->
+
+    <!-- tapir search
+    <form method="get" action="/search.html" id="search" class="search">
+        <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </form>
+    -->
+
+	<form class="search" action="/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+	</form>
+
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+    
+	<h2 class="title">Vim补全配置</h2>
+	<div class="entry-content">
+        <p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>。</p>
+
+<h2>1. <a href="https://github.com/vim-scripts/javacomplete">javacomplete</a></h2>
+
+<p>这个是个java补全的插件，需要编译以下autoload目录下的Reflection.java，然后将编译生成的Reflection.class文件移动到主目录下即可。当然要实现补全功能，必须在vim中开启文件类型识别，不多述了。</p>
+
+<p>另外Java补全，还可以使用<a href="http://eclim.org/">eclim</a>。</p>
+
+<!--more-->
+
+
+<p><img src="http://pic002.cnblogs.com/images/2012/342823/2012041511171014.png" alt="javacomplete" /></p>
+
+<h2>2. <a href="https://github.com/vim-scripts/OmniCppComplete">omnicppcomplete</a></h2>
+
+<p>这个插件是用来补全C++的，需要ctags生成项目的tag文件并加载到当前vim中，然后可以根据<code>. -&gt; ::</code>等符号自动补全，在之前的文章中也都介绍过了。</p>
+
+<h2>3. <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a></h2>
+
+<p>Original filename completion</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/5c0c143ad7b1b39fb3a1ec5e2b39c315d6e70391/687474703a2f2f312e62702e626c6f6773706f742e636f6d2f5f63693279426e717a4a674d2f5444314f355f624f5132492f41414141414141414144452f7648663958675f6d7254492f73313630302f66696c656e616d655f636f6d706c6574652e706e67" alt="neocomplcache" /></p>
+
+<p>Omni completion</p>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/9fc2701fcb8b4a54ab9e0d0ff2902b11aadb825f/687474703a2f2f322e62702e626c6f6773706f742e636f6d2f5f63693279426e717a4a674d2f54443150546f6c6b5442492f41414141414141414144552f6b6e4a33656e69754857492f73313630302f6f6d6e695f636f6d706c6574652e706e67" alt="neo" /></p>
+
+<p>这种补全我是作为<code>clang-complete</code>或<code>YouCompleteMe</code>的一种补充，对于
+/nginx/tmux/shell/vimscript等文件，它都有默认的关键字支持，还有目录文件
+补全，一边输入就会一边列出可以补全的项，而不用按&lt;c-x>&lt;c-f>等命令来选择
+不同的补全，可以使用&lt;c-p>或&lt;c-n>进行上下选择不同的补全，如果有supertab
+插件更是如虎添翼了。</p>
+
+<p>这是我在配合YCM的时候的配置，由YCM补全c、cpp、java、python的文件，其他文件的补全则由neocomplcache实现。配置文件查看<a href="https://github.com/812lcl/.vim">.vim</a>。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:neocomplcache_enable_at_startup = 1
+</span><span class='line'>au Filetype c,cpp,java,python let g:neocomplcache_enable_at_startup = 0
+</span><span class='line'>set dict+=$HOME/.vim/static/dict_with_cases
+</span><span class='line'>let g:neocomplcache_dictionary_filetype_lists = {'_' : $HOME . "/.vim/static/english_dict"}
+</span><span class='line'>let g:neocomplcache_auto_completion_start_length = 1
+</span><span class='line'>let g:neocomplcache_enable_smart_case = 1
+</span><span class='line'>let g:neocomplcache_enable_fuzzy_completion = 1               " 开启模糊匹配
+</span><span class='line'>let g:neocomplcache_fuzzy_completion_start_length = 3         " 3个字母后开启模糊匹配
+</span><span class='line'>let g:neocomplcache_min_syntax_length = 3
+</span><span class='line'>let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在和clang-complete配合补全时，会有一些冲突，配置时需要配置时去除冲突。配置文件查看<a href="https://github.com/812lcl/vim_withoutYCM">vim_withoutYCM</a>。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:neocomplcache_enable_at_startup = 1
+</span><span class='line'>let g:neocomplcache_enable_smart_case = 1
+</span><span class='line'>let g:neocomplcache_min_syntax_length = 3
+</span><span class='line'>let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+</span><span class='line'>
+</span><span class='line'>if !exists('g:neocomplcache_force_omni_patterns')
+</span><span class='line'>        let g:neocomplcache_force_omni_patterns = {}
+</span><span class='line'>endif
+</span><span class='line'>let g:neocomplcache_force_overwrite_completefunc = 1
+</span><span class='line'>let g:neocomplcache_force_omni_patterns.c =
+</span><span class='line'>                        \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)'
+</span><span class='line'>let g:neocomplcache_force_omni_patterns.cpp =
+</span><span class='line'>                        \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'
+</span><span class='line'>let g:neocomplcache_force_omni_patterns.objc =
+</span><span class='line'>                        \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)'
+</span><span class='line'>let g:neocomplcache_force_omni_patterns.objcpp =
+</span><span class='line'>                        \ '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'
+</span><span class='line'>let g:clang_complete_auto = 0
+</span><span class='line'>let g:clang_auto_select = 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. <a href="https://github.com/vim-scripts/clang-complete">clang-complete</a></h2>
+
+<p>这也是用于C/C++/Objective-C/Objective-C++的补全，它是利用clang自动分析当前项目，实现补全，比omnicppcoplete方便且高级多了，不需要每一次生成tag文件并加载了。这个插件需要系统安装了clang，对vim也有一定的要求，需要7.3以上且支持python。把需要的东西都安装好，将插件放入<code>~/.vim/bundle</code>目录下即可使用，并不需要在<code>.vimrc</code>中添加什么配置，很是方便。试用了下效果很不错，而且使用这个插件比YCM可是轻便多了，整个.vim目录也不过几MB而已，而且不用耗费心力配置。所以对YCM编译发憷的同志们使用这个插件也可满足了，只不过据说在工程文件太大的时候它比较慢。</p>
+
+<h2>5. <a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></h2>
+
+<p><img src="https://github-camo.global.ssl.fastly.net/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="YCM" /></p>
+
+<p>重头戏登场了，从名字来看就够霸气了，公认的补全神奇，只不过属于编译行插件，稍微麻烦一些，而且体积确实大了一些，编译完后这个插件就达到了七八十MB大小。不过补全效果最好，支持<code>C/C++/Objective-C/Objective-C++</code>的补全，还支持基于Jedi的Python补全和基于OmniSharp的C#补全，号称安了这个插件就不需要下面四个了</p>
+
+<ul>
+<li>clang_complete</li>
+<li>AutoComplPop</li>
+<li>Supertab</li>
+<li>neocomplcache</li>
+</ul>
+
+
+<p>而且这插件和Syntastic和ultisnips的配合也都很好。而我最终选用这个插件是因为它支持模糊匹配功能，你只需要输入想要输入的单词的子序列即可匹配到，如你想匹配的名为<code>printf</code>，只需输入<code>ptf</code>即可。而且它还支持从一个变量跳转到它的声明或定义处的功能，都是很好用的，所以费了一番功夫编译好它还是值得的。</p>
+
+<p>这个插件是需要<code>build-essential</code>、<code>camke</code>、<code>clang</code>、<code>python-dev</code>等很多支持的，还需要vim高于7.3.584。ubuntu用户需要重新编译安装更高版本的vim了，方法参见<a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">compile Vim from source</a>，fedora用户就省事多了。具体编译和使用参看<a href="https://github.com/Valloric/YouCompleteMe">项目主页</a>即可。</p>
+
+<p>编译安装vim</p>
+
+<p>1.安装依赖库</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install ctags cscope libncurses5-dev libgnome2-dev libgnomeui-dev \
+</span><span class='line'>                     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+</span><span class='line'>                     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.删除vim</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get remove vim vim-runtime gvim vim-tiny vim-common vim-gui-common</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.编译安装vim</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~
+</span><span class='line'>hg clone https://code.google.com/p/vim/
+</span><span class='line'>cd vim
+</span><span class='line'>./configure --with-features=huge \
+</span><span class='line'>            --enable-rubyinterp \
+</span><span class='line'>            --enable-pythoninterp \
+</span><span class='line'>            --with-python-config-dir=/usr/lib/python2.7-config \
+</span><span class='line'>            --enable-perlinterp \
+</span><span class='line'>            --enable-gui=gtk2 --enable-cscope \
+</span><span class='line'>            --enable-luainterp \
+</span><span class='line'>            --prefix=/usr
+</span><span class='line'>make VIMRUNTIMEDIR=/usr/share/vim/vim74
+</span><span class='line'>sudo make install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4.设置vim为默认编辑器</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
+</span><span class='line'>sudo update-alternatives --set editor /usr/bin/vim
+</span><span class='line'>sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
+</span><span class='line'>sudo update-alternatives --set vi /usr/bin/vim</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看过好多博客写的YCM编译的教程，最后还是感觉项目主页上的原版安装教程最好，而且编译过程中可能出现各种问题，仔细阅读作者的教程，一切问题都可以解决。下面是安装编译YCM的步骤，包括几种不同的编译方法。</p>
+
+<p>1.安装依赖软件</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install build-essential cmake python-dev clang llvm</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.安装YCM</p>
+
+<p>在<code>~/.vimrc</code>中添加<code>"Bundle Valloric/YouCompleteMe"</code>，打开Vim，执行<code>:BundleInstall</code>命令，等待安装完毕。</p>
+
+<p>3.编译YCM</p>
+
+<p>编译根据系统clang和llvm的情况有所不同，分为几种情况。</p>
+
+<ul>
+<li>clang、llvm等级高于3.3</li>
+</ul>
+
+
+<p>这种情况最简单，执行YouCompleteMe中自带的安装脚本即可。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.vim/bundle/YouCompleteMe
+</span><span class='line'>./install.sh --clang-completer [--omnisharp-completer]</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>--omnisharp-completer</code>是使YCM支持C#的补全，根据自己需要选择。</p>
+
+<ul>
+<li>系统的clang等级高于3.3，手动编译</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/ycm_build
+</span><span class='line'>cd ~/ycm_build
+</span><span class='line'>cmake -G "Unix Makefiles" -DUSE_SYSTEM_LIBCLANG=ON . ~/.vim/bundle/YouCompleteMe/cpp
+</span><span class='line'>make ycm_core
+</span><span class='line'>make ycm_support_libs
+</span><span class='line'>make</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>下载对应系统版本的clang+llvm的Pre-build Binaries包，<a href="http://llvm.org/releases/download.html#3.4">下载地址</a>，编译。此时系统不必装clang和llvm，编译完成后，可删除Pre-build Binaries包。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/ycm_tmp
+</span><span class='line'>tar -zxvf clang+llvm-3.4.tar.gz -C ~/ycm_tmp/llvm
+</span><span class='line'>mkdir ~/ycm_build
+</span><span class='line'>cd ~/ycm_build
+</span><span class='line'>cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_tmp/llvm . ~/.vim/bundle/YouCompleteMe/cpp
+</span><span class='line'>或者
+</span><span class='line'>cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=~/ycm_tmp/llvm/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp
+</span><span class='line'>make ycm_core
+</span><span class='line'>make ycm_support_libs
+</span><span class='line'>make</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后来说一说clang和llvm的编译安装，可以使用<code>apt-get</code>或<code>yum</code>等安装，但等级可能不满足，ubuntu库中clang的等级只到来3.2，fedora则比较高。所以有时候可能需要编译安装，或下载对应的Pre-build Binaries包。</p>
+
+<p><a href="http://llvm.org/releases/download.html#3.4">llvm.org</a>如果有对应系统版本的Pre-build Binaries包，解压到<code>/usr/local</code>即可。</p>
+
+<p>否则只好自己编译安装来，耗时比较长。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>下载clang source code和LLVM source code
+</span><span class='line'>cd ~/ycm_tmp
+</span><span class='line'>tar -zxvf llvm-3.4.src.tar.gz -C llvm
+</span><span class='line'>tar -zxvf clang-3.4.src.tar.gz -C ./llvm/tools/clang
+</span><span class='line'>mkdir build
+</span><span class='line'>cd build
+</span><span class='line'>cmake ../llvm/CMAKElist.txt ../llvm
+</span><span class='line'>make
+</span><span class='line'>sudo make install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>完成后，clang和llvm就已经安装好来，可以按照第一二种编译方法，编译YCM了。</p>
+
+<p>因为YCM默认开启来syntastic功能，即静态预防检查，随着你的输入会刷新gutter，以显示错误或警告的signs。如果你还使用vim-gitgutter插件，则无法正常显示。这时我的做法是，关闭YouCompleteMe的syntastic，独立安装syntastic插件。</p>
+
+<p>我的YCM配置如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>set completeopt=longest,menu                 " 关掉补全时的预览窗口
+</span><span class='line'>let g:ycm_confirm_extra_conf = 0              " 不用每次提示加载.ycm_extra_conf.py文件
+</span><span class='line'>let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+</span><span class='line'>let g:ycm_show_diagnostics_ui = 0               " 关闭ycm的syntastic
+</span><span class='line'>let g:ycm_filetype_whitelist = {'c' : 1, 'cpp' : 1, 'java' : 1, 'python' : 1}
+</span><span class='line'>let g:ycm_complete_in_comments = 1                " 评论中也应用补全
+</span><span class='line'>let g:ycm_min_num_of_chars_for_completion = 2     " 两个字开始补全
+</span><span class='line'>let g:ycm_seed_identifiers_with_syntax = 1
+</span><span class='line'>let g:ycm_key_invoke_completion = '&lt;C-Space&gt;'
+</span><span class='line'>let g:ycm_semantic_triggers =  {'c' : ['-&gt;', '.'], 'objc' : ['-&gt;', '.'], 'ocaml' : ['.', '#'], 'cpp,objcpp' : ['-&gt;', '.', '::'], 'php' : ['-&gt;', '::'], 'cs,java,javascript,vim,coffee,python,scala,go' : ['.'], 'ruby' : ['.', '::']}
+</span><span class='line'>nnoremap &lt;F5&gt; :YcmForceCompileAndDiagnostics&lt;CR&gt;
+</span><span class='line'>nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>vim就先折腾到这了。</p>
+
+<p class='post-footer'>
+            original link:<a href='http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/'>http://812lcl.com/blog/2013/12/06/vimbu-quan-pei-zhi/</a><br/>&nbsp;written by <a href='http://812lcl.com'>812lcl</a>&nbsp;posted at <a href='http://812lcl.com'>http://812lcl.com</a></p>
+
+
+        <div>
+        
+        <a class="pull-left" href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/" title="Previous Post: Vim插件配置续">&laquo; Vim插件配置续</a>
+        
+        
+        <a class="pull-right" href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/" title="Next Post: 重学C语言(一)——类型转换">重学C语言(一)——类型转换 &raquo;</a>
+        
+        <div class="clear"></div>
+        </div>
+        
+            <div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+    
+    <!-- JiaThis BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"></script>
+<!-- JiaThis END -->
+
+<!-- Baidu Button BEGIN 
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+	<a class="bds_tsina"></a>
+	<a class="bds_qzone"></a>
+	<a class="bds_tqq"></a>
+	<a class="bds_renren"></a>
+	<a class="bds_t163"></a>
+	<a class="bds_hi"></a>
+	<span class="bds_more"></span>
+	<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+ Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+<!-- UY END -->
+
+    
+</div>
+
+        
+    </div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-06T18:54:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vim/'>Vim</a>
+
+
+</div>
+    <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+    </div>
+	
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+	
+</div>
+
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-06T18:54:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2013</time></div>
+        <div class="tags">
+
+
+	<a class='category' href='/blog/categories/vim/'>Vim</a>
+
+
+</div>
+        <div class="comments"><a href="#comments" id="uyan_count_unit" du="" su="">0条评论</a>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+        </div>
+        
+
+<div class="tags">
+  
+  <a class='tag' href='/blog/tags/linux/'>linux</a>, <a class='tag' href='/blog/tags/vim/'>vim</a>, <a class='tag' href='/blog/tags/bian-cheng-huan-jing/'>编程环境</a>, <a class='tag' href='/blog/tags/bian-ji-qi/'>编辑器</a>
+  
+</div>
+
+
+        <br />
+        <section>
+            <h2>相关文章：</h2>
+            <ul class="posts">
+                
+                <li class="related">
+                <a href="/blog/2014/04/05/vim-ji-ben-pei-zhi/">Vim 基本配置</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">Vim插件配置续</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/24/vimcha-jian-pei-zhi-%2Cbi-jian-ide/">Vim插件配置，比肩IDE</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2013/10/23/duo-xi-tong-linuxan-zhuang-ji-pei-zhi/">多系统Linux安装及配置</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/">Linux命令学习（2）：rsync</a>
+                </li>
+                
+                <li class="related">
+                <a href="/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/">Linux命令学习（1）：diff 和 patch</a>
+                </li>
+                
+            </ul>
+        </section>
+        <br />
+        <section>
+ <h1>分类目录</h1>
+ <ul id="categories">
+	 <li class='category'><a href='/blog/categories/linux/'>Linux (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/vim/'>Vim (4)</a></li>
+<li class='category'><a href='/blog/categories/mo-dao-li-ren/'>磨刀利刃 (1)</a></li>
+<li class='category'><a href='/blog/categories/zi-wo-ji-li/'>自我激励 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhong-xue-cyu-yan/'>重学C语言 (4)</a></li>
+
+ </ul>
+</section>
+
+        <br />
+        <section>
+  <h1>最近博文</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/linuxming-ling-xue-xi-%282%29%3Arsync/">Linux命令学习（2）：rsync</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/05/vim-ji-ben-pei-zhi/">Vim 基本配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/linuxming-ling-xue-xi-%281%29%3Adiffhe-patch/">Linux命令学习（1）：diff 和 patch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/28/zhong-xue-cyu-yan-si-bian-liang-chu-shi-hua/">重学C语言(四)——变量初始化</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/zhong-xue-cyu-yan-san-fu-za-sheng-ming-fen-xi/">重学C语言(三)——复杂声明分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/zhong-xue-cyu-yan-er-yun-suan-fu-you-xian-ji-yu-ji-suan-shun-xu/">重学C语言(二)——运算符优先级与计算顺序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/zhong-xue-cyu-yan-%5B%3F%5D-lei-xing-zhuan-huan/">重学C语言(一)——类型转换</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/06/vimbu-quan-pei-zhi/">Vim补全配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/04/vimcha-jian-pei-zhi-xu/">Vim插件配置续</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/29/octopresstian-jia-tong-ji-yu-seo/">Octopress添加统计与SEO</a>
+      </li>
+    
+  </ul>
+</section>
+
+        <br />
+        <section>
+<h1>评论热榜</h1>
+<div id="uyan_hotcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+        <section>
+<h1>最新评论</h1>
+<div id="uyan_newcmt_unit"></div>
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"></script>
+</section>
+
+    </div>
+</article>
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    812lcl
+
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000106316'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000106316%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9fd7584d53a3ee603561e6c98cdf98cd' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49529601-1', '812lcl.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+    <!--返回顶部开始-->
+<div id="full" style="width:0px; height:0px; position:fixed; right:180px; bottom:150px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+	<a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="返回顶部"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+<!--返回顶部结束-->
+
+</body>
+</html>
