@@ -1,0 +1,1238 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Octopress侧边栏及评论系统定制</title>
+    <meta name="author" content="812lcl">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="http://oss72cazp.bkt.clouddn.com/favicon.png">
+    
+
+    
+    <meta name="description" content="
+
+在上一篇文章中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。
+">
+    <meta property="og:description" content="
+
+在上一篇文章中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Octopress侧边栏及评论系统定制">
+    <meta property="og:url" content="/blog/2013/10/26/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6/">
+    <meta property="og:site_name" content="812lcl">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="812lcl">
+    <meta name="twitter:description" content="
+
+在上一篇文章中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。
+">
+    
+      <meta name="twitter:creator" content="@812lcl">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://812lcl.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49529601-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://812lcl.com/">812lcl</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://812lcl.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://812lcl.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">812lcl</h4>
+        
+          <h5 class="sidebar-profile-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/3184742/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Octopress侧边栏及评论系统定制
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2013-10-26T00:00:00Z">
+      
+  十月 26, 2013
+
+    </time>
+  
+  
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="http://812lcl.com/categories/octopress">Octopress</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-第三方主题">1. 第三方主题</a></li>
+<li><a href="#2-侧边栏">2. 侧边栏</a>
+<ul>
+<li><a href="#2-1-最新文章">2.1 最新文章</a></li>
+<li><a href="#2-2-github-repos">2.2 GitHub Repos</a></li>
+<li><a href="#2-3-微博秀">2.3 微博秀</a></li>
+<li><a href="#2-4-豆瓣展示">2.4 豆瓣展示</a></li>
+<li><a href="#2-5-访客地图">2.5 访客地图</a></li>
+<li><a href="#2-6-酷站博客">2.6 酷站博客</a></li>
+<li><a href="#2-7-最热文章">2.7 最热文章</a></li>
+<li><a href="#2-8-3d标签云与标签列表">2.8 3D标签云与标签列表</a></li>
+<li><a href="#2-9-相关文章功能">2.9 相关文章功能</a></li>
+</ul></li>
+<li><a href="#3-社会化评论与分享">3. 社会化评论与分享</a>
+<ul>
+<li><a href="#3-1-友言和加网">3.1 友言和加网</a></li>
+<li><a href="#3-2-评论热榜和最新评论侧边栏">3.2 评论热榜和最新评论侧边栏</a></li>
+<li><a href="#3-3-评论计数显示">3.3 评论计数显示</a></li>
+</ul></li>
+<li><a href="#4-为博文添加原文链接及声明">4. 为博文添加原文链接及声明</a></li>
+<li><a href="#5-公益404">5. 公益404</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>在<a href="http://812lcl.github.io/blog/2013/10/25/octopress博客搭建及目录结构/">上一篇文章</a>中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。
+</p>
+
+<h2 id="1-第三方主题">1. 第三方主题</h2>
+
+<p>首先，你先要选定的是博客使用的第三方主题，因为如果你已经进行了很多的网页设置，添加了很多的插件，再来改主题，你就要面临悲剧了，你会发现你已经配置好的东西被替换掉了，这无疑会对你的热情带来打击。所以我们先来看看第三方主题。
+你需要先找到自己喜欢的主题，之后可以在此主题上进行修改。<a href="http://opthemes.com/">点击这里</a>是一个主题网站，给出了不同主题的预览图，使用该主题的博客和该主题的GitHub链接。选中你想要的，获得GitHub仓库地址，如下安装</p>
+
+<pre><code>$ cd blog
+$ git clone https://github.com/shashankmehta/greyshade.git ./themes/greyshade
+$ rake install['greyshade']
+$ rake generate
+</code></pre>
+
+<p>这里我的博客在blog文件夹中，以安装greyshade主题为例。你按照自己的情况进行更改。<code>rake generate</code>后可以通过<code>rake preview</code>访问<code>http://localhost:4000</code>预览新的主题样式，不满意可以更换其他主题。</p>
+
+<h2 id="2-侧边栏">2. 侧边栏</h2>
+
+<p>侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到<a href="https://github.com/imathis/octopress/wiki">octopress的wiki页面</a>寻找。</p>
+
+<p>侧边栏在<code>_config.yml</code>中设置，添加进<code>default_asides</code>中，先后顺序代表显示的先后顺序，各个侧边栏插件代码放入相应的位置即可，自己添加的一般放入<code>source/_includes/custom/asides</code>，<code>default_asides</code>中默认从<code>_includes</code>之后路径开始写。</p>
+
+<h3 id="2-1-最新文章">2.1 最新文章</h3>
+
+<p>首先说一下主题中可用的插件。</p>
+
+<p><code>asides/recent_posts.html</code>是最近写的文章的一个展示，添加到<code>default_asides</code>中即可显示，在<code>_config.yml</code>中可以设置显示最近多少篇文章，<code>recent_posts: 5</code>，注意冒号后有空格。</p>
+
+<h3 id="2-2-github-repos">2.2 GitHub Repos</h3>
+
+<p><code>asides/github.html</code>则是GitHub repos的一个展示，可以直接到达你的GitHub页面，在<code>_config.yml</code>中设置你的Github账号，并设置为<code>true</code>即可，如下：</p>
+
+<pre><code># Github repositories
+github_user: 812lcl 	#我的github
+github_repo_count: 0
+github_show_profile_link: true
+github_skip_forks: true
+</code></pre>
+
+<h3 id="2-3-微博秀">2.3 微博秀</h3>
+
+<p>新浪微博是一个信息传播非常迅速的媒介，如果你热衷于微博，可以在侧边栏添加自己的微博秀。首先需要获得自己的微博秀代码，链接为<a href="http://app.weibo.com/tool/weiboshow">http://app.weibo.com/tool/weiboshow</a>，进行相应的设置即可获得微博秀代码。</p>
+
+<p>然后在<code>source/_includes/custom/asides</code>创建weibo.html，添加如下代码，刚刚获得的微博秀代码也要添加到相应位置：</p>
+
+<pre><code class="language-html">&lt;section&gt;
+    &lt;h1&gt;新浪微博&lt;/h1&gt;
+    &lt;ul id=&quot;weibo&quot;&gt;
+    &lt;li&gt;
+
+    &lt;!-- 在此插入获得的微博秀代码 --&gt;
+
+      &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/section&gt;
+
+</code></pre>
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/weibo.html</code>即可显示你的微博秀了。</p>
+
+<h3 id="2-4-豆瓣展示">2.4 豆瓣展示</h3>
+
+<p>你可以通过豆瓣读书、豆瓣电影、豆瓣音乐等多方面展示你自己，豆瓣也提供了类似微博秀的展示方式，添加方法也类似。获得豆瓣收藏秀的链接<a href="http://www.douban.com/service/badgemakerjs">http://www.douban.com/service/badgemakerjs</a>，根据自己的喜欢进行设置</p>
+
+<p>然后在<code>source/_includes/custom/asides</code>创建douban.html，添加如下代码，刚刚获得的代码添加到<code>&lt;div&gt;</code>之间：</p>
+
+<pre><code>&lt;section&gt;
+	&lt;h1&gt;My Douban&lt;/h1&gt;
+	&lt;div&gt;
+	&lt;!--添加到这--&gt;
+	&lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/douban.html</code>显示你的豆瓣展示。</p>
+
+<h3 id="2-5-访客地图">2.5 访客地图</h3>
+
+<p>效果如我的博客右侧那个精美的3D旋转地球所示，它可以显示访客数量，访客来自的地域，既有装饰作用，又有统计作用。它也有2D效果版，可以根据自己喜欢进行设置，地址在<a href="http://www.revolvermaps.com/?target=setup">这里</a>，然后获得代码。</p>
+
+<p>依然在<code>source/_includes/custom/asides</code>创建earth.html，代码如下：</p>
+
+<pre><code>&lt;section&gt;
+	&lt;h1&gt;访客地图&lt;/h1&gt;
+	&lt;!--获得代码添加到这--&gt;
+&lt;/section&gt;
+
+</code></pre>
+
+<p>在<code>default_asides</code>中加入<code>custom/asides/earth.html</code>显示你定制的访客地图。</p>
+
+<h3 id="2-6-酷站博客">2.6 酷站博客</h3>
+
+<p>你有一些经常去的网站、博客，想推荐给大家，则可以在侧边栏加上一个“酷站博客”，当然名字你自己取即可。</p>
+
+<p>在<code>source/_includes/custom/asides</code>创建blog_link.html，代码如下：</p>
+
+<pre><code>&lt;section&gt;
+&lt;h1&gt;酷站博客&lt;/h1&gt;
+&lt;ul&gt;
+        &lt;li&gt;
+        &lt;a href=&quot;http://blog.jobbole.com/&quot;&gt;伯乐在线&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;a href=&quot;http://www.csdn.net/&quot;&gt;CSDN&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;a href=&quot;http://www.cnblogs.com/&quot;&gt;博客园&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;a href=&quot;http://coolshell.cn/&quot;&gt;酷壳CoolShell&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;a href=&quot;http://www.cnblogs.com/Solstice/&quot;&gt;陈硕&lt;/a&gt;
+        &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>可以自行添加喜爱网站，然后在<code>default_asides</code>中加入<code>custom/asides/blog_link.html</code>。</p>
+
+<p>看到这，你应该很熟悉添加侧边栏的流程了吧。</p>
+
+<h3 id="2-7-最热文章">2.7 最热文章</h3>
+
+<p>Octopress Popular Posts Plugin是根据Google page rank计算，展示出权值最高的文章，插件的项目主页为<a href="https://github.com/octopress-themes/popular-posts">点击这里</a>。</p>
+
+<p>这个插件的安装与之前的方法不同，首先在<code>Gemfile</code>中添加</p>
+
+<pre><code>gem 'octopress-popular-posts'
+</code></pre>
+
+<p><code>Gemfile</code>中的是bundle安装时安装的所有依赖的软件，然后用bundle安装</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>执行命令，将插件拷贝到你的source目录，如下：</p>
+
+<pre><code>bundle exec octopress-popular-posts install
+</code></pre>
+
+<p>到这就安装完了，可以设置显示了，在<code>_config.yml</code>中设置，增加下面一行：</p>
+
+<pre><code>popular_posts_count: 5      # Posts in the sidebar Popular Posts section
+</code></pre>
+
+<p>设置边栏显示文章数，最后在<code>default_asides</code>中添加<code>custom/asides/popular_posts.html</code>，即可显示出来。</p>
+
+<p>这样就设置好了，同时建议将缓存的page rank文件添加进你的<code>.gitignore</code>中</p>
+
+<pre><code>.page_rank
+</code></pre>
+
+<h3 id="2-8-3d标签云与标签列表">2.8 3D标签云与标签列表</h3>
+
+<p>octopress默认的只支持category的分类，而并没有tag。category和tag分别代表有序/无序的知识点归纳。一篇文章只能属于一个category，但可以有多个tag。原来的plugin下只有category_generator.rb插件，实现category功能，在github上有两个插件帮助实现了tag生成和tag cloud功能<a href="https://github.com/robbyedwards/octopress-tag-pages">插件1</a>，<a href="https://github.com/robbyedwards/octopress-tag-cloud">插件2</a>。但似乎并不支持中文，而category_generator.rb是支持中文的，所以我有样学样，改成了支持中文的，并且实现了3D标签云的，插件已经上传到<a href="https://github.com/812lcl/category_tag">github</a>。clone到你博客的目录即可。</p>
+
+<p>包含文件如下：</p>
+
+<pre><code> ├─ plugins/
+    │  ├─ category_generator.rb
+    │  ├─ category_list.rb
+    │  ├─ category_tag_cloud.rb
+    │  ├─ tag_generator.rb
+    │  └─ tag_list.rb
+    └─ source/
+       └─ _includes/
+          └─ custom/
+             └─ asides/
+                ├─ category_cloud.html
+                ├─ category_list.html
+                ├─ tag_cloud.html
+                └─ tag_list.html
+</code></pre>
+
+<p>其中<code>category_generator.rb</code>和<code>tag_generator.rb</code>定义了根据文章的category和tag标签分类存储文章的方法，<code>category_tag_cloud.rb</code>则可以定义了根据category或tag生成3D标签云的方法。<code>category_list.rb</code>和<code>tag_list.rb</code>实现了将所有文章的category和tag列出来的方法，其中category可以显示文章个数，tag根据此标签文章多少，大小随着改变。</p>
+
+<p>四个HTML文件则是category和tag的列表和3D标签云的侧边栏实现。需要哪个，在<code>default_asides</code>中添加即可。</p>
+
+<p>还有一点需要注意，在_config.yml中默认设置了category的目录，需自己加入tag目录</p>
+
+<pre><code>category_dir: blog/categories
+tag_dir: blog/tags
+</code></pre>
+
+<p>这样可以观看效果了，不过3D效果的标签云，对于不支持flash的浏览器无效，如<code>safari</code>。</p>
+
+<p>标签功能的实现，我参考了一下几篇文章：</p>
+
+<ul>
+<li><p><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p></li>
+
+<li><p><a href="http://blog.log4d.com/2012/05/tag-cloud/">给 Octopress 加上标签功能</a></p></li>
+
+<li><p><a href="http://guori12321.github.io/blog/2013/08/20/gei-octopresstian-jia-3dyun-biao-qian/">给octopress添加3D标签云</a></p></li>
+</ul>
+
+<h3 id="2-9-相关文章功能">2.9 相关文章功能</h3>
+
+<p>此功能即根据当前阅读的文章，分析博客中其他与此相近的文章，进行推荐的一个功能，在octopress wiki中推荐的第三方插件中有一个插件实现此功能，项目主页<a href="https://github.com/jcftang/octopress-relatedposts">点击这里</a>。该插件，利用octopress自带的LSI实现对文章分析分类，然后进行推荐，但当文章较多时分类过慢，它推荐安装GSL来进行分类。我安装过这个功能，但不知道它是根据什么规则分类，而且之后不知道安装了什么，之后每次分类都会出错。你可以自己尝试一下，项目主页都有详细的步骤。</p>
+
+<p>就在我想放弃这个功能的时候，我发现了它――<a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll_plugin</a>。这个插件很简单，只需下载_plugins/related_posts.rb放在自己的plugins文件夹中，然后在想添加相关文章推荐的地方添加如下语句：
+{% raw %}</p>
+
+<pre><code>&lt;section&gt;
+	&lt;h2&gt;相关文章：&lt;/h2&gt;
+	&lt;ul class=&quot;posts&quot;&gt;
+		 {% for post in site.related_posts limit:5 %}
+			&lt;li class=&quot;related&quot;&gt;
+			&lt;a href=&quot;{{ root_url }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;
+			&lt;/li&gt;
+		{% endfor %}
+	&lt;/ul&gt;
+ &lt;/section&gt;
+</code></pre>
+
+<p>我是在source/_layouts/post.html中加入的这些语句，这个html文件是打开博文时的布局，我将相关文章添加在博文的结束处。</p>
+
+<p>这个插件是根据文章的tag进行分类的，根据所有博文与本篇文章共同tag的多少依次排序进行推荐，还是很简单有效的。</p>
+
+<p>参考<a href="http://techtinkering.com/2011/08/17/improving-related-posts-on-jekyll/">这里</a></p>
+
+<h2 id="3-社会化评论与分享">3. 社会化评论与分享</h2>
+
+<h3 id="3-1-友言和加网">3.1 友言和加网</h3>
+
+<p>octopress内置了disqus评论系统，不适合我国基本国情，所以需要用一些国内的第三方评论系统，如友言、多说，可以以微博、人人、QQ等账号登陆发表评论，网站通过验证后可以对评论进行分析，管理。</p>
+
+<p>多说评论系统可参见<a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">为 Octopress 添加多说评论系统</a>，不多做介绍。</p>
+
+<p>我主要使用的是友言的一套评论系统及插件，分享使用的是加网JiaThis。首先注册<a href="http://www.uyan.cc/">友言</a>账号，否则无法进行后台管理。注册之后获得代码，添加到<code>source/_includes/post/share_comment.html</code>。加网<a href="http://www.jiathis.com/getcode/icon">点击这里</a>，定制自己喜欢的样式，获得代码也添加到上述文件中。</p>
+
+<p>share_comment.html文件中代码如下（每个人不同）：</p>
+
+<pre><code>&lt;!-- JiaThis BEGIN --&gt;
+&lt;div class=&quot;jiathis_style_32x32&quot;&gt;
+        &lt;a class=&quot;jiathis_button_qzone&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;jiathis_button_tsina&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;jiathis_button_tqq&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;jiathis_button_weixin&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;jiathis_button_renren&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;http://www.jiathis.com/share?uid=*******&quot; class=&quot;jiathis jiathis_txt jtico jtico_jiathis&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;jiathis_counter_style&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://v3.jiathis.com/code/jia.js?uid=1361705530382241&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;!-- JiaThis END --&gt;
+
+&lt;!-- Baidu Button BEGIN 
+&lt;div id=&quot;bdshare&quot; class=&quot;bdshare_t bds_tools_32 get-codes-bdshare&quot;&gt;
+        &lt;a class=&quot;bds_tsina&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;bds_qzone&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;bds_tqq&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;bds_renren&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;bds_t163&quot;&gt;&lt;/a&gt;
+        &lt;a class=&quot;bds_hi&quot;&gt;&lt;/a&gt;
+        &lt;span class=&quot;bds_more&quot;&gt;&lt;/span&gt;
+        &lt;a class=&quot;shareCount&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; id=&quot;bdshare_js&quot; data=&quot;type=tools&amp;amp;uid=6839808&quot; &gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; id=&quot;bdshell_js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        document.getElementById(&quot;bdshell_js&quot;).src = &quot;http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=&quot; + Math.ceil(new Date()/3600000)
+&lt;/script&gt;
+ Baidu Button END --&gt;
+
+&lt;!-- UY BEGIN --&gt;
+&lt;div id=&quot;uyan_frame&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;&gt;&lt;/script&gt;
+&lt;!-- UY END --&gt;
+</code></pre>
+
+<p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或评论，代码也可以添加到这。</p>
+
+<p>现在功能代码在share_comment.html中了，下面需要使其显示到博文的底部。</p>
+
+<p>首先在_config.yml中添加开关：</p>
+
+<pre><code># comment and share
+comment_share: true
+</code></pre>
+
+<p>然后在<code>source/_includes/post/sharing.html</code>中添加如下代码：
+{% raw %}</p>
+
+<pre><code>{% if site.comment_share %}
+  {% include post/share_comment.html %}
+{% endif %}
+</code></pre>
+
+<p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、社交影响力分析、和评论栏的风格功能设置。</p>
+
+<h3 id="3-2-评论热榜和最新评论侧边栏">3.2 评论热榜和最新评论侧边栏</h3>
+
+<p>友言提供了多个嵌入式组件，如评论热榜、最新评论、评论计数等。我们可以将他们做成侧边栏进行展示，或在首页文章列表中，显示每篇文章的评论数目。</p>
+
+<p>首先在你的友言后台管理中找到<code>安装设置-&gt;嵌入式组件</code>获得评论热榜和最新评论的代码，分别创建<code>source/_includes/custom/asides/uyan_hotcmt.html</code>和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
+
+<pre><code>&lt;section&gt;
+&lt;h1&gt;评论热榜&lt;/h1&gt;
+&lt;div id=&quot;uyan_hotcmt_unit&quot;&gt;&lt;/div&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;&gt;&lt;/script&gt;
+&lt;/section&gt;
+</code></pre>
+
+<pre><code>&lt;section&gt;
+&lt;h1&gt;最新评论&lt;/h1&gt;
+&lt;div id=&quot;uyan_newcmt_unit&quot;&gt;&lt;/div&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;&gt;&lt;/script&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>然后再<code>_config.yml</code>的<code>default_asides</code>中添加其路径即可显示在侧边栏中。</p>
+
+<p>友言评论框、评论热榜、最新评论可以在后台进行设置，改变设置并不需要更改代码。</p>
+
+<h3 id="3-3-评论计数显示">3.3 评论计数显示</h3>
+
+<p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。实现方法为：在<code>source/_includes/article.html</code>中
+{% raw %}</p>
+
+<pre><code>{% include post/date.html %}{{ time }}
+</code></pre>
+
+<p>的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容
+{% raw %}</p>
+
+<pre><code> | &lt;a href=&quot;{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments&quot; id=&quot;uyan_count_unit&quot; du=&quot;&quot; su=&quot;&quot;&gt;0条评论&lt;/a&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;http://v2.uyan.cc/code/uyan.js?uid=*******&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<h2 id="4-为博文添加原文链接及声明">4. 为博文添加原文链接及声明</h2>
+
+<p>可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建<code>plugins/post_footer_filter.rb</code>，代码如下：</p>
+
+<pre><code class="language-rb"># post_footer_filter.rb
+# Append every post some footer infomation like original url 
+# Kevin Lynx
+# 7.26.2012
+#
+require './plugins/post_filters'
+
+module AppendFooterFilter
+        def append(post)
+                author = post.site.config['author']
+                url = post.site.config['url']
+                pre = post.site.config['original_url_pre']
+                post.content + %Q[&lt;p class='post-footer'&gt;
+                        #{pre or &quot;original link:&quot;}&lt;a href='#{post.full_url}'&gt;#{post.full_url}&lt;/a&gt;&lt;br/&gt;&amp;nbsp;written by &lt;a href='#{url}'&gt;#{author}&lt;/a&gt;&amp;nbsp;posted at &lt;a href='#{url}'&gt;#{url}&lt;/a&gt;&lt;/p&gt;]
+        end
+end
+
+module Jekyll
+        class AppendFooter &lt; PostFilter
+                include AppendFooterFilter
+                def pre_render(post)
+                        post.content = append(post) if post.is_post?
+                end
+        end
+end
+
+Liquid::Template.register_filter AppendFooterFilter
+</code></pre>
+
+<p>并可以针对这一区域的样式进行美化，在<code>sass/custom/_style.scss</code>末尾增加下列内容：</p>
+
+<pre><code>.post-footer{margin-top:10px;padding:5px;background:none repeat scroll 0pt 0pt #eee;font-size:90%;color:gray}
+</code></pre>
+
+<p>尊重原创，此功能来源<a href="http://codemacro.com/2012/07/26/post-footer-plugin-for-octopress/">为octopress每篇文章添加一个文章信息</a>。</p>
+
+<h2 id="5-公益404">5. 公益404</h2>
+
+<p>在<code>source</code>目录下创建404.markdown，添加如下代码，即可实现公益404的功能，当你的网页出错找不到时，可以为公益尽一份力。</p>
+
+<pre><code>---
+layout: page
+title: &quot;404 Error&quot;
+date: &quot;2013-10-10&quot;
+comments: false
+sharing: false
+footer: false
+---
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.qq.com/404/search_children,js&quot; charset=&quot;utf-8&gt;&lt;/script&gt;
+</code></pre>
+
+<hr />
+
+<p>好了先写到这了，还有一些东西没写，等后续再写吧。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://biaobiaoqi.me/blog/2013/07/10/decorate-octopress/">定制Octopress</a></p></li>
+
+<li><p><a href="http://xuhehuan.com/141.html">精美的3D旋转地球统计RevolverMaps</a></p></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/octopress/">octopress</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/ruby/">ruby</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/html/">html</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/27/octopress%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9/" data-tooltip="Octopress主题样式修改">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/25/octopress%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" data-tooltip="Octopress博客搭建及目录结构">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 812lcl. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/27/octopress%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9/" data-tooltip="Octopress主题样式修改">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/25/octopress%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" data-tooltip="Octopress博客搭建及目录结构">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+        <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+        <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f26%2foctopress%25E4%25BE%25A7%25E8%25BE%25B9%25E6%25A0%258F%25E5%258F%258A%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AE%259A%25E5%2588%25B6%2f">
+        <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">812lcl</h4>
+    
+      <div id="about-card-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Backend Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Beijing
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/">
+                <h3 class="media-heading">Linux命令学习（2）：rsync</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/">
+                <h3 class="media-heading">Linux命令学习（1）：diff 和 patch</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim 基本配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/28/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E5%9B%9B%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96/">
+                <h3 class="media-heading">重学C语言(四)——变量初始化</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>首先来声明几个概念：</p>
+
+<p>存储类说明符：</p>
+
+<p><code>auto  register  static  extern  typedef</code></p>
+
+<p>类型说明符：</p>
+
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
+
+<p>类型限定符：</p>
+
+<p><code>const  volatile</code>
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/22/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%89%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E5%88%86%E6%9E%90/">
+                <h3 class="media-heading">重学C语言(三)——复杂声明分析</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p><a href="http://812lcl.github.io/blog/2013/12/21/重学c语言二运算符优先级与计算顺序/">上一篇文章</a>是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，作者还时不时的小幽默一把。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/21/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%BA%8C%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F/">
+                <h3 class="media-heading">重学C语言(二)——运算符优先级与计算顺序</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/17/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%80%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                <h3 class="media-heading">重学C语言(一)——类型转换</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>最近又读了一下基本 C 语言经典著作，特此整理下一些 C 语言的知识点。参考书籍有：C程序设计语言、C专家编程、C缺陷与陷阱
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim补全配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vim插件配置续/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">Vim插件配置，比肩IDE</a>。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/">
+                <h3 class="media-heading">Vim插件配置续</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/">
+                <h3 class="media-heading">Octopress添加统计与SEO</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
+
+<p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
+
+<p><a href="http://tool.lusongsong.com/addurl.html">http://tool.lusongsong.com/addurl.html</a></p>
+
+<p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         17 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://812lcl.com/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://812lcl.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/812lcl.com\/blog\/2013\/10\/26\/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6\/';
+          
+            this.page.identifier = '\/blog\/2013\/10\/26\/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'tranquilpeak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

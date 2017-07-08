@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 812lcl</title>
+    <link>http://812lcl.com/tags/linux/</link>
+    <description>Recent content in Linux on 812lcl</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 04 May 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://812lcl.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux命令学习（2）：rsync</title>
+      <link>http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 &lt;a href=&#34;https://github.com/812lcl/dotfiles&#34;&gt;dotfiles&lt;/a&gt;)。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux命令学习（1）：diff 和 patch</title>
+      <link>http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/</link>
+      <pubDate>Sat, 03 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim 基本配置</title>
+      <link>http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 05 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在&lt;code&gt;~/.vimrc&lt;/code&gt;中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的&lt;a href=&#34;https://github.com/812lcl/dotfiles&#34;&gt;配置&lt;/a&gt;，下面列出我的基本配置。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim补全配置</title>
+      <link>http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 06 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见&lt;a href=&#34;http://812lcl.github.io/blog/2013/12/04/vim插件配置续/&#34;&gt;VIM插件配置续&lt;/a&gt;或&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/&#34;&gt;Vim插件配置，比肩IDE&lt;/a&gt;。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim插件配置续</title>
+      <link>http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/</link>
+      <pubDate>Wed, 04 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;之前写过一篇&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/&#34;&gt;文章&lt;/a&gt;，介绍了当时用的一些vim插件，不过前些日子&lt;a href=&#34;http://blog.jobbole.com/&#34;&gt;伯乐在线&lt;/a&gt;上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim插件配置，比肩IDE</title>
+      <link>http://812lcl.com/blog/2013/10/24/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%AF%94%E8%82%A9ide/</link>
+      <pubDate>Thu, 24 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/24/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%AF%94%E8%82%A9ide/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。&lt;/p&gt;
+
+&lt;p&gt;现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看&lt;a href=&#34;https://github.com/812lcl&#34;&gt;我的GitHub&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多系统Linux安装及配置</title>
+      <link>http://812lcl.com/blog/2013/10/23/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 23 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/23/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

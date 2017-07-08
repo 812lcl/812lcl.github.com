@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>812lcl</title>
+    <link>http://812lcl.com/</link>
+    <description>Recent content on 812lcl</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 04 May 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://812lcl.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux命令学习（2）：rsync</title>
+      <link>http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 &lt;a href=&#34;https://github.com/812lcl/dotfiles&#34;&gt;dotfiles&lt;/a&gt;)。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux命令学习（1）：diff 和 patch</title>
+      <link>http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/</link>
+      <pubDate>Sat, 03 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim 基本配置</title>
+      <link>http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 05 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在&lt;code&gt;~/.vimrc&lt;/code&gt;中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的&lt;a href=&#34;https://github.com/812lcl/dotfiles&#34;&gt;配置&lt;/a&gt;，下面列出我的基本配置。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>重学C语言(四)——变量初始化</title>
+      <link>http://812lcl.com/blog/2013/12/28/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E5%9B%9B%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+      <pubDate>Sat, 28 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/28/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E5%9B%9B%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;首先来声明几个概念：&lt;/p&gt;
+
+&lt;p&gt;存储类说明符：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;auto  register  static  extern  typedef&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;类型说明符：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;类型限定符：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;const  volatile&lt;/code&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>重学C语言(三)——复杂声明分析</title>
+      <link>http://812lcl.com/blog/2013/12/22/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%89%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E5%88%86%E6%9E%90/</link>
+      <pubDate>Sun, 22 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/22/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%89%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://812lcl.github.io/blog/2013/12/21/重学c语言二运算符优先级与计算顺序/&#34;&gt;上一篇文章&lt;/a&gt;是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void (*signal(int, void(*)))(int);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，作者还时不时的小幽默一把。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>重学C语言(二)——运算符优先级与计算顺序</title>
+      <link>http://812lcl.com/blog/2013/12/21/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%BA%8C%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F/</link>
+      <pubDate>Sat, 21 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/21/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%BA%8C%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F/</guid>
+      <description>&lt;p&gt;对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>重学C语言(一)——类型转换</title>
+      <link>http://812lcl.com/blog/2013/12/17/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%80%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Tue, 17 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/17/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%80%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;最近又读了一下基本 C 语言经典著作，特此整理下一些 C 语言的知识点。参考书籍有：C程序设计语言、C专家编程、C缺陷与陷阱
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim补全配置</title>
+      <link>http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 06 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见&lt;a href=&#34;http://812lcl.github.io/blog/2013/12/04/vim插件配置续/&#34;&gt;VIM插件配置续&lt;/a&gt;或&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/&#34;&gt;Vim插件配置，比肩IDE&lt;/a&gt;。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim插件配置续</title>
+      <link>http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/</link>
+      <pubDate>Wed, 04 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;之前写过一篇&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/&#34;&gt;文章&lt;/a&gt;，介绍了当时用的一些vim插件，不过前些日子&lt;a href=&#34;http://blog.jobbole.com/&#34;&gt;伯乐在线&lt;/a&gt;上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress添加统计与SEO</title>
+      <link>http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/</link>
+      <pubDate>Tue, 29 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/</guid>
+      <description>&lt;p&gt;博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://urlc.cn/tool/addurl.html&#34;&gt;http://urlc.cn/tool/addurl.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tool.lusongsong.com/addurl.html&#34;&gt;http://tool.lusongsong.com/addurl.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress主题样式修改</title>
+      <link>http://812lcl.com/blog/2013/10/27/octopress%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9/</link>
+      <pubDate>Sun, 27 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/27/octopress%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/26/octopress侧边栏及评论系统定制/&#34;&gt;上一篇文章&lt;/a&gt;写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress侧边栏及评论系统定制</title>
+      <link>http://812lcl.com/blog/2013/10/26/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6/</link>
+      <pubDate>Sat, 26 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/26/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;在&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/25/octopress博客搭建及目录结构/&#34;&gt;上一篇文章&lt;/a&gt;中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress博客搭建及目录结构</title>
+      <link>http://812lcl.com/blog/2013/10/25/octopress%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Fri, 25 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/25/octopress%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</guid>
+      <description>&lt;p&gt;搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vim插件配置，比肩IDE</title>
+      <link>http://812lcl.com/blog/2013/10/24/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%AF%94%E8%82%A9ide/</link>
+      <pubDate>Thu, 24 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/24/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%AF%94%E8%82%A9ide/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;vim的强大是众所周知的，而且在linux里的普及也是其他编辑器无法比拟的。它默认的功能已经很高效方便了，但人们并不满足于此，各种各样的插件也使他的功能更加丰满，更加便捷，下面主要讲一下我的vim插件及配置过程。&lt;/p&gt;
+
+&lt;p&gt;现在有很多的vim插件管理插件，如bundle、pathogen。我并没有去使用它们，而是自己一点一点的配置完成，然后将其上传到Github，以后需要重新配置，clone下来即可，分分钟搞定，很方便，可以查看&lt;a href=&#34;https://github.com/812lcl&#34;&gt;我的GitHub&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多系统Linux安装及配置</title>
+      <link>http://812lcl.com/blog/2013/10/23/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 23 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/23/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自警自省自规划</title>
+      <link>http://812lcl.com/blog/2013/10/22/%E8%87%AA%E8%AD%A6%E8%87%AA%E7%9C%81%E8%87%AA%E8%A7%84%E5%88%92/</link>
+      <pubDate>Tue, 22 Oct 2013 22:18:50 +0800</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/22/%E8%87%AA%E8%AD%A6%E8%87%AA%E7%9C%81%E8%87%AA%E8%A7%84%E5%88%92/</guid>
+      <description>&lt;p&gt;经历了几天的研究终于把博客搭起来了，本博客使用了Octopress，十分简单容易上手，就连我这个对于Ruby和前端技术一概不通的人也能很快就建成属于自己的博客。但我一直是一个比较有强迫症的人，不希望自己的博客用着千篇一律的模板，总想试遍所有的插件，让它变成自己理想的样子。所以经过了多天的调试布局，才开始写这第一篇文章。这也可能是我自身拖延症的一种表现吧（我这毛病还不少），不知道怎么下笔开始写博客，不过万事开头难，我相信只要我坚持下去，一定会有收获的。今天的第一篇文章就不写博客是怎么搭建的了，想回顾一下自己的过去，展望一下将来（老调调了）。主要是反省一下自己，给自己一个警示作用，并订立一个明确的规划，希望自己能够持之以恒。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

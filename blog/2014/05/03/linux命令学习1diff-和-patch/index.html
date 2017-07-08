@@ -1,0 +1,1166 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Linux命令学习（1）：diff 和 patch</title>
+    <meta name="author" content="812lcl">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="http://oss72cazp.bkt.clouddn.com/favicon.png">
+    
+
+    
+    <meta name="description" content="
+
+diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+">
+    <meta property="og:description" content="
+
+diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Linux命令学习（1）：diff 和 patch">
+    <meta property="og:url" content="/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/">
+    <meta property="og:site_name" content="812lcl">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="812lcl">
+    <meta name="twitter:description" content="
+
+diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+">
+    
+      <meta name="twitter:creator" content="@812lcl">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://812lcl.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49529601-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://812lcl.com/">812lcl</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://812lcl.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://812lcl.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">812lcl</h4>
+        
+          <h5 class="sidebar-profile-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/3184742/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Linux命令学习（1）：diff 和 patch
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2014-05-03T00:00:00Z">
+      
+  五月 3, 2014
+
+    </time>
+  
+  
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="http://812lcl.com/categories/linux">Linux</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#diff">diff</a>
+<ul>
+<li><a href="#正常格式diff">正常格式diff</a></li>
+<li><a href="#并列格式diff">并列格式diff</a></li>
+<li><a href="#上下文格式diff">上下文格式diff</a></li>
+<li><a href="#合并格式diff">合并格式diff</a></li>
+<li><a href="#vimdiff">vimdiff</a></li>
+<li><a href="#目录的diff">目录的diff</a></li>
+</ul></li>
+<li><a href="#patch">patch</a>
+<ul>
+<li><a href="#处理单个文件补丁">处理单个文件补丁</a></li>
+<li><a href="#处理目录补丁">处理目录补丁</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+</p>
+
+<h1 id="diff">diff</h1>
+
+<p>diff的基本格式如下：</p>
+
+<pre><code>$ diff [参数] &lt;变动前的文件&gt; &lt;变动后的文件&gt;
+</code></pre>
+
+<p>命令参数有以下常用的一些，可以根据不同的模式选用：</p>
+
+<pre><code>-b 或--ignore-space-change 　   不检查空格字符的不同。
+-B 或--ignore-blank-lines 　    不检查空白行。
+-w 或--ignore-all-space     　  忽略全部的空格字符。
+-i 或--ignore-case 　           不检查大小写的不同。
+-q 或--brief 　                 仅显示有无差异，不显示详细的信息。
+</code></pre>
+
+<p>在diff目录时常用的参数如下：</p>
+
+<pre><code>-r 或--recursive 　             比较子目录中的文件。
+-N 或--new-file 　              文件A仅出现在某个目录中，预设会显示：Only in目录
+                                文件A若使用-N参数，则diff会将文件A与一个空白的文件比较。
+-P或--unidirectional-new-file 　与-N类似，只有当第二个目录包含了一个第一个目录所没有的文件时，
+                                才会将这个文件与空白的文件做比较。
+</code></pre>
+
+<p>diff有大概四种格式：<strong>正常格式</strong>、<strong>并列格式</strong>、<strong>上下文格式</strong>、<strong>合并格式</strong>。</p>
+
+<p>还有git diff与vimdiff模式。</p>
+
+<p>diff可以比较文本文件或目录之间的差异，首先来讲解文本文件之间的diff，示例文件如下：</p>
+
+<p>文件f1</p>
+
+<pre><code>a b
+b
+c
+d
+e
+</code></pre>
+
+<p>文件f2</p>
+
+<pre><code>a b c
+b
+d
+e
+f
+</code></pre>
+
+<h2 id="正常格式diff">正常格式diff</h2>
+
+<p>正常格式不用加任何参数，<code>diff f1 f2</code>即可，显示结果如下：</p>
+
+<pre><code>1c1
+&lt; a b
+---
+&gt; a b c
+3d2
+&lt; c
+5a5
+&gt; f
+</code></pre>
+
+<p><code>1c1</code>、<code>3d2</code>、<code>5a5</code>是说明变动的位置，前边数字代表f1中变化的行，后边的则代表f2中变化的行，中间的字母分别代表“改变”（c）、“删除”（d）和“增加”（a）。</p>
+
+<p><code>&lt;</code>表示f1指定行的内容，<code>---</code>分割两个文件的，然后<code>&gt;</code>表示f2指定行的内容。删除或增加时，则分别f2、f1中指定行无内容。</p>
+
+<h2 id="并列格式diff">并列格式diff</h2>
+
+<p>其他格式diff都是先后显示两个文件的内容变化，并列格式可以并排显示两个文件的内容变化，更形象的看出文件的变化，和vimdiff显示的有些相似。</p>
+
+<p>使用方法为加入<code>-y</code>参数，即可并列显示，<code>-W num</code>参数可设定并列的宽度，可以不使用。</p>
+
+<pre><code>diff -y -W 50 f1 f2
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>a b                   | a b c
+b                       b
+c                     &lt;
+d                       d
+e                       e
+                      &gt; f
+</code></pre>
+
+<p><code>|</code>说明此行有变化，<code>&lt;</code>说明此行被删除了，<code>&gt;</code>说明此行是后增加的。</p>
+
+<h2 id="上下文格式diff">上下文格式diff</h2>
+
+<p>标准格式diff显示的内容不够直观，上下文格式则通过显示变化的上下文，而更加的利于理解。</p>
+
+<p>使用方法为使用参数<code>-c</code>参数： <code>diff -c f1 f2</code>，结果如下：</p>
+
+<pre><code>*** f1  2014-04-03 21:24:23.581007082 +0800
+--- f2  2014-04-03 21:24:21.324995895 +0800
+***************
+*** 1,5 ****
+! a b
+  b
+- c
+  d
+  e
+--- 1,5 ----
+! a b c
+  b
+  d
+  e
++ f
+</code></pre>
+
+<p>首先，显示两个文件的基本情况：</p>
+
+<pre><code>*** f1  2014-04-03 21:24:23.581007082 +0800
+--- f2  2014-04-03 21:24:21.324995895 +0800
+</code></pre>
+
+<p><code>***</code>表示变动前的文件f1，<code>---</code>表示变动后的文件f2。</p>
+
+<p>然后，15个星号将文件的基本情况与变动内容分割开。</p>
+
+<p>最后，显示f1和f2文件的内容变动情况。</p>
+
+<p><code>*** 1,5 ****</code>表示f1文件的1~5行</p>
+
+<p><code>--- 1,5 ----</code>表示f2文件的1~5行</p>
+
+<p><code>!</code>代表次行内容有变动，<code>+</code>表示此行为新增加，<code>-</code>表示此行被删除了。</p>
+
+<p>上下文格式默认显示包括修改行前后的三行内容，可以使用<code>-num</code>来设置显示前后num行，如：</p>
+
+<pre><code>diff -c -1 f1 f2
+</code></pre>
+
+<h2 id="合并格式diff">合并格式diff</h2>
+
+<p>两个文件大量内容重复，上下文格式将显示很多无用干扰信息，后来就退出了合并式diff。</p>
+
+<p>使用方法为，加入<code>-u</code>参数，<code>diff -u f1 f2</code>，结果如下：</p>
+
+<pre><code>--- f1  2014-04-03 21:24:23.581007082 +0800
++++ f2  2014-04-03 21:24:21.324995895 +0800
+@@ -1,5 +1,5 @@
+-a b
++a b c
+ b
+-c
+ d
+ e
++f
+</code></pre>
+
+<p>同样前两行表示两个文件的基本情况</p>
+
+<p>然后<code>@@ -1,5 +1,5 @@</code>表示修改的位置，<code>-</code>代表 f1 的1~5行，<code>+</code>代表 f2 的1~5行。</p>
+
+<p>最后是合并显示的变动具体内容，依旧是<code>-</code>代表f1，<code>+</code>代表f2。</p>
+
+<p>同上下文格式一样，合并格式也是默认显示修改前后3行的内容，也可以使用<code>-num</code>来设置显示前后num行：</p>
+
+<pre><code>diff -u -1 f1 f2
+</code></pre>
+
+<p>这里还要提到，git使用的是合并格式diff的变体。当前工作目录下<code>git add f1</code>后，修改f1的内容，可以使用如下命令，观察做出的修改</p>
+
+<pre><code>git diff
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>diff --git a/f1 b/f1
+index 924a897..c3b09ff 100644
+--- a/f1
++++ b/f1
+@@ -1,5 +1,5 @@
+-a b
++a b c
+ b
+-c
+ d
+ e
++f
+</code></pre>
+
+<p>和合并格式diff的区别在头部文件基本信息，<code>git diff</code>显示的是a、b两个版本的f1文件的内容变化，并且显示了两个版本的git哈希值（924a897..c3b09ff），与文件的权限（644）。</p>
+
+<h2 id="vimdiff">vimdiff</h2>
+
+<p>Vim提供的diff模式称作imdiff，可以很清晰形象的观察到文件内容的变化，方便的进行合并工作。vimdiff的使用方法如下：</p>
+
+<pre><code>vimdiff f1 f2
+或者
+vim -d f1 f2
+</code></pre>
+
+<p>下图为结果的画面</p>
+
+<p><img src="http://oss72cazp.bkt.clouddn.com/vimdiff.png" alt="vimdiff" /></p>
+
+<p>默认屏幕垂直分割，对比显示两个文件的不同，如果想要水平分割可以使用参数<code>-o</code>（不过怎么也是垂直的好看）。这里可以看到f1和f2中都有的但是内容改变的行被高亮为红色，次行内修改的具体位置被高亮为黄色；f1里有但是在f2中被删除的行，f1中显示为蓝色，f2中显示为绿色；相反，f2中增加的行显示为蓝色，f1中相应位置显示为绿色。这样更突出引起差异的地方，并且如果文件内容较多，连续相同的行会折叠起来，可以使用<code>zo</code>和<code>zc</code>打开和关闭折叠。</p>
+
+<p>对不同修改内容的高亮显示，颜色可以自己自定义，在自己的Vim配置文件<code>~/.vimrc</code>中添加如下语句：</p>
+
+<pre><code>hi DiffAdd ctermbg=blue ctermfg=white
+hi DiffDelete ctermbg=green ctermfg=none
+hi DiffChange ctermbg=red ctermfg=White
+hi DiffText ctermbg=yellow ctermfg=black
+</code></pre>
+
+<p>使用GUI的话可以配置<code>guibg</code>和<code>guifg</code>。</p>
+
+<p>切换不同的窗口可以使用下列命令：</p>
+
+<pre><code>Ctrl-w l        切换到右边窗口
+Ctrl-w h        切换到左边窗口
+Ctrl-w j        切换到下边窗口
+Ctrl-w k        切换到上边窗口
+</code></pre>
+
+<p>在编辑文件时也可以使用命令模式启动vimdiff模式：</p>
+
+<pre><code>vim f1
+:vertical diffsplit f2
+</code></pre>
+
+<p>如果不加<code>vertical</code>默认使用的水平分割。在Vim中除了<code>diffsplit</code>还有一些其他的命令，利于对文件进行合并和其他操作。</p>
+
+<pre><code>:diffget        把差异点中另一个文件对应的内容复制到当前行
+:diffput        把差异点中当前行的内容复制到另一个文件对应的位置
+:diffpatch      根据补丁文件更新文件内容，后面需要跟一个参数指定文件
+:diffupdate     手动刷新比较结果
+
+:qa             同时退出两个文件
+:wqa            同时保存并退出
+</code></pre>
+
+<p>如果Vim安装来<a href="https://github.com/tpope/vim-fugitive">vim-fugitive</a>插件，还可以使用<code>:Gdiff</code>命令来比较当前文件和暫存区中的文件的不同，也是利用的vimdiff，显示和操作同上。</p>
+
+<h2 id="目录的diff">目录的diff</h2>
+
+<p>目录间的diff比较目录中相同文件名的文件，也可以使用正常格式、上下文格式、合并格式、并列格式。</p>
+
+<p>示例目录为d1和d2目录，d1中有文件f1、f3，d2中有f1、f2，其中f1有一些改动。</p>
+
+<p>如果不是用其他参数，不会递归比较子目录中的文件，会显示只存在目录一个目录中的文件，但不显示其详细信息，如下结果是使用<code>diff -u d1 d2</code>的结果：</p>
+
+<pre><code>diff -u d1/f1 d2/f1
+--- d1/f1   2014-04-03 19:29:25.910803383 +0800
++++ d2/f1   2014-04-03 19:28:52.918639783 +0800
+@@ -1,5 +1,5 @@
+-a b c
++a b
+b
++c
+d
+e
+-f
+只在 d2 存在：f2
+只在 d1 存在：f3
+</code></pre>
+
+<p>在目录的diff中常使用的参数是<code>-ruN</code>，r表示递归比较子目录中的文件，u是合并格式，N表示diff会将只存在与某个目录中的文件与一个空白的文件比较。</p>
+
+<h1 id="patch">patch</h1>
+
+<p>将diff的输出重定向到文本文件中，即得到补丁文件(patch)，可以使用patch命令对文本文件或目录打补丁，从而进行内容更新。</p>
+
+<p>patch的基本用法</p>
+
+<pre><code>patch [参数] &lt;patchfile&gt;
+</code></pre>
+
+<p>参数：</p>
+
+<pre><code>-p Num  忽略几层文件夹
+-E      选项说明如果发现了空文件，那么就删除它
+-R      取消打过的补丁。
+</code></pre>
+
+<p>如果使用参数<code>-p0</code>，表示从当前目录找打补丁的目标文件夹，再对该目录中的文件执行patch操作。
+而使用参数<code>-p1</code>，表示忽略第一层目录，从当前目录寻找目标文件夹中的子目录和文件，进行patch操作。</p>
+
+<h2 id="处理单个文件补丁">处理单个文件补丁</h2>
+
+<p>产生补丁</p>
+
+<pre><code>diff -uN f1 f2 &gt; file.patch
+</code></pre>
+
+<p>打补丁</p>
+
+<pre><code>patch -p0 &lt; file.patch
+或者
+patch f1 file.patch
+</code></pre>
+
+<p>取消补丁</p>
+
+<pre><code>patch -RE -p0 &lt; file.patch
+或者
+patch -RE f1 file.patch
+</code></pre>
+
+<h2 id="处理目录补丁">处理目录补丁</h2>
+
+<p>产生补丁</p>
+
+<pre><code>diff -urN d1 d2 &gt; dir.patch
+</code></pre>
+
+<p>打补丁</p>
+
+<pre><code>cd d1
+patch -p1 &lt; ../dir.patch
+</code></pre>
+
+<p>取消补丁</p>
+
+<pre><code>patch -R -p1 &lt; ../dir.patch
+</code></pre>
+
+<p>应用补丁时的目标代码和生成补丁时的代码未必相同，打补丁操作可能失败，补丁失败的文件会以.rej结尾。</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><p><a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html">读懂diff - 阮一峰的网络日志</a></p></li>
+
+<li><p><a href="http://www.cnblogs.com/peida/archive/2012/12/12/2814048.html">每天一个linux命令（36）：diff 命令</a></p></li>
+
+<li><p><a href="http://linux-wiki.cn/wiki">补丁(patch)的制作与应用 - Linux Wiki</a></p></li>
+
+<li><p><a href="http://www.ibm.com/developerworks/cn/linux/l-vimdiff/index.html">技巧：Vimdiff 使用 - IBM</a></p></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/linux/">linux</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/diff/">diff</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/patch/">patch</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/" data-tooltip="Linux命令学习（2）：rsync">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" data-tooltip="Vim 基本配置">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 812lcl. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/" data-tooltip="Linux命令学习（2）：rsync">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" data-tooltip="Vim 基本配置">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+        <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+        <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f03%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A01diff-%25E5%2592%258C-patch%2f">
+        <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">812lcl</h4>
+    
+      <div id="about-card-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Backend Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Beijing
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/">
+                <h3 class="media-heading">Linux命令学习（2）：rsync</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/">
+                <h3 class="media-heading">Linux命令学习（1）：diff 和 patch</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim 基本配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/28/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E5%9B%9B%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96/">
+                <h3 class="media-heading">重学C语言(四)——变量初始化</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>首先来声明几个概念：</p>
+
+<p>存储类说明符：</p>
+
+<p><code>auto  register  static  extern  typedef</code></p>
+
+<p>类型说明符：</p>
+
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
+
+<p>类型限定符：</p>
+
+<p><code>const  volatile</code>
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/22/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%89%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E5%88%86%E6%9E%90/">
+                <h3 class="media-heading">重学C语言(三)——复杂声明分析</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p><a href="http://812lcl.github.io/blog/2013/12/21/重学c语言二运算符优先级与计算顺序/">上一篇文章</a>是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，作者还时不时的小幽默一把。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/21/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%BA%8C%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F/">
+                <h3 class="media-heading">重学C语言(二)——运算符优先级与计算顺序</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/17/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%80%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                <h3 class="media-heading">重学C语言(一)——类型转换</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>最近又读了一下基本 C 语言经典著作，特此整理下一些 C 语言的知识点。参考书籍有：C程序设计语言、C专家编程、C缺陷与陷阱
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim补全配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vim插件配置续/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">Vim插件配置，比肩IDE</a>。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/">
+                <h3 class="media-heading">Vim插件配置续</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/">
+                <h3 class="media-heading">Octopress添加统计与SEO</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
+
+<p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
+
+<p><a href="http://tool.lusongsong.com/addurl.html">http://tool.lusongsong.com/addurl.html</a></p>
+
+<p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         17 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://812lcl.com/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://812lcl.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/812lcl.com\/blog\/2014\/05\/03\/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch\/';
+          
+            this.page.identifier = '\/blog\/2014\/05\/03\/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'tranquilpeak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

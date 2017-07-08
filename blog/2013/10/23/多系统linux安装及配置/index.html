@@ -1,0 +1,920 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>多系统Linux安装及配置</title>
+    <meta name="author" content="812lcl">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="http://oss72cazp.bkt.clouddn.com/favicon.png">
+    
+
+    
+    <meta name="description" content="
+
+开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。
+">
+    <meta property="og:description" content="
+
+开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="多系统Linux安装及配置">
+    <meta property="og:url" content="/blog/2013/10/23/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+    <meta property="og:site_name" content="812lcl">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="812lcl">
+    <meta name="twitter:description" content="
+
+开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。
+">
+    
+      <meta name="twitter:creator" content="@812lcl">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://812lcl.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49529601-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://812lcl.com/">812lcl</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://812lcl.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://812lcl.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">812lcl</h4>
+        
+          <h5 class="sidebar-profile-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/3184742/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      多系统Linux安装及配置
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2013-10-23T00:00:00Z">
+      
+  十月 23, 2013
+
+    </time>
+  
+  
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="http://812lcl.com/categories/linux">Linux</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-更新软件源">1. 更新软件源</a></li>
+<li><a href="#2-安装喜欢的编辑器-vim">2. 安装喜欢的编辑器――VIM</a></li>
+<li><a href="#3-一些常用软件">3. 一些常用软件</a></li>
+<li><a href="#4-更新">4. 更新</a></li>
+<li><a href="#5-其他">5. 其他</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>开始编程当然首先的任务是要配置好自己喜欢的编程环境，自从接触了linux，越来越喜欢linux，先后使用过fedora、centos、ubuntu三个不同的版本。fedora还是比较炫的，开始用了一段时间，但是由于一些原因之后开始使用内核版本更低的centos，并且使用了较长一段时间。fedora和centos操作都是很像的，都是和redhat很接近的发行版本，fedora内核版本更高，图形界面也更为华丽，但不如centos稳定。centos给我的感觉就是朴实、稳定，但配置到我满意的状态也是需要一番功夫的，很多软件并不支持centos，因为它的一些库版本较低，有些需要强制更新为更高版本才能用。而且学校的校园网对国外的一些网站连不通，配置centos的源也比较麻烦，还需要添加很多不同的第三方软件库，如EPEL源、RPMForge源、RPMFusion源、Rmei源。
+</p>
+
+<p>而且centos要挂载ntfs的windows分区还需要安装ntfs-3g等，所以centos相对于其他版本，还是麻烦一些，至少对我来说是的。现在我一般多用ubuntu了，这个系统很好安装很好上手。centos的bin镜像要4G大小，刻进u盘里占用u盘过大空间，又不能用一次刻一次，所以常常采用的方法是，从电脑上分出一个fat32的区，方centos镜像，然后用easyBCD简历grub引导，开机引导到centos镜像进行安装。而ubuntu的镜像只有七八百兆，刻进u盘，都都可以忽略它的存在，只要开机u盘启动即可进入安装了。这里也不讲具体如何安装了，可以参考一下<a href="http://blog.csdn.net/xiazdong/article/details/7523331">U盘安装Linux图解</a>。中间linux安装过程也不多讲了，安装提示一步一步来就好了。</p>
+
+<p>注意装linux之前最好是先把要装linux的分区分出来。我最多在一台电脑上装了四个系统：Win7、Win8、CentOS、Ubuntu。装多系统最好先windows后linux，先centos后ubuntu。而且装多系统最好有一个u盘pe，防止装的过程出错，引导项没了，windows也启动不起来。</p>
+
+<h2 id="1-更新软件源">1. 更新软件源</h2>
+
+<p>ubuntu更新软件源很方便，已经收录了国内大部分知名的源，也不需上网查找，更改<code>/etc/apt/sources.list</code>文件。</p>
+
+<p>只需要打开软件中心-&gt;编辑-&gt;软件源，然后点击源的列表-&gt;其他站点</p>
+
+<p>然后点选择最佳服务器，系统会根据你的网络状况，选择一个最快的源站点，最后选择即可，非常方便。</p>
+
+<h2 id="2-安装喜欢的编辑器-vim">2. 安装喜欢的编辑器――VIM</h2>
+
+<p>我个人一般是习惯与使用有编辑器之神称号的vim，也是现在linu里都默认安装的编辑器，十分的高效。当然其他还有emacs，smu等等，没怎么使用过，但也都是神级编辑器。</p>
+
+<p>vim有很多的插件，通过添加插件可以将原本就强大的vim，改装成近似IDE的样子。我也会专门写一篇文章，记录我安装配置这些插件的过程。这些插件已经上传到我的<a href="https://github.com/812lcl">GitHub</a>中，就可以很快的还原我习惯的vim设置。当然这之前需要先安装一些必备软件。包括gcc、g++编译器，java开发环境、vim插件ctags和cscope。</p>
+
+<pre><code>sudo apt-get install gcc g++ git
+sudo apt-get install build-essential
+sudo apt-get install default-jre default-jdk
+sudo apt-get install ctags cscope
+</code></pre>
+
+<p>必要的都安装完了，下面就是配置vim了，vim系统已经默认安装，ubuntu下也可以安装图形界面版Gvim，在软件中心里就可以搜到，安装即可。然后执行如下命令</p>
+
+<pre><code>cd ~
+git clone https://github.com/812lcl/vim.git
+mv vim .vim
+mv .vim/vimrc-lcl .vimrc
+</code></pre>
+
+<p>配置C/C++和java的只能补全</p>
+
+<pre><code>javac ~/.vim/autoload/Reflection.java
+mv ~/.vim/autoload/Reflection.class ~
+cd /usr/include/c++
+ctags -R  然后在.vimrc中添加set tags+=/usr/include/c++/tags
+</code></pre>
+
+<p>以上就配置好了vim的一系列插件，可以查看配置文件<code>.vimrc</code>，或我的另一篇文章<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">VIM插件配置，比肩IDE</a>.</p>
+
+<h2 id="3-一些常用软件">3. 一些常用软件</h2>
+
+<p>当然linux也是离不开娱乐的，看电影、听歌还是要的。</p>
+
+<ul>
+<li><p>听歌：自带的rhythm box播放器就可以了，但是缺少一些解码插件，打开一首歌，会自动寻找，统一安装即可。</p></li>
+
+<li><p>看电影：我一般是安装smplayer，在软件中心里可以搜到，点点鼠标就OK了。</p></li>
+
+<li><p>浏览器：linux都自带了firefox，但我还是习惯用chrome，软件中心里没有，去官网下一个deb包就可以了，<code>dpkg -i</code>安装。</p></li>
+
+<li><p>虚拟机：有时候还是需要以下windows的，用个网银、MS office等等，装个虚拟机也是必要的，virtual box就搞定了，同样软件中心点一点。</p></li>
+
+<li><p>其他：codeblocks、eclipse等，软件中心或是apt-get install即可。</p></li>
+</ul>
+
+<h2 id="4-更新">4. 更新</h2>
+
+<p>没有什么要设置的了，可以更新一下软件了。</p>
+
+<pre><code>sudo apt-get update
+</code></pre>
+
+<h2 id="5-其他">5. 其他</h2>
+
+<p>多系统可能需要修改一下启动顺序</p>
+
+<pre><code>sudo vim /boot/grub/grub.cfg
+</code></pre>
+
+<p>其中有一句<code>default 0</code>，修改数字即可，如启动菜单第五项是windows，要默认启动windows，改为<code>default 4</code>，保存的时候需要强制保存，输入<code>:wq!</code></p>
+
+<p>有时候想设置开机自动挂载windows分区</p>
+
+<pre><code>sudo vim /etc/fstab
+</code></pre>
+
+<p>添加想开机挂载的分区即可</p>
+
+<pre><code class="language-sh">/dev/sda5 	/media/data 	ntfs 	defaults 	0 	0
+挂载分区 	挂载位置 		分区类型
+</code></pre>
+
+<p>很多时候需要翻墙，查阅国外网站，这就需要<a href="https://code.google.com/p/goagent/">goagent</a>了，安装过程参阅<a href="https://code.google.com/p/goagent/wiki/GoAgent_Linux">GoAgent_Linux</a>。</p>
+
+<p>另外推荐一个工具Terminator，使用方法见<a href="http://dikar.iteye.com/blog/940085">linux 多窗口Terminator</a>。</p>
+
+<hr />
+
+<p>OK，流水账又记完了，主要是简单记录一下自己的linux环境配置，省得以后装系统再想还有哪些没装，Keep it simple and stupid.(KISS)</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/ubuntu/">ubuntu</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/linux/">linux</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/%E8%A3%85%E7%B3%BB%E7%BB%9F/">装系统</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/">编程环境</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/24/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%AF%94%E8%82%A9ide/" data-tooltip="Vim插件配置，比肩IDE">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/22/%E8%87%AA%E8%AD%A6%E8%87%AA%E7%9C%81%E8%87%AA%E8%A7%84%E5%88%92/" data-tooltip="自警自省自规划">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 812lcl. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/24/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%AF%94%E8%82%A9ide/" data-tooltip="Vim插件配置，比肩IDE">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2013/10/22/%E8%87%AA%E8%AD%A6%E8%87%AA%E7%9C%81%E8%87%AA%E8%A7%84%E5%88%92/" data-tooltip="自警自省自规划">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+        <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+        <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2013%2f10%2f23%2f%25E5%25A4%259A%25E7%25B3%25BB%25E7%25BB%259Flinux%25E5%25AE%2589%25E8%25A3%2585%25E5%258F%258A%25E9%2585%258D%25E7%25BD%25AE%2f">
+        <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">812lcl</h4>
+    
+      <div id="about-card-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Backend Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Beijing
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/">
+                <h3 class="media-heading">Linux命令学习（2）：rsync</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/">
+                <h3 class="media-heading">Linux命令学习（1）：diff 和 patch</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim 基本配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/28/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E5%9B%9B%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96/">
+                <h3 class="media-heading">重学C语言(四)——变量初始化</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>首先来声明几个概念：</p>
+
+<p>存储类说明符：</p>
+
+<p><code>auto  register  static  extern  typedef</code></p>
+
+<p>类型说明符：</p>
+
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
+
+<p>类型限定符：</p>
+
+<p><code>const  volatile</code>
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/22/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%89%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E5%88%86%E6%9E%90/">
+                <h3 class="media-heading">重学C语言(三)——复杂声明分析</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p><a href="http://812lcl.github.io/blog/2013/12/21/重学c语言二运算符优先级与计算顺序/">上一篇文章</a>是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，作者还时不时的小幽默一把。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/21/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%BA%8C%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F/">
+                <h3 class="media-heading">重学C语言(二)——运算符优先级与计算顺序</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/17/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%80%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                <h3 class="media-heading">重学C语言(一)——类型转换</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>最近又读了一下基本 C 语言经典著作，特此整理下一些 C 语言的知识点。参考书籍有：C程序设计语言、C专家编程、C缺陷与陷阱
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim补全配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vim插件配置续/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">Vim插件配置，比肩IDE</a>。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/">
+                <h3 class="media-heading">Vim插件配置续</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/">
+                <h3 class="media-heading">Octopress添加统计与SEO</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
+
+<p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
+
+<p><a href="http://tool.lusongsong.com/addurl.html">http://tool.lusongsong.com/addurl.html</a></p>
+
+<p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         17 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://812lcl.com/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://812lcl.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/812lcl.com\/blog\/2013\/10\/23\/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE\/';
+          
+            this.page.identifier = '\/blog\/2013\/10\/23\/%E5%A4%9A%E7%B3%BB%E7%BB%9Flinux%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'tranquilpeak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

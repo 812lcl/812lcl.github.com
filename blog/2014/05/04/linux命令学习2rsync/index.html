@@ -1,0 +1,1071 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Linux命令学习（2）：rsync</title>
+    <meta name="author" content="812lcl">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="http://oss72cazp.bkt.clouddn.com/favicon.png">
+    
+
+    
+    <meta name="description" content="
+
+rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 dotfiles)。
+">
+    <meta property="og:description" content="
+
+rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 dotfiles)。
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Linux命令学习（2）：rsync">
+    <meta property="og:url" content="/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/">
+    <meta property="og:site_name" content="812lcl">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="812lcl">
+    <meta name="twitter:description" content="
+
+rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 dotfiles)。
+">
+    
+      <meta name="twitter:creator" content="@812lcl">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://812lcl.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49529601-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://812lcl.com/">812lcl</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://812lcl.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://812lcl.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">812lcl</h4>
+        
+          <h5 class="sidebar-profile-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/3184742/812lcl" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://812lcl.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Linux命令学习（2）：rsync
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2014-05-04T00:00:00Z">
+      
+  五月 4, 2014
+
+    </time>
+  
+  
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="http://812lcl.com/categories/linux">Linux</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#rsync的基本用法">rsync的基本用法</a>
+<ul>
+<li><a href="#t选项">[-t选项]</a></li>
+<li><a href="#i选项">[-I选项]</a></li>
+<li><a href="#v选项">[-v选项]</a></li>
+<li><a href="#z选项">[-z选项]</a></li>
+<li><a href="#r选项">[-r选项]</a></li>
+<li><a href="#l选项">[-l选项]</a></li>
+<li><a href="#p选项">[-p选项]</a></li>
+<li><a href="#g选项和-o选项">[-g选项和-o选项]</a></li>
+<li><a href="#d选项">[-D选项]</a></li>
+<li><a href="#a选项">[-a选项]</a></li>
+<li><a href="#delete选项-delete-excluded选项和-delete-after选项">[&ndash;delete选项、&ndash;delete-excluded选项和&ndash;delete-after选项]</a></li>
+<li><a href="#exclude选项和-exclude-from选项">[&ndash;exclude选项和&ndash;exclude-from选项]</a></li>
+<li><a href="#partial选项">[&ndash;partial选项]</a></li>
+<li><a href="#progress选项">[&ndash;progress选项]</a></li>
+</ul></li>
+<li><a href="#rsync核心算法">rsync核心算法</a></li>
+<li><a href="#rsyncd-conf">rsyncd.conf</a></li>
+<li><a href="#rsyncd-secrets">rsyncd.secrets</a></li>
+<li><a href="#rsyncd-motd">rsyncd.motd</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。
+</p>
+
+<h3 id="rsync的基本用法">rsync的基本用法</h3>
+
+<pre><code>$ rsync [options] src dest
+</code></pre>
+
+<ol>
+<li>目的端和源端文件内容不同，触发同步</li>
+<li>rsync不同步文件到&rdquo;modify time&rdquo;，进行同步到文件，目的端到&rdquo;modify time&rdquo;总是被修改为最新时刻到时间。</li>
+<li>rsync不会太关注目的端文件到rwx权限，如果目的端无此文件，则权限与源端保持一致；如果目的端有此文件，则权限不会随着源端变更。</li>
+<li>rsync有对源文件到读权限，且对目标路径有写权限，rsync就能确保目的端文件同步到和源端一致。</li>
+<li>rsync只能以登录目的端到帐号来创建文件，无法保持目的端文件到属主和属组和源端一致。</li>
+</ol>
+
+<h4 id="t选项">[-t选项]</h4>
+
+<ol>
+<li>使用-t选项后，rsync总会想着一件事，那就是将源文件的“modify time”同步到目标机器。</li>
+<li>带有-t选项的rsync，会变得更聪明些，它会在同步前先对比两边文件的时间戳和文件大小，如果一致，则就认为两边文件一样，对此文件就不再采取更新动作了。</li>
+<li>因为rsync的聪明，也会反被聪明误。如果目的端的文件的时间戳、大小和源端完全一致，但是内容恰巧不一致时，rsync是发现不了的。这就是传说中的“坑”！</li>
+<li>对于rsync自作聪明的情况，解决办法就是使用-I选项。</li>
+</ol>
+
+<h4 id="i选项">[-I选项]</h4>
+
+<ol>
+<li>-I选项会让rsync变得很乖很老实，它会挨个文件去发起数据同步。</li>
+<li>-I选项可以确保数据的一致性，代价便是速度上会变慢，因为我们放弃了“quick check”策略。（quick check策略，就是先查看文件的时间戳和文件大小，依次先排除一批认为相同的文件）</li>
+<li>无论情况如何，目的端的文件的modify time总会被更新到当前时刻。</li>
+</ol>
+
+<h4 id="v选项">[-v选项]</h4>
+
+<p>这个选项，简单易懂，就是让rsync输出更多的信息，你增加越多的v，就可以获得越多的日志信息。</p>
+
+<h4 id="z选项">[-z选项]</h4>
+
+<p>这是个压缩选项，只要使用了这个选项，rsync就会把发向对端的数据先进行压缩再传输。对于网络环境较差的情况下建议使用。一般情况下，-z的压缩算法会和gzip的一样。</p>
+
+<h4 id="r选项">[-r选项]</h4>
+
+<p>我们在第一次使用rsync时，往往会遇到这样的囧境：</p>
+
+<pre><code>$ rsync superman machineB:/home/userB
+skipping directory superman
+</code></pre>
+
+<p>如果你不额外告诉rsync你需要它帮你同步文件夹的话，它是不会主动承担的，这也正是rsync的懒惰之处。所以，如果你真的想同步文件夹，那就要加上-r选项，即recursive（递归的、循环的），像这样：</p>
+
+<pre><code>$  rsync -r superman machineB:/home/userB
+</code></pre>
+
+<p>对于文件夹，rsync是会明察秋毫的，只要你加了-r选项，它就会恪尽职守的进入到文件夹里去检查，而不会只对文件夹本身做“quick check”的。</p>
+
+<h4 id="l选项">[-l选项]</h4>
+
+<p>rsync一旦发现某个文件是软链接，就会无视它，除非我们增加-l选项。使用了-l选项后，rsync会完全保持软链接文件类型，原原本本的将软链接文件复制到目的端，而不会“follow link”到指向的实体文件。如果我偏偏就想让rsync采取follow link的方式，那就用-L选项就可以了。你可以自己试试效果。</p>
+
+<h4 id="p选项">[-p选项]</h4>
+
+<p>这个选项的全名是“perserve permissions”，顾名思义，就是保持权限。如果你不使用此选项的话，rsync是这样来处理权限问题的：</p>
+
+<ol>
+<li>如果目的端没有此文件，那么在同步后会将目的端文件的权限保持与源端一致；</li>
+<li>如果目的端已存在此文件，那么只会同步文件内容，权限保持原有不变。</li>
+</ol>
+
+<p>如果你使用了-p选项，则无论如何，rsync都会让目的端保持与源端的权限一致的。</p>
+
+<h4 id="g选项和-o选项">[-g选项和-o选项]</h4>
+
+<p>这两个选项是一对，用来保持文件的属组(group)和属主（owner），作用应该很清晰明了。不过要注意的一点是，改变属主和属组，往往只有管理员权限才可以。</p>
+
+<h4 id="d选项">[-D选项]</h4>
+
+<p>-D选项，原文解释是“preserve devices(root only)”，从字面意思看，就是保持设备文件的原始信息。</p>
+
+<h4 id="a选项">[-a选项]</h4>
+
+<ol>
+<li>-a选项是rsync里比较霸道的一个选项，因为你使用-a选项，就相当于使用了<code>-rlptgoD</code>这一坨选项。以一敌七，唯-a选项也。</li>
+<li>-a选项的学名应该叫做archive option，中文叫做归档选项。使用-a选项，就表明你希望采取递归方式来同步，且尽可能的保持各个方面的一致性。</li>
+<li>但是-a无法同步“硬链接”情况。如果有这方面需求，要加上-H选项。</li>
+</ol>
+
+<h4 id="delete选项-delete-excluded选项和-delete-after选项">[&ndash;delete选项、&ndash;delete-excluded选项和&ndash;delete-after选项]</h4>
+
+<p>三个选项都是和“删除”有关的：</p>
+
+<ol>
+<li>–delete：如果源端没有此文件，那么目的端也别想拥有，删除之。（如果你使用这个选项，就必须搭配-r选项一起）</li>
+<li>–delete-excluded：专门指定一些要在目的端删除的文件。</li>
+<li>–delete-after：默认情况下，rsync是先清理目的端的文件再开始数据同步；如果使用此选项，则rsync会先进行数据同步，都完成后再删除那些需要清理的文件。</li>
+</ol>
+
+<p>这个学习可是要小心使用到，一不小心会删除很多东西哦。</p>
+
+<p>可以使用-n选项，它会用受影响的文件列表来警告你，但不会真的去删除，这就让我们有了确认的机会和回旋的余地。</p>
+
+<h4 id="exclude选项和-exclude-from选项">[&ndash;exclude选项和&ndash;exclude-from选项]</h4>
+
+<p>如果你不希望同步一些东西到目的端的话，可以使用–exclude选项来隐藏，rsync还是很重视大家隐私的，你可以多次使用–exclude选项来设置很多的“隐私”。
+如果你要隐藏的隐私太多的话，在命令行选项中设置会比较麻烦，rsync还是很体贴，它提供了–exclude-from选项，让你可以把隐私一一列在一个文件里，然后让rsync直接读取这个文件就好了。</p>
+
+<h4 id="partial选项">[&ndash;partial选项]</h4>
+
+<p>这就是传说中的断点续传功能。默认情况下，rsync会删除那些传输中断的文件，然后重新传输。但在一些特别情况下，我们不希望重传，而是续传。
+我们在使用中，经常会看到有人会使用-P选项，这个选项其实是为了偷懒而设计的。以前人们总是要手动写–partial –progress，觉得太费劲了，倒不如用一个新的选项来代替，于是-P应运而生了。</p>
+
+<h4 id="progress选项">[&ndash;progress选项]</h4>
+
+<p>使用这个选项，rsync会显示出传输进度信息，有什么用呢，rsync给了一个很有意思的解释：
+This gives a bored user something to watch.</p>
+
+<h3 id="rsync核心算法">rsync核心算法</h3>
+
+<p>rsync的算法十分高效，酷壳上 <a href="http://coolshell.cn/articles/7425.html">一篇文章</a> 介绍来其核心算法，就不再赘述来。</p>
+
+<p>##rsync服务器架设
+可以架设rsync服务器，rsync以守护进程运行，客户端将rsync指令写成一个shell脚本，通过crontab定期执行脚本，以实现服务器和客户端间特定文件或目录到同步，这样就不需要你每次手动同步来，而且rsync服务器配置也十分简单。</p>
+
+<p>主要涉及三个文件：</p>
+
+<ol>
+<li>/etc/rsyncd.conf 是rsync服务器主要配置文件</li>
+<li>/etc/rsyncd.secrets 是登录rsync服务器到密码文件</li>
+<li>/etc/rsyncd.motd 是定义用户登录时显示到信息</li>
+</ol>
+
+<h3 id="rsyncd-conf">rsyncd.conf</h3>
+
+<p>文件内容大体如下：</p>
+
+<pre><code># Minimal configuration file for rsync daemon
+# See rsync(1) and rsyncd.conf(5) man pages for help
+
+# This line is required by the /etc/init.d/rsync script
+pid file = /var/run/rsyncd.pid
+motd file = /etc/rsyncd.motd
+port = 873
+address = 192.168.20.24
+#uid = nobody
+#gid = nobody
+uid = root
+gid = root
+use chroot = yes
+read only = no
+
+# limit access to private LANs
+hosts allow = *
+hosts deny = *
+
+max connections = 5
+
+# This will give you a separate log file
+log file = /var/log/rsync.log
+
+# This will log every file transferred - up to 85,000+ per user, per sync
+# transfer logging = yes
+
+log format = %t %a %m %f %b
+syslog facility = local3
+timeout = 300
+
+[test]
+path = /home/lcl/test
+list = yes
+ignore errors
+auth users = lcl
+secrets file = /etc/rsyncd.secrets
+comment = lcl test
+#exclude = samba/
+</code></pre>
+
+<p>rsync使用到是873好端口，上面到配置中<code>hosts allow</code>是允许使用这台rsync服务到机器到IP地址，<code>hosts deny</code>则是拒绝到，不同IP以空格隔开。</p>
+
+<p>[test]及之后到配置则是，配置rsync目录，包括目录到路径，使用到用户，密码文件，可以使用<code>exclude</code>排除不要同步到文件或目录。</p>
+
+<h3 id="rsyncd-secrets">rsyncd.secrets</h3>
+
+<p>这是存储rsync服务用户到用户名和密码，是一个明文文本文件，非常重要，属性需要设为600，只允许所有者读写，文件格式如下：</p>
+
+<pre><code>lcl:12345
+</code></pre>
+
+<h3 id="rsyncd-motd">rsyncd.motd</h3>
+
+<p>文件记录来rsync服务到欢迎信息，当用户使用该服务时会显示，可以设置为任何文本信息，如：</p>
+
+<pre><code>++++++++++++++++++++++++++++++++++++++
++ Welcome to use lcl rsync services! +
+++++++++++++++++++++++++++++++++++++++
+</code></pre>
+
+<p>配置完以上文件，可以启动rsync服务来：</p>
+
+<pre><code>rsync --daemon
+</code></pre>
+
+<p>客户端可以通过rsync命令活脚本来进行同步数据来</p>
+
+<p>rsync的命令格式可以为：</p>
+
+<ol>
+<li>rsync [OPTION]&hellip; SRC [SRC]&hellip; [USER@]HOST:DEST]</li>
+<li>rsync [OPTION]&hellip; [USER@]HOST:SRC DEST]</li>
+<li>rsync [OPTION]&hellip; SRC [SRC]&hellip; DEST]</li>
+<li>rsync [OPTION]&hellip; [USER@]HOST::SRC [DEST]</li>
+<li>rsync [OPTION]&hellip; SRC [SRC]&hellip; [USER@]HOST::DEST]</li>
+<li>rsync [OPTION]&hellip; rsync://[USER@]HOST[:PORT]/SRC [DEST]</li>
+</ol>
+
+<p>rsync有六种不同的工作模式：</p>
+
+<ol>
+<li>拷贝本地文件；当SRC和DES路径信息都不包含有单个冒号&rdquo;:&ldquo;分隔符时就启动这种工作模式。</li>
+<li>使用一个远程shell程序（如rsh、ssh）来实现将本地机器的内容拷贝到远程机器。当DST地址包含单个冒号&rdquo;:&ldquo;分隔符时启动该模式。</li>
+<li>使用一个远程shell程序（如rsh、ssh）来实现将远程机器的内容拷贝到本地机器。当SRC路径包含单个冒号&rdquo;:&ldquo;分隔符时启动该模式。</li>
+<li>从远程rsync服务器中拷贝文件到本地机。当SRC路径信息包含&rdquo;::&ldquo;分隔符时启动该模式。</li>
+<li>从本地机器拷贝文件到远程rsync服务器中。当DST路径信息包含&rdquo;::&ldquo;分隔符时启动该模式。</li>
+<li>列远程机的文件列表。这类似于rsync传输，不过只要在命令中省略掉本地机信息即可。</li>
+</ol>
+
+<p>参考文章：</p>
+
+<ul>
+<li><a href="http://roclinux.cn/?p=2643">rsync同步的艺术</a></li>
+<li><a href="https:www.centos.bz/2011/06/rsync-server-setup">rsync服务器架设（数据同步|文件增量备份)</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/linux/">linux</a>
+
+  <a class="tag tag--primary tag--small" href="http://812lcl.com/tags/rsync/">rsync</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/" data-tooltip="Linux命令学习（1）：diff 和 patch">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 812lcl. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/" data-tooltip="Linux命令学习（1）：diff 和 patch">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+        <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+        <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2f812lcl.com%2fblog%2f2014%2f05%2f04%2flinux%25E5%2591%25BD%25E4%25BB%25A4%25E5%25AD%25A6%25E4%25B9%25A02rsync%2f">
+        <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/76ba138ac6768fc74326cebb828885c1?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">812lcl</h4>
+    
+      <div id="about-card-bio">Vim党/工具控/强迫症/拖延症/golang后端工程师</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Backend Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Beijing
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync/">
+                <h3 class="media-heading">Linux命令学习（2）：rsync</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>rsync是Linux下进行文件同步到一个命令，可以同步两台计算机到文件与目录，利用查找文件中到不同块以减少数据传输。也可以在一台电脑到不同目录间同步，比如可以写个简单到脚本，将系统中你到一些配置文件备份到一个 dotfiles 文件夹，上传到 GitHub 以便以后新的电脑或系统再利用 rsync 恢复这些配置文件，这是很方便自动化的（我就是这么干的 <a href="https://github.com/812lcl/dotfiles">dotfiles</a>)。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/05/03/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A01diff-%E5%92%8C-patch/">
+                <h3 class="media-heading">Linux命令学习（1）：diff 和 patch</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>diff 命令是 Linux 上非常重要的工具，用于比较文件甚至目录的内容，清晰的告诉你前后改动的地方。diff 可以输出为补丁(patch) ，Linux 中还有一条命令patch，可以根据补丁文件，对文件更新修改。当你和别人合作或想为开源项目提供贡献时，可以将自己的修改打成补丁，邮件给合作者，他即可合并你的代码。因此diff也是svn、cvs、git等版本控制工具不可或缺的一部分。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2014/04/05/vim-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim 基本配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2014
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Vim是个强大的编辑器，在各种插件的辅助下甚至也能匹敌IDE，但也不能过分的依赖来各种插件，而忘记来Vim原本的功能与操作。Vim本身的功能很强大，学习曲线很曲折，需要我们慢慢的来学习，多多的使用。Vim自身有很多配置选项，可以在<code>~/.vimrc</code>中配置，从而方便我们操作。使用Vim也有一段时间来，也有了一套自己习惯好用的<a href="https://github.com/812lcl/dotfiles">配置</a>，下面列出我的基本配置。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/28/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E5%9B%9B%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96/">
+                <h3 class="media-heading">重学C语言(四)——变量初始化</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>首先来声明几个概念：</p>
+
+<p>存储类说明符：</p>
+
+<p><code>auto  register  static  extern  typedef</code></p>
+
+<p>类型说明符：</p>
+
+<pre><code>void  char  short  int  long  float  double  
+signed  unsigned  结构或联合说明符  
+枚举说明符  类型定义名
+</code></pre>
+
+<p>类型限定符：</p>
+
+<p><code>const  volatile</code>
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/22/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%89%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E5%88%86%E6%9E%90/">
+                <h3 class="media-heading">重学C语言(三)——复杂声明分析</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p><a href="http://812lcl.github.io/blog/2013/12/21/重学c语言二运算符优先级与计算顺序/">上一篇文章</a>是关于运算符的优先级的，这篇文章则来说说关于C语言中的复杂声明。C语言中的声明是不能从左往右读的，时而往左时而往右，有时候弄得人头大，什么数组指针、指针数组傻傻弄不清楚，函数指针更是模棱两可。复杂声明更是令人敬而远之了，常常被作为例子的就是系统调用里的signal函数了，它在signal.h中声明的，声明如下</p>
+
+<pre><code>void (*signal(int, void(*)))(int);
+</code></pre>
+
+<p>是不是需要琢磨一番呢，其实在经典的C语言书籍中都很清楚地讲过这个问题了，C专家编程里讲得十分的好，而且这本书也十分的好，作者还时不时的小幽默一把。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/21/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%BA%8C%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F/">
+                <h3 class="media-heading">重学C语言(二)——运算符优先级与计算顺序</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>对于一个复杂的表达式，存在很多的运算符，要了解这个表达式的意义，就要了解清运算符之间的优先关系与结合顺序。要确保表达式实现自己所想达成的目的，了解计算顺序也是非常必要的。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/17/%E9%87%8D%E5%AD%A6c%E8%AF%AD%E8%A8%80%E4%B8%80%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                <h3 class="media-heading">重学C语言(一)——类型转换</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>最近又读了一下基本 C 语言经典著作，特此整理下一些 C 语言的知识点。参考书籍有：C程序设计语言、C专家编程、C缺陷与陷阱
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/06/vim%E8%A1%A5%E5%85%A8%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Vim补全配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>vim已经自带了补全功能，通过几个补全插件可以使其补全发挥的更出色，以下主要介绍5种不同的补全，并不需要全部安装，根据需求选择安装，具体安装方法可以见<a href="http://812lcl.github.io/blog/2013/12/04/vim插件配置续/">VIM插件配置续</a>或<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">Vim插件配置，比肩IDE</a>。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/12/04/vim%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BB%AD/">
+                <h3 class="media-heading">Vim插件配置续</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<p>之前写过一篇<a href="http://812lcl.github.io/blog/2013/10/24/vim插件配置比肩ide/">文章</a>，介绍了当时用的一些vim插件，不过前些日子<a href="http://blog.jobbole.com/">伯乐在线</a>上的一篇文章，就又开始了我好几天的折腾，vim的折腾永无止境啊，有些大神配置文件竟然都写到了两千行，插件弄了几十个。我经过这第二阶段的折腾，最终定下来了两种方案，每种都是二十四五个插件的样子，一种是使用了YCM神级补全，另一种是采用clang-complete和neocomplcache补全的方案。YCM虽说是神级补全，但需要编译，而且体积庞大，有时候确实令人望而却步。有关不同的补全方案，我会另写一篇文章介绍，这里重要介绍一些我新增加的一些插件。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/">
+                <h3 class="media-heading">Octopress添加统计与SEO</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。</p>
+
+<p><a href="http://urlc.cn/tool/addurl.html">http://urlc.cn/tool/addurl.html</a></p>
+
+<p><a href="http://tool.lusongsong.com/addurl.html">http://tool.lusongsong.com/addurl.html</a></p>
+
+<p>提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         17 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://812lcl.com/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://812lcl.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/812lcl.com\/blog\/2014\/05\/04\/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync\/';
+          
+            this.page.identifier = '\/blog\/2014\/05\/04\/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A02rsync\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'tranquilpeak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

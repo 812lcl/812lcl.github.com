@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on 812lcl</title>
+    <link>http://812lcl.com/tags/%E5%8D%9A%E5%AE%A2/</link>
+    <description>Recent content in 博客 on 812lcl</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 29 Oct 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://812lcl.com/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Octopress添加统计与SEO</title>
+      <link>http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/</link>
+      <pubDate>Tue, 29 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/29/octopress%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E4%B8%8Eseo/</guid>
+      <description>&lt;p&gt;博客建好了，文章写出来，当然希望有人能看到，而且希望更多的人看到，这就需要让自己的博客可以在搜索引擎里面检索到，自己搭建的博客不像在CSDN、博客园写的文章，因为你的博客还没有被提交到搜索引擎，让它来抓取你，所以首先要到各个搜索引擎提交自己的博客地址。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://urlc.cn/tool/addurl.html&#34;&gt;http://urlc.cn/tool/addurl.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tool.lusongsong.com/addurl.html&#34;&gt;http://tool.lusongsong.com/addurl.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;提交到搜索引擎了，能搜索到你的文章了，你还需要做的是为你的网站、文章添加描述信息、关键字，来帮助用户准确的搜索到你的文章。关键字和描述是指网页head部分的元标签meta，是给搜索引擎看的，以此希望用户可以比较容易找到。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress主题样式修改</title>
+      <link>http://812lcl.com/blog/2013/10/27/octopress%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9/</link>
+      <pubDate>Sun, 27 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/27/octopress%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/26/octopress侧边栏及评论系统定制/&#34;&gt;上一篇文章&lt;/a&gt;写了很多侧边栏和社会化评论分享系统的定制，现在说一说，主题样式的修改。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress侧边栏及评论系统定制</title>
+      <link>http://812lcl.com/blog/2013/10/26/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6/</link>
+      <pubDate>Sat, 26 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/26/octopress%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%8F%8A%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%AE%9A%E5%88%B6/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;p&gt;在&lt;a href=&#34;http://812lcl.github.io/blog/2013/10/25/octopress博客搭建及目录结构/&#34;&gt;上一篇文章&lt;/a&gt;中，已经搭建起了octopress博客。使用的是默认的主题，样式千篇一律，而且自带的一些功能和侧边栏并不适合国内的国情，得不到网络的支持，如facebook、twitter、google plus和disqus等。所以还是有必要进行一下改造，打造中国特色octopress博客的。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress博客搭建及目录结构</title>
+      <link>http://812lcl.com/blog/2013/10/25/octopress%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Fri, 25 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://812lcl.com/blog/2013/10/25/octopress%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</guid>
+      <description>&lt;p&gt;搭建个人博客的想法有一段时间了，不是认为自己有多牛，而是想通过写博客记录并反思自己的学习历程，能使学过的东西更具条理，慢慢形成自己的知识体系。但自己租个服务器，买个域名，一点一点搭建一个网站成本又太大，我对HTML、javascript、css等前端技术了解有限，网站搭建很多技术也知之甚少。但后来Jekyll、Octopress、GitHub pages让我搭建个人博客成为了可能。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
