@@ -17,7 +17,7 @@ languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
 title = "812lcl"
 theme = "tranquilpeak"
-disqusShortname = "tranquilpeak"
+disqusShortname = "812lcl"
 googleAnalytics = "UA-49529601-1"
 paginate = 5
 canonifyurls = true
@@ -72,6 +72,12 @@ canonifyurls = true
   url = "/archives"
 [[menu.main]]
   weight = 5
+  identifier = "search"
+  name = "Search"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-search\"></i>"
+  url = "/#search"
+[[menu.main]]
+  weight = 6
   identifier = "about"
   name = "About"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
@@ -91,10 +97,22 @@ canonifyurls = true
   url = "https://twitter.com/812lcl"
 [[menu.links]]
   weight = 3
+  identifier = "linked_in"
+  name = "Linkedin"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
+  url = "http://www.linkedin.com/in/%E6%98%A5%E9%9B%B7-%E5%88%98-73409293/"
+[[menu.links]]
+  weight = 4
   identifier = "stackoverflow"
   name = "Stack Overflow"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-stack-overflow\"></i>"
   url = "http://stackoverflow.com/users/3184742/812lcl"
+[[menu.links]]
+  weight = 5
+  identifier = "mail"
+  name = "Mail"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-envelope-o\"></i>"
+  url = "mailto:812liuchunlei@163.com"
 
 [[menu.misc]]
   weight = 1
